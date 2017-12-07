@@ -1,0 +1,445 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>RichEditableText2AccImpl.as</title>
+<link rel="stylesheet" type="text/css" href="../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">accessibility</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">accessibility</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Accessibility</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Event</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">FocusEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">text</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">engine</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">GraphicElement</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">utils</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">clearInterval</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">utils</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">clearTimeout</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">utils</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">setInterval</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">utils</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">setTimeout</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flashx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">textLayout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">compose</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">TextFlowLine</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flashx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">textLayout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">edit</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ISelectionManager</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flashx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">textLayout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">elements</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">FlowElement</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flashx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">textLayout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">elements</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LinkElement</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flashx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">textLayout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">FlowElementMouseEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flashx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">textLayout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">SelectionEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flashx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">textLayout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">tlf_internal</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">accessibility</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">AccConst</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">UIComponent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">mx_internal</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">FlexEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">utils</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">StringUtil</span>;
+    
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">accessibility</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">RichEditableTextAccImpl</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">components</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">RichEditableText2</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LinkElementFocusEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">TextOperationEvent</span>;
+    
+    <span class="ActionScriptReserved">use</span> <span class="ActionScriptReserved">namespace</span> <span class="ActionScriptDefault_Text">mx_internal</span>
+    <span class="ActionScriptReserved">use</span> <span class="ActionScriptReserved">namespace</span> <span class="ActionScriptDefault_Text">tlf_internal</span>
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">RichEditableText2AccImpl</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">RichEditableTextAccImpl</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        
+        <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>        <span class="ActionScriptComment">//
+</span>        <span class="ActionScriptComment">//  Class methods
+</span>        <span class="ActionScriptComment">//
+</span>        <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>        
+        <span class="ActionScriptASDoc">/**
+         *  Enables accessibility in the RichEditableText class.
+         *
+         *  &lt;p&gt;This method is called by application startup code
+         *  that is autogenerated by the MXML compiler.
+         *  Afterwards, when instances of RichEditableText are initialized,
+         *  their &lt;code&gt;accessibilityImplementation&lt;/code&gt; property
+         *  will be set to an instance of this class.&lt;/p&gt;
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10
+         *  @playerversion AIR 1.5
+         *  @productversion Flex 4
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">enableAccessibility</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">createAccessibilityImplementation</span> <span class="ActionScriptOperator">=</span> 
+                <span class="ActionScriptDefault_Text">createAccessibilityImplementation</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         *  Creates a RichEditableText's AccessibilityImplementation object.
+         *  This method is called from UIComponent's
+         *  initializeAccessibility() method.
+         */</span>
+        <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">createAccessibilityImplementation</span><span class="ActionScriptBracket/Brace">(</span>
+            <span class="ActionScriptDefault_Text">component</span>:<span class="ActionScriptDefault_Text">UIComponent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">component</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">accessibilityImplementation</span> <span class="ActionScriptOperator">=</span>
+                <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">RichEditableText2AccImpl</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">component</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>        <span class="ActionScriptComment">//
+</span>        <span class="ActionScriptComment">//  Constructor
+</span>        <span class="ActionScriptComment">//
+</span>        <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>        
+        <span class="ActionScriptASDoc">/**
+         *  Constructor.
+         *
+         *  @param master The UIComponent instance that this AccImpl instance
+         *  is making accessible.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10
+         *  @playerversion AIR 1.5
+         *  @productversion Flex 4
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">RichEditableText2AccImpl</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span>:<span class="ActionScriptDefault_Text">UIComponent</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">super</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span>;            
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         *  Array of events that we should listen for from the master component.
+         */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">eventsToHandle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Array</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">eventsToHandle</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">concat</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">[</span> 
+                <span class="ActionScriptDefault_Text">FlexEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">UPDATE_COMPLETE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">FlexEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">SELECTION_CHANGE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">LinkElementFocusEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LINK_FOCUS_IN</span> <span class="ActionScriptBracket/Brace">]</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         *  Gets the role for the component.
+         *
+         *  @param childID children of the component
+         */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">get_accRole</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span>:<span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">uint</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">richEditableText</span>:<span class="ActionScriptDefault_Text">RichEditableText2</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">==</span>0<span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span> 
+                <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">richEditableText</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">editable</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_TEXT</span>;
+                <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">getChildIDArray</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span><span class="ActionScriptOperator">==</span>0<span class="ActionScriptBracket/Brace">)</span> 
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">richEditableText</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">linkElements</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span><span class="ActionScriptOperator">==</span>1<span class="ActionScriptBracket/Brace">)</span> 
+                            <span class="ActionScriptOperator">?</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_LINK</span> : <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_TEXT</span>;
+                <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_GROUPING</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">readOnly</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">richEditableText</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">editable</span> <span class="ActionScriptOperator">||</span> <span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">richEditableText</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">selectable</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">flowElement</span>:<span class="ActionScriptDefault_Text">FlowElement</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getItemAt</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">-</span>1<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">FlowElement</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">linkElement</span>:<span class="ActionScriptDefault_Text">LinkElement</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">flowElement</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">LinkElement</span>;
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">linkElement</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_LINK</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">graphicElement</span>:<span class="ActionScriptDefault_Text">GraphicElement</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">flowElement</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">GraphicElement</span>;
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">graphicElement</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_GRAPHIC</span>;
+            
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">readOnly</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">?</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_STATICTEXT</span> : <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_TEXT</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         *  IAccessible method for returning the state of the TextBase.
+         *  States are predefined for all the components in MSAA.
+         *  Values are assigned to each state.
+         *  Depending upon the TextBase being enabled,
+         *  a state is returned.
+         *
+         *  @param childID uint
+         *
+         *  @return State uint
+         */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">get_accState</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span>:<span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">uint</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">accState</span>:<span class="ActionScriptDefault_Text">uint</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getState</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">childFocused</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">getChildIDArray</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span><span class="ActionScriptOperator">==</span>1 <span class="ActionScriptOperator">||</span> <span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">caretIndex</span><span class="ActionScriptOperator">==</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">-</span>1<span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptReserved">switch</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">get_accRole</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_LINK</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptDefault_Text">accState</span> <span class="ActionScriptOperator">|=</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">STATE_SYSTEM_LINKED</span>;
+                    <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childFocused</span><span class="ActionScriptBracket/Brace">)</span>
+                        <span class="ActionScriptDefault_Text">accState</span> <span class="ActionScriptOperator">|=</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">STATE_SYSTEM_FOCUSED</span>;
+                    <span class="ActionScriptReserved">break</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_TEXT</span>:
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_STATICTEXT</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">selectable</span><span class="ActionScriptBracket/Brace">)</span>
+                        <span class="ActionScriptDefault_Text">accState</span> <span class="ActionScriptOperator">&amp;=</span> <span class="ActionScriptOperator">~</span><span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">STATE_SYSTEM_FOCUSABLE</span>;
+                    <span class="ActionScriptReserved">else</span> <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childFocused</span><span class="ActionScriptBracket/Brace">)</span>
+                        <span class="ActionScriptDefault_Text">accState</span> <span class="ActionScriptOperator">|=</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">STATE_SYSTEM_FOCUSED</span>;
+                    <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">editable</span><span class="ActionScriptBracket/Brace">)</span>
+                        <span class="ActionScriptDefault_Text">accState</span> <span class="ActionScriptOperator">|=</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">STATE_SYSTEM_READONLY</span>;
+                    <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">displayAsPassword</span><span class="ActionScriptBracket/Brace">)</span>
+                        <span class="ActionScriptDefault_Text">accState</span> <span class="ActionScriptOperator">|=</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">STATE_SYSTEM_PROTECTED</span>;
+                    <span class="ActionScriptReserved">break</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_GROUPING</span>:
+                <span class="ActionScriptReserved">default</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptDefault_Text">accState</span> <span class="ActionScriptOperator">&amp;=</span> <span class="ActionScriptOperator">~</span><span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">STATE_SYSTEM_FOCUSABLE</span>;
+                    <span class="ActionScriptDefault_Text">accState</span> <span class="ActionScriptOperator">&amp;=</span> <span class="ActionScriptOperator">~</span><span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">STATE_SYSTEM_FOCUSED</span>;
+                    <span class="ActionScriptReserved">break</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptBracket/Brace">}</span>
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">accLocation</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptDefault_Text">accState</span> <span class="ActionScriptOperator">|=</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">STATE_SYSTEM_INVISIBLE</span>;
+            
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">accState</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         *  IAccessible method for returning the childFocus of the RichEditableText2.
+         *
+         *  @param childID uint
+         *
+         *  @return focused childID.
+         */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">get_accFocus</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">uint</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">index</span>:<span class="ActionScriptDefault_Text">uint</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">caretIndex</span>;
+            
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">getChildIDArray</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span><span class="ActionScriptOperator">&gt;</span>1 <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">index</span> <span class="ActionScriptOperator">&gt;=</span> 0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">?</span> <span class="ActionScriptDefault_Text">index</span> <span class="ActionScriptOperator">+</span> 1 : 0;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         *  IAccessible method for returning the text value of the RichEditableText
+         *
+         *  @param childID uint
+         *
+         *  @return Value String
+         */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">get_accValue</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span>:<span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">flowElement</span>:<span class="ActionScriptDefault_Text">FlowElement</span>;
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">&gt;</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptDefault_Text">flowElement</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getItemAt</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">-</span>1<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">FlowElement</span>;
+            <span class="ActionScriptReserved">switch</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">get_accRole</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_LINK</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">==</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptDefault_Text">flowElement</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getItemAt</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">FlowElement</span>;
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">LinkElement</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">flowElement</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">href</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_TEXT</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">==</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptDefault_Text">flowElement</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getItemAt</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">FlowElement</span>;
+                    <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">editable</span><span class="ActionScriptBracket/Brace">)</span> 
+                        <span class="ActionScriptReserved">return</span> <span class="ActionScriptReserved">null</span>;
+                    <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">str</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">flowElement</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getText</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">displayAsPassword</span><span class="ActionScriptBracket/Brace">)</span> 
+                            <span class="ActionScriptOperator">?</span> <span class="ActionScriptDefault_Text">StringUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">repeat</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"*"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">str</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span><span class="ActionScriptBracket/Brace">)</span> 
+                            : <span class="ActionScriptDefault_Text">str</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                    
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_STATICTEXT</span>:
+                <span class="ActionScriptReserved">default</span>:
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptReserved">null</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         *  IAccessible method for returning the default action
+         *  of the LinkElement, which is Jump.
+         *
+         *  @param childID uint
+         *
+         *  @return DefaultAction String
+         */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">get_accDefaultAction</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span>:<span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">switch</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">get_accRole</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_LINK</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptString">"Jump"</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                <span class="ActionScriptReserved">default</span>:
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptReserved">null</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">accDoDefaultAction</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span>:<span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">switch</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">get_accRole</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_LINK</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">index</span>:<span class="ActionScriptDefault_Text">uint</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">==</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">?</span> 0 : <span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">-</span>1;
+                    <span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">triggerLinkElementClick</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">getItemAt</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">index</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">LinkElement</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">accLocation</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span>:<span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptOperator">*</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">index</span>:<span class="ActionScriptDefault_Text">uint</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">==</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">?</span> 0 : <span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">-</span>1;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">flowElement</span>:<span class="ActionScriptDefault_Text">FlowElement</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getItemAt</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">index</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">FlowElement</span>;
+            <span class="ActionScriptReserved">switch</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">get_accRole</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_LINK</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getElementBounds</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">flowElement</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                    
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_TEXT</span>:
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_STATICTEXT</span>:
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_GRAPHIC</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">==</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">master</span>;
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getElementBounds</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">flowElement</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                <span class="ActionScriptReserved">default</span>:
+                    <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">==</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">master</span>;
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptReserved">null</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>        <span class="ActionScriptComment">//
+</span>        <span class="ActionScriptComment">//  Overridden event handlers: AccImpl
+</span>        <span class="ActionScriptComment">//
+</span>        <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">timeoutID</span>:<span class="ActionScriptDefault_Text">uint</span>;
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">flagLinkFocused</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         *  Override the generic event handler.
+         *  All AccImpl must implement this
+         *  to listen for events from its master component.
+         */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">eventHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">index</span>:<span class="ActionScriptDefault_Text">int</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">caretIndex</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">childID</span>:<span class="ActionScriptDefault_Text">int</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">getChildIDArray</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span><span class="ActionScriptOperator">==</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">?</span> 0 : <span class="ActionScriptDefault_Text">index</span> <span class="ActionScriptOperator">+</span> 1;
+            
+            <span class="ActionScriptReserved">switch</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">type</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">FlexEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">UPDATE_COMPLETE</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">flagLinkFocused</span><span class="ActionScriptBracket/Brace">)</span>
+                    <span class="ActionScriptBracket/Brace">{</span>
+                        <span class="ActionScriptDefault_Text">Accessibility</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">updateProperties</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+                        <span class="ActionScriptDefault_Text">Accessibility</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">sendEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">EVENT_OBJECT_NAMECHANGE</span><span class="ActionScriptBracket/Brace">)</span>;
+                        <span class="ActionScriptDefault_Text">Accessibility</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">sendEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">EVENT_OBJECT_FOCUS</span><span class="ActionScriptBracket/Brace">)</span>;
+                        <span class="ActionScriptDefault_Text">flagLinkFocused</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+                    <span class="ActionScriptBracket/Brace">}</span>
+                    <span class="ActionScriptReserved">break</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">LinkElementFocusEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LINK_FOCUS_IN</span>:
+                <span class="ActionScriptBracket/Brace">{</span>    
+                    <span class="ActionScriptReserved">if</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">editable</span><span class="ActionScriptBracket/Brace">)</span>
+                    <span class="ActionScriptBracket/Brace">{</span>
+                        <span class="ActionScriptDefault_Text">flagLinkFocused</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+                    <span class="ActionScriptBracket/Brace">}</span>
+                    <span class="ActionScriptReserved">break</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                <span class="ActionScriptReserved">default</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">eventHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        
+        
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         *  method for returning the name of the RichEditableText
+         *  which is spoken out by the screen reader
+         *  If the text is read-only, the RichEditableText should return the text inside as the name of the RichEditableText.
+         *  The name in AccessibilityProperties is combined with the name
+         *  specified here.
+         *
+         *  @param childID uint
+         *
+         *  @return Name String
+         */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">getName</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span>:<span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">index</span>:<span class="ActionScriptDefault_Text">uint</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">==</span>0<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">?</span> 0 : <span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">-</span>1;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">flowElement</span>:<span class="ActionScriptDefault_Text">FlowElement</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getItemAt</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">index</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">FlowElement</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">str</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">flowElement</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getText</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">str</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">displayAsPassword</span><span class="ActionScriptBracket/Brace">)</span> 
+                    <span class="ActionScriptOperator">?</span> <span class="ActionScriptDefault_Text">StringUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">repeat</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"*"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">str</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span><span class="ActionScriptBracket/Brace">)</span> 
+                    : <span class="ActionScriptDefault_Text">str</span>;
+            <span class="ActionScriptReserved">switch</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">get_accRole</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_LINK</span>:
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_STATICTEXT</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">str</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                    
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ROLE_SYSTEM_TEXT</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">editable</span><span class="ActionScriptBracket/Brace">)</span>
+                        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">str</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                <span class="ActionScriptReserved">default</span>:
+                    <span class="ActionScriptReserved">return</span> <span class="ActionScriptReserved">null</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         *  Method to return an array of childIDs.
+         *
+         *  @return Array
+         */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">getChildIDArray</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Array</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">richEditableText</span>:<span class="ActionScriptDefault_Text">RichEditableText2</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">n</span>:<span class="ActionScriptDefault_Text">int</span> <span class="ActionScriptOperator">=</span> 0;
+            <span class="ActionScriptReserved">if</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">richEditableText</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">editable</span> 
+                <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">richEditableText</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">accessibleElements</span> 
+                <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">richEditableText</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">accessibleElements</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span><span class="ActionScriptOperator">&gt;</span>1<span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptDefault_Text">n</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">richEditableText</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">accessibleElements</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">length</span>;
+            
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">createChildIDArray</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">n</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>        <span class="ActionScriptComment">//
+</span>        <span class="ActionScriptComment">//  Methods
+</span>        <span class="ActionScriptComment">//
+</span>        <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>        
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         */</span>
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">getItemAt</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">index</span>:<span class="ActionScriptDefault_Text">int</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Object</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">accessibleElements</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">accessibleElements</span><span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptDefault_Text">index</span><span class="ActionScriptBracket/Brace">]</span>;
+            <span class="ActionScriptReserved">else</span>
+                <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">master</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         */</span>
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">focusInHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">childID</span>:<span class="ActionScriptDefault_Text">uint</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">caretIndex</span> <span class="ActionScriptOperator">!=</span> <span class="ActionScriptOperator">-</span>1<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">?</span> <span class="ActionScriptDefault_Text">RichEditableText2</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">caretIndex</span> <span class="ActionScriptOperator">+</span> 1 : 0;
+            <span class="ActionScriptDefault_Text">Accessibility</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">sendEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">master</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">childID</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">AccConst</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">EVENT_OBJECT_FOCUS</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span></pre></body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			High Contrast Mode Detection Test Case
+		</title>
+		<link href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
+		<style type="text/css">
+			body {
+				font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+				font-size: 62.5%;
+			}
+
+			.ui-helper-highcontrast .ui-button-icon-only .ui-icon {
+				background-image: none;
+			}
+
+			.ui-helper-highcontrast .ui-button-icon-only {
+				/* Allow for extra width caused by button text when HC mode is enabled */
+				width: auto;
+			}
+
+			.ui-helper-highcontrast .ui-button-text {
+				/* Undo the style used by jQuery-ui to hide icon button text */
+				text-indent: 0px;
+			}
+		</style>
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+		<script src="js/jquery.hcmode-detection.js" type="text/javascript"></script>
+	</head>
+	<body>	
+		<button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+			<span class="ui-button-icon-primary ui-icon ui-icon-home"></span>
+			<span class="ui-button-text">Home</span>
+		</button>
+	</body>
+</html>

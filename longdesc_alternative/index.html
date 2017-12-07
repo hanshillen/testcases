@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Longdesc Alternative</title>
+	<style>
+		body {
+			padding: 50px;
+		}
+
+		.tabStop {
+			margin: 10px;
+		}
+
+		body a {
+			text-decoration: underline;
+			padding: 2px;
+		}
+
+		body a:focus, body a:active, body a:hover, body button:focus, body button:hover {
+			outline: 2px solid navy;
+		}
+
+		body figcaption a:focus, body figcaption a:active, body figcaption a:hover {
+			outline-color: #FBEE96;
+			color: #FBEE96;
+
+		}
+
+		body figure, body figure.img-thumbnail {
+			margin: 20px;
+			min-width: 45em;
+		}
+
+		body figcaption {
+			margin-bottom: 5px;
+			background-color: #255680;
+			color: #FFF;
+			border-radius: 3px;
+			padding: 5px;
+			display: block;
+		}
+
+		body figcaption a {
+			color: #FBEE96;
+		}
+	</style>
+	<link rel="stylesheet" href="../CSS/bootstrap.min.css">
+	<script src="../JS/jquery-2.1.1.min.js"></script>
+
+	<script>
+		$(function(){
+			$("a.longdescLink").focus(function(e){
+				$(this).removeClass("sr-only");
+			}).blur(function(e){
+				$(this).addClass("sr-only");
+			});
+
+			$("figure.hasLongDesc").hover(function(e){
+				$(this).find("a.longdescLink").removeClass("sr-only");
+			}, function(e){
+				console.log("mouse out");
+				$(this).find("a.longdescLink").addClass("sr-only");
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>Longdesc Examples</h1>
+	<button class="tabStop">tab stop 1</button>
+	<h2>Using a hidden link as well as longdesc</h2>
+	<figure class="hasLongDesc img-thumbnail" >
+		<figcaption>
+			Question 1 model. <a class="longdescLink sr-only" href="longdescs.html#question1" target="blank">Open question 1 equivalent in a new window</a>
+		</figcaption>
+		<img class="img-thumbnail" src="images/img1.png" alt="Question 1 model" longdesc="longdescs.html#question1">
+	</figure>
+	<figure class="hasLongDesc img-thumbnail" >
+		<figcaption>
+			Question 2 model. <a class="longdescLink sr-only" href="longdescs.html#question2" target="blank">Open question 2 equivalent in a new window</a>
+		</figcaption>
+		<img class="img-thumbnail" src="images/img2.png" alt="Question 2 model" longdesc="longdescs.html#question2">
+	</figure>
+
+	<figure class="hasLongDesc img-thumbnail" >
+		<figcaption>
+			Question 3 model. <a class="longdescLink sr-only" href="longdescs.html#question3" target="blank">Open question 3 equivalent in a new window</a>
+		</figcaption>
+		<img class="img-thumbnail" src="images/img3.png" alt="Question 3 model" longdesc="longdescs.html#question3" />
+	</figure>
+	<br>
+	<button class="tabStop">tab stop 2</button>
+</body>
+</html>

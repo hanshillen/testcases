@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Markup Toolbar Sample</title>
+    
+    <style type="text/css">
+	.hidden {
+	  position: absolute !important;
+	  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	  clip: rect(1px, 1px, 1px, 1px);
+	}
+	li {
+		float: left;	
+		list-style: none;
+		margin-right: 10px;
+	}
+	.wmd-button > span {
+		background-image: url(images/wmd-buttons.png);
+		background-repeat: no-repeat;	
+		background-position: 0px 0px;
+		width: 20px;
+		height: 20px;
+		display: inline-block;
+	}
+	
+	li:focus {
+		outline: 2px solid #09F;
+	}
+	</style>
+    
+</head>
+<body>
+	<h3 id="markupHdng" class="hidden">Editor Markup</h3>
+    <ul id="wmd-button-row" class="wmd-button-row" role="toolbar" aria-labelledby="markupHdng">
+      <li class="wmd-button" role="button" tabindex="0"  id="wmd-bold-button" title="Strong &lt;strong&gt;, Ctrl+B"><span class="hidden">Strong, Ctrl + B</span><span  style="background-position: 0px 0px; "></span></li>
+      <li class="wmd-button" role="button" tabindex="0"  id="wmd-italic-button" title="Emphasis &lt;em&gt;, Ctrl+I"><span class="hidden">Emphasis, Ctrl + I</span><span  style="background-position: -20px 0px; "></span></li>
+      <li class="wmd-button" role="button" tabindex="0"  id="wmd-link-button" title="Hyperlink &lt;a&gt;, Ctrl+L"><span class="hidden">Hyperlink, Ctrl + L</span><span  style="background-position: -40px 0px; "></span></li>
+      <li class="wmd-button" role="button" tabindex="0"  id="wmd-quote-button" title="Blockquote &lt;blockquote&gt;, Ctrl+Q"><span class="hidden">Blockquote, Ctrl + Q</span><span  style="background-position: -60px 0px; "></span></li>
+      <li class="wmd-button" role="button" tabindex="0"  id="wmd-code-button" title="Code Sample &lt;pre&gt;&lt;code&gt;, Ctrl+K"><span class="hidden">Code Sample, Ctrl + K</span><span  style="background-position: -80px 0px; "></span></li>
+      <li class="wmd-button" role="button" tabindex="0"  id="wmd-image-button" title="Image &lt;img&gt;, Ctrl+G"><span class="hidden">Image, Ctrl + G</span><span  style="background-position: -100px 0px; "></span></li>
+      <li class="wmd-button" role="button" tabindex="0"  id="wmd-olist-button" title="Numbered List &lt;ol&gt;, Ctrl+O"><span class="hidden">Numbered list, Ctrl + O</span><span  style="background-position: -120px 0px; "></span></li>
+      <li class="wmd-button" role="button" tabindex="0"  id="wmd-ulist-button" title="Bulleted List &lt;ul&gt;, Ctrl+U"><span class="hidden">Nulleted list, Ctrl + U</span><span  style="background-position: -140px 0px; "></span></li>
+      <li class="wmd-button" role="button" tabindex="0"  id="wmd-heading-button" title="Heading &lt;h1&gt;/&lt;h2&gt;, Ctrl+H"><span class="hidden">heading, Ctrl + H</span><span  style="background-position: -160px 0px; "></span></li>
+      <li class="wmd-button" role="button" tabindex="0"  id="wmd-hr-button" title="Horizontal Rule &lt;hr&gt;, Ctrl+R"><span class="hidden">Horizontal Rule, Ctrl + R</span><span  style="background-position: -180px 0px; "></span></li>
+      <li class="wmd-button" role="button" tabindex="0"  id="wmd-undo-button" title="Undo -, Ctrl+Z"><span class="hidden">Undo, Ctrl + Z</span><span  style="background-position: -200px 0px; "></span></li>
+      <li class="wmd-button" role="button" aria-disabled="true" tabindex="0"  id="wmd-redo-button" title="Redo -, Ctrl+Shift+Z"><span class="hidden">Redo, Ctrl + Shift + Z</span><span  style="background-position: -220px -20px; "></span></li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,38 @@
+@page-height: 45em;
+.page {
+    border: 1px solid #000;
+    padding: 10px;
+    display: none;
+    overflow: auto;
+    height: 25em;
+    &.activePage {
+        display: block;
+    }
+}
+
+.pagingControls {
+    list-style: none;
+    width: 20em;
+    display: block;
+    li {
+        float: left;
+        display: block;
+        padding: 0 10px;
+        &:nth-child(2) {
+            border-left: 1px solid #000;
+        }
+        &.invisible ~ li {
+			border-left: none;
+        }
+    }
+}
+
+a:focus,
+button:focus,
+h2:focus {
+    outline: 2px solid navy !important;
+}
+
+.pageViewer {
+    height: 20em;
+}

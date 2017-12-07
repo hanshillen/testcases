@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ARIA-HIDDEN Tests</title>
+    <style>
+        .insertText:before {
+            content: "This should be hidden";
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>ARIA-HIDDEN Tests</h1>
+
+    <h2>1. Static text, all hidden with aria-hidden="true"</h2>
+    <p aria-hidden="true">This is test 1</p>
+
+    <h2>2. Static text, partly hidden with aria-hidden="true"</h2>
+
+    <p>This is test 2, <span aria-hidden="true">this text is hidden,</span> this text is not </p>
+
+    <h2>3. Static text, content added with :before hidden with aria-hidden="true"</h2>
+    <p>This is test 3, <span aria-hidden="true" class="insertText"></span></p>
+
+    <h2>4. Focusable control, hidden with aria-hidden="true"</h2>
+    <button aria-hidden="true">test button 1</button>
+
+    <h2>5. Focusable control, contents hidden with aria-hidden="true"</h2>
+    <button><span aria-hidden="true">Test button 2</span></button>
+
+    <h2>6. Focusable control, contents hidden partly with aria-hidden="true"</h2>
+    <button>Test button 3, <span aria-hidden="true">this should be hidden</span></button>
+
+    <h2>7. Focusable control, content added with :before hidden with aria-hidden="true"</h2>
+    <button>Test button 4, <span aria-hidden="true" class="insertText"></span></button>
+
+	<h2>8. aria-hidden="false" nested in aria-hidden="true"</h2>
+    <div aria-hidden="true">
+		This content should be hidden. 
+    	<span aria-hidden="false">This nested content should not be hidden</span>
+    </div>
+
+
+</body>
+
+</html>

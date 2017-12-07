@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Testing Alternate Labels for Links</title>
+</head>
+<body>
+<p>The following is a simple text link without any use of ARIA. The visible link text should be announced by the screen reader.</p>
+<a href="#">&lt;&lt; Go to Resources</a>
+
+
+<p>The following link uses aria-hidden on a span to hide part of the link text.</p>
+<a href="#"><span aria-hidden="true">&lt;&lt;</span> Go to Resources</a>
+
+<p>The following link uses aria-label on the anchor element to provide an alternate text label for the link rather than the visible text shown on the page as the link text.</p>
+<a href="#" aria-label="Go to Resources">&lt;&lt; Go to Resources</a>
+
+<p>The following link uses both aria-label on the anchor element and hidden text to hide part of the link.</p>
+<a href="#" aria-label="Go to Resources"><span aria-hidden="true">&lt;&lt; </span>Go to Resources</a>
+
+<p>The following link uses both aria-label on the anchor element and hidden text to hide the entire link text to avoid JAWS in Firefox from announcing it twice</p>
+<a href="#" aria-label="Go to Resources"><span aria-hidden="true">&lt;&lt; Go to Resources</span> </a>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		.inlineList li {
+			display: inline;
+		}
+	</style>
+</head>
+<body>
+	<h1>Lists Incorrectly Exposed to Assistive Technlology in Chrome</h1>
+	<h2>Regular List (exposed correctly)</h2>
+	<ul>
+		<li>tic</li>
+		<li>tac</li>
+		<li>toe</li>
+	</ul>
+	<h2>List containing items styled with display:inline (not exposed as list items)</h2>
+	<ul class="inlineList">
+		<li>tic</li>
+		<li>tac</li>
+		<li>toe</li>
+	</ul>
+
+</body>
+</html>

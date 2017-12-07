@@ -1,0 +1,46 @@
+﻿/* Largest fonts  */
+
+@media print { * { color: black ! important; } } /* in browsers that do not support @media, this will be overridden by the items below */
+
+
+a, abbr, acronym, address, b, basefont, big, blink, blockquote,
+body, button, caption, center, cite, code, col, colgroup, dd, dfn,
+dir, div, dl, dt, em, embed, fieldset, font, form,  html, i, iframe, img, input, kbd, label,
+legend, li, listing, marquee, menu, multicol, nobr, object, ol,
+option, plaintext, p, pre, q, select, small, span, strong, sub, sup,
+table, td, textarea, th, tr, tt, u, ul, var, xmp {
+	font-size: 18px !important;
+}
+
+th {
+	font-size: 19px;
+	font-weight:bold !important;
+}
+
+h1 {
+	font-size: 24px !important;
+} 
+
+h2 {
+	font-size: 22px !important;
+} 
+
+h3 {
+	font-size: 20px !important;
+} 
+
+h4 {
+	font-size: 19px !important;
+
+} h5 {
+	font-size: 18px !important;
+} 
+
+h6 {
+	font-size: 18px !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold !important;
+}
+

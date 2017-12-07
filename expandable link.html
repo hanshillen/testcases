@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Aria-expanded on links</title>
+	
+	<style>
+
+		[aria-hidden=true] {
+			display:none;
+		}
+
+		div {
+			margin: 5px;
+		}
+	</style>
+	<script>
+
+	window.onload = function(e){
+		var myLink = document.getElementById("expandableLink");
+		var mySection = document.getElementById("expandableSection");
+		myLink.onclick = function(e){
+			e.preventDefault();
+			var expanded = this.getAttribute("aria-expanded") === "true"
+			this.setAttribute("aria-expanded", !expanded + "");
+			mySection.setAttribute("aria-hidden", expanded + "");
+		};
+	};
+	</script>
+</head>
+<body>
+	
+	<div><button>tab stop 1</button></div>
+	<a href="#" aria-expanded="false" id="expandableLink" aria-controls="expandableSection">Personal Details</a>
+	<div id="expandableSection" role="region" aria-labelledby="expandableLink" aria-hidden="true">
+		<dl>
+			<dt>First Name:</dt>
+			<dd>John</dd>
+			<dt>Last Name</dt>
+			<dd>Smith</dd>
+		</dl>
+		<div><button>tab stop 2</button></div>
+	</div>
+
+
+	<div><button>tab stop 3</button></div>
+</body>
+</html>

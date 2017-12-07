@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test Case: Virtual Buffer not properly updated after aria-hidden has been used</title>
+	<style>
+		
+		body {
+			padding: 50px;
+		}
+		
+		#hideMe, .fakeDialog{
+			padding: 20px;
+			border: 1px solid black;
+			margin: 20px 0;
+		}
+
+		input:focus, a:focus, button:focus {
+			outline: 2px solid navy;
+			outline-offset: 2px;
+			-moz-outline-radius: 5px;
+		}
+
+	</style>
+	<script>
+		function gId(id){
+			return document.getElementById(id);
+		}
+
+		function init() {
+			var toggleHidden = gId("toggleHidden"),
+			hideMe = gId("hideMe"),
+			hideMsg = gId("hideMsg"),
+			clickMe = gId("clickMe");
+
+			function handleToggleClick(e) {
+				e = e || window.event;
+				var turnOn = e.target.checked;
+
+				hideMe.setAttribute("aria-hidden", turnOn ? "true" : "false");
+				
+				var elements = hideMe.getElementsByTagName("*");
+				var el;
+				
+				for (var i = 0; i < elements.length; i++) {
+					var el = elements[i];
+					switch (el.nodeName.toLowerCase()) {
+						case "a":
+							if (turnOn) {
+								el.setAttribute("data-href", el.getAttribute("href"));
+								el.removeAttribute("href");
+							}
+							else {
+								el.setAttribute("href", el.getAttribute("data-href"));
+								el.removeAttribute("data-href");	
+							}
+						break;
+						case "button":
+						case "input":
+						case "select":
+						case "textarea":
+							turnOn ? el.setAttribute("disabled", "disabled") : el.removeAttribute("disabled");
+						break;
+					}
+				}
+				changeText(hideMsg, turnOn ? "Now I'm hidden" : "Now I'm visible");
+			}
+
+			function changeText(el, text) {
+				if (!el || !el instanceof HTMLElement) {
+					return;
+				}
+
+				if (el.textContent !== undefined) {
+					el.textContent = text;
+				}
+				else if (el.innerHTML) {
+					el.innerHTML = text;
+				}
+			}
+			toggleHidden.onchange = handleToggleClick;
+			clickMe.onclick = function(){
+				alert("You clicked me");
+			};
+
+		}
+		window.onload=init;
+	</script>
+</head>
+<body>
+	
+	<a href="#">Tab stop 1 </a>
+	<div class="fakeDialog" role="dialog" aria-labelledby="dialogTitle">
+		<p id="dialogTitle">Fake Dialog</p>
+		<button>tab stop 2</button>
+		<input id="toggleHidden" type="checkbox"><label for="toggleHidden">Hide the section below from AT and disable controls</label>	
+	</div>
+	
+	<div id="hideMe">
+		<p id="hideMsg">Now I'm visible</p>
+		<button id="clickMe">Click me for an alert</button>
+		<a href="#">test2</a>
+	</div>
+</body>
+</html>

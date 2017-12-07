@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+	<script>
+
+		window.onload = function(e){
+			var txt = document.getElementById("demoTxt");
+			txt.onblur = function(e) {
+				var that = this
+				if (this.value === "") {
+					setTimeout(function(){that.focus();}, 0)
+				}
+
+			} 
+
+		};
+	</script>
+</head>
+<body>
+	
+	<input id="demoTxt" type="text">
+		<button>test</button>
+	
+	
+</body>
+</html>

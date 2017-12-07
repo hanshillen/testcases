@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test Case: Aria-describedby announced twice</title>
+</head>
+<body>
+	<button>tap stop 1</button>
+	<br><br>
+	<label for="field1">First Name</label>
+	<input type="text" id="field1" aria-describedby="field1desc">
+		<p id="field1desc">Must be longer than two characters</p>
+	<br><br>
+	<button>tab stop 2</button>
+</body>
+</html>

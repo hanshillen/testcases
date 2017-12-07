@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Link button JAWS test</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<style>
+		body { 
+			margin: 100px;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			$("a").click(function(e){
+				e.preventDefault();
+	        	e.stopPropagation();
+				$("#output").html("You clicked: " + $(this).text());
+			}).keyup(function(e){
+				if (e.which == 32 || e.which == 13) {
+        			e.preventDefault();
+	        		e.stopPropagation();
+        			$(this).click();
+        		}
+			});
+		});	
+	</script>
+</head>
+<body>
+	<a href="#" role="button">link 1</a><br><br>
+	<a href="#" role="button">link 2</a><br><br>
+	<a href="#" role="button">link 3</a><br><br>
+	<a href="#" role="button">link 4</a><br><br>
+	<a href="#" role="button">link 5</a><br><br>
+	
+	
+	<p id="output" aria-live="polite"></p>
+	
+	<table datatable="1">
+				<caption>
+					<h2>
+						Animals
+					</h2>
+				</caption>
+				<tr>
+					<th scope="col" abbr="pet name" tabindex="0">
+						Name
+					</th>
+					<th scope="col" tabindex="0">
+						Age
+					</th>
+					<th scope="col" tabindex="0">
+						Species
+					</th>
+				</tr>
+				<tr>
+					<th scope="row">
+						Fido
+					</th>
+					<td>
+						4
+					</td>
+					<td>
+						Dog
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						Whiskers
+					</th>
+					<td>
+						6
+					</td>
+					<td>
+						Cat
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						Glenn
+					</th>
+					<td>
+						2
+					</td>
+					<td>
+						Sheep
+					</td>
+				</tr>
+			</table>
+	
+</body>
+</html>

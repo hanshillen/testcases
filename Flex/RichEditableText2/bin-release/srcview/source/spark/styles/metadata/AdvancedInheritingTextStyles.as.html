@@ -1,0 +1,315 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>AdvancedInheritingTextStyles.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptComment">////////////////////////////////////////////////////////////////////////////////
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">//  ADOBE SYSTEMS INCORPORATED
+</span><span class="ActionScriptComment">//  Copyright 2008 Adobe Systems Incorporated
+</span><span class="ActionScriptComment">//  All Rights Reserved.
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">//  NOTICE: Adobe permits you to use, modify, and distribute this file
+</span><span class="ActionScriptComment">//  in accordance with the terms of the license agreement accompanying it.
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">////////////////////////////////////////////////////////////////////////////////
+</span>
+<span class="ActionScriptASDoc">/**
+ *  Specifies a vertical or horizontal progression of line placement.
+ * 
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.blockProgression.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#blockProgression
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"blockProgression"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"String"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"tb,rl"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Controls where lines are allowed to break when breaking wrapping text into multiple 
+ *  lines. 
+ * 
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.breakOpportunity.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#breakOpportunity
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"breakOpportunity"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"String"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"auto,all,any,none"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Controls how text wraps around a float.
+ * 
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.clearFloats.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#clearFloats
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"clearFloats"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"String"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"start,end,left,right,both,none"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Specifies the baseline position of the first line in the container.
+ * 
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.firstBaselineOffset.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#firstBaselineOffset
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"firstBaselineOffset"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Object"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Specifies the leading model, which is a combination of leading basis and leading 
+ *  direction.
+ * 
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.leadingModel.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#leadingModel
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"leadingModel"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"String"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"auto,romanUp,ideographicTopUp,ideographicCenterUp,ideographicTopDown,ideographicCenterDown,ascentDescentUp,box"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  This specifies an auto indent for the start edge of lists when the padding value of 
+ *  the list on that side is &lt;code&gt;auto&lt;/code&gt;.
+ *  
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.listAutoPadding.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#listAutoPadding
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"listAutoPadding"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Number"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"length"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">minValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"-1000"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">maxValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"1000"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  This controls the placement of a list item marker relative to the list item.
+ *  
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.listStylePosition.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#listStylePosition
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 2.5
+ *  @productversion Flex 4.5
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"listStylePosition"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"String"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"inside,outside"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  This controls the appearance of items in a list.
+ *  
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.listStyleType.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#listStyleType
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 2.5
+ *  @productversion Flex 4.5
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"listStyleType"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"String"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"upperAlpha,lowerAlpha,upperRoman,lowerRoman,none,disc,circle,square,box,check,diamond,hyphen,arabicIndic,bengali,decimal,decimalLeadingZero,devanagari,gujarati,gurmukhi,kannada,persian,thai,urdu,cjkEarthlyBranch,cjkHeavenlyStem,hangul,hangulConstant,hiragana,hiraganaIroha,katakana,katakanaIroha,lowerGreek,lowerLatin,upperGreek,upperLatin"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  The amount to indent the paragraph's end edge.
+ *  
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.paragraphEndIndent.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#paragraphEndIndent
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"paragraphEndIndent"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Number"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"length"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">minValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"0.0"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  The amount of space to leave after the paragraph.
+ *  
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.paragraphSpaceAfter.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#paragraphSpaceAfter
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"paragraphSpaceAfter"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Number"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"length"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">minValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"0.0"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  The amount of space to leave before the paragraph.
+ *  
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.paragraphSpaceBefore.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#paragraphSpaceBefore
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"paragraphSpaceBefore"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Number"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"length"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">minValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"0.0"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  The amount to indent the paragraph's start edge.
+ *  
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.paragraphStartIndent.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#paragraphStartIndent
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"paragraphStartIndent"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Number"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"length"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Specifies the tab stops associated with the paragraph.
+ *  
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.tabStops.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#tabStops
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"tabStops"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"String"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Offset of first line of text from the left side of the container.
+ * .
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.textIndent.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, see
+ *  spark.components.supportClasses.StyleableTextField Style textIndent.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#textIndent
+ *  @see spark.components.supportClasses.StyleableTextField#style:textIndent
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"textIndent"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Number"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Length"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">minValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"0.0"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Determines the number of degrees to rotate this text.
+ *  
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.textRotation.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#textRotation
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"textRotation"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"String"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"auto,rotate0,rotate90,rotate180,rotate270"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Collapses or preserves whitespace when importing text into a TextFlow.
+ *  
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.whiteSpaceCollapse.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#whiteSpaceCollapse
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"whiteSpaceCollapse"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"String"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"collapse,preserve"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Specifies the spacing between words to use during justification. 
+ *  
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.wordSpacing.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#wordSpacing
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10.5
+ *  @playerversion AIR 2.0
+ *  @productversion Flex 4.5
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"wordSpacing"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Object"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+</pre></body>
+</html>

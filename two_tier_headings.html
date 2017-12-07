@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Multiple Column Header Rows</title>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 5px 10px;
+		}
+	</style>
+</head>
+<body>
+	<a href="#">tab stop 1</a>
+	<table>
+		<caption>Staff</caption>
+		<tr>
+			<th scope="col" rowspan="2">Staff ID</th>
+			<th scope="col" colspan="2">Name</th>
+			<th scope="col" rowspan="2">Age</th>
+		</tr>
+		<tr>
+			<th scope="col">First</th>
+			<th scope="col">Last</th>
+		</tr>
+		<tr>
+			<td>243342</td>
+			<td>John</td>
+			<td>Smith</td>
+			<td>34</td>
+		</tr>
+		<tr>
+			<td>243223</td>
+			<td>Beverly</td>
+			<td>Jones</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td>384394</td>
+			<td>David</td>
+			<td>Jackson</td>
+			<td>33</td>
+		</tr>
+	</table>
+	<br>
+	<a href="#">tab stop 2</a>
+
+		<table>
+		<caption>Staff</caption>
+		<tr>
+			<th scope="col">Staff ID</th>
+			<th scope="col" colspan="2">Name</th>
+			<th scope="col">Age</th>
+		</tr>
+		<tr>
+			<th></th>
+			<th scope="col">First</th>
+			<th scope="col">Last</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>243342</td>
+			<td>John</td>
+			<td>Smith</td>
+			<td>34</td>
+		</tr>
+		<tr>
+			<td>243223</td>
+			<td>Beverly</td>
+			<td>Jones</td>
+			<td>40</td>
+		</tr>
+		<tr>
+			<td>384394</td>
+			<td>David</td>
+			<td>Jackson</td>
+			<td>33</td>
+		</tr>
+	</table>
+	<br>
+
+	<table>
+		<tr>
+			<th scope="col">Question</th>
+			<th scope="col">Measures</th>
+			<th scope="col">Beats</th>
+		</tr>
+		<tr>
+			<th scope="row">How many beats are in 3 measures?</th>
+			<td>
+				<input type="text" title="Question 1, enter measures value">
+			</td>
+			<td>
+				<input type="text" title="Question 1, enter beats value">
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">How many beats are in 7 measures?</th>
+			<td>
+				<input type="text" title="Question 2, enter measures value">
+			</td>
+			<td>
+				<input type="text" title="Question 2, enter beats value">
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

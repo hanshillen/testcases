@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>VoiceOver OSX LR Test</title>
+    <script>
+        window.onload = function() {
+
+            var ids = ["timer", "nMinutes", "tMinutes", "nSeconds", "tSeconds"];
+            var nodes = {};
+            var minutes = 2;
+            var seconds = 0;
+
+
+            for (var i = 0; i < ids.length; i++) {
+                nodes[ids[i]] = document.getElementById(ids[i]);
+            }
+            if (location.search == "?focus") {
+            	var input = document.createElement("textArea");
+            	document.body.appendChild(input);
+            };
+
+            setInterval(function() {
+
+                minutes++;
+                //nodes.nMinutes.setAttribute("aria-live", "assertive");
+                //nodes.tMinutes.setAttribute("aria-live", "assertive");
+                setTimeout(function() {
+                    
+                    nodes.nMinutes.textContent = minutes;
+                    nodes.tMinutes.textContent = "minutes!!";
+                    //nodes.nMinutes.removeAttribute("aria-live");
+                    //nodes.tMinutes.removeAttribute("aria-live");
+                }, 2500);
+            }, 5000)
+        }
+    </script>
+</head>
+
+<body>
+    <span id="timer" aria-live="polite" aria-atomic="true">Counter:
+	    <span id="nMinutes" >2</span>
+	    <span id="tMinutes" >minutes</span>
+    </span>
+    <h2>Hello</h2>
+    <p>How are you</p>
+    <!-- <button>test</button> -->
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Firefox Issue: focus event caused by class change</title>
+	
+	<script>
+		function init(e) {
+			var btn = document.getElementById("btn1");
+			var tds = document.getElementsByTagName("td");
+			
+			var handleFocus = function(e) {
+				setTimeout(function() {
+					e.target.className = "test";
+					console.log("changed class");
+				}, 3000);
+			};
+
+			for (var i = 0; i < tds.length; i++) {
+				tds[i].onfocus = handleFocus;
+			}
+			
+			btn.onfocus = handleFocus;
+		}
+
+		window.onload = init;
+
+	</script>
+</head>
+<body>
+	<button id="btn1">test</button>
+	<table role="grid">
+		<tr role="row">
+			<td role="gridcell" id="td1" tabindex="0">test</td>
+		</tr>
+	</table>
+	
+<div id="fd-demo1" class="date-picker drag-enabled date-picker-focus" style="visibility: visible; display: block; top: 168px; left: 579px; opacity: 1; z-index: 9999;" aria-labelledby="demo1_label" aria-hidden="false" role="application" dir="ltr"><table class="date-picker-table" role="grid"><thead class="date-picker-thead"><tr role="presentation"><th class="date-picker-title drag-enabled" colspan="7" role="presentation"><span class="month-display drag-enabled">February&nbsp;</span><span class="year-display drag-enabled">2013</span></th></tr><tr role="presentation"><th role="presentation"><span class="prev-but prev-year" id="demo1-prev-year-but" title="Previous year">«</span></th><th role="presentation"><span class="prev-but prev-month" id="demo1-prev-month-but" title="Previous month">‹</span></th><th colspan="3" role="presentation"><span class="today-but " id="demo1-today-but" title="">Today</span></th><th role="presentation"><span class="next-but next-month" id="demo1-next-month-but" title="Next month">›</span></th><th role="presentation"><span class="next-but next-year" id="demo1-next-year-but" title="Next year">»</span></th></tr><tr class=""><th class="date-picker-day-header" scope="col" role="columnheader" id="demo1-col-0" title="Monday" abbr="Monday">Mon</th><th class="date-picker-day-header" scope="col" role="columnheader" id="demo1-col-1" title="Tuesday" abbr="Tuesday"><span class="fd-day-header" title="Tuesday">Tue</span></th><th class="date-picker-day-header" scope="col" role="columnheader" id="demo1-col-2" title="Wednesday" abbr="Wednesday"><span class="fd-day-header" title="Wednesday">Wed</span></th><th class="date-picker-day-header" scope="col" role="columnheader" id="demo1-col-3" title="Thursday" abbr="Thursday"><span class="fd-day-header" title="Thursday">Thu</span></th><th class="date-picker-day-header" scope="col" role="columnheader" id="demo1-col-4" title="Friday" abbr="Friday"><span class="fd-day-header" title="Friday">Fri</span></th><th class="date-picker-day-header date-picker-highlight" scope="col" role="columnheader" id="demo1-col-5" title="Saturday" abbr="Saturday"><span class="fd-day-header" title="Saturday">Sat</span></th><th class="date-picker-day-header date-picker-highlight" scope="col" role="columnheader" id="demo1-col-6" title="Sunday" abbr="Sunday"><span class="fd-day-header" title="Sunday">Sun</span></th></tr></thead><tbody><tr role="row" class=""><td aria-selected="false" role="gridcell" class="date-picker-unused" title="">&nbsp;</td><td aria-selected="false" role="gridcell" class="date-picker-unused" title="">&nbsp;</td><td aria-selected="false" role="gridcell" class="date-picker-unused" title="">&nbsp;</td><td aria-selected="false" role="gridcell" class="date-picker-unused" title="">&nbsp;</td><td aria-selected="false" role="gridcell" class="day-4 cell-4 cd-20130201 yyyymm-201302 mmdd-0201">1</td><td aria-selected="false" role="gridcell" class="day-5 cell-5 cd-20130202 yyyymm-201302 mmdd-0202 date-picker-highlight">2</td><td aria-selected="false" role="gridcell" class="kaas" id="" tabindex="0">3<span class="fd-screen-reader"> February 2013</span></td></tr><tr role="row" class=""><td aria-selected="false" role="gridcell" class="kaas" id="" tabindex="0">4<span class="fd-screen-reader"> February 2013</span></td><td aria-selected="false" role="gridcell" class="day-1 cell-8 cd-20130205 yyyymm-201302 mmdd-0205">5</td><td aria-selected="false" role="gridcell" class="day-2 cell-9 cd-20130206 yyyymm-201302 mmdd-0206">6</td><td aria-selected="false" role="gridcell" class="day-3 cell-10 cd-20130207 yyyymm-201302 mmdd-0207">7</td><td aria-selected="false" role="gridcell" class="kaas" id="" tabindex="0">8<span class="fd-screen-reader"> February 2013</span></td><td aria-selected="false" role="gridcell" class="kaas" id="" tabindex="0">9<span class="fd-screen-reader"> February 2013</span></td><td aria-selected="false" role="gridcell" class="day-6 cell-13 cd-20130210 yyyymm-201302 mmdd-0210 date-picker-highlight">10</td></tr><tr role="row"><td aria-selected="false" role="gridcell" class="day-0 cell-14 cd-20130211 yyyymm-201302 mmdd-0211">11</td><td aria-selected="false" role="gridcell" class="day-1 cell-15 cd-20130212 yyyymm-201302 mmdd-0212">12</td><td aria-selected="false" role="gridcell" class="day-2 cell-16 cd-20130213 yyyymm-201302 mmdd-0213">13</td><td aria-selected="false" role="gridcell" class="day-3 cell-17 cd-20130214 yyyymm-201302 mmdd-0214">14</td><td aria-selected="false" role="gridcell" class="day-4 cell-18 cd-20130215 yyyymm-201302 mmdd-0215">15</td><td aria-selected="false" role="gridcell" class="day-5 cell-19 cd-20130216 yyyymm-201302 mmdd-0216 date-picker-highlight">16</td><td aria-selected="false" role="gridcell" class="day-6 cell-20 cd-20130217 yyyymm-201302 mmdd-0217 date-picker-highlight">17</td></tr><tr role="row" class=""><td aria-selected="false" role="gridcell" class="day-0 cell-21 cd-20130218 yyyymm-201302 mmdd-0218">18</td><td aria-selected="false" role="gridcell" class="day-1 cell-22 cd-20130219 yyyymm-201302 mmdd-0219">19</td><td aria-selected="false" role="gridcell" id="" class="kaas" tabindex="0">20<span class="fd-screen-reader"> February 2013</span></td><td aria-selected="false" role="gridcell" class="day-3 cell-24 cd-20130221 yyyymm-201302 mmdd-0221">21</td><td aria-selected="false" role="gridcell" class="day-4 cell-25 cd-20130222 yyyymm-201302 mmdd-0222">22</td><td aria-selected="false" role="gridcell" class="day-5 cell-26 cd-20130223 yyyymm-201302 mmdd-0223 date-picker-highlight">23</td><td aria-selected="false" role="gridcell" class="day-6 cell-27 cd-20130224 yyyymm-201302 mmdd-0224 date-picker-highlight date-picker-hover" id="demo1-date-picker-hover" tabindex="0">24<span class="fd-screen-reader"> February 2013</span></td></tr><tr role="row" class=""><td aria-selected="false" role="gridcell" class="day-0 cell-28 cd-20130225 yyyymm-201302 mmdd-0225">25</td><td aria-selected="false" role="gridcell" class="day-1 cell-29 cd-20130226 yyyymm-201302 mmdd-0226">26</td><td aria-selected="false" role="gridcell" class="day-2 cell-30 cd-20130227 yyyymm-201302 mmdd-0227">27</td><td aria-selected="false" role="gridcell" class="day-3 cell-31 cd-20130228 yyyymm-201302 mmdd-0228">28</td><td aria-selected="false" role="gridcell" class="date-picker-unused" title="">&nbsp;</td><td aria-selected="false" role="gridcell" class="date-picker-unused" title="">&nbsp;</td><td aria-selected="false" role="gridcell" class="date-picker-unused" title="">&nbsp;</td></tr><tr role="row" class=""><td aria-selected="false" role="gridcell" class="date-picker-unused" title="">&nbsp;</td><td aria-selected="false" role="gridcell" class="date-picker-unused" title="">&nbsp;</td><td aria-selected="false" role="gridcell" class="date-picker-unused" title="">&nbsp;</td><td aria-selected="false" role="gridcell" class="date-picker-unused" title="">&nbsp;</td><td aria-selected="false" role="gridcell" class="date-picker-unused" title="">&nbsp;</td><td aria-selected="false" role="gridcell" class="date-picker-unused" title="">&nbsp;</td><td aria-selected="false" role="gridcell" class="date-picker-unused" title="">&nbsp;</td></tr></tbody></table></div>
+	
+</body>
+</html>

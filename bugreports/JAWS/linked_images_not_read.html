@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Images inside links not announced when role='main' is used</title>
+	<style>
+		a img {
+			border: none;
+		}
+		[role=main] {
+			border: 1px solid black;
+			margin: 10px; 
+			padding: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Linked Images not Read By JAWS when role='main' is used</h1>
+	<h2>Issue:</h2>
+	<p>In JAWS 12/IE8, JAWS will not read an image's alt text as part of a link when the link is placed within 'main' landmark role.</p>
+	<p>This issue is fixed in JAWS 13</p>
+	<h3>Example 1:</h3>
+	<p>The link below contains both text and an image with alt text. Because the link is placed within a role='main' container, JAWS only announces the text and not the image's alt text.</p>
+	<div role="main">
+		<a href="#">name <img src="http://www.eduinreview.com/images/sort_icon.gif" alt="sorted ascending, click to sort descending"></a>
+
+	</div>
+	<h3>Example 2:</h3>
+	<p>The same link is shown below, but now it is not placed inside a role="main" container</p>
+	<div>
+		<a href="#">name <img src="http://www.eduinreview.com/images/sort_icon.gif" alt="sorted ascending, click to sort descending"></a>
+
+	</div>
+
+	
+</body>
+</html>

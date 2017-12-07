@@ -1,0 +1,159 @@
+FBL.ns(function() {
+    with(FBL) {
+
+        var WAT = Firebug.WatModule;
+        WAT.infoMetadataHandler = function(tracker) {
+            var i, j;
+            if (! (tracker instanceof WAT.Tracker)) {
+                return false;
+            }
+
+            var errorsTotal = 0,
+            warningTotal = 0,
+            infosTotal = 0,
+            total = 0;
+
+            var doc = jQuery(tracker.context.browser.contentDocument);
+            /* get doc JQ */
+
+            var framesJQ = doc.find('frame, iframe');
+            var frames = [doc.get(0)];
+            if (frames.length > 0) {
+                for (i = 0; i < framesJQ.length; i++) {
+                    frames.push(framesJQ.get(i).contentDocument);
+                }
+            }
+            var location, infoElements, tempElems;
+
+            for (j = 0; j < frames.length; j++) {
+                doc = jQuery(frames[j]);
+
+                location = doc.get(0).location;
+                
+                // Meta Elements
+                infoElements = doc.find("meta").each(
+                    function( intIndex ) {
+                        var inputArray;
+                        if (this.httpEquiv != "") {
+                            inputArray = WAT.strFToArray('infoMetadataHttpEquiv', {
+                                    tag: 'shortTag',
+                                    data: this
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.httpEquiv
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.content
+                                });                             
+                        } else {
+                            inputArray = WAT.strFToArray('infoMetadata', {
+                                    tag: 'shortTag',
+                                    data: this
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.name
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.content
+                                });                            
+                        }
+                            
+                        tracker.addResult('info', inputArray, null);
+                        infosTotal++;
+                        total ++;
+                    }
+                );
+                
+                // link Elements
+                infoElements = doc.find("link").each(
+                    function( intIndex ) {
+                        var inputArray;
+                        if (this.rel == 'stylesheet') {
+                                inputArray = WAT.strFToArray('infoMetadataLinkStylesheet', {
+                                    tag: 'shortTag',
+                                    data: this
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.href
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.type
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.media
+                                });   
+                            
+                        } else if (this.rel == 'alternate') {
+                                inputArray = WAT.strFToArray('infoMetadataLinkAlternate', {
+                                    tag: 'shortTag',
+                                    data: this
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.href
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.type
+                                });
+                        } else if (this.rel == 'shortcut icon') {
+                                inputArray = WAT.strFToArray('infoMetadataLinkIcon', {
+                                    tag: 'shortTag',
+                                    data: this
+                                },
+                                {
+                                    tag: 'image',
+                                    data: this.href
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.href
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.type
+                                }); 
+                        } else {
+                            inputArray = WAT.strFToArray('infoMetadataLink', {
+                                    tag: 'shortTag',
+                                    data: this
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.rel
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.href
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.type
+                                });                            
+                        }
+                            
+                        tracker.addResult('info', inputArray, null);
+                        infosTotal++;
+                        total ++;
+                    }
+                ); 
+            }
+
+            tracker.summaryParts = WAT.buildSummary('infoMetadata', total, errorsTotal, warningTotal);
+            if (errorsTotal > 0) {
+                tracker.status = "error";
+            } else if (warningTotal > 0) {
+                tracker.status = "warn";
+            } else {
+                tracker.status = "info";
+            }
+        };
+    }
+});

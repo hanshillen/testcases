@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ARIA-expanded VO IOS Issue</title>
+    <style>
+        p {
+            margin: 0;    
+        }
+        
+        button {
+            margin: 20px;    
+        }
+    </style>
+    <script>
+        window.onload = function(e) {
+            var mainLink = document.getElementById("mainLink");            
+            mainLink.addEventListener("click", handleLinkClick, false);
+        };
+        
+        function handleLinkClick(e) {
+            var hidden = this.getAttribute("data-hidden") == "true";
+            hidden = !hidden;
+            this.innerHTML = hidden ? "Read more about this" : "Read less about this";
+            document.getElementById("extraSection").style.display = hidden ? "none" : "inline";
+            this.setAttribute("data-hidden", hidden + "");
+            this.setAttribute("aria-expanded", !hidden + "");
+        }
+    </script>
+    
+
+</head>
+
+<body>
+    <button>tab stop 1</button>
+    <div id="accordionDemo" role="tablist">
+        <p role="tab" aria-selected="false" aria-expanded="false" tabindex="0">Cats</p>
+        <p role="tab" aria-selected="false" aria-expanded="true" tabindex="0">Fish</p>
+        <p role="tab" aria-selected="true" tabindex="0">Dogs</p>
+    </div>
+
+    <button>tab stop 2</button>
+
+        <p id="mainText">
+        Lorem ipsum dolor sit amet,<span id="extraSection"> consectetur adipisicing elit. Unde maiores quaerat consectetur culpa facere incidunt temporibus quae harum, et, nemo, voluptatibus voluptatum dolore repellat quibusdam! Ea adipisci assumenda, a perspiciatis! Cumque rerum officia, quibusdam animi, nihil accusantium adipisci. Voluptatum accusamus, cum, autem placeat, vitae omnis aperiam dicta consequuntur dolore laborum animi mollitia odit. Rerum quis voluptatem asperiores iusto excepturi, sapiente.</span>
+    </p>
+    <a href="#" id="mainLink" data-hidden="false" aria-expanded="true"><span>Read less</span> <span>about this</span></a>
+<br>
+    <button>tab stop 3</button>
+
+</body>
+
+</html>

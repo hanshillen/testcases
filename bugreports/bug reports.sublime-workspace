@@ -1,0 +1,646 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"u",
+				"uppercase"
+			],
+			[
+				"font",
+				"font-variant"
+			],
+			[
+				"spa",
+				"border-spacing"
+			],
+			[
+				"fil",
+				"flips"
+			],
+			[
+				"button",
+				"buttonTriggered"
+			],
+			[
+				"output",
+				"outputMsg"
+			],
+			[
+				"set",
+				"setupNotifier"
+			],
+			[
+				"lr",
+				"lrNotifier"
+			],
+			[
+				"scroll",
+				"scrollEvent"
+			],
+			[
+				"scol",
+				"scrollEvent"
+			],
+			[
+				"version",
+				"versionChunks"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"colo",
+				"Color Picker"
+			],
+			[
+				"color",
+				"Color Picker"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"list ",
+				"Package Control: List Packages"
+			],
+			[
+				"sshtm	",
+				"Set Syntax: HTML"
+			],
+			[
+				"sshtm",
+				"Set Syntax: HTML"
+			],
+			[
+				"sshtml",
+				"Set Syntax: HTML"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reinden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"wrap",
+				"Emmet: Wrap With Abbreviation"
+			],
+			[
+				"wrap ",
+				"Emmet: Wrap With Abbreviation"
+			],
+			[
+				"reindent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"ssht",
+				"Set Syntax: HTML"
+			],
+			[
+				"disable",
+				"Package Control: Disable Package"
+			],
+			[
+				"inden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"sscss",
+				"Set Syntax: CSS"
+			],
+			[
+				"install package",
+				"Package Control: Install Package"
+			],
+			[
+				"SSHT",
+				"Set Syntax: HTML"
+			],
+			[
+				"SSHTML",
+				"Set Syntax: HTML"
+			],
+			[
+				"pac",
+				"Package Control: List Packages"
+			],
+			[
+				"sshm",
+				"Set Syntax: HTML"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"INSTALL",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/bugreports"
+	],
+	"file_history":
+	[
+		"/Users/hanshillen/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/571D14D3-2EB8-4C22-85A8-E0F0F78A2E4C/tMobile LOE.txt",
+		"/Users/hanshillen/Desktop/excel formulas",
+		"/Users/hanshillen/Library/Application Support/OpenEmu/Game Library/roms/Sony PlayStation/oddworld_-_abes_oddysee_(v1.1).cue",
+		"/Users/hanshillen/Desktop/autocomplete.html",
+		"/Users/hanshillen/Desktop/test.csv",
+		"/Users/hanshillen/Desktop/bugbash original workflow",
+		"/Users/hanshillen/Library/Application Support/OpenEmu/Game Library/roms/Sony PlayStation/Castlevania - Symphony of the Night.cue",
+		"/Users/hanshillen/Documents/Dev/LESS/bootstrap-3.1.1/js/alert.js",
+		"/Users/hanshillen/Documents/Dev/LESS/bootstrap-3.1.1/node_modules/grunt-contrib-watch/node_modules/tiny-lr/node_modules/faye-websocket/examples/sse.html",
+		"/Users/hanshillen/Documents/Dev/LESS/bootstrap-3.1.1/node_modules/grunt-saucelabs/test/jasmine/spec/SpecHelper.js",
+		"/Users/hanshillen/Documents/Dev/LESS/bootstrap-3.1.1/node_modules/grunt-csscomb/.idea/scopes/scope_settings.xml",
+		"/Users/hanshillen/Documents/Dev/LESS/bootstrap-3.1.1/validation-status.json",
+		"/Users/hanshillen/Downloads/PaRappa the Rapper 2/PaRappa the Rapper 2.cue",
+		"/Users/hanshillen/Library/Application Support/OpenEmu/Game Library/roms/3DO/PlumbersDontWearTies.cue",
+		"/Users/hanshillen/Downloads/final_fantasy_anthology_-_final_fantasy_vi_(v1.1)/final_fantasy_anthology_-_final_fantasy_vi_(v1.1).cue",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/button_clickevent.html",
+		"/Users/hanshillen/Library/Application Support/OpenEmu/Game Library/roms/Sony PlayStation/Command & Conquer [GDI Disc] [SLUS-00379].cue",
+		"/Users/hanshillen/Downloads/oddworld_-_abes_oddysee_(v1.1)/oddworld_-_abes_oddysee_(v1.1).cue",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/0y63B.tmp",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/Welmoet8.xml",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/Welmoet1.xml",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/aardbeiprinses3688529907.xml",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/welmoet2.xml",
+		"/Users/hanshillen/Documents/Misc/Journey LPs",
+		"/Users/hanshillen/Downloads/MESS/MESS BIOS.txt",
+		"/Users/hanshillen/Desktop/Bindings Configurations/Default.oebindings",
+		"/Volumes/random/5",
+		"/Users/hanshillen/Desktop/Peapod LOE.txt",
+		"/Users/hanshillen/Dropbox (TPG)/TPG/Sales/LOEs/Interactive Health/Interactive Health LOE.txt",
+		"/Users/hanshillen/Downloads/Policenauts (Japan) (Disc 1) [En by Slowbeef v1.0]/Policenauts (Japan) (Disc 1) [En by Slowbeef v1.0].cue",
+		"/Users/hanshillen/Downloads/ColEm26-Source/ColEm/Coleco.c",
+		"/Users/hanshillen/Desktop/LOE.txt",
+		"/Users/hanshillen/Downloads/Policenauts (Japan) (Disc 2) [En by Slowbeef v1.0]/Policenauts (Japan) (Disc 2) [En by Slowbeef v1.0].cue",
+		"/Users/hanshillen/Downloads/Policenauts_English_v1.00/Policenauts_Readme_English.txt",
+		"/Volumes/random/22",
+		"/Volumes/random/4",
+		"/Volumes/random/0",
+		"/Volumes/random/old/3 old1",
+		"/Users/hanshillen/Desktop/bah/Untitled attachment 00327.htm",
+		"/Users/hanshillen/Desktop/bah/Untitled attachment 00324.htm",
+		"/Volumes/random/3",
+		"/Volumes/random/1",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/longdesc_alternative/index.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/jaws_events.html",
+		"/Users/hanshillen/Documents/Misc/Hans/Hans Hillen's Will : Testament van Hans Hillen.txt",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/table_summary_alternative/index.html",
+		"/Volumes/vice-macosx-cocoa-ub-10.3+4-2.1/README.txt",
+		"/Users/hanshillen/Desktop/aria-label on label.html",
+		"/Users/hanshillen/Downloads/Cycle 3.0 ELA 7.txt",
+		"/Users/hanshillen/Downloads/Cycle 2.0 ELA 9.txt",
+		"/Users/hanshillen/Downloads/Cycle 1.0 ELA 3 screen reader notes.txt",
+		"/Users/hanshillen/Downloads/Cycle 1.5 ALG 1 screen reader notes.txt",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/bugreports/JAWS/clickable cells.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/dragdropdemo/JS/dragdrop.js",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/dragdropdemo/index.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/Assets Framework _ Stacked Responsive Table Demo.htm",
+		"/Users/hanshillen/Desktop/remove.html",
+		"/Users/hanshillen/Desktop/test.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/disable_focused_buttons.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/aria-label.html",
+		"/Users/hanshillen/Desktop/hidden.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/bugreports/NVDA/link_in_tablist.html",
+		"/Users/hanshillen/Downloads/edge/Edge.of.Tomorrow.2014.720p.BluRay.x264-SPARKS.srt",
+		"/Users/hanshillen/Documents/Misc/Random letters/dromen.txt",
+		"/Users/hanshillen/Desktop/CSUN final draft email .txt",
+		"/Users/hanshillen/Downloads/CSUN final draft email .txt",
+		"/Users/hanshillen/Dropbox (Personal)/misc/TODO.txt",
+		"/Users/hanshillen/Downloads/junk/hansruiktzuur.txt",
+		"/Users/hanshillen/Documents/Dev/TPG/repos/doc-starter/new_document.pyw",
+		"/Users/hanshillen/Documents/Dev/TPG/repos/doc-starter/install.bat",
+		"/Users/hanshillen/Desktop/removeme/test-generated/tpg-doc.css",
+		"/Users/hanshillen/Documents/Dev/Android/adt-bundle-mac-x86_64-20140702/sdk/tools/support/typos-de.txt",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/two_tier_headings.html",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/boyd4.xml",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/boyd3.xml",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/los_escopeta@hotmail.com.txt",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/bugreports/JAWS/disabled image button.html",
+		"/Users/hanshillen/Documents/Dev/Old/Old/pennywaffer.net/final/index.php",
+		"/Users/hanshillen/Desktop/testme_files/jquery.hcmode-detection-3.0.js",
+		"/Users/hanshillen/Desktop/testme_files/cmmiglobalresponsive.css",
+		"/Users/hanshillen/Downloads/PHC-9063_Code.txt",
+		"/Users/hanshillen/Desktop/testme_files/bootstrap.min copy.css",
+		"/Users/hanshillen/Desktop/testme bak.html",
+		"/Users/hanshillen/Desktop/testme.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/likert.html",
+		"/Users/hanshillen/Desktop/tree maybe.html",
+		"/Users/hanshillen/Desktop/removeme.html",
+		"/Users/hanshillen/Google Drive/Expenses Hans DC.gsheet",
+		"/Users/hanshillen/Downloads/html5_outliner-0.2.1-fx/harness-options.json",
+		"/Users/hanshillen/Downloads/html5_outliner-0.2.1-fx/locales.json",
+		"/Users/hanshillen/Downloads/html5_outliner-0.2.1-fx/defaults/preferences/prefs.js",
+		"/Users/hanshillen/Downloads/html5_outliner-0.2.1-fx/resources/html5_outliner/lib/main.js",
+		"/Users/hanshillen/Downloads/headingsmap-2.1-fx/chrome/content/overlay.xul",
+		"/Users/hanshillen/Downloads/element_inspector-0.0.6-tb+fx+sm/chrome/content/overlay.xul",
+		"/Users/hanshillen/Downloads/junk/Misc/[Digital Sin] I Love My Sisters Big Tits 2 - Split Scenes (640x360p) XXX [.avi]/Torrent downloaded from PublicHash.com.nfo",
+		"/Users/hanshillen/Downloads/junk/Misc/[Digital Sin] I Love My Sisters Big Tits 2 - Split Scenes (640x360p) XXX [.avi]/Torrent downloaded from PornVirgo.com.nfo",
+		"/Users/hanshillen/Documents/Dev/Chrome/NavAccess2/manifest.json",
+		"/Users/hanshillen/Downloads/addon-sdk-1.17/README",
+		"/Users/hanshillen/Documents/Dev/Mozilla/NavAccess2/package.json",
+		"/Users/hanshillen/Downloads/CODE SNIPPET.msg",
+		"/Users/hanshillen/Dropbox (TPG)/Public/CGI/CSUN2014/demos/js/liveregionnotifier.js",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/bugreports/JAWS/aria_hidden_triggers_content_announcement.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/CGI/highcontrast_detection/html/hcmode_tester_assets.html",
+		"/Users/hanshillen/Downloads/Innovation Models   Center for Medicare & Medicaid Innovation_files/jquery.hcmode-detection-3.0.js",
+		"/Users/hanshillen/Downloads/Innovation Models   Center for Medicare & Medicaid Innovation.html",
+		"/Users/hanshillen/Documents/Dev/TPG/repos/doc-starter/testcookbook/00-cookbook.md",
+		"/Users/hanshillen/Documents/Dev/TPG/repos/html5-h/README.md",
+		"/Users/hanshillen/Documents/Dev/TPG/repos/doc-starter/yetanothertest/variants",
+		"/Users/hanshillen/Desktop/bug bash notes",
+		"/Users/hanshillen/Documents/Dev/TPG/repos/doc-starter/yetanothertest/20-images-media/05-blurb.md",
+		"/Users/hanshillen/Desktop/ez_setup.py",
+		"/Users/hanshillen/Downloads/accountmanagerplugin-2/tags/acct_mgr-0.4.4/README",
+		"/Users/hanshillen/Documents/Dev/TPG/repos/doc-starter/demo.sh",
+		"/Applications/Sublime Text.app/Contents/MacOS/changelog.txt",
+		"/Users/hanshillen/Downloads/Snatcher/Snatcher.cue",
+		"/Users/hanshillen/Documents/TPG/clients/Closed/Dolphin/easy producer/todo.txt",
+		"/Users/hanshillen/Desktop/displaiy_none_ie.html",
+		"/Users/hanshillen/Downloads/RE Additional Testing of PHC-7164.msg",
+		"/Users/hanshillen/Desktop/inpage.html",
+		"/Users/hanshillen/Desktop/TEST.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/skiplink.html",
+		"/Users/hanshillen/Desktop/skiplink.html",
+		"/Users/hanshillen/Downloads/Belangrijk.txt",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/bugreports/voiceover/no_required_state_on_select.html",
+		"/Users/hanshillen/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/CSS_cancels_click.html",
+		"/Users/hanshillen/Downloads/custom_user_styles.css",
+		"/Volumes/random/txt"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/hanshillen/Dropbox/Public/CGI/CSUN2014/demos,<open folders>",
+			"/Users/hanshillen/Dropbox/Public/CGI/CSUN2014/demos"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"old",
+			"this",
+			";",
+			"C1",
+			"FLOOR(COLUMN()/2, 1) + 1",
+			"INDIRECT(\"Overview!$B\" &FLOOR(COLUMN()/2, 1) + 1)",
+			"",
+			"",
+			"",
+			"		",
+			"Figure \\d+: ",
+			"Figure \\d: ",
+			"		",
+			"B5",
+			"C4:C40",
+			"fx",
+			"coleco.rom",
+			"tabindex=\"-1\"",
+			"role=\"group\"",
+			"searchbtn",
+			"class=\"test\"",
+			"means",
+			"^\\s*$\\n",
+			"  ",
+			"class=\"[^\"']*\"",
+			"collapsibleBoxActive",
+			"ROLE=\"TABPANEL",
+			"header",
+			"tabs-1",
+			"best treat",
+			"Description-cad7",
+			"cad7",
+			"return typeof",
+			"mouseup",
+			"iframe",
+			"12",
+			"invoice num",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			" color:#800080; \">(064,00",
+			"EOT",
+			"7",
+			"4Mua5ha4ha5ha4ha5!",
+			">\"",
+			"",
+			"td",
+			"<ul style=\"display: none;\">",
+			"DISPLA",
+			"role=\"group\"",
+			"<ul>",
+			"<ul",
+			"<li>",
+			"box-si",
+			"img",
+			"<script",
+			"jquery",
+			"hcmode",
+			"contrast",
+			"txtHCPName",
+			"special",
+			"1	[ticket-workflow]\n2	; simple-workflow.ini\n3	\n4	; This is action-centric\n5	leave = * -> *\n6	leave.operations = leave_status\n7	leave.default = 1\n8	\n9	resolve_new = new -> closed\n10	resolve_new.name = resolve\n11	resolve_new.permissions = TICKET_MODIFY\n12	resolve_new.operations = set_owner_to_self,set_resolution\n13	\n14	accept = new,accepted -> accepted\n15	accept.permissions = TICKET_MODIFY\n16	accept.operations = set_owner_to_self\n17	\n18	resolve_accepted = accepted -> closed\n19	resolve_accepted.name = resolve\n20	resolve_accepted.permissions = TICKET_MODIFY\n21	resolve_accepted.operations = set_resolution\n22	\n23	unaccept = accepted -> new\n24	unaccept.permissions = TICKET_MODIFY\n25	unaccept.operations = del_owner\n26	\n27	reopen = closed -> new\n28	reopen.permissions = TICKET_CREATE\n29	reopen.operations = del_resolution\n",
+			"rain",
+			"Jane Manning",
+			"font",
+			"betra",
+			"appa",
+			">",
+			"<label for=\"text1\">First Name</label>\n	<input type=\"text\" id=\"text1\" />",
+			"aria-live",
+			" style=\"[^\"]+\" ?",
+			"style=\"[^\"]+\"",
+			"shower",
+			"dd",
+			"jerk",
+			"\".",
+			"aria-live",
+			"while",
+			"\".",
+			"aria-labelledby=\"[^\"]+\"",
+			"	",
+			"shirt",
+			"shame",
+			"she",
+			" her",
+			" my",
+			" her",
+			"her",
+			"throbb",
+			"puls",
+			"gaz",
+			" red",
+			"blush",
+			"smile",
+			" red",
+			"red",
+			"betray",
+			"tip",
+			"her ",
+			"she",
+			"wet",
+			"her",
+			"slut",
+			"heav",
+			"further",
+			"lux",
+			"vigo",
+			"$",
+			"role=\"grid",
+			"gridview-1025",
+			"role=\"grid\"",
+			"colspan=\"3\"",
+			"colspan=\"2\"",
+			"for=\"[^\"]+\"",
+			"</label",
+			"<label",
+			"class=\"[^\"]+\"",
+			"FormPaymentPlan-ActionType-inputEl",
+			"BusinessEntityType-inputEl",
+			"267",
+			"for=\"\\s+\"",
+			"for=\"",
+			"(width|valign|unselectable|cellspacing|cellpadding|componentid|size|aria-readonly|autocomplete|halign)=[\"|'][^\"']+[\"|']",
+			"(width|valign|unselectable|cellspacing|cellpadding|componentid|size|aria-readonly|autocomplete)=[\"|'][^\"']+[\"|']",
+			"(width|valign|unselectable|cellspacing|cellpadding|componentid|size)=[\"|'][^\"']+[\"|']"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			",",
+			"(C1 + 1)",
+			"C1",
+			"",
+			"	",
+			"C5",
+			"B5:BJ5",
+			"",
+			"class=\"hidden\"",
+			"",
+			" ",
+			"",
+			"Muahahahaha",
+			">",
+			"<ul role=\"group\"",
+			"<li role=\"treeitem\">",
+			"",
+			"my",
+			"me",
+			"my",
+			"me",
+			"my",
+			"me",
+			"",
+			"</span",
+			"<span",
+			"",
+			"section",
+			"",
+			"lrNotifier.notify",
+			"",
+			"lrNotifier.notify",
+			"glyphIcon",
+			"\"https://assets",
+			"resources/Framework",
+			"\"https://assets.cms.gov/resources",
+			"files",
+			"\"//assets.cms.gov/",
+			"\"http://assets.cms.gov/",
+			"\"http://assets.cms.gov/Resources/Global/",
+			"\"//assets.cms.gov/resources/libs/",
+			"",
+			"<span class=\"requiredIndicator\" aria-hidden=\"true\">",
+			"State",
+			"Your comments",
+			"Address",
+			"Suffix",
+			"Last Name",
+			"First Name",
+			"Email",
+			"User Name",
+			".completed",
+			".failed",
+			".pending",
+			"<label for=\"doSign\">",
+			"",
+			"<div",
+			"id=\"doSign",
+			"class=\"col-sm-7\"",
+			"</span>",
+			"<a name=\"maincontent\" id=\"maincontent\"></a>\\n<form action=\"#\" class=\"form-horizontal\"",
+			"<div id=\"maincontent\" class=\"col-sm-7\"",
+			"<div id=\"maincontent\" class=\"col-sm-7\">",
+			"        <div id=\"maincontent\" class=\"col-sm-7\">",
+			"<span class=\"glyphicon glyphicon-search\"></span><span class=\"AdobeBlank\">Perform Search</spa>",
+			"TPG",
+			"href=\"demos/usecase",
+			"fonts",
+			"",
+			"control-label",
+			"100ms",
+			"panel-title",
+			"",
+			"<td tabindex=\"0\" ",
+			"",
+			"*V"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "bug reports.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 170.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

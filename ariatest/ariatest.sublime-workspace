@@ -1,0 +1,845 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"u",
+				"uppercase"
+			],
+			[
+				"font",
+				"font-variant"
+			],
+			[
+				"spa",
+				"border-spacing"
+			],
+			[
+				"fil",
+				"flips"
+			],
+			[
+				"button",
+				"buttonTriggered"
+			],
+			[
+				"output",
+				"outputMsg"
+			],
+			[
+				"set",
+				"setupNotifier"
+			],
+			[
+				"lr",
+				"lrNotifier"
+			],
+			[
+				"scroll",
+				"scrollEvent"
+			],
+			[
+				"scol",
+				"scrollEvent"
+			],
+			[
+				"version",
+				"versionChunks"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 3949,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "multipleselection.html",
+			"settings":
+			{
+				"buffer_size": 505,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "focustest.html",
+			"settings":
+			{
+				"buffer_size": 40260,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "testcase.js",
+			"settings":
+			{
+				"buffer_size": 13829,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "= Using the Excel Report Spreadsheet Template =\nIn January 2015, our old report spreadsheet template underwent a round of changes. This page documents what has changed exactly and anything you need to know about the new template, particularly how to use it.\n\n'''Note: ''' This page is a required read for anybody logging audit results in the spreadsheet. That means it's part of the required curriculum for new hires and subcontractors as well (assuming that they will perform audit work).\n\n== Feedback Needed  ==\nBefore we can officially start using this template, I want to make sure everybody agrees with the changes that were made. If you're involved with the audit process please have a look at the information below, try out the template, and provide any feedback you might have. You can do this by sending a message to [mailto:tech@paciellogroup.com?subject=Updated%20Results%20Spreadsheet%202015 tech@paciellogroup.com] or by adding something to the [[#Feedback|Feedback section]] below.\n\nFor any questions about this template, feel free to [mailto:hhillen@paciellogroup.comsubject=Updated%20Results%20Spreadsheet%202015 Contact Hans]\n\n== What's New ==\nIn a nut shell, the following changes have been made:\n\n* Added an [[#overview sheet]] that allows you to \n** enter sample names and links, which are used to automatically populate the sample column headers\n** see results totals\n* Added sheet protection to prevent accidentally overwriting cells that shouldn't be modified\n* Added built in structure for regression testing\n* Streamlined conditional formatting \n* Provided a \"Totals\" row and column on each sheet that calculates the total number of Pass, Fail and N/A results\n* Provided \"linked results cells\" where certain results for specific success criteria will automatically populate other results for the current sample\n\n== Where to Find It ==\n\nThe template can currently be found in the company dropbox at the following location:\n\n<code>TPG\\TPG\\templates\\experimental</code> (windows)\nor \n<code>TPG/TPG/templates/experimental</code> (OSX)\n\nThere will only be one Excel file in there, although the exact file name may differ depending on the current version. At the time of writing the latest version is \n\n<code>WCAG2_AA_template_v3.xlsx</code>\n\nOnce we're all satisfied with these changes the file will be moved from the \"experimental\" folder to something more permanent. When that happen this page will be updated to reflect the new location.\n\n== How to Use It ==\n\nThe procedure for using this template is as follows: \n# [[#Copy the Template]]\n# [[#Populate the Overview Sheet]]\n# [[#Filling in the Test Results]]\n# [[#Regression Testing]] (If applicable)\nThe sub sections below describe these steps in more detail.\n=== Copy the Template  ===\nAlways start by copying the blank template file from the location describe above in the [[#Where to find it|Where to find it]] section above. \n\nEnsure that the document properties are left blank, as Excel sometimes has the habit of automatically adding your name as author.\n\n'''Note: ''' Do not start a new report by copying and older report and emptying the cells. The reasons for this restriction are:\n# It will break the linked results cells.\n# It can lead to a continuous accumulation of redundant conditional formatting rules, making the document more sluggish and Excel more prone to crashing (particular on OSX).\n# You're likely to miss any updates that may have been made to the template since your last project.\n\n=== Populate the Overview Sheet ===\nThe only place to enter your list of samples is on the first sheet in the document, labeled \"Overview\".\n\nThe spreadsheet currently supports the addition of up to 30 samples (if anybody requires more it would be relatively easy to add more). On the Summary sheet, each sample is represented as a row. The sample numbers are already provided in Column C. to add a sample, add the following values to the row:\n; Sample Name (Column D): (Required) The name of the current sample. This is the text that will be shown as column header text on the result sheets.\n; Sample URL (Column E): (Optional) The URL the sample can be found by, if applicable. This will link the corresponding sample column header cells to the applicable web page.\n; Date Tested (Column F): Add the date on which you finished the testing for this sample.\n; Name Tester (Column G): Add your own name here\n\n'''Note:''' The only value that is absolutely required is the \"Sample Name\" column. Adding text here will automagically show the sample name in the corresponding column headers on the WCAG 2 A and AA result sheets. '''You should not edit these column headers directly''' (and you can't because they are locked). Any changes to the sample name or URL must be made on the results sheet.\n\nThe other columns on this page, H, I and J (formatted with a yellow background) are used to show automatically generated summary information for each sample. They can not be edited by the author.\n\n'''TODO:''' \n\n* It would be ideal if the test plan procedure and template was updated to include a tabular structure containing the sample names and URLs. That way the tester could just copy & paste that information into column D and E without having to manually enter it again. This would save a bit of extra time.\n* We need to figure out whether we want other information added to the summary sheet, e.g. project notes (company & product name, testing instructions, etc.).\n\n=== Filling in the Test Results ===\nOnce you've populated the summary sheet, the other two sheets (\"WCAG 2 Level A\" and \"WCAG 2 Level AA\") will now show the sample names in the column headers. You can now start adding your test results:\n\nA test result must always start with \"FAIL\", \"PASS\" or \"N/A\".\n#* FAIL results must always be followed up with a concise explanation, e.g. \"The links in the main navigation menu are not marked up as a list\".\n#* PASS results may optionally be augmented with some additional information, e.g. \"although it is recommended to not use a custom tab order\".\n#* N/A results should generally not be followed up with any additional text.\n\n'''Note:''' Additional text following the result keyword should be separated by a blank line. That means you'll have to add to two line breaks following your PASS or FAIL keyword. In Excel cells, line breaks are added using <code>Alt + Enter</code> on Windows and <code>Ctrl + Option + Return</code> on OSX. Always end the additional text with a full stop (\".\").\n\n==== Linked Results Cells  ====\n\nSome of the cells in the template are \"linked\", which means that if you add a specific result value to a specific S.C. other S.C's will automatically have their values populated. \n\nThe following linked cells have currently been defined (more may be added in the future):\n\n* Entering \"N/A\" for 1.2.1 (Audio-only and Video-only - Prerecorded) will automatically set \"N/A\" as results for 1.2.2 (Captions - Prerecorded), 1.2.3 (Audio Description or Media Alternative - Prerecorded), and 1.2.4 (Captions - Live).\n** Explanation: It's common for samples to not contain multimedia content, so this is a quick way to populate all media related S.C's with one value.\n* Entering \"N/A\" for 1.2.2 (which may happen automatically as a result of the behavior described above) will automatically set \"N/A\" as a result for 1.2.5 (Audio Description - Prerecorded)\n** Explanation: If 1.2.2 is not applicable then neither is 1.2.5\n* Entering \"N/A\" for  3.3.2 (Labels or Instructions) will automatically set \"N/A\" for 3.3.1 (Error Identification), 3.3.3 (Error Suggestion), and 3.3.4 (Error Prevention - Legal, Financial, Data)\n** Explanation: If there are no interactive form controls, then there is likely no form validation.\n\n'''Note: ''' These linked cells are solely there to save you some time. The behavior may not actually be accurate for your specific project and you should always make sure it's correct. You can overwrite the linked cells by simply typing in your own result manually. This will remove the relationship between the cells (which why you should always start with a blank version of the original template).\n\n==== \"Notes\" Row ====\nOn both results sheets, there is an optional \"Notes\" row at the bottom of all the success criteria. For each sample this row gives you the option of adding any additional information to the sample results that doesn't fit in with the official test results. Examples are things like:\n* Recommendations that are not required for WCAG 2.0 compliance but are still considered a best practices by TPG.\n* Bugs or types that you noticed during testing but are not accessibility related\n* Information about how this sample relates to other samples. e.g. \"This sample contains the carousel component, which is tested separately in sample 2\".\n'''TODO:''' Discuss if we need more specific guidelines for this row or if we need it to begin with.\n\n==== Totals Calculation ====\nAs you enter results, the spreadsheet will automatically calculate the total number of PASS, FAIL and N/A results per sample and success criterion. You will see these summaries in the following locations:\n\n* On both A and AA results sheets:\n** Totals for each sample, under the column header (Row 4)\n** Totals for each success criterion, to the right of the S.C. description (Column B)\n* On the Overview sheet, in columns H, I, and J. The first two columns just copy the sample totals for the A and AA sheets (as described above), and the third adds them together and visualizes it with a red gradient bar\n\nThese totals are meant as summary information for the client and are automatically calculated, so they do not require any input from you.\n\n=== Regression Testing ===\nThe new template can be used for regular audits as well as retests. The procedure is as follows:\n\n# Start by copying the the filled in report from the original audit rather than with a blank template.\n# On the Overview sheet, change the \"Audit Type\" value in cell I35 from 0 to 1. (0 means regular audit, 1 means retest). This ensures that the totals will be calculated for the regression test results rather than the original ones.\n# Both both A and AA result sheets, perform the following actions\n## Select the entire sheet. This can be done by clicking on the little corner button on the top left of the A1 cell or through the \"Select All\" shortcut (<code>Ctrl + A</code> on Windows, code>Cmd + A</code> on OSX).\n## In the Office Ribbon, on the Home tab, click \"Format\" in the \"Cells\" group. In the Format dropdown menu, select \"Hide & Unhide\" (on Excel for Windows only) and then \"Unhide Columns\". You should now see a second column appear for each sample (e.g. columns D, H, F, etc.).\n## Select the top two visible rows in the sheet (Rows 2 and 4). This can be done by clicking their row numbers while holding Shift, or through the <code>Shift + Space</code> shortcut.\n## Right click on the selection (or use the <code>Shift + F10</code> shortcut) to open a context menu and choose \"Unhide\". This will reveal and extra row of nested column headers to distinguish the \"Regular\" and \"Regression\" columns.\n# Fill in the results for the regression columns. Do not modify the original test results.\n\n== Technical Info ==\nHere is some additional relevant information about the how the  updated spreadsheet template functions. This information is useful for future maintenance.\n=== Sheet Protection ===\n\nAll three sheets are protected to prevent accidental modification or deletion of cells that aren't meant to be edited, particularly the ones containing formulas.\n\nThe sheets are not password protected, so it's still possible to \"unprotect\" them. But in general this should not be necessary so talk to Hans if you feel the need to do so.\n\nThe sheets are protected with the following permissions:\n\n; Overview \n: Select Locked Cells \n: Select Unlocked Cells \n: Insert Hyperlinks\n; WCAG 2 A & AA \n: Select Locked Cells \n: Select Unlocked Cells \n: Format Rows \n: Format Columns\n\nThe \"Format\" permissions are needed in order to be able to unhide the regression test related content.\n\n=== Conditional Formatting ===\nIn the old spreadsheet, the same conditional formatting rules were applied redundantly dozens if not hundreds of times. This caused Excel to be sluggish and prone to crash (for me on OSX at least). The duplication occurs in certain situations when you copy cells back and forth (either between sheets or within the same sheet as well, I'm not entirely sure). \n\nI've deleted all the cluttered and duplicate rules and replaced them with 6 basic ones. Hopefully this will make Excel run smoother now (it does for me). Rather than using specific ranges, each rule is applied for the entire sheet (which equates to range $1:$1048576). This will make it easier to grow or shrink the results sheets, e.g. if we have to deal with other guideline sets.\n\nThe following conditional formatting rules are defined, in this very specific order:\n\n; <code>=LEFT($A1,9)=\"Guideline\"</code> (stop if true)\n: Style: Bold, yellow background\n: Explanation: All rows of which the first cell's value starts with \"Guideline\". These are the divider rows between WCAG 2.0 Guidelines.\n; <code>=OR(A$2=\"Totals\", $A1=\"Totals\")</code>  \n: Style: light red background \n: Explanation: cells in the \"Totals\" column and row.\n; <code>Cell contains a blank value</code> (stop if true)\n: Dark gray background \n: Default styling for empty cells.\n; <code>=A$3=\"Regression\"</code>\n: Style: Light blue background \n: Explanation: Columns that have the word \"Regression in row 3\", i.e. Columns used for regression testing.\n; <code>Cell Value begins with PASS</code> (stop if true)\n: Style; Bold, dark green text\n: Explanation: cells with a PASS result\n; <code>Cell Value begins with FAIL</code> (stop if true)\n: Style; Bold, dark red text\n: Explanation: cells with a FAIL result\n; <code>Cell Value begins with N/A</code> (stop if true)\n: Style; Gray text\n: Explanation: cells with a N/A result\n\n=== Use of Hyperlinks ===\nAs mentioned before, the links in the sample column headers are automatically generated based on the information provided in the Overview sheet.\n\nOriginally, the formula that manages this would only create a link if a URL was actually provided for the sample in question. But the way Excel works is that it will always turn the column into a hyper link, regardless of whether a URL was actually set. If a link without a URL was clicked an alert box would appear. to work around this, the formula now explicitly makes all column headers hyper links. Now the links without URLs no longer throw errors when clicked (but they don't do anything either when clicked). To distinguish between \"real\" and \"fake\" links, the real links will end with ellipsis (...) whereas the fake ones won't.\n\n'''TODO: ''' Decide whether this is acceptable and whether we want auto hyper links at all.\n\n=== Hidden Columns and Rows ===\nIn order to provide support for regression testing and in order to make some of the formulas work, the template contains the following hidden rows and columns.\n\n; Overview Sheet, Column A : these cells contain the corresponding column letter for this sample's original test results, e.g. 'C', 'E'...'AM', etc. This is used by the formula\n; Overview Sheet, Column B : these cells contain the corresponding column letter for this sample's regression test results, e.g. 'D', 'F'...'AN', etc. This is used by the formula that calculates the sample totals on this sheet.\n; A and AA sheets, row 1: reverse of the previous, i.e. these cells contain the corresponding row number that describes the current sample on the Overview sheet, e.g. 3, 4, etc. Only the regular result columns are populated, not the regression result ones. These values are used by the formulas in the sample column headers.\n; A and AA sheets, row 3 : Contains the \"regular\" / \"regression\" sub headers for the sample columns (the sample column header is already merged across two columns to apply the nesting). This row is meant to be unhidden by the tester in case of regression testing.\n; A and AA sheets, every even column ranging from D to BJ\n: These are the columns used for regression testing, meant to be unhidden by the tester when applicable.\n\n=== Formulas Used ===\n\nMost of the logic described so far depends on formulas added to  cells. No Macros or VBA is used at this point.\n\nSince Excel formulas are a bit crude and not the easiest to read at times, I've listed the more complicated ones here in case we ever want to understand or modify them:\n\n; Overview sheet, column H\n: formula: <code>=IF(ISBLANK(D2),\"\",INDIRECT(\"'WCAG 2 Level A'!\"& IF($I$35=0, A2, B2) &\"4\"))</code>\n: Explanation: If the sample name is set, Find the totals value in the corresponding sample column on the WCAG 2 A results sheet. These Column IDs are listed in column A and B. Which one is used depends on whether the \"Audit Type\" value in I35 is 0 or not.\n; Overview sheet, column I\n: Explanation: Formula and behavior is almost exactly the same as described above, except it's now done on the WCAG 2 AA sheet.\n; Overview sheet, column J\n: Formula: <code>=IF(ISBLANK(D2), \"\", COUNTIF(INDIRECT(\"'WCAG 2 Level A'!\" &  IF($I$35=0, A2, B2) & \":\" &  IF($I$35=0, A2, B2)), \"FAIL*\") + COUNTIF(INDIRECT(\"'WCAG 2 Level AA'!\" &  IF($I$35=0, A2, B2) & \":\" &  IF($I$35=0, A2, B2)), \"FAIL*\"))</code>\n: Explanation : Count the number of cells on both the A and AA spreadsheets and add them here (The length of the formula really comes from the hoops you have to jump through to map rows to columns and vice versa).\n; WCAG 2 A and AA sheets, row 2\n: Formula: <code>=IF(NOT(ISBLANK(INDIRECT(\"Overview!$D\" & (C1 + 1)))),IF(NOT(ISBLANK(INDIRECT(\"Overview!$E\" &(C1 + 1)))),HYPERLINK(INDIRECT(\"Overview!$E\" &(C1 + 1)), \"Sample \" & INDIRECT(\"Overview!$C\" & (C1 + 1)) & \": \" & INDIRECT(\"Overview!$D\" &(C1 + 1)) &\"…\"),HYPERLINK(\"#\"&CELL(\"address\"),\"Sample \" & INDIRECT(\"Overview!$C\" &(C1 + 1)) & \": \" & INDIRECT(\"Overview!$D\" &(C1 + 1)))), \"\")</code>\n: Explanation If a sample name is set for this column, show it here. Because of issues described in the [[#Use of Hyperlinks]] section, the result is a hyperlink regardless of whether a URL was actually provided. If not, the target will be <code>\"#\"&CELL(\"address\")</code>, which from what I understand points to the cell itself (which prevents alert popups when the link is clicked).\n; WCAG 2 A and AA sheets, row 4\n: formula : <code>=IF(C3=\"\", \"\", (COUNTIF(C5:C41,\"FAIL*\") & IF(COUNTIF(C5:C41,\"FAIL*\") = 1, \" Fail\", \" Fails\")) & \", \" & (COUNTIF(C5:C41,\"PASS*\") & IF(COUNTIF(C5:C41,\"PASS*\") = 1, \" Pass\", \" Passes\"))& \", \" & (COUNTIF(C5:C41,\"N/A*\") & IF(COUNTIF(C5:C41,\"N/A*\") = 1, \" N/A\", \" N/A's\")))</code>\n: explanation: Calculates total occurrences of cells starting with PASS, FAIL and N/A. Accounts for single and plural values.\n; WCAG 2 A and AA sheets, Column B\n: Formula: <code>=(COUNTIF(C6:BJ6,\"FAIL*\") & IF(COUNTIF(C6:BJ6,\"FAIL*\") = 1, \" Fail\", \" Fails\")) & \", \" & (COUNTIF(C6:BJ6,\"PASS*\") & IF(COUNTIF(C6:BJ6,\"PASS*\") = 1, \" Pass\", \" Passes\"))& \", \" & (COUNTIF(C6:BJ6,\"N/A*\") & IF(COUNTIF(C6:BJ6,\"N/A*\") = 1, \" N/A\", \" N/A's\"))</code>\n: Explanation: Similar to the previous one, but now it counts values across the row rather than across the column\n\nNote that in this formulas, row and column references that don't have a $ in front of them are auto increment values, which means you can modify a formula once and copy paste it across an entire row or column range (the references will automatically increment with each cell).\n=== Issues ===\n\n* There is no way to make Excel skip hidden cells when pasting cell ranges.\n* For URLs that are really long, I've seen Excel show and INVALID REF! error. This was worked around by explicitly setting the URL as target in the Cell's hyper link dialog, but this still needs to be looked into\n* Currently the row based totals will calculate both the values for the original as well as the regression results.\n\n=== Feature Requests ===\nThings we want added / changed but are not necessarily bugs.\n\n== Feedback ==\nPut your feedback here if you have any.\n",
+			"file": "/Users/hanshillen/Desktop/untitled.wiki",
+			"file_size": 20053,
+			"file_write_time": 130664049610000000,
+			"settings":
+			{
+				"buffer_size": 20064,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 287.0,
+		"selected_items":
+		[
+			[
+				"ssw",
+				"Set Syntax: Mediawiki"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packages",
+				"Preferences: Browse Packages"
+			],
+			[
+				"colo",
+				"Color Picker"
+			],
+			[
+				"color",
+				"Color Picker"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"list ",
+				"Package Control: List Packages"
+			],
+			[
+				"sshtm	",
+				"Set Syntax: HTML"
+			],
+			[
+				"sshtm",
+				"Set Syntax: HTML"
+			],
+			[
+				"sshtml",
+				"Set Syntax: HTML"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reinden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"wrap",
+				"Emmet: Wrap With Abbreviation"
+			],
+			[
+				"wrap ",
+				"Emmet: Wrap With Abbreviation"
+			],
+			[
+				"reindent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"ssht",
+				"Set Syntax: HTML"
+			],
+			[
+				"disable",
+				"Package Control: Disable Package"
+			],
+			[
+				"inden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"sscss",
+				"Set Syntax: CSS"
+			],
+			[
+				"install package",
+				"Package Control: Install Package"
+			],
+			[
+				"SSHT",
+				"Set Syntax: HTML"
+			],
+			[
+				"SSHTML",
+				"Set Syntax: HTML"
+			],
+			[
+				"pac",
+				"Package Control: List Packages"
+			],
+			[
+				"sshm",
+				"Set Syntax: HTML"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"INSTALL",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/ariatest"
+	],
+	"file_history":
+	[
+		"/Users/hanshillen/Desktop/untitled.wiki",
+		"/Users/hanshillen/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/571D14D3-2EB8-4C22-85A8-E0F0F78A2E4C/tMobile LOE.txt",
+		"/Users/hanshillen/Desktop/excel formulas",
+		"/Users/hanshillen/Library/Application Support/OpenEmu/Game Library/roms/Sony PlayStation/oddworld_-_abes_oddysee_(v1.1).cue",
+		"/Users/hanshillen/Desktop/autocomplete.html",
+		"/Users/hanshillen/Desktop/test.csv",
+		"/Users/hanshillen/Desktop/bugbash original workflow",
+		"/Users/hanshillen/Library/Application Support/OpenEmu/Game Library/roms/Sony PlayStation/Castlevania - Symphony of the Night.cue",
+		"/Users/hanshillen/Documents/Dev/LESS/bootstrap-3.1.1/js/alert.js",
+		"/Users/hanshillen/Documents/Dev/LESS/bootstrap-3.1.1/node_modules/grunt-contrib-watch/node_modules/tiny-lr/node_modules/faye-websocket/examples/sse.html",
+		"/Users/hanshillen/Documents/Dev/LESS/bootstrap-3.1.1/node_modules/grunt-saucelabs/test/jasmine/spec/SpecHelper.js",
+		"/Users/hanshillen/Documents/Dev/LESS/bootstrap-3.1.1/node_modules/grunt-csscomb/.idea/scopes/scope_settings.xml",
+		"/Users/hanshillen/Documents/Dev/LESS/bootstrap-3.1.1/validation-status.json",
+		"/Users/hanshillen/Downloads/PaRappa the Rapper 2/PaRappa the Rapper 2.cue",
+		"/Users/hanshillen/Library/Application Support/OpenEmu/Game Library/roms/3DO/PlumbersDontWearTies.cue",
+		"/Users/hanshillen/Downloads/final_fantasy_anthology_-_final_fantasy_vi_(v1.1)/final_fantasy_anthology_-_final_fantasy_vi_(v1.1).cue",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/button_clickevent.html",
+		"/Users/hanshillen/Library/Application Support/OpenEmu/Game Library/roms/Sony PlayStation/Command & Conquer [GDI Disc] [SLUS-00379].cue",
+		"/Users/hanshillen/Downloads/oddworld_-_abes_oddysee_(v1.1)/oddworld_-_abes_oddysee_(v1.1).cue",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/0y63B.tmp",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/Welmoet8.xml",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/Welmoet1.xml",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/aardbeiprinses3688529907.xml",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/welmoet2.xml",
+		"/Users/hanshillen/Documents/Misc/Journey LPs",
+		"/Users/hanshillen/Downloads/MESS/MESS BIOS.txt",
+		"/Users/hanshillen/Desktop/Bindings Configurations/Default.oebindings",
+		"/Volumes/random/5",
+		"/Users/hanshillen/Desktop/Peapod LOE.txt",
+		"/Users/hanshillen/Dropbox (TPG)/TPG/Sales/LOEs/Interactive Health/Interactive Health LOE.txt",
+		"/Users/hanshillen/Downloads/Policenauts (Japan) (Disc 1) [En by Slowbeef v1.0]/Policenauts (Japan) (Disc 1) [En by Slowbeef v1.0].cue",
+		"/Users/hanshillen/Downloads/ColEm26-Source/ColEm/Coleco.c",
+		"/Users/hanshillen/Desktop/LOE.txt",
+		"/Users/hanshillen/Downloads/Policenauts (Japan) (Disc 2) [En by Slowbeef v1.0]/Policenauts (Japan) (Disc 2) [En by Slowbeef v1.0].cue",
+		"/Users/hanshillen/Downloads/Policenauts_English_v1.00/Policenauts_Readme_English.txt",
+		"/Volumes/random/22",
+		"/Volumes/random/4",
+		"/Volumes/random/0",
+		"/Volumes/random/old/3 old1",
+		"/Users/hanshillen/Desktop/bah/Untitled attachment 00327.htm",
+		"/Users/hanshillen/Desktop/bah/Untitled attachment 00324.htm",
+		"/Volumes/random/3",
+		"/Volumes/random/1",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/longdesc_alternative/index.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/jaws_events.html",
+		"/Users/hanshillen/Documents/Misc/Hans/Hans Hillen's Will : Testament van Hans Hillen.txt",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/table_summary_alternative/index.html",
+		"/Volumes/vice-macosx-cocoa-ub-10.3+4-2.1/README.txt",
+		"/Users/hanshillen/Desktop/aria-label on label.html",
+		"/Users/hanshillen/Downloads/Cycle 3.0 ELA 7.txt",
+		"/Users/hanshillen/Downloads/Cycle 2.0 ELA 9.txt",
+		"/Users/hanshillen/Downloads/Cycle 1.0 ELA 3 screen reader notes.txt",
+		"/Users/hanshillen/Downloads/Cycle 1.5 ALG 1 screen reader notes.txt",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/bugreports/JAWS/clickable cells.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/dragdropdemo/JS/dragdrop.js",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/dragdropdemo/index.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/Assets Framework _ Stacked Responsive Table Demo.htm",
+		"/Users/hanshillen/Desktop/remove.html",
+		"/Users/hanshillen/Desktop/test.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/disable_focused_buttons.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/aria-label.html",
+		"/Users/hanshillen/Desktop/hidden.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/bugreports/NVDA/link_in_tablist.html",
+		"/Users/hanshillen/Downloads/edge/Edge.of.Tomorrow.2014.720p.BluRay.x264-SPARKS.srt",
+		"/Users/hanshillen/Documents/Misc/Random letters/dromen.txt",
+		"/Users/hanshillen/Desktop/CSUN final draft email .txt",
+		"/Users/hanshillen/Downloads/CSUN final draft email .txt",
+		"/Users/hanshillen/Dropbox (Personal)/misc/TODO.txt",
+		"/Users/hanshillen/Downloads/junk/hansruiktzuur.txt",
+		"/Users/hanshillen/Documents/Dev/TPG/repos/doc-starter/new_document.pyw",
+		"/Users/hanshillen/Documents/Dev/TPG/repos/doc-starter/install.bat",
+		"/Users/hanshillen/Desktop/removeme/test-generated/tpg-doc.css",
+		"/Users/hanshillen/Documents/Dev/Android/adt-bundle-mac-x86_64-20140702/sdk/tools/support/typos-de.txt",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/two_tier_headings.html",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/boyd4.xml",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/boyd3.xml",
+		"/Users/hanshillen/Documents/Misc/Random letters/chats/los_escopeta@hotmail.com.txt",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/bugreports/JAWS/disabled image button.html",
+		"/Users/hanshillen/Documents/Dev/Old/Old/pennywaffer.net/final/index.php",
+		"/Users/hanshillen/Desktop/testme_files/jquery.hcmode-detection-3.0.js",
+		"/Users/hanshillen/Desktop/testme_files/cmmiglobalresponsive.css",
+		"/Users/hanshillen/Downloads/PHC-9063_Code.txt",
+		"/Users/hanshillen/Desktop/testme_files/bootstrap.min copy.css",
+		"/Users/hanshillen/Desktop/testme bak.html",
+		"/Users/hanshillen/Desktop/testme.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/likert.html",
+		"/Users/hanshillen/Desktop/tree maybe.html",
+		"/Users/hanshillen/Desktop/removeme.html",
+		"/Users/hanshillen/Google Drive/Expenses Hans DC.gsheet",
+		"/Users/hanshillen/Downloads/html5_outliner-0.2.1-fx/harness-options.json",
+		"/Users/hanshillen/Downloads/html5_outliner-0.2.1-fx/locales.json",
+		"/Users/hanshillen/Downloads/html5_outliner-0.2.1-fx/defaults/preferences/prefs.js",
+		"/Users/hanshillen/Downloads/html5_outliner-0.2.1-fx/resources/html5_outliner/lib/main.js",
+		"/Users/hanshillen/Downloads/headingsmap-2.1-fx/chrome/content/overlay.xul",
+		"/Users/hanshillen/Downloads/element_inspector-0.0.6-tb+fx+sm/chrome/content/overlay.xul",
+		"/Users/hanshillen/Downloads/junk/Misc/[Digital Sin] I Love My Sisters Big Tits 2 - Split Scenes (640x360p) XXX [.avi]/Torrent downloaded from PublicHash.com.nfo",
+		"/Users/hanshillen/Downloads/junk/Misc/[Digital Sin] I Love My Sisters Big Tits 2 - Split Scenes (640x360p) XXX [.avi]/Torrent downloaded from PornVirgo.com.nfo",
+		"/Users/hanshillen/Documents/Dev/Chrome/NavAccess2/manifest.json",
+		"/Users/hanshillen/Downloads/addon-sdk-1.17/README",
+		"/Users/hanshillen/Documents/Dev/Mozilla/NavAccess2/package.json",
+		"/Users/hanshillen/Downloads/CODE SNIPPET.msg",
+		"/Users/hanshillen/Dropbox (TPG)/Public/CGI/CSUN2014/demos/js/liveregionnotifier.js",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/bugreports/JAWS/aria_hidden_triggers_content_announcement.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/CGI/highcontrast_detection/html/hcmode_tester_assets.html",
+		"/Users/hanshillen/Downloads/Innovation Models   Center for Medicare & Medicaid Innovation_files/jquery.hcmode-detection-3.0.js",
+		"/Users/hanshillen/Downloads/Innovation Models   Center for Medicare & Medicaid Innovation.html",
+		"/Users/hanshillen/Documents/Dev/TPG/repos/doc-starter/testcookbook/00-cookbook.md",
+		"/Users/hanshillen/Documents/Dev/TPG/repos/html5-h/README.md",
+		"/Users/hanshillen/Documents/Dev/TPG/repos/doc-starter/yetanothertest/variants",
+		"/Users/hanshillen/Desktop/bug bash notes",
+		"/Users/hanshillen/Documents/Dev/TPG/repos/doc-starter/yetanothertest/20-images-media/05-blurb.md",
+		"/Users/hanshillen/Desktop/ez_setup.py",
+		"/Users/hanshillen/Downloads/accountmanagerplugin-2/tags/acct_mgr-0.4.4/README",
+		"/Users/hanshillen/Documents/Dev/TPG/repos/doc-starter/demo.sh",
+		"/Applications/Sublime Text.app/Contents/MacOS/changelog.txt",
+		"/Users/hanshillen/Downloads/Snatcher/Snatcher.cue",
+		"/Users/hanshillen/Documents/TPG/clients/Closed/Dolphin/easy producer/todo.txt",
+		"/Users/hanshillen/Desktop/displaiy_none_ie.html",
+		"/Users/hanshillen/Downloads/RE Additional Testing of PHC-7164.msg",
+		"/Users/hanshillen/Desktop/inpage.html",
+		"/Users/hanshillen/Desktop/TEST.html",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/skiplink.html",
+		"/Users/hanshillen/Desktop/skiplink.html",
+		"/Users/hanshillen/Downloads/Belangrijk.txt",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/bugreports/voiceover/no_required_state_on_select.html",
+		"/Users/hanshillen/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/hanshillen/Dropbox (TPG)/Public/testcases/CSS_cancels_click.html",
+		"/Users/hanshillen/Downloads/custom_user_styles.css"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/hanshillen/Dropbox/Public/CGI/CSUN2014/demos,<open folders>",
+			"/Users/hanshillen/Dropbox/Public/CGI/CSUN2014/demos"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"aria-level",
+			"old",
+			"this",
+			";",
+			"C1",
+			"FLOOR(COLUMN()/2, 1) + 1",
+			"INDIRECT(\"Overview!$B\" &FLOOR(COLUMN()/2, 1) + 1)",
+			"",
+			"",
+			"",
+			"		",
+			"Figure \\d+: ",
+			"Figure \\d: ",
+			"		",
+			"B5",
+			"C4:C40",
+			"fx",
+			"coleco.rom",
+			"tabindex=\"-1\"",
+			"role=\"group\"",
+			"searchbtn",
+			"class=\"test\"",
+			"means",
+			"^\\s*$\\n",
+			"  ",
+			"class=\"[^\"']*\"",
+			"collapsibleBoxActive",
+			"ROLE=\"TABPANEL",
+			"header",
+			"tabs-1",
+			"best treat",
+			"Description-cad7",
+			"cad7",
+			"return typeof",
+			"mouseup",
+			"iframe",
+			"12",
+			"invoice num",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			" color:#800080; \">(064,00",
+			"EOT",
+			"7",
+			"4Mua5ha4ha5ha4ha5!",
+			">\"",
+			"",
+			"td",
+			"<ul style=\"display: none;\">",
+			"DISPLA",
+			"role=\"group\"",
+			"<ul>",
+			"<ul",
+			"<li>",
+			"box-si",
+			"img",
+			"<script",
+			"jquery",
+			"hcmode",
+			"contrast",
+			"txtHCPName",
+			"special",
+			"1	[ticket-workflow]\n2	; simple-workflow.ini\n3	\n4	; This is action-centric\n5	leave = * -> *\n6	leave.operations = leave_status\n7	leave.default = 1\n8	\n9	resolve_new = new -> closed\n10	resolve_new.name = resolve\n11	resolve_new.permissions = TICKET_MODIFY\n12	resolve_new.operations = set_owner_to_self,set_resolution\n13	\n14	accept = new,accepted -> accepted\n15	accept.permissions = TICKET_MODIFY\n16	accept.operations = set_owner_to_self\n17	\n18	resolve_accepted = accepted -> closed\n19	resolve_accepted.name = resolve\n20	resolve_accepted.permissions = TICKET_MODIFY\n21	resolve_accepted.operations = set_resolution\n22	\n23	unaccept = accepted -> new\n24	unaccept.permissions = TICKET_MODIFY\n25	unaccept.operations = del_owner\n26	\n27	reopen = closed -> new\n28	reopen.permissions = TICKET_CREATE\n29	reopen.operations = del_resolution\n",
+			"rain",
+			"Jane Manning",
+			"font",
+			"betra",
+			"appa",
+			">",
+			"<label for=\"text1\">First Name</label>\n	<input type=\"text\" id=\"text1\" />",
+			"aria-live",
+			" style=\"[^\"]+\" ?",
+			"style=\"[^\"]+\"",
+			"shower",
+			"dd",
+			"jerk",
+			"\".",
+			"aria-live",
+			"while",
+			"\".",
+			"aria-labelledby=\"[^\"]+\"",
+			"	",
+			"shirt",
+			"shame",
+			"she",
+			" her",
+			" my",
+			" her",
+			"her",
+			"throbb",
+			"puls",
+			"gaz",
+			" red",
+			"blush",
+			"smile",
+			" red",
+			"red",
+			"betray",
+			"tip",
+			"her ",
+			"she",
+			"wet",
+			"her",
+			"slut",
+			"heav",
+			"further",
+			"lux",
+			"vigo",
+			"$",
+			"role=\"grid",
+			"gridview-1025",
+			"role=\"grid\"",
+			"colspan=\"3\"",
+			"colspan=\"2\"",
+			"for=\"[^\"]+\"",
+			"</label",
+			"<label",
+			"class=\"[^\"]+\"",
+			"FormPaymentPlan-ActionType-inputEl",
+			"BusinessEntityType-inputEl",
+			"267",
+			"for=\"\\s+\"",
+			"for=\"",
+			"(width|valign|unselectable|cellspacing|cellpadding|componentid|size|aria-readonly|autocomplete|halign)=[\"|'][^\"']+[\"|']",
+			"(width|valign|unselectable|cellspacing|cellpadding|componentid|size|aria-readonly|autocomplete)=[\"|'][^\"']+[\"|']"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			",",
+			"(C1 + 1)",
+			"C1",
+			"",
+			"	",
+			"C5",
+			"B5:BJ5",
+			"",
+			"class=\"hidden\"",
+			"",
+			" ",
+			"",
+			"Muahahahaha",
+			">",
+			"<ul role=\"group\"",
+			"<li role=\"treeitem\">",
+			"",
+			"my",
+			"me",
+			"my",
+			"me",
+			"my",
+			"me",
+			"",
+			"</span",
+			"<span",
+			"",
+			"section",
+			"",
+			"lrNotifier.notify",
+			"",
+			"lrNotifier.notify",
+			"glyphIcon",
+			"\"https://assets",
+			"resources/Framework",
+			"\"https://assets.cms.gov/resources",
+			"files",
+			"\"//assets.cms.gov/",
+			"\"http://assets.cms.gov/",
+			"\"http://assets.cms.gov/Resources/Global/",
+			"\"//assets.cms.gov/resources/libs/",
+			"",
+			"<span class=\"requiredIndicator\" aria-hidden=\"true\">",
+			"State",
+			"Your comments",
+			"Address",
+			"Suffix",
+			"Last Name",
+			"First Name",
+			"Email",
+			"User Name",
+			".completed",
+			".failed",
+			".pending",
+			"<label for=\"doSign\">",
+			"",
+			"<div",
+			"id=\"doSign",
+			"class=\"col-sm-7\"",
+			"</span>",
+			"<a name=\"maincontent\" id=\"maincontent\"></a>\\n<form action=\"#\" class=\"form-horizontal\"",
+			"<div id=\"maincontent\" class=\"col-sm-7\"",
+			"<div id=\"maincontent\" class=\"col-sm-7\">",
+			"        <div id=\"maincontent\" class=\"col-sm-7\">",
+			"<span class=\"glyphicon glyphicon-search\"></span><span class=\"AdobeBlank\">Perform Search</spa>",
+			"TPG",
+			"href=\"demos/usecase",
+			"fonts",
+			"",
+			"control-label",
+			"100ms",
+			"panel-title",
+			"",
+			"<td tabindex=\"0\" ",
+			"",
+			"*V"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3949,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								219,
+								223
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1822.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "multipleselection.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 505,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "focustest.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 40260,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								71,
+								71
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "testcase.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13829,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1774,
+								1774
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 366.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/hanshillen/Desktop/untitled.wiki",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20064,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1947,
+								1947
+							]
+						],
+						"settings":
+						{
+							"mediawiker_is_here": true,
+							"mediawiker_wiki_instead_editor": true,
+							"syntax": "Packages/Mediawiker/Mediawiki.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 133.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "ariatest.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 170.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

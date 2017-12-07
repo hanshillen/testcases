@@ -1,0 +1,1824 @@
+<html class="FFX" lang="en">​​​​​<head><style type="text/css">@media print {  .gmnoprint {    display:none  }}@media screen {  .gmnoscreen {    display:none  }}</style>
+    <title>Medicare.gov Physician Compare - Group Practice Results</title>
+	<base href="http://medicare.iterationb2.test.cgifederal.com">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="A list of Medicare Group Practices within your search criteria with location, specialty, and Medicare assignment information displayed; Group Practices can be selected to compare side-by-side from the list of results.">
+    <meta name="keywords" content="Group Practice Contact Information, Participating Medicare Group Practices, Participating Medicare Doctors, Find a Doctor, Physician Contact Information, Find a Physician, Doctors, Physicians, Doctor, Physician, Medicare Doctors, Group Practice, Group Practices, Medicare Directory, Medicare Physician Directory, Physician Search, Medicare, Doctors who accept Medicare, Physician Compare, Medicare Physician Compare, Group Practice, Group Practice Results, Group Practices Results, Group Practice Compare, Group Practice Specialty, Group Practice Specialties, Group Practice Medicare Assignment, Group Practice Medicare insurance">
+    <link rel="canonical" href="http://www.medicare.gov/physiciancompare/group-results.html">
+    <!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="imagetoolbar" content="no" />
+<![endif]-->
+
+<script src="http://www.google-analytics.com/ga.js" async="" type="text/javascript"></script><script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+
+
+
+<script type="text/javascript">
+    function replaceAssetsElements() {
+    // This assets link should be referenced dynamically via each page type.
+    var assetsHosts = "";
+
+    try{
+        assetsHosts = "//" + document.getElementById("assetsHostVar").getAttribute("content");
+        if (assetsHosts.indexOf("cannot be found") != -1) assetsHosts = "";
+
+        var DefaultMedicare = "medicare.gov"
+
+        if (window.location.hostname.indexOf(DefaultMedicare) == -1 && assetsHosts != "") {
+            var $headReferences = $("head").children()
+
+            for (var i = 0; i < $headReferences.length; i++) {
+                if ($headReferences[i].getAttribute("AssetsSrc")) {
+                    $headReferences[i].href = assetsHosts + $headReferences[i].getAttribute("AssetsSrc");
+                }
+            }
+        }
+    }catch(e){}
+} 
+</script>
+
+  
+<!-- es.medicare.gov-->
+<script type="text/javascript">
+  function OneLink()
+  {
+      var redirectLink = document.location.href;
+      var pagePath = document.location.pathname.toLowerCase();
+
+      if ( pagePath.indexOf(".aspx") > 0 || pagePath.indexOf(".asp")>0){
+          var mySplitResult =pagePath.split("/");
+          if (mySplitResult.length >2){
+                switch (mySplitResult[1]) {
+                    case "dialysis":
+                        redirectLink = document.location.protocol +"//"+ window.location.hostname + "/Dialysis";
+                        break;
+                    case "contacts":
+                        redirectLink = document.location.protocol +"//"+ window.location.hostname + "/Contacts";
+                        break;
+                    case "medicareeligibility":
+                        redirectLink = document.location.protocol +"//"+ window.location.hostname + "/MedicareEligibility/Home.asp";
+                        break;
+                    case "nursinghomecompare":
+                        redirectLink = document.location.protocol +"//"+ window.location.hostname + "/NursingHomeCompare";
+                        break;
+                    case "find-a-doctor":
+                        redirectLink = document.location.protocol +"//"+ window.location.hostname + "/find-a-doctor";
+                        break;
+                    case "homehealthcompare":
+                        redirectLink = document.location.protocol +"//"+ window.location.hostname + "/homehealthcompare/search.aspx";
+                        break;
+                    case "medicareonlineforms":
+                        if(mySplitResult[2]=="authorizationform")
+                            redirectLink = document.location.protocol +"//"+ window.location.hostname + "/MedicareOnlineForms/AuthorizationForm/OnlineFormStep.asp";
+                        else
+                           redirectLink = document.location.protocol +"//"+ window.location.hostname + "/MedicareOnlineForms";
+                        break;
+                    case "publications":
+                        redirectLink = document.location.protocol +"//"+ window.location.hostname + "/publications";
+                        break;
+                    case "supplier":
+                        redirectLink = document.location.protocol +"//"+ window.location.hostname + "/supplier";
+                        break;
+                    case "coverage":
+                        redirectLink = document.location.protocol +"//"+ window.location.hostname + "/Coverage";
+                        break;
+                    case "gopaperless":
+                        redirectLink = document.location.protocol +"//"+ window.location.hostname + "/GoPaperless";
+                        break;
+                    default:
+                       break;
+                }
+          }
+      }
+
+      if (window.location.hostname.indexOf("qa") >=0 || window.location.hostname.indexOf("staging") >=0|| window.location.hostname.indexOf("localhost") >=0){
+             redirectLink= redirectLink.replace(window.location.hostname, 'es-qamedicare.onelink-translations.com');
+      }else{
+            redirectLink= redirectLink.replace(window.location.hostname, 'es.medicare.gov');
+      }
+
+      document.location.href = redirectLink;
+  }
+</script>
+<!-- END es.medicare.gov -->
+
+<!-- Google's Site Search BEGIN-->
+  <script src="//www.google.com/jsapi" type="text/javascript"></script>
+  <link rel="stylesheet" href="/site-search/default.css" type="text/css">
+  <script type="text/javascript">
+
+
+
+    if (window.location.hostname == "es.medicare.gov"){
+      google.load('search', '1', { language: 'es' });
+    }else{
+      google.load('search', '1', { language: 'en' });
+    }
+    google.load('feeds', '1');
+
+    function init() {
+    try {
+    if (window.location.hostname == "es.medicare.gov"){
+    google.search.CustomSearchControl.attachAutoCompletion('004711181796222465330:f-_vzp1vfzy',document.getElementById('Search_TextBox'),'SearchImageButton');
+    }else{
+    google.search.CustomSearchControl.attachAutoCompletion('004711181796222465330:4efeow-xvgm',document.getElementById('Search_TextBox'),'SearchImageButton');
+    }
+    } catch (err) { }
+
+    try {
+    if (window.location.hostname == "es.medicare.gov"){
+    google.search.CustomSearchControl.attachAutoCompletion('004711181796222465330:nvsifwkzkaw',document.getElementById('searchcovered-textbox'),'searchcovered-button');
+    }else{
+    google.search.CustomSearchControl.attachAutoCompletion('004711181796222465330:jj3pfbcxpx8',document.getElementById('searchcovered-textbox'),'searchcovered-button');
+    }
+    } catch (err) { }
+    }
+
+
+    function siteSearchRedirect() {
+    try {
+    if (window.location.hostname == "www.hospitalcompare.hhs.gov") {
+    var siteSearchResultsPath = 'http://www.medicare.gov/site-search/search-results.html';
+    }
+    else if (window.location.hostname == "www.mymedicare.gov") {
+    var siteSearchResultsPath = 'http://www.medicare.gov/site-search/search-results.html';
+    }
+    else if (window.location.hostname == "plancompare.medicare.gov") {
+    var siteSearchResultsPath = 'http://www.medicare.gov/site-search/search-results.html';
+    }
+    else
+    {
+    var siteSearchResultsPath = '/site-search/search-results.html';
+    }
+
+    if (document.getElementById('Search_TextBox').value !== null) {
+    var searchValue = encodeURIComponent(document.getElementById('Search_TextBox').value);
+    window.location.href = siteSearchResultsPath + '?q=' + searchValue;
+    }
+    } catch (err) { }
+    }
+
+
+    function YMCsiteSearchRedirect() {
+    try {
+
+    var siteSearchResultsPath = '/coverage/your-medicare-coverage.html';
+
+    if (document.getElementById('searchcovered-textbox').value !== null) {
+    var searchValue = encodeURIComponent(document.getElementById('searchcovered-textbox').value);
+    window.location.href = siteSearchResultsPath + '?q=' + searchValue;
+    }
+    } catch (err) { }
+    }
+
+
+    google.setOnLoadCallback(init);
+
+    function searchTextBoxKeyUp(event) {
+    try {
+    var keyPressed = String.fromCharCode(event.keyCode);
+
+    if (keyPressed == '\n' || keyPressed == '\r') {
+    siteSearchRedirect();
+    }
+    } catch (err) { }
+    }
+  </script><script src="http://www.google.com/uds/?file=search&amp;v=1&amp;hl=en" type="text/javascript"></script><link href="http://www.google.com/uds/api/search/1.0/dafe20cc2afc0dcfa10b802f251c72d0/default+en.css" type="text/css" rel="stylesheet"><script src="http://www.google.com/uds/api/search/1.0/dafe20cc2afc0dcfa10b802f251c72d0/default+en.I.js" type="text/javascript"></script><script src="http://www.google.com/uds/?file=feeds&amp;v=1" type="text/javascript"></script><link href="http://www.google.com/uds/api/feeds/1.0/77f89919ef841f93359ce886504e4e3f/default+en.css" type="text/css" rel="stylesheet"><script src="http://www.google.com/uds/api/feeds/1.0/77f89919ef841f93359ce886504e4e3f/default+en.I.js" type="text/javascript"></script>
+<!-- Google's Site Search END-->
+
+<link rel="shortcut icon" href="/favicon.ico">
+
+<!-- Pre-existing header scripts-->
+<script type="text/javascript">
+  //<![CDATA[
+        function mp_onload() {
+            if (window.body_onload != null)
+                window.body_onload();
+        }
+        function getAnchorValue() {
+            var url = location.href;
+            var urlArray = url.split('#');
+
+            //Delete old cookie.
+            document.cookie = "anchor=" + "" + "; expires=-1" + "; path=/";
+
+            if (urlArray[1] != null && urlArray[1] != "") {
+                //Create new cookie.
+                document.cookie = "anchor=" + urlArray[1] + "; path=/";
+            }
+        }
+        //]]>
+
+</script>
+
+<!--Medicare Libraries and styles-->
+<link rel="stylesheet" assetssrc="/Resources/Medicare/css/MedicareHeaderFooter.css" href="//qa.assets.cms.gov/Resources/Medicare/css/MedicareHeaderFooter.css" type="text/css">
+
+<!--Google analytics async tracking code-->
+<script src="//qa.assets.cms.gov/Resources/global/JS/ga-track.js" type="text/javascript"></script>
+
+
+
+    <meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+<link rel="apple-touch-icon" assetssrc="/Resources/Global/Images/Icons/icon-iphone.png" href="//qa.assets.cms.gov/Resources/Global/Images/Icons/icon-iphone.png">
+<link rel="apple-touch-icon" sizes="72x72" assetssrc="/Resources/Global/Images/Icons/icon-ipad.png" href="//qa.assets.cms.gov/Resources/Global/Images/Icons/icon-ipad.png">
+<link rel="apple-touch-icon" sizes="114x114" assetssrc="/Resources/Global/Images/Icons/icon-iphone4.png" href="//qa.assets.cms.gov/Resources/Global/Images/Icons/icon-iphone4.png">
+<link rel="apple-touch-icon" sizes="144x144" assetssrc="/Resources/Global/Images/Icons/icon-ipad2.png" href="//qa.assets.cms.gov/Resources/Global/Images/Icons/icon-ipad2.png">
+
+<link assetssrc="/Resources/Global/css/lib/bootstrap.css" href="//qa.assets.cms.gov/Resources/Global/css/lib/bootstrap.css" rel="stylesheet" type="text/css">
+<link assetssrc="/Resources/Global/css/lib/bootstrap-responsive.css" href="//qa.assets.cms.gov/Resources/Global/css/lib/bootstrap-responsive.css" rel="stylesheet">
+<link rel="stylesheet" assetssrc="/Resources/Global/css/lib/jquery-ui-1.8.17.custom.css" href="//qa.assets.cms.gov/Resources/Global/css/lib/jquery-ui-1.8.17.custom.css" type="text/css">
+<link rel="stylesheet" assetssrc="/Resources/Global/css/508Assets.css" href="//qa.assets.cms.gov/Resources/Global/css/508Assets.css" type="text/css">
+<link rel="stylesheet" assetssrc="/Resources/Medicare/css/MedicareGlobal.css" href="//qa.assets.cms.gov/Resources/Medicare/css/MedicareGlobal.css" type="text/css">
+<link rel="stylesheet" assetssrc="/Resources/Global/css/508addthis.css" href="//qa.assets.cms.gov/Resources/Global/css/508addthis.css" type="text/css">
+
+
+
+<!-- HTML5 shi/css3 media query, for IE6-8 support of HTML5 elements  -->
+<!--[if lt IE 9]>
+      <script src="//qa.assets.cms.gov/Resources/Global/JS/lib/html5.js"></script>
+<![endif]-->
+    
+<script type="text/javascript">
+    // Fix iPhone viewport scaling bug on orientation change
+    (function (doc) {
+
+        var addEvent = 'addEventListener',
+        type = 'gesturestart',
+        qsa = 'querySelectorAll',
+        scales = [1, 1],
+        meta = qsa in doc ? doc[qsa]('meta[name=viewport]') : [];
+
+        function fix() {
+            meta.content = 'width=device-width,minimum-scale=' + scales[0] + ',maximum-scale=' + scales[1];
+            doc.removeEventListener(type, fix, true);
+        }
+
+        if ((meta = meta[meta.length - 1]) && addEvent in doc) {
+            fix();
+            scales = [.25, 4.0];
+            doc[addEvent](type, fix, true);
+        }
+
+    } (document));
+</script>
+
+    <link href="/physiciancompare/shared/css/Physician.css" rel="stylesheet" type="text/css">
+<link href="/physiciancompare/shared/css/ContextualHelp.css" rel="stylesheet" type="text/css">
+<!--[if gte IE 9]-->
+    <!-- This code is visible to IE9 and above and all non-IE browsers. -->
+    <link href="/physiciancompare/shared/css/responsive.css" rel="stylesheet" type="text/css">
+<!--[endif]-->
+<link href="/physiciancompare/shared/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="//qa.assets.cms.gov/Resources/Global/CSS/jquery.ui.tooltip.css" type="text/css" rel="Stylesheet">
+    <link href="//qa.assets.cms.gov/Resources/Global/CSS/jquery.ui.checkbox.css" rel="Stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/mapmashup/css/autocomplete/jquery.autocomplete.css">
+    <link href="shared/css/formvalidator.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script><script src="http://maps.gstatic.com/cat_js/intl/en_us/mapfiles/api-3/11/16/%7Bcommon,map,util,marker%7D.js" charset="UTF-8" type="text/javascript"></script><link type="text/css" rel="stylesheet" href="//qa.assets.cms.gov/Resources/Medicare/css/MedicarePrint.css" media="print"><link type="text/css" rel="stylesheet" href="//qa.assets.cms.gov/Resources/Medicare/css/MedicarePrint.css" media="print"><script src="http://maps.gstatic.com/cat_js/intl/en_us/mapfiles/api-3/11/16/%7Bgeocoder,infowindow%7D.js" charset="UTF-8" type="text/javascript"></script><script src="/SharedResources/widgets/foresee/foresee-surveydef.js" type="text/javascript"></script><style type="text/css">.gsfe_a{border:1px solid #b9b9b9;border-top-color:#a0a0a0;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);}.gsfe_b{border:1px solid #4d90fe;outline:none;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-moz-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gscsep_a{display:none}.gsq_a{padding:0}.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;user-select:none;-moz-user-select:none;white-space:nowrap}.gsst_e{opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-moz-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gssb_a{padding:0 2px}.gssb_e{border:0}.gssb_l{margin:5px 0}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style><script src="http://maps.gstatic.com/cat_js/intl/en_us/mapfiles/api-3/11/16/%7Bonion%7D.js" charset="UTF-8" type="text/javascript"></script><script src="http://maps.gstatic.com/cat_js/intl/en_us/mapfiles/api-3/11/16/%7Bcontrols%7D.js" charset="UTF-8" type="text/javascript"></script><script src="http://maps.gstatic.com/cat_js/intl/en_us/mapfiles/api-3/11/16/%7Bstats%7D.js" charset="UTF-8" type="text/javascript"></script></head>
+<body class="WIN smallFont">
+    <script language="javascript" type="text/javascript">
+
+        function checkCR(evt) {
+            var evt = (evt) ? evt : ((event) ? event : null);
+            var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+            if ((evt.keyCode == 13) && (node.type == "checkbox") && (node.attributes.onclick.value.toString().indexOf("triggerCheckBox") == 0))
+            { return false; }
+        }
+        document.onkeypress = checkCR;
+
+    </script>
+    <a name="Top"></a>
+    <div class="skipnav">
+        <a href="#hdnH1" title="Skip Navigation" id="skipNavigation">Skip Navigation</a></div>
+    <div id="page">
+        <div id="pagecontent" class="container-fluid">
+            <header id="header" role="banner" class="">
+            
+<!-- Canonical -->
+<link rel="canonical" href="http://www.medicare.gov/">
+
+<nav id="headertoolbar" role="navigation" aria-labelledby="navheading1">
+  <h2 id="navheading1" class="HiddenText">Site Options</h2>
+  <ul id="headertoolbarleft">
+    
+
+    <li id="espanolli" title="Click here to view in Español">
+      <a href="javascript:OneLink();">Español</a>
+    </li>
+    <li id="fontli">
+      <ol>
+        <li title="Click here to use a small font">
+          <a class="smallFont currFont" href="#">
+            <span aria-hidden="true">A</span><span class="HiddenText">Small Font</span>
+          </a>
+        </li>
+        <li title="Click here to use a medium font">
+          <a class="medFont" href="#">
+            <span aria-hidden="true">A</span><span class="HiddenText">Medium Font</span>
+          </a>
+        </li>
+        <li title="Click here to use a large font">
+          <a class="largeFont" href="#">
+            <span aria-hidden="true">A</span><span class="HiddenText">Large Font</span>
+          </a>
+        </li>
+      </ol>
+    </li>
+    <li id="emailli">
+      <a href="/EmailThisPage/emailform.asp?siteTool=Physician&amp;version=DOTNET&amp;url=http%3A%2F%2Facocci-f01776.cgifederal.com%2Fphysiciancompare%2Fgroup-results.html%23viewmap%3D0%26keyword%3Dfint%26loc%3D20191%26lat%3D38.9302229%26lng%3D-77.34392830000001%26type%3DAll%26xpnd%3D1%26vflg%3D1" title="Send this page by e-mail">Email</a>
+    </li>
+    <li id="printli">
+      <a href="#" title="Print this page">Print</a>
+    </li>
+    <li id="viewli" class="toolbarmenu">
+      <a href="#" class="toolbarmenu-a">
+        View <span class="HiddenText"> options</span><span class="HiddenText 508State">, collapsed</span>
+      </a>
+      <ul>
+        <li id="espanolli-responsive">
+          <a mporgnav="" href="http://es.medicare.gov/" lang="es">Español</a>
+        </li>
+        <li id="emailli-responsive">
+          <a href="#" title="Send this page by e-mail">
+            <span class="icon">
+            </span>Email
+          </a>
+        </li>
+        <li id="printli-responsive">
+          <a href="#" title="Print this page">
+            <span class="icon">
+            </span>Print
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <ul id="headertoolbarright">
+    <li id="aboutli" title="Learn more about us">
+      <a href="/about-us/about-medicare.html">About Us</a>
+    </li>
+    <li id="FAQli">
+      <a href="//questions.medicare.gov/app/home">
+        <abbr title="Frequenty asked questions">FAQ</abbr>
+      </a>
+    </li>
+    <li id="glossaryli" title="Go to the glossary">
+      <a href="/glossary/a.html">Glossary</a>
+    </li>
+    <li id="cmsli" title="Go to CMS.gov">
+      <a href="http://www.cms.gov/">CMS.gov</a>
+    </li>
+    <li id="sitesli" class="toolbarmenu">
+      <a href="#" class="toolbarmenu-a">
+        Sites <span class="HiddenText 508State">, collapsed</span>
+      </a>
+      <ul>
+        <li title="Go to CMS.gov">
+          <a href="http://www.cms.gov/">CMS.gov</a>
+        </li>
+        <li>
+          <a href="/about-us/about-medicare.html">About Us</a>
+        </li>
+        <li>
+          <a href="//questions.medicare.gov/app/home">FAQ</a>
+        </li>
+        <li>
+          <a href="/glossary/a.html">Glossary</a>
+        </li>
+      </ul>
+    </li>
+    <li id="mymedicareli" title="Login to MyMedicare.gov">
+      <a href="https://www.mymedicare.gov/">MyMedicare.gov Login</a>
+    </li>
+  </ul>
+
+</nav>
+<div id="headerlogocontent">
+  <div id="headerlogo">
+    <a id="headerlogo-link" href="/" title="Medicare.gov - the Official U.S. Government Site for Medicare">
+      <img src="//qa.assets.cms.gov/Resources/Medicare/Images/home/logoSprite.png" alt="Medicare.gov - the Official U.S. Government Site for Medicare">
+    </a>
+  </div>
+</div>
+<div id="headersearchrightcontent" onkeyup="searchTextBoxKeyUp(event);" role="search">
+  <label id="SearchBoxLabelTop" class="HiddenText" for="Search_TextBox">Search Medicare.gov</label>
+  <input style="outline: medium none;" spellcheck="false" dir="ltr" id="Search_TextBox" class="SearchBox" title="type search term here" name="Search_TextBox" autocomplete="off" placeholder="type search term here" type="text">
+  <input id="SearchImageButton" class="btn" onclick="javascript:siteSearchRedirect(); return false;" value="Search" type="submit">
+  <div id="headerlearnrightcontent">
+    <a href="http://www.healthcare.gov/" id="headerlearnlink">Learn about your health care options</a>
+  </div>
+</div>
+ 
+            
+
+
+
+
+
+
+<div id="menu-btn" class="btn btn-primary opened">
+	<a href="#">
+		Menu <span class="icon">
+			<span class="HiddenText">Menu toggle arrow</span>
+		</span>
+	</a>
+</div>
+
+<nav class="" id="topnav" role="navigation" aria-labelledby="navheading2">
+	<h2 id="navheading2" class="HiddenText">Main Menu</h2>
+	<ul id="nav-list">
+		                            							<li class="top sub"><span role="link" tabindex="0" class="slideForward"><span class="HiddenText 508State">Expand Sign Up / Change Plans menu</span></span> 
+                                 				<a href="/sign-up-change-plans/index.html" title="Sign Up / Change Plans">Sign Up /<br> Change Plans<span class="HiddenText 508State">, collapsed</span></a> 
+                					<ul style="display: none;" class="topnavsubmenu"><li class="backTitle"><a href="#" class="slideBack"><span></span> Back to Main Menu</a></li> 
+                    						               <li><a href="/sign-up-change-plans/decide-how-to-get-medicare/decide-how-to-get-your-medicare.html" title="Decide how to get your Medicare">Decide how to get your Medicare</a></li> 
+                        						               <li><a href="/sign-up-change-plans/get-parts-a-and-b/get-parts-a-and-b.html" title="How to get Part A &amp; Part B">How to get Part A &amp; Part B</a></li> 
+                        						               <li><a href="/sign-up-change-plans/get-drug-coverage/get-drug-coverage.html" title="How to get drug coverage">How to get drug coverage</a></li> 
+                        						               <li><a href="/sign-up-change-plans/when-can-you-join-health-or-drug-plan/when-can-you-join-health-or-drug-plan.html" title="When can you join a health or drug plan?">When can you join a health or drug plan?</a></li> 
+                        						               <li><a href="/sign-up-change-plans/medicare-health-plans/medicare-health-plans.html" title="About Medicare health plans">About Medicare health plans</a></li> 
+                        						               <li><a href="http://www.socialsecurity.gov/medicareonly/" title="Apply for Medicare online">Apply for Medicare online</a></li> 
+                        						               <li><a href="/find-a-plan/questions/home.aspx" title="Find health &amp; drug plans">Find health &amp; drug plans</a></li> 
+                        						               <li><a href="/help-and-resources/find-doctors-hospitals-and-facilities/quality-care-finder.html" title="Find doctors, hospitals, &amp; facilities">Find doctors, hospitals, &amp; facilities</a></li> 
+                        					</ul> 
+                			</li>
+			                        							<li class="top sub"><span role="link" tabindex="0" class="slideForward"><span class="HiddenText 508State">Expand Your Medicare Costs menu</span></span> 
+                                				<a href="/your-medicare-costs/index.html" title="Your Medicare Costs">Your Medicare Costs<span class="HiddenText 508State">, collapsed</span></a> 
+                					<ul class="topnavsubmenu"><li class="backTitle"><a href="#" class="slideBack"><span></span> Back to Main Menu</a></li> 
+                    						               <li><a href="/your-medicare-costs/help-paying-costs/get-help-paying-costs.html" title="Get help paying costs">Get help paying costs</a></li> 
+                        						               <li><a href="/your-medicare-costs/part-a-costs/part-a-costs.html" title="Part A costs">Part A costs</a></li> 
+                        						               <li><a href="/your-medicare-costs/part-b-costs/part-b-costs.html" title="Part B costs">Part B costs</a></li> 
+                        						               <li><a href="/part-d/costs/part-d-costs.html" title="Costs for Medicare drug coverage">Costs for Medicare drug coverage</a></li> 
+                        						               <li><a href="/your-medicare-costs/medicare-health-plan-costs/costs-for-medicare-health-plans.html" title="Costs for Medicare health plans">Costs for Medicare health plans</a></li> 
+                        						               <li><a href="/your-medicare-costs/paying-parts-a-and-b/pay-parts-a-and-b-premiums.html" title="Ways to pay Part A &amp; Part B premiums">Ways to pay Part A &amp; Part B premiums</a></li> 
+                        						               <li><a href="/your-medicare-costs/costs-at-a-glance/costs-at-glance.html" title="Costs at a glance">Costs at a glance</a></li> 
+                        					</ul> 
+                			</li>
+			                        							<li class="top sub"><span role="link" tabindex="0" class="slideForward"><span class="HiddenText 508State">Expand What Medicare Covers menu</span></span> 
+                                				<a href="/what-medicare-covers/index.html" title="What Medicare Covers">What Medicare Covers<span class="HiddenText 508State">, collapsed</span></a> 
+                					<ul class="topnavsubmenu"><li class="backTitle"><a href="#" class="slideBack"><span></span> Back to Main Menu</a></li> 
+                    						               <li><a href="/coverage/your-medicare-coverage.html" title="Is your test, item, or service covered?">Is your test, item, or service covered?</a></li> 
+                        						               <li><a href="/what-medicare-covers/part-a/what-part-a-covers.html" title="What Part A covers">What Part A covers</a></li> 
+                        						               <li><a href="/what-medicare-covers/part-b/what-medicare-part-b-covers.html" title="What Part B covers">What Part B covers</a></li> 
+                        						               <li><a href="/part-d/coverage/part-d-coverage.html" title="What drug plans cover">What drug plans cover</a></li> 
+                        						               <li><a href="/what-medicare-covers/medicare-health-plans/what-medicare-advantage-plans-cover.html" title="What Medicare health plans cover">What Medicare health plans cover</a></li> 
+                        						               <li><a href="/coverage/preventive-and-screening-services.html" title="Preventive services">Preventive services</a></li> 
+                        						               <li><a href="/Supplier/Home.asp" title="Where to get covered medical items">Where to get covered medical items</a></li> 
+                        						               <li><a href="/help-and-resources/find-doctors-hospitals-and-facilities/quality-care-finder.html" title="Find doctors, hospitals, &amp; facilities">Find doctors, hospitals, &amp; facilities</a></li> 
+                        						               <li><a href="/what-medicare-covers/not-covered/item-and-services-not-covered-by-part-a-and-b.html" title="What's not covered by Part A &amp; Part B?">What's not covered by Part A &amp; Part B?</a></li> 
+                        					</ul> 
+                			</li>
+			                        							<li class="top sub"><span role="link" tabindex="0" class="slideForward"><span class="HiddenText 508State">Expand Drug Coverage (Part D) menu</span></span> 
+                                				<a href="/part-d/index.html" title="Drug Coverage (Part D)">Drug Coverage (Part D)<span class="HiddenText 508State">, collapsed</span></a> 
+                					<ul class="topnavsubmenu"><li class="backTitle"><a href="#" class="slideBack"><span></span> Back to Main Menu</a></li> 
+                    						               <li><a href="/sign-up-change-plans/get-drug-coverage/get-drug-coverage.html" title="How to get drug coverage">How to get drug coverage</a></li> 
+                        						               <li><a href="/part-d/coverage/part-d-coverage.html" title="What drug plans cover">What drug plans cover</a></li> 
+                        						               <li><a href="/part-d/costs/part-d-costs.html" title="Costs for Medicare drug coverage">Costs for Medicare drug coverage</a></li> 
+                        						               <li><a href="/sign-up-change-plans/when-can-you-join-health-or-drug-plan/when-can-you-join-health-or-drug-plan.html" title="When can you join a health or drug plan?">When can you join a health or drug plan?</a></li> 
+                        						               <li><a href="/part-d/how-part-d-works-with-other-insurance/part-d-and-other-insurance.html" title="How Part D works with other insurance">How Part D works with other insurance</a></li> 
+                        						               <li><a href="/find-a-plan/questions/home.aspx" title="Find health &amp; drug plans">Find health &amp; drug plans</a></li> 
+                        					</ul> 
+                			</li>
+			                        							<li class="top sub"><span role="link" tabindex="0" class="slideForward"><span class="HiddenText 508State">Expand Supplements &amp; Other Insurance menu</span></span> 
+                                 				<a href="/supplement-other-insurance/index.html" title="Supplements &amp; Other Insurance">Supplements &amp;<br> Other Insurance<span class="HiddenText 508State">, collapsed</span></a> 
+                					<ul class="topnavsubmenu"><li class="backTitle"><a href="#" class="slideBack"><span></span> Back to Main Menu</a></li> 
+                    						               <li><a href="/supplement-other-insurance/how-medicare-works-with-other-insurance/how-medicare-works-with-other-insurance.html" title="How Medicare works with other insurance">How Medicare works with other insurance</a></li> 
+                        						               <li><a href="/supplement-other-insurance/retiree-insurance/retiree-insurance.html" title="Retiree insurance">Retiree insurance</a></li> 
+                        						               <li><a href="/supplement-other-insurance/medigap/whats-medigap.html" title="What’s supplement (Medigap) insurance?">What’s supplement (Medigap) insurance?</a></li> 
+                        						               <li><a href="/find-a-plan/questions/medigap-home.aspx" title="Find a Medigap policy">Find a Medigap policy</a></li> 
+                        						               <li><a href="/supplement-other-insurance/when-can-you-buy-medigap/when-can-you-buy-medigap.html" title="When can you buy Medigap?">When can you buy Medigap?</a></li> 
+                        						               <li><a href="/supplement-other-insurance/compare-medigap/compare-medigap.html" title="How to compare Medigap policies">How to compare Medigap policies</a></li> 
+                        						               <li><a href="/supplement-other-insurance/medigap-and-travel/medigap-and-travel.html" title="Medigap &amp; travel">Medigap &amp; travel</a></li> 
+                        					</ul> 
+                			</li>
+			                        							<li class="top sub"><span role="link" tabindex="0" class="slideForward"><span class="HiddenText 508State">Expand Claims &amp; Appeals menu</span></span> 
+                                 				<a href="/claims-and-appeals/index.html" title="Claims &amp; Appeals">Claims &amp;<br> Appeals<span class="HiddenText 508State">, collapsed</span></a> 
+                					<ul class="topnavsubmenu"><li class="backTitle"><a href="#" class="slideBack"><span></span> Back to Main Menu</a></li> 
+                    						               <li><a href="/claims-and-appeals/file-a-complaint/complaints.html" title="File a complaint">File a complaint</a></li> 
+                        						               <li><a href="/claims-and-appeals/file-a-claim/file-a-claim.html" title="Get help with a claim">Get help with a claim</a></li> 
+                        						               <li><a href="/claims-and-appeals/file-an-appeal/appeals.html" title="File an appeal">File an appeal</a></li> 
+                        						               <li><a href="/claims-and-appeals/right-to-fast-appeal/fast-appeals.html" title="Your right to a fast appeal">Your right to a fast appeal</a></li> 
+                        						               <li><a href="/claims-and-appeals/medicare-rights/medicare-rights-overview.html" title="Your Medicare rights">Your Medicare rights</a></li> 
+                        						               <li><a href="/MedicareOnlineForms/" title="Get Medicare forms">Get Medicare forms</a></li> 
+                        						               <li><a href="/MedicareOnlineForms/AuthorizationForm/OnlineFormStep.asp" title="Authorization to Disclose Personal Health Information">Authorization to Disclose Personal Health Information</a></li> 
+                        					</ul> 
+                			</li>
+			                        							<li class="top sub"><span role="link" tabindex="0" class="slideForward"><span class="HiddenText 508State">Expand Manage Your Health menu</span></span> 
+                                				<a href="/manage-your-health/index.html" title="Manage Your Health">Manage Your Health<span class="HiddenText 508State">, collapsed</span></a> 
+                					<ul class="topnavsubmenu"><li class="backTitle"><a href="#" class="slideBack"><span></span> Back to Main Menu</a></li> 
+                    						               <li><a href="https://www.mymedicare.gov/" title="Login to MyMedicare.gov">Login to MyMedicare.gov</a></li> 
+                        						               <li><a href="/MedicareOnlineForms/" title="Get Medicare forms">Get Medicare forms</a></li> 
+                        						               <li><a href="/manage-your-health/advance-directives/advance-directives-and-long-term-care.html" title="Advance directives &amp; long-term care">Advance directives &amp; long-term care</a></li> 
+                        						               <li><a href="/manage-your-health/personal-health-records/personal-health-records.html" title="Personal Health Records (PHRs)">Personal Health Records (PHRs)</a></li> 
+                        						               <li><a href="/manage-your-health/electronic-prescribing/electronic-prescribing.html" title="Electronic prescribing">Electronic prescribing</a></li> 
+                        						               <li><a href="/manage-your-health/electronic-health-records/electronic-health-records.html" title="Electronic Health Records (EHRs)">Electronic Health Records (EHRs)</a></li> 
+                        						               <li><a href="/manage-your-health/blue-button/medicare-blue-button.html" title="Medicare's Blue Button">Medicare's Blue Button</a></li> 
+                        						               <li><a href="/manage-your-health/accountable-care-organizations/accountable-care-organizations.html" title="Coordinating your care (ACOs)">Coordinating your care (ACOs)</a></li> 
+                        					</ul> 
+                			</li>
+			                        							<li class="top sub navbar-last"><span role="link" tabindex="0" class="slideForward"><span class="HiddenText 508State">Expand Help &amp; Resources menu</span></span><a href="/help-and-resources/index.html" title="Help &amp; Resources">Help &amp;<br> Resources<span class="HiddenText 508State">, collapsed</span></a>
+							<ul class="topnavsubmenu"><li class="backTitle"><a href="#" class="slideBack"><span></span> Back to Main Menu</a></li>
+					<ul class="navgroup-first">
+                    						        					<li><a href="/find-a-plan/questions/home.aspx" title="Find health &amp; drug plans">Find health &amp; drug plans</a></li>
+														        					<li><a href="/help-and-resources/find-doctors-hospitals-and-facilities/quality-care-finder.html" title="Find doctors, hospitals, &amp; facilities">Find doctors, hospitals, &amp; facilities</a></li>
+														        					<li><a href="/your-medicare-costs/help-paying-costs/get-help-paying-costs.html" title="Get help paying costs">Get help paying costs</a></li>
+														        					<li><a href="/Supplier/Home.asp" title="Where to get covered medical items">Where to get covered medical items</a></li>
+														        					<li class="navmenuseparator"><a href="/MedicareOnlineForms/" title="Get Medicare forms">Get Medicare forms</a></li>
+														        					<li><a href="/Publications/" title="Publications">Publications</a></li>
+														        					<li><a href="/help-and-resources/mail-about-medicare/mail-about-medicare.html" title="Mail you get about Medicare">Mail you get about Medicare</a></li>
+														        					<li><a href="https://secure.ssa.gov/apps6z/IMRC/main.html" title="Lost/incorrect Medicare card">Lost/incorrect Medicare card</a></li>
+														        					<li class="navmenuseparator"><a href="/help-and-resources/report-fraud-and-abuse/fraud-and-abuse.html" title="Report fraud &amp; abuse">Report fraud &amp; abuse</a></li>
+														        					<li><a href="/claims-and-appeals/file-a-complaint/complaints.html" title="File a complaint">File a complaint</a></li>
+														        					<li><a href="/help-and-resources/identity-theft/identity-theft.html" title="Identity theft: protect yourself">Identity theft: protect yourself</a></li>
+														        					<li><a href="/Contacts/Default.aspx" title="Phone numbers &amp; websites">Phone numbers &amp; websites</a></li>
+														        					<li class="navmenuseparator"><a href="/help-and-resources/privacy-practices/privacy.html" title="Privacy practices">Privacy practices</a></li>
+														        					<li><a href="/help-and-resources/contact/contact-medicare.html" title="Contact Medicare">Contact Medicare</a></li>
+													</ul>
+				</ul>
+			</li> 
+								                                                                                                                                                                                                                                                                                                            	</ul>
+</nav>
+
+<noscript>
+  <p id="js-off-message">
+      The Medicare.gov website does not fully support browsers with JavaScript disabled. Please enable JavaScript in your browser settings and revisit this page to continue browsing.  If you choose to continue without enabling JavaScript, some features of the website may be unavailable.
+  </p>
+</noscript>  
+        </header>
+            <a id="main_content" name="main_content" tabindex="-1"></a>
+            <div id="wrapper" class="phy-toggle-list">
+                <div title="" id="main-content" class="group-results validatorFormGroup" role="main">
+                    <div id="breadcrumbs-wrapper" class="span12"><div class="breadcrumbs"><span class="HiddenText">You are here</span><div class=" jcarousel-skin-tango"><div style="position: relative; display: block;" class="jcarousel-container jcarousel-container-horizontal"><div style="position: relative;" class="jcarousel-clip jcarousel-clip-horizontal"><ul style="overflow: hidden; position: relative; top: 0px; margin: 0px; padding: 0px; left: 0px; width: 402px;" id="rwdbreadcrumb" class="jcarousel-list jcarousel-list-horizontal"><li jcarouselindex="1" style="float: left; list-style: none outside none;" class="jcarousel-item jcarousel-item-horizontal jcarousel-item-1 jcarousel-item-1-horizontal"><a id="homeBreadCrumb" href="./search.html" title="Physician Compare Home">Physician Compare Home</a></li><li jcarouselindex="2" style="float: left; list-style: none outside none;" class="jcarousel-item jcarousel-item-horizontal jcarousel-item-2 jcarousel-item-2-horizontal">Group Practice Results</li></ul></div><div disabled="disabled" style="display: block;" class="jcarousel-prev jcarousel-prev-horizontal jcarousel-prev-disabled jcarousel-prev-disabled-horizontal"></div><div disabled="disabled" style="display: block;" class="jcarousel-next jcarousel-next-horizontal jcarousel-next-disabled jcarousel-next-disabled-horizontal"></div></div></div></div></div>
+
+<div id="share-content" style="">
+    <a title="Bookmark and Share" href="javascript:" id="at300m" class="share_link"><span class="HiddenText">Select Share link to open Bookmark and Share options</span>Share</a>
+<div id="at20mc" style="z-index: 1000000;"><div class="" id="at15s"><div id="at15s_inner"><div id="at15s_head"><a href="javascript:" id="at15sptx" title="Click to close small share modal"><img alt="Close Bookmark and Share" src="//assets.cms.gov/resources/global/images/icons/modal_close.png"></a><span id="at15ptc">Bookmark &amp; Share</span><span id="at15s_brand" class="at15s_brandx"></span></div><ul id="at_hover" style="display: block;"><div id="atic_twitter" class="at_itemz  at_bold at_col0"><a class="wrap" target="_blank" href="http://www.twitter.com/share?url=http%3A%2F%2Facocci-f01776.cgifederal.com%2Fphysiciancompare%2Fgroup-results.html%23viewmap%3D0%26keyword%3Dfint%26loc%3D20191%26lat%3D38.9302229%26lng%3D-77.34392830000001%26type%3DAll%26xpnd%3D1%26vflg%3D1&amp;text=Medicare.gov%20Physician%20Compare%20-%20Group%20Practice%20Results"><span class="at15tz at15t_twitter" title="Twitter-Icon"></span><span>Twitter</span><span class="LinkDisclaimer"> - Opens in a new window</span></a></div><div id="atic_blogger" class="at_itemz  at_bold at_col1" );"=""><a class="wrap" target="_blank" href="http://www.blogger.com/blog-this.g?t=Medicare.gov+Physician+Compare+-+Group+Practice+Results&amp;n=http%3A%2F%2Facocci-f01776.cgifederal.com%2Fphysiciancompare%2Fgroup-results.html%23viewmap%3D0%26keyword%3Dfint%26loc%3D20191%26lat%3D38.9302229%26lng%3D-77.34392830000001%26type%3DAll%26xpnd%3D1%26vflg%3D1"><span class="at15tz at15t_blogger" title="Blogger-Icon"></span><span>Blogger</span><span class="LinkDisclaimer"> - Opens in a new window</span></a></div><div id="atic_facebook" class="at_itemz  at_bold at_col0"><a class="wrap" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Facocci-f01776.cgifederal.com%2Fphysiciancompare%2Fgroup-results.html%23viewmap%3D0%26keyword%3Dfint%26loc%3D20191%26lat%3D38.9302229%26lng%3D-77.34392830000001%26type%3DAll%26xpnd%3D1%26vflg%3D1"><span class="at15tz at15t_facebook" title="Facebook-Icon"></span><span>Facebook</span><span class="LinkDisclaimer"> - Opens in a new window</span></a></div><div id="atic_reddit" class="at_itemz  at_bold at_col1"><a class="wrap" target="_blank" href="http://www.reddit.com/submit?url=http%3A%2F%2Facocci-f01776.cgifederal.com%2Fphysiciancompare%2Fgroup-results.html%23viewmap%3D0%26keyword%3Dfint%26loc%3D20191%26lat%3D38.9302229%26lng%3D-77.34392830000001%26type%3DAll%26xpnd%3D1%26vflg%3D1&amp;title=Medicare.gov%20Physician%20Compare%20-%20Group%20Practice%20Results"><span class="at15tz at15t_reddit" title="Reddit-Icon"></span><span>Reddit</span><span class="LinkDisclaimer"> - Opens in a new window</span></a></div><div id="atic_stumbleupon" class="at_itemz  at_col0"><a class="wrap" target="_blank" href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Facocci-f01776.cgifederal.com%2Fphysiciancompare%2Fgroup-results.html%23viewmap%3D0%26keyword%3Dfint%26loc%3D20191%26lat%3D38.9302229%26lng%3D-77.34392830000001%26type%3DAll%26xpnd%3D1%26vflg%3D1&amp;title=Medicare.gov%20Physician%20Compare%20-%20Group%20Practice%20Results"><span class="at15tz at15t_stumbleupon" title="StumbleUpon-Icon"></span><span>StumbleUpon</span><span class="LinkDisclaimer"> - Opens in a new window</span></a></div><div id="atic_favorites" class="at_itemz  at_col1"><a class="wrap" href="javascript:addFavorite('http%3A%2F%2Facocci-f01776.cgifederal.com%2Fphysiciancompare%2Fgroup-results.html%23viewmap%3D0%26keyword%3Dfint%26loc%3D20191%26lat%3D38.9302229%26lng%3D-77.34392830000001%26type%3DAll%26xpnd%3D1%26vflg%3D1','Medicare.gov Physician Compare - Group Practice Results');"><span class="at15tz at15t_favorites" title="Favorites-Icon"></span><span>Favorites</span></a></div><div id="atic_gmail" class="at_itemz  at_col0"><a class="wrap" target="_blank" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to&amp;su=Medicare.gov%20Physician%20Compare%20-%20Group%20Practice%20Results&amp;body=http%3A%2F%2Facocci-f01776.cgifederal.com%2Fphysiciancompare%2Fgroup-results.html%23viewmap%3D0%26keyword%3Dfint%26loc%3D20191%26lat%3D38.9302229%26lng%3D-77.34392830000001%26type%3DAll%26xpnd%3D1%26vflg%3D1"><span class="at15tz at15t_gmail" title="Gmail-Icon"></span><span>Gmail</span><span class="LinkDisclaimer"> - Opens in a new window</span></a></div><div id="atic_tumblr" class="at_itemz  at_col1"><a class="wrap" target="_blank" href="http://www.tumblr.com/share?v=3&amp;u=http%3A%2F%2Facocci-f01776.cgifederal.com%2Fphysiciancompare%2Fgroup-results.html%23viewmap%3D0%26keyword%3Dfint%26loc%3D20191%26lat%3D38.9302229%26lng%3D-77.34392830000001%26type%3DAll%26xpnd%3D1%26vflg%3D1&amp;t=Medicare.gov%20Physician%20Compare%20-%20Group%20Practice%20Results&amp;s="><span class="at15tz at15t_tumblr" title="Tumblr-Icon"></span><span>Tumblr</span><span class="LinkDisclaimer"> - Opens in a new window</span></a></div></ul></div></div></div></div>
+<div class="clear"></div>
+
+                    <div id="Tool_header" class="PHPDToolHeading no-print">
+    <div class="inner">
+        <div class="row-fluid">
+            <div class="span4">
+              <h2>
+                  <a href="/physiciancompare/search.html">Physician Compare</a>
+              </h2>
+            </div>
+            <ul id="static-links" class="span8 text-right nav">
+                <li>
+                  <div class="divtable">
+                    <a class="btn button-phy-compare" href="staticpages/aboutphysiciancompare/about.html" target="_blank">
+                        About Physician Compare <span class="HiddenText"> - Opens in a New Window</span>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <div class="divtable">
+                    <a class="btn button-phy-compare" href="staticpages/data/aboutthedata.html" target="_blank">
+                        About the Data <span class="HiddenText"> - Opens in a New Window</span>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <div class="divtable">
+                    <a class="btn button-phy-compare" href="staticpages/resources/resources.html" target="_blank">
+                        Resources <span class="HiddenText"> - Opens in a New Window</span>
+                    </a>
+                  </div>
+                </li>
+                <li>
+                  <div class="divtable">
+                    <a class="btn button-phy-compare" href="staticpages/help.html" target="_blank">
+                        Help <span class="HiddenText"> - Opens in a New Window</span>
+                    </a>
+                  </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+                    <!-- MBPDiv starts-->
+                    <div style="display: none;" id="MBPDiv">
+                    </div>
+                    <!-- MBPDiv ends-->
+                    <div>
+                        <div id="resultsKey">
+                            <div class="inner">
+                                <div class="row-fluid">
+                                    <div class="span1">
+                                        <h2>KEY</h2>
+                                    </div>
+                                    <div class="span11">
+                                        <ul>
+                                            <li>
+                                                <img class="left" src="shared/images/accepts_medicare.png" alt="The practice accepts the Medicare-approved amount; you will not be billed for any more than the Medicare deductible and coinsurance." title="The practice accepts the Medicare-approved amount; you will not be billed for any more than the Medicare deductible and coinsurance.">
+                                                <div class="left">
+                                                    Accepts Medicare Assignment</div>
+                                            </li>
+                                            <li>
+                                                <img class="left" src="shared/images/may_medicare.png" alt="The practice may accept the Medicare-approved amount; you may be billed for more than the Medicare deductible and coinsurance." title="The practice may accept the Medicare-approved amount; you may be billed for more than the Medicare deductible and coinsurance.">
+                                                <div class="left">
+                                                    May Accept Medicare Assignment
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Error Messages -->
+                    <div tabindex="-1" id="divErrors" class="phy-error"></div>
+
+                    <!-- mobile tabs -->
+                        <div id="mobile-screen" style="display: none;">
+                            <a id="collapseList" class="collapse-header collapsed" data-toggle="collapse" data-target="#mListView" data-expand-text="expand" data-collapse-text="collapse" href="javascript:void(0);"><i class="collapse-icon" title="expand"><span class="HiddenText">expand</span></i><h2><span>List View</span></h2></a>
+                            <div style="display:none;" id="mListView" class="collapse">
+                                <a id="mbtna" class="mobile-btn btn addscroll" href="#collapseMap">Go to Map View</a>
+                                <div id="mListView-inside"></div>
+                                <div id="mListView-inside2"></div>
+                            </div>
+
+                            <a id="collapseMap" class="collapse-header collapsed" data-toggle="collapse" data-target="#mapDiv_mobile" data-expand-text="expand" data-collapse-text="collapse" href="javascript:void(0);"><i class="collapse-icon" title="expand"><span class="HiddenText">expand</span></i><h2><span> Map View</span></h2></a>
+                            <div style="display:none;" id="mapDiv_mobile" class="collapse">
+                                <a id="mbtnc" class="mobile-btn btn addscroll" href="#collapseList">Go to List View</a>
+                                <div id="mMapViewMap"></div>
+                            </div>
+
+                            <a class="collapse-header collapsed" data-toggle="collapse" data-target="#mModifyView" data-expand-text="expand" data-collapse-text="collapse" href="javascript:void(0);"><i class="collapse-icon" title="expand"><span class="HiddenText">expand</span></i><h2><span> Modify Your Results</span></h2></a>
+                            <div style="display:none;" id="mModifyView" class="collapse"></div>
+
+                            <a class="collapse-header collapsed" data-toggle="collapse" data-target="#startsearch" data-expand-text="expand" data-collapse-text="collapse" href="javascript:void(0);"><i class="collapse-icon" title="expand"><span class="HiddenText">expand</span></i><h2><span> Start New Search</span></h2></a>
+                            <div style="display:none;" id="startsearch" class="collapse">
+                                <input class="btn srchButton" value="Back to Homepage" onclick="javascript:StartOver()" type="button">
+                            </div>
+                        </div>
+
+                    <div id="groupResults" class="row-fluid">
+                        <div id="leftcol" class="span8">
+                            <div id="divSearchResultsError" class="phy-display-results" style="display: none;">
+                                <!--<span id="numavailable"> There are too many search results found. Please refine your search criteria.</span>-->
+                            </div>
+                            <!-- ResultsListView is the div that will show the results in table view -->
+                            
+                            <!-- Map View -->
+                            <div>
+                                <div id="mapDiv">
+                                    <div id="transparentDiv">
+                                    </div>
+                                    <div style="position: relative; background-color: rgb(229, 227, 223); overflow: hidden;" id="map_canvas"><div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;"><div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;"><div style="position: absolute; left: 0px; top: 0px; z-index: 1; cursor: url(&quot;http://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default;"><div style="position: absolute; left: 0px; top: 0px; z-index: 200;"><div style="position: absolute; left: 0px; top: 0px; z-index: 101;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 201;"><div style="position: absolute; left: 0px; top: 0px; z-index: 102;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div style="position: absolute; left: 0px; top: 0px; z-index: 1;"><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: -311px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: -55px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: -311px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: -55px;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103;"><div style="position: absolute; left: 0px; top: 0px; z-index: -1;"><div style="position: absolute; left: 0px; top: 0px; z-index: 1;"><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: -311px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -256px; top: -55px;"><canvas width="256" height="256" style="-moz-user-select: none; position: absolute; left: 0px; top: 0px; height: 256px; width: 256px;"></canvas></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: -311px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: -55px;"><canvas width="256" height="256" style="-moz-user-select: none; position: absolute; left: 0px; top: 0px; height: 256px; width: 256px;"></canvas></div></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 202;"><div style="position: absolute; left: 0px; top: 0px; z-index: 104;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 100;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div style="position: absolute; left: 0px; top: 0px; z-index: 1;"><div style="width: 256px; height: 256px; position: absolute; left: -256px; top: -311px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -256px; top: -55px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 0px; top: -311px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 0px; top: -55px;"></div></div></div></div><div style="position: absolute; z-index: 0; left: 0px; top: 0px;"><div style="overflow: hidden;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div style="position: absolute; left: 0px; top: 0px; z-index: 1;"><div style="width: 256px; height: 256px; position: absolute; left: -256px; top: -311px; opacity: 1; transition: opacity 200ms ease-out 0s;"><img alt="" draggable="false" src="http://mt1.googleapis.com/vt?lyrs=m@212000000&amp;src=apiv3&amp;hl=en-US&amp;x=583&amp;y=782&amp;z=11&amp;s=Gal&amp;style=api%7Csmartmaps" style="width: 256px; height: 256px; -moz-user-select: none; border: 0px none; padding: 0px; margin: 0px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 0px; top: -55px; opacity: 1; transition: opacity 200ms ease-out 0s;"><img alt="" draggable="false" src="http://mt0.googleapis.com/vt?lyrs=m@212000000&amp;src=apiv3&amp;hl=en-US&amp;x=584&amp;y=783&amp;z=11&amp;s=Galileo&amp;style=api%7Csmartmaps" style="width: 256px; height: 256px; -moz-user-select: none; border: 0px none; padding: 0px; margin: 0px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -256px; top: -55px; opacity: 1; transition: opacity 200ms ease-out 0s;"><img alt="" draggable="false" src="http://mt1.googleapis.com/vt?lyrs=m@212000000&amp;src=apiv3&amp;hl=en-US&amp;x=583&amp;y=783&amp;z=11&amp;s=Gali&amp;style=api%7Csmartmaps" style="width: 256px; height: 256px; -moz-user-select: none; border: 0px none; padding: 0px; margin: 0px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 0px; top: -311px; opacity: 1; transition: opacity 200ms ease-out 0s;"><img alt="" draggable="false" src="http://mt0.googleapis.com/vt?lyrs=m@212000000&amp;src=apiv3&amp;hl=en-US&amp;x=584&amp;y=782&amp;z=11&amp;s=Galile&amp;style=api%7Csmartmaps" style="width: 256px; height: 256px; -moz-user-select: none; border: 0px none; padding: 0px; margin: 0px;"></div></div></div></div></div><div style="margin: 2px 5px 2px 2px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;"><a title="Click to see this area on Google Maps" href="http://maps.google.com/maps?ll=38.930223,-77.343928&amp;z=11&amp;t=m&amp;hl=en-US" target="_blank" style="position: static; overflow: visible; float: none; display: inline;"><div style="width: 62px; height: 24px; cursor: pointer;"><img alt="Google" draggable="false" src="http://maps.gstatic.com/mapfiles/google_white.png" style="position: absolute; left: 0px; top: 0px; width: 62px; height: 24px; -moz-user-select: none; border: 0px none; padding: 0px; margin: 0px;"></div></a></div><div style="z-index: 1000001; position: absolute; right: 0px; bottom: 0px;" class="gmnoprint"><div style="height: 19px; -moz-user-select: none; line-height: 19px; padding-right: 2px; padding-left: 50px; background: -moz-linear-gradient(left center , rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0.5) 50px) repeat scroll 0% 0% transparent; font-family: Arial,sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right;"><a style="color: rgb(68, 68, 68); text-decoration: underline; cursor: pointer; display: none;">Map Data</a><span style="display: none;"></span><span style="display: none;"> - </span><a target="_blank" href="http://www.google.com/intl/en-US_US/help/terms_maps.html" style="color: rgb(68, 68, 68); text-decoration: underline; cursor: pointer;">Terms of Use</a></div></div><div style="background-color: white; padding: 15px 21px; border: 1px solid rgb(171, 171, 171); font-family: Arial,sans-serif; color: rgb(34, 34, 34); box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2); z-index: 10000002; display: none; width: 0px; height: 0px; position: absolute; left: 5px; top: 5px;"><div style="padding: 0px 0px 10px; font-size: 16px;">Map Data</div><div style="font-size: 13px;"></div><div style="width: 10px; height: 10px; overflow: hidden; position: absolute; opacity: 0.7; right: 12px; top: 12px; z-index: 10000; cursor: pointer;"><img alt="" draggable="false" src="http://maps.gstatic.com/mapfiles/mv/imgs8.png" style="position: absolute; left: -18px; top: -44px; width: 68px; height: 67px; -moz-user-select: none; border: 0px none; padding: 0px; margin: 0px;"></div></div><div style="position: absolute; right: 0px; bottom: 0px;" class="gmnoscreen"><div style="font-family: Arial,sans-serif; font-size: 10px; color: rgb(68, 68, 68); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);"></div></div><div style="font-size: 10px; height: 17px; background-color: rgb(245, 245, 245); border: 1px solid rgb(220, 220, 220); line-height: 19px; display: none; position: absolute; right: 0px; bottom: 0px;" class="gmnoprint"><a href="http://maps.google.com/maps?ll=38.930223,-77.343928&amp;z=11&amp;t=m&amp;hl=en-US&amp;skstate=action:mps_dialog$apiref:1" style="font-family: Arial,sans-serif; font-size: 85%; font-weight: bold; padding: 1px 3px; color: rgb(68, 68, 68); text-decoration: none; position: relative; bottom: 1px;" title="Report errors in the road map or imagery to Google" target="_new">Report a map error</a></div><div controlheight="84" controlwidth="32" style="margin: 5px; -moz-user-select: none; position: absolute; left: 0px; top: 0px;" class="gmnoprint"><div controlheight="40" controlwidth="32" style="cursor: url(&quot;http://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default; position: absolute; left: 0px; top: 0px;"><div style="width: 32px; height: 40px; overflow: hidden; position: absolute; left: 0px; top: 0px;"><img alt="" draggable="false" src="http://maps.gstatic.com/mapfiles/cb/mod_cb_scout/cb_scout_sprite_api_003.png" style="position: absolute; left: -9px; top: -102px; -moz-user-select: none; border: 0px none; padding: 0px; margin: 0px; width: 1029px; height: 255px;"></div><div style="width: 32px; height: 40px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;"><img alt="" draggable="false" src="http://maps.gstatic.com/mapfiles/cb/mod_cb_scout/cb_scout_sprite_api_003.png" style="position: absolute; left: -107px; top: -102px; -moz-user-select: none; border: 0px none; padding: 0px; margin: 0px; width: 1029px; height: 255px;"></div><div style="width: 32px; height: 40px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;"><img alt="" draggable="false" src="http://maps.gstatic.com/mapfiles/cb/mod_cb_scout/cb_scout_sprite_api_003.png" style="position: absolute; left: -58px; top: -102px; -moz-user-select: none; border: 0px none; padding: 0px; margin: 0px; width: 1029px; height: 255px;"></div><div style="width: 32px; height: 40px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;"><img alt="" draggable="false" src="http://maps.gstatic.com/mapfiles/cb/mod_cb_scout/cb_scout_sprite_api_003.png" style="position: absolute; left: -205px; top: -102px; -moz-user-select: none; border: 0px none; padding: 0px; margin: 0px; width: 1029px; height: 255px;"></div></div><div controlheight="0" controlwidth="0" style="opacity: 0.6; display: none; position: absolute;" class="gmnoprint"><img alt="" title="Rotate map 90 degrees" style="-moz-user-select: none; border: 0px none; padding: 0px; margin: 0px; cursor: pointer; width: 22px; height: 22px;" draggable="false" src="http://maps.gstatic.com/mapfiles/rotate2.png"></div><div style="position: absolute; left: 5px; top: 45px;" controlheight="39" controlwidth="22" class="gmnoprint"><img alt="" draggable="false" src="http://maps.gstatic.com/mapfiles/szc4.png" style="width: 22px; height: 39px; -moz-user-select: none; border: 0px none; padding: 0px; margin: 0px;"><div title="Zoom in" style="position: absolute; left: 0px; top: 0px; width: 22px; height: 17px; cursor: pointer;"></div><div title="Zoom out" style="position: absolute; left: 0px; top: 18px; width: 22px; height: 17px; cursor: pointer;"></div></div></div><div style="margin: 5px; z-index: 0; position: absolute; cursor: pointer; text-align: left; width: 85px; right: 0px; top: 0px;" class="gmnoprint"><div title="Change map style" style="direction: ltr; overflow: hidden; text-align: left; position: relative; color: rgb(0, 0, 0); font-family: Arial,sans-serif; -moz-user-select: none; font-size: 13px; background: none repeat scroll 0% 0% rgb(255, 255, 255); padding: 1px 6px; border: 1px solid rgb(113, 123, 135); box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); font-weight: bold;">Map<img alt="" style="-moz-user-select: none; border: 0px none; padding: 0px; margin: -2px 0px 0px; position: absolute; right: 6px; top: 50%; width: 7px; height: 4px;" draggable="false" src="http://maps.gstatic.com/mapfiles/arrow-down.png"></div><div style="background-color: white; z-index: -1; padding-top: 2px; border-width: 0px 1px 1px; border-style: none solid solid; border-color: -moz-use-text-color rgb(113, 123, 135) rgb(113, 123, 135); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); position: relative; text-align: left; display: none;"><div title="Show street map" style="color: black; font-family: Arial,sans-serif; -moz-user-select: none; font-size: 13px; background-color: rgb(255, 255, 255); padding: 2px 5px 3px; font-weight: bold;">Map</div><div title="Show satellite imagery" style="color: black; font-family: Arial,sans-serif; -moz-user-select: none; font-size: 13px; background-color: rgb(255, 255, 255); padding: 2px 5px 3px;">Satellite</div><div style="margin: 1px 0px; border-top: 1px solid rgb(235, 235, 235);"></div><div title="Show street map with terrain" style="color: rgb(0, 0, 0); font-family: Arial,sans-serif; -moz-user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 1px 8px 3px 5px; direction: ltr; text-align: left; white-space: nowrap;"><span style="position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; background-color: rgb(255, 255, 255); border: 1px solid rgb(198, 198, 198); border-radius: 1px 1px 1px 1px; width: 13px; height: 13px; box-shadow: none; vertical-align: middle;" role="checkbox"><div style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden; display: none;"><img alt="" draggable="false" src="http://maps.gstatic.com/mapfiles/mv/imgs8.png" style="position: absolute; left: -52px; top: -44px; -moz-user-select: none; border: 0px none; padding: 0px; margin: 0px; width: 68px; height: 67px;"></div></span><label style="vertical-align: middle; cursor: pointer;">Terrain</label></div><div style="margin: 1px 0px; border-top: 1px solid rgb(235, 235, 235); display: none;"></div><div title="Zoom in to show 45 degree view" style="color: rgb(184, 184, 184); font-family: Arial,sans-serif; -moz-user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 1px 8px 3px 5px; direction: ltr; text-align: left; white-space: nowrap; display: none;"><span style="position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; background-color: rgb(255, 255, 255); border: 1px solid rgb(241, 241, 241); border-radius: 1px 1px 1px 1px; width: 13px; height: 13px; box-shadow: none; vertical-align: middle;" role="checkbox"><div style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden; display: none;"><img alt="" draggable="false" src="http://maps.gstatic.com/mapfiles/mv/imgs8.png" style="position: absolute; left: -52px; top: -44px; -moz-user-select: none; border: 0px none; padding: 0px; margin: 0px; width: 68px; height: 67px;"></div></span><label style="vertical-align: middle; cursor: pointer;">45°</label></div><div title="Show imagery with street names" style="color: rgb(0, 0, 0); font-family: Arial,sans-serif; -moz-user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 1px 8px 3px 5px; direction: ltr; text-align: left; white-space: nowrap; display: none;"><span style="position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; background-color: rgb(255, 255, 255); border: 1px solid rgb(198, 198, 198); border-radius: 1px 1px 1px 1px; width: 13px; height: 13px; box-shadow: none; vertical-align: middle;" role="checkbox"><div style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden;"><img alt="" draggable="false" src="http://maps.gstatic.com/mapfiles/mv/imgs8.png" style="position: absolute; left: -52px; top: -44px; -moz-user-select: none; border: 0px none; padding: 0px; margin: 0px; width: 68px; height: 67px;"></div></span><label style="vertical-align: middle; cursor: pointer;">Labels</label></div></div></div></div></div>
+                                </div>
+                            </div>
+                        <div id="ResultsListView">
+                                <h1 id="hdnH1" class="HiddenText">
+                                    Group Practice Search Results</h1>
+                                <div id="divSearchResult" class="phy-display-results" tabindex="-1">There are 0 results related to "fint".<br>Please check your spelling or try another search.</div>
+                                <div class="choose-and-key">
+                                    <div id="grpChoose">
+                                        <div class="inner">
+                                            <div id="gpcheckboxselectiontop" class="gpcheckbox">
+                                                <fieldset>
+                                                    <legend class="choose">Choose up to three Group Practices to compare.  </legend>
+                                                    <div id="comparison_top"></div>
+                                                </fieldset>
+                                                <div class="buttons-container">
+                                                    <input disabled="disabled" id="btnCompareNow" class="srchButton btn green-button" name="btnCompareNow" value="Compare Now" data-validationtrigger="" type="submit">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="MBP_resultsInnerContainer" class="mbp-toggle" style="display: none;">
+                                    <a class="collapse-header collapsed" data-toggle="collapse" data-target="#content1" href="javascript:void(0);"><i class="collapse-icon" title="expand"><span class="HiddenText">
+                                            expand icon</span></i>
+                                        <h2>
+                                            <span class="gResultsHeader">Your Favorite Group Practices</span></h2>
+                                    </a>
+                                    <div style="display:none;" id="content1" class="collapse">
+                                        <div id="favsSortInfo">
+                                            <input id="favsSortColumn" type="hidden">
+                                            <input id="favsSortOrder" type="hidden">
+                                            <input id="favsNewPageNo" type="hidden">
+                                            <input id="favsTotalResults" type="hidden">
+                                            <input id="favspageLoadFlag" type="hidden">
+                                        </div>
+                                        <div id="favoritesList-container-outer">
+                                            <div id="favoritesList">
+                                                <div class="comparisonList">
+                                                    <div class="resultsInfo">
+                                                    </div>
+                                                    <div class="resultsPaging" autofocus="">
+                                                    </div>
+                                                </div>
+                                                <!--List View -->
+                                                <div>
+                                                    <!-- This is where the dataTable with the results will be displayed for Table View-->
+                                                    <div id="favDiv">
+                                                        <table id="favresults" class="resultTable" summary="MBP Favorites results table" cellspacing="0">
+                                                        </table>
+                                                    </div>
+                                                    <div class="comparisonList">
+                                                        <div class="resultsInfo">
+                                                        </div>
+                                                        <div class="resultsPaging">
+                                                        </div>
+                                                    </div>
+                                                    <div id="divSuperZ">
+                                                        <span class="super">Z</span>: This provider was manually added into your favorites
+                                                        list. Only the data you entered will display for this provider.
+                                                    </div>
+                                                </div>
+                                                <!-- end of div ResultsListView -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="generalResultsHeader" class="mbp-toggle" style="display: none;">
+                                    <h2 class="gResultsHeader">
+                                        Group Practices Results</h2>
+                                </div>
+                                <div style="display: none;" id="resultsTable">
+                                    
+                                <div id="providerResultsTable">
+                                        
+                                    </div></div>
+                                <div style="display: block;" class="choose-and-key" id="choose-bottom">
+                                    <div style="display: none;" id="ResultsListView2">
+                                        <div class="inner">
+                                            <div id="gpcheckboxselectionbottom" class="gpcheckbox">
+                                                <fieldset>
+                                                    <legend>Choose up to three Group Practices to compare.  </legend>
+                                                    <div id="comparison_bottom">
+                                                    </div>
+                                                </fieldset>
+                                                <div class="buttons-container">
+                                                    <input disabled="disabled" id="btnCompareNow_bottom" class="srchButton btn green-button" name="btnCompareNow" value="Compare Now" data-validationtrigger="" type="submit">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></div>
+                        <div id="rightcol" class="span4">
+                            <div>
+                                <a style="display: none;" href="javascript:void(0);" id="vWMaps" class="map-toggle button-map-view"><span class="togText">Go to Map View </span><span alt="Go to Map View" title="Go to Map View" class="grbt"></span></a><a href="javascript:void(0);" id="vWTable" class="map-toggle button-list-view" style="display: none;"><span class="togText">Go to List View </span><span alt="Go to List View" title="Go to List View" class="grbt"></span></a>
+                            </div>
+                            <div id="ModifySearchContainer">
+                            
+                            <div id="tabs" class="bluetab sidebar ui-tabs ui-widget ui-widget-content ui-corner-all" rel="sidebarTabsOptions" style="display:none;"><ul style="display: none;" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" id="tabs-ul"><li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active" id="tab0"><a href="#contentTab1">Results List<span class="HiddenText 508State">, tab selected</span></a></li><li class="ui-state-default ui-corner-top" id="tab1"><a href="#contentTab2"> Modify Your Results<span class="HiddenText 508State">, tab</span></a></li></ul><div class="DefaultTabClass ui-tabs-panel ui-widget-content ui-corner-bottom" id="contentTab1"><a name="contentTab1"></a><p class="HiddenText 508SelectedMsg">You have selected Results List</p>
+                                    
+                                <div style="display: none;" id="results-list">
+                                        <h2 class="HiddenText" aria-hidden="true">Results List</h2>
+                                    </div></div><div class="DefaultTabClass ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" style="display:none;" id="contentTab2"><a name="contentTab2"></a><p class="HiddenText 508SelectedMsg"></p></div></div><div class="rwd-tabs-items-container" id="tabsTabs"></div>
+                                
+                                <div id="tabs-2">
+                                        
+                                    </div>
+                                <div id="MBP_actions" class="mbp-toggle phy-sidebar" style="display: none;">
+                                <div class="inner">
+                                    <div class="buttons-container">
+                                        <div class="inner-group center">
+                                            <button class="btn green-button" onclick="javascript:ManuallyAddGPtoFav();">
+                                                Manually Add a Group Practice to My Favorites</button>
+                                            <button class="btn green-button" onclick="javascript:transferToOtherTools(searchOtherProvidersMBP(true, 'PHY'));">
+                                                Search for Other Provider Type</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><div id="divModifyYourResult" class="callout phy-sidebar">
+                                            <h2 id="h2_mapView">Modify Your Results</h2>
+                                            <div class="inner">
+                                                <div class="buttons-container">
+                                                    <div class="inner-group">
+                                                        <input id="btnUpdateResultsTop" name="btnUpdateResults" value="Update Results" class="btn green-button" title="Update Results" setcontentdefault="true" data-validationtrigger="" type="button">
+                                                    </div>
+                                                </div>
+                                                <div class="section-group">
+                                                    <div class="inner-group">
+                                                        <fieldset>
+                                                            <legend>Location</legend>
+                                                            <div>
+                                                                <div class="section-sm">
+                                                                    <label for="txtboxLoc" class="HiddenText">
+                                                                        Location</label>
+                                                                    <input aria-describedby="txtboxLoc-feedbackMsg" id="txtboxLoc" name="txtboxLoc" value="ZIP Code/City, State/Address/Landmark" onfocus="if(this.value=='ZIP Code/City, State/Address/Landmark')this.value=''; $('.divLocationValidation').hide();" onblur="txtboxLoc_onblur(this);" class="tbFauxGeocode_GP" type="text"><span tabindex="-1" class="feedbackMsg" id="txtboxLoc-feedbackMsg">&nbsp;</span>
+                                                                    <input value="(38.9302229,-77.34392830000001)" id="hGeocode" type="hidden">
+                                                                    <input id="hID" type="hidden">
+                                                                </div>
+                                                                <!-- //PHC-1449 GP Results page- System not throwing errors for invalid inputs. (fix starts) -->
+                                                                <div tabindex="-1" class="phy-error divLocationValidation">
+                                                                </div>
+                                                                <!-- //PHC-1449 GP Results page- System not throwing errors for invalid inputs. (fix ends) -->
+                                                                <label for="DistancePullDown" class="HiddenText">
+                                                                    Distance</label>
+                                                                <select aria-describedby="DistancePullDown-feedbackMsg" name="DistancePullDown" id="DistancePullDown">
+                                                                    <option value="0" selected="selected">Select a Distance</option>
+                                                                    <option value="1">Within 1 Mile</option>
+                                                                    <option value="5">Within 5 Miles</option>
+                                                                    <option value="10">Within 10 Miles</option>
+                                                                    <option value="15">Within 15 Miles</option>
+                                                                    <option value="25">Within 25 Miles</option>
+                                                                    <option value="50">Within 50 Miles</option>
+                                                                    <option value="100">Within 100 Miles</option>
+                                                                </select><span tabindex="-1" class="feedbackMsg" id="DistancePullDown-feedbackMsg">&nbsp;</span>
+                                                                <div id="divDistanceValidation" class="phy-error">
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                                <div id="divGPName" class="section-group">
+                                                    <div class="inner-group">
+                                                        <fieldset>
+                                                            <legend>Group Practice Name</legend>
+                                                            <div>
+                                                                <label for="txtGPName">
+                                                                    Search for a different Group Practice Name</label>
+                                                                <input aria-describedby="txtGPName-feedbackMsg" id="txtGPName" name="txtGPName" value="Group Practice Name or Partial Spelling" onfocus="if(this.value=='Group Practice Name or Partial Spelling')this.value='';AutocompleteGroupPracticeNameList($('#hGeocode').val(), 'HidGPName_ID' ); $('.divGPNameValidation').hide(); " onblur="if(this.value=='')this.value='Group Practice Name or Partial Spelling';" class="tb1" type="text"><span tabindex="-1" class="feedbackMsg" id="txtGPName-feedbackMsg">&nbsp;</span>
+                                                                <input id="HidGPName_ID" type="hidden">
+                                                            </div>
+                                                            <div tabindex="-1" class="phy-error divGPNameValidation">
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                                <div id="divGPSpecialtyName" class="section-group">
+                                                    <div class="inner-group">
+                                                        <fieldset>
+                                                            <legend>Specialty</legend>
+                                                            <label for="txtSpeciality">
+                                                                Refine your results by Specialty</label>
+                                                            <div class="form-row">
+                                                                <input aria-describedby="txtSpeciality-feedbackMsg" aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off" id="txtSpeciality" name="txtSpeciality" value="Specialty Name or Partial Spelling" onfocus="if(this.value=='Specialty Name or Partial Spelling')this.value='';  $('.divSpecialtyValidation').hide(); " onblur="if(this.value=='')this.value='Specialty Name or Partial Spelling';" class="tb2 ui-autocomplete-input" type="text"><span tabindex="-1" class="feedbackMsg" id="txtSpeciality-feedbackMsg">&nbsp;</span>
+                                                                <input value="" id="HidSpeciality_ID" type="hidden">
+                                                            </div>
+                                                            <div tabindex="-1" class="phy-error divSpecialtyValidation">
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                                <!-- Medicare Assignment -->
+                                                <div id="divMedicareAssignmentSearch" class="section-group">
+                                                    <div class="inner-group">
+                                                        <fieldset>
+                                                            <legend>Medicare Assignment</legend>
+                                                            <div>
+                                                                <div class="left-input">
+                                                                    <input id="rdoMedAssignmentFull" name="grpMedAssignment" value="Y" type="radio">
+                                                                </div>
+                                                                <div class="left-label">
+                                                                    <label for="rdoMedAssignmentFull">
+                                                                        Show only those accepting the Medicare-approved amount, you will not be billed for
+                                                                        any more than the Medicare deductible and coinsurance</label>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="left-input">
+                                                                    <input id="rdoMedAssignmentAll" name="grpMedAssignment" value="" checked="checked" type="radio">
+                                                                </div>
+                                                                <div class="left-label">
+                                                                    <label for="rdoMedAssignmentAll">
+                                                                        Show all Medicare Group Practices</label>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                                <!-- Quality Data -->
+                                                
+                                                <div class="buttons-container">
+                                                    <div class="inner-group">
+                                                        <!--<input type="button" value="Update Results" class="green-button" title="Update Results" setcontentdefault="true">
+                                                        <input type="reset"" value="Start New Search" title="Start New Search" >-->
+                                                        <input id="btnUpdateResultsBottom" name="btnUpdateResultsBottom" class="btn green-button" setcontentdefault="true" value="Update Results" data-validationtrigger="" type="button">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div></div>
+                            <div class="clear"></div>
+                            <div id="divStartNewSearch" class="callout phy-sidebar">
+                                <h2 id="StartNewSearch">
+                                    Start New Search</h2>
+                                <div class="inner">
+                                    <div class="buttons-container">
+                                        <div class="inner-group">
+                                            <input id="btnNewSearchButton" class="btn srchButton" value="Back to Homepage" onclick="javascript:StartOver()" type="button">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="clearfooter">
+            </div>
+            <a id="mbtnb" class="mobile-btn btn addscroll" href="#header" style="display: none;">Back to Top</a>
+            <div class="footer-action row-fluid">
+    <a href="/PhysicianCompare/search.html" class="btn pull-left" id="btnPreviousFooter">Previous Page</a>
+    <a class="btn pull-right" id="btnHomeFooter" href="/PhysicianCompare/search.html">Physician Compare Home</a>
+</div>
+            <footer id="footer" role="contentinfo">
+                <h2 class="HiddenText">Footer</h2>
+<div id="footer-top">
+    <button id="footer_home_btn" title="Medicare.gov Home" class="btn btn-primary" onclick="window.location.href='/';return false;">Home</button>
+    <div id="footer-home-logo-wrapper">
+        <div id="footer_home_logo">
+            <a id="footer_home_logo_link" title="Go to Medicare.gov" href="/">
+                <img src="//qa.assets.cms.gov/Resources/Medicare/Images/home/logoSprite.png" alt="Medicare.gov">
+            </a>
+        </div>
+    </div>  
+    <div id="footer-address">
+        A federal government website managed by the Centers for Medicare &amp; Medicaid Services<br>
+        7500 Security Boulevard, Baltimore, MD 21244
+    </div>
+    <div id="footer-hhs-logo-wrapper">
+        <div id="footer_hhs_logo">
+            <a href="http://www.hhs.gov/" title="Health and Human Services home page" id="footer_hhs_logo_link">
+                <img src="//qa.assets.cms.gov/Resources/Medicare/Images/home/logoSprite.png" alt="Health and Human Services home page">
+            </a>
+        </div>
+    </div>
+</div>
+<div id="footer-bottom">
+    <div id="footer-column1">
+        <ul>
+            <li>
+                <a href="/sign-up-change-plans/index.html" title="Sign Up or Change Plans">Sign Up / Change Plans</a>
+            </li>
+            <li>
+                <a href="/your-medicare-costs/index.html" title="Your Medicare Costs">Your Medicare Costs</a>
+            </li>
+            <li>
+                <a href="/what-medicare-covers/index.html" title="What Medicare Covers">What Medicare Covers</a>
+            </li>
+            <li>
+                <a href="/part-d/index.html" title="Drug Coverage (Part D)">Drug Coverage (Part D)</a>
+            </li>
+            <li>
+                <a href="/supplement-other-insurance/index.html" title="Supplements &amp; Other Insurance">Supplements &amp; Other Insurance</a>
+            </li>
+            <li>
+                <a href="/claims-and-appeals/index.html" title="Claims &amp; Appeals">Claims &amp; Appeals</a>
+            </li>
+            <li>
+                <a href="/manage-your-health/index.html" title="Manage Your Health">Manage Your Health</a>
+            </li>
+            <li>
+                <a href="/help-and-resources/index.html" title="Help &amp; Resources">Help &amp; Resources</a>
+            </li>
+        </ul>
+    </div>
+    <div id="footer-column2">
+        <h3 class="footer-headline">Take Action</h3>
+        <ul>
+            <li>
+                <a href="/find-a-plan/questions/home.aspx" title="Find health and drug plans">Find health &amp; drug plans</a>
+            </li>
+            <li>
+                <a href="/help-and-resources/find-doctors-hospitals-and-facilities/quality-care-finder.html" title="Find doctors, providers, hospitals and plans">Find doctors, providers, hospitals &amp; plans</a>
+            </li>
+            <li>
+                <a href="/Supplier/Home.asp" title="Where can I get covered medical items?">Where can I get covered medical items?</a>
+            </li>
+            <li>
+                <a href="/MedicareOnlineForms/" title="Get Medicare forms">Get Medicare forms</a>
+            </li>
+            <li>
+                <a href="/Publications/Home.asp" title="Publications">Publications</a>
+            </li>
+            <li>
+                <a href="/about-us/other-languages/information-in-other-languages.html" title="Information in other languages">Information in other languages</a>
+            </li>
+            <li>
+                <a href="/Contacts/Default.aspx" title="Phone numbers and websites">Phone numbers &amp; websites</a>
+            </li>
+        </ul>
+        <h3 class="footer-headline">Get Email Updates</h3>
+
+        <div class="email-form" id="login">
+                  <input id="email_action_url" value="https://public.govdelivery.com/accounts/USCMS/subscribers/qualify" type="hidden">
+            <input id="category_id" name="category_id" value="USCMS_C110" type="hidden">
+            <label for="footer-email-updates-textbox" class="HiddenText" id="email-updates-label">Your email address for getting email updates</label>
+            <input autocomplete="off" name="email" title="type email here" value="" placeholder="type email here" class="SearchBox searchbox-defaultvalue" id="footer-email-updates-textbox" dir="ltr" spellcheck="false" type="text">
+            <input id="footer-go-button" class="btn btn-primary" name="footer-go-button" value="Go" type="submit">
+        </div>
+    </div>
+    <div id="footer-column3">
+        <h3 class="footer-headline">Helpful Links</h3>
+        <ul>
+            <li>
+                <a href="http://www.cms.gov/About-CMS/Agency-Information/Aboutwebsite/index.html" title="Site policies and important links">Site policies &amp; important links</a>
+            </li>
+            <li>
+                <a href="http://www.cms.gov/About-CMS/Agency-Information/Aboutwebsite/Privacy-Policy.html" title="Privacy policy">Privacy policy</a>
+            </li>
+            <li>
+                <a href="http://www.cms.gov/About-CMS/Agency-Information/Aboutwebsite/FOIA.html" title="FOIA">
+                    <abbr title="Freedom of Information Act">FOIA</abbr>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.cms.gov/About-CMS/Agency-Information/Aboutwebsite/NoFearAct.html" title="No Fear Act">No Fear Act</a>
+            </li>
+            <li>
+                <a href="http://www.HHS.gov" title="HHS.gov">HHS.gov</a>
+            </li>
+            <li>
+                <a href="http://USA.gov" title="USA.gov">USA.gov</a>
+            </li>
+            <li>
+                <a href="http://www.justice.gov/oig" title="Inspector General">Inspector General</a>
+            </li>
+            <li>
+                <a href="/about-us/plain-writing/plain-writing.html" title="Plain language">Plain language</a>
+            </li>
+            <li>
+                <a href="http://archive-it.org/collections/2650" title="Archive">Archive</a>
+            </li>
+          
+            <li>
+              <a href="/download/downloaddb.asp" title="Downloadable Databases">Downloadable databases</a>
+            </li>
+        </ul>
+    </div>
+    <div id="footer-column4">
+        <h3 class="footer-headline">CMS &amp; HHS Websites</h3>
+        <ul>
+            <li>
+                <a title="HealthCare.gov" href="http://healthcare.gov">HealthCare.gov</a>
+            </li>
+            <li>
+                <a title="STOPMedicareFraud.gov" href="http://STOPmedicarefraud.gov">STOPMedicareFraud.gov</a>
+            </li>
+            <li>
+                <a title="InsureKidsNow.gov" href="http://insurekidsnow.gov">InsureKidsNow.gov</a>
+            </li>
+            <li>
+                <a title="MyMedicare.gov" href="http://mymedicare.gov">MyMedicare.gov</a>
+            </li>
+            <li>
+                <a title="Medicaid.gov" href="http://medicaid.gov">Medicaid.gov</a>
+            </li>
+            <li>
+                <a title="CMS.gov" href="http://cms.gov">CMS.gov</a>
+            </li>
+        </ul>
+        <h3 class="footer-headline">Get Involved with Us</h3>
+        <div class="footer-bucket">
+           <ul>
+                <li class="footer_email">
+                      <a class="footer_email_link" title="Email this page" href="/EmailThisPage/emailform.asp?siteTool=Physician&amp;version=DOTNET&amp;url=http%3A%2F%2Facocci-f01776.cgifederal.com%2Fphysiciancompare%2Fgroup-results.html%23viewmap%3D0%26keyword%3Dfint%26loc%3D20191%26lat%3D38.9302229%26lng%3D-77.34392830000001%26type%3DAll%26xpnd%3D1%26vflg%3D1">
+                          <img src="//qa.assets.cms.gov/Resources/medicare/images/home/socialMedia.png" alt="Email this page">
+                      </a>
+                </li>
+                <li class="footer_twitter">
+                      <a class="footer_twitter_link" title="CMS Twitter" href="http://www.twitter.com/MedicareGov">
+                          <img src="//qa.assets.cms.gov/Resources/medicare/images/home/socialMedia.png" alt="CMS Twitter">
+                      </a>
+                </li>
+                <li class="footer_youtube">
+                      <a class="footer_youtube_link" title="CMS YouTube" href="http://www.youtube.com/user/CMSHHSgov">
+                          <img src="//qa.assets.cms.gov/Resources/medicare/images/home/socialMedia.png" alt="CMS Youtube">
+                      </a>
+                </li>
+                <li class="footer_rss">
+                      <a class="footer_rss_link" title="CMS RSS Feed" href="http://www.cms.gov/cmsfeeds/">
+                          <img src="//qa.assets.cms.gov/Resources/medicare/images/home/socialMedia.png" alt="CMS RSS Feed">
+                      </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+                <script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/lib/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/lib/jquery.listen.js"></script>
+<script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/lib/jquery-ui-1.8.17.custom.js"></script>
+<script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/508addthis.js"></script>
+<script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/ga-track-footer.js"></script>
+<script type="text/javascript" src="//qa.assets.cms.gov/Resources/Medicare/JS/topNavigation.js"></script>
+<script type="text/javascript" src="/Resources/Medicare/JS/medicareutils.js"></script>
+
+
+
+<!--Font Resize Script -->
+<script type="text/javascript" src="//qa.assets.cms.gov/Resources/Medicare/JS/fontsizer.jquery.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+  replaceAssetsElements();
+  fontResizer();
+  });
+</script>
+
+<!--Forsee Script CODE-->
+<script type="text/javascript" src="/SharedResources/widgets/foresee/foresee-trigger.js"></script>
+
+
+<!-- Chartbeat -->
+<script type="text/javascript">
+  try {
+
+  switch (document.location.host) {
+  case "medicare.gov":
+  var _sf_async_config={uid:11791,domain:"medicare.gov"};
+  break;
+  case "es.medicare.gov":
+  var _sf_async_config={uid:11791,domain:"es.medicare.gov"};
+  break;
+  case "hospitalcompare.hhs.gov":
+  var _sf_async_config={uid:11791,domain:"hospitalcompare.hhs.gov"};
+  break;
+  case "www.hospitalcompare.hhs.gov":
+  var _sf_async_config={uid:11791,domain:"hospitalcompare.hhs.gov"};
+  break;
+  case "csr.medicare.gov":
+  break;
+  default:
+  var _sf_async_config={uid:11791,domain:"medicare.gov"};
+  break;
+  }
+
+  (function(){
+  function loadChartbeat() {
+  window._sf_endpt=(new Date()).getTime();
+  var e = document.createElement('script');
+  e.setAttribute('language', 'javascript');
+  e.setAttribute('type', 'text/javascript');
+  e.setAttribute('src',
+  (("https:" == document.location.protocol) ? "https://s3.amazonaws.com/" : "http://") +
+  "static.chartbeat.com/js/chartbeat.js");
+  document.body.appendChild(e);
+  }
+  var oldonload = window.onload;
+  window.onload = (typeof window.onload != 'function') ?
+  loadChartbeat : function() { oldonload(); loadChartbeat(); };
+  })();
+  } catch (err) { }
+</script>
+
+            </footer>
+        </div>
+    </div>
+    <script type="text/javascript" src="//qa.assets.cms.gov/Resources/global/js/rwdcallback.js"></script>
+<script type="text/javascript" src="//qa.assets.cms.gov/Resources/global/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="//qa.assets.cms.gov/Resources/global/js/globalutils.js"></script>
+<script type="text/javascript" src="//qa.assets.cms.gov/Resources/global/js/rwdbreadcrumb.js"></script>
+<!--<script type="text/javascript" src="http://preview.cgifederal.com/CMSFrontEnd/Resources/global/js/jquery.hcmode-detection-dataonly.js"></script>-->
+<script type="text/javascript" src="https://dl.dropboxusercontent.com/u/573324/CGI/highcontrast_detection/js/jquery.hcmode-detection.js"></script>
+
+<script type="text/javascript" src="/physiciancompare/shared/javascript/MBPheaderChecker.js"></script>
+<script type="text/javascript" src="/physiciancompare/shared/javascript/skipnav.js"></script>
+<script type="text/javascript" src="/physiciancompare/shared/javascript/sessionstorage.1.4.js"></script>
+
+<!-- JAWS fix for IE 8 -->
+<script type="text/javascript">
+    $("#main-content").attr("title", "");
+</script>
+
+
+<script type="text/javascript">
+    
+    $(".srchButton, #updateBoxButton_Top, #updateBoxButton_Bottom, #btnCompareNow, #btnCompareNow_bottom, #btnUpdateResultsTop, #btnUpdateResultsBottom").live('click', function () {
+            if ($(".errorSummaryContainer").html() != null) {
+                     $(".errorSummaryContainer").focus();
+                }
+
+        });
+        
+        function rwd_append(options) {
+
+            //add or update item to options sample generateListOptions[id = "testelement"] = "#fakeid";
+            //delete item from options sample delete generateListOptions.MBP_actions;
+
+            $.each(options, function (id, event) {
+
+                //add "#" to id/key value
+                var id = "#" + id;
+
+                //split comma seperated list into eventOptions
+                var eventOptions = event.split(",");
+
+                //check for options and run appropriate action
+                if (eventOptions[0] == "show") $(id).show();
+                else if (eventOptions[0] == "hide") $(id).hide();
+                else if (eventOptions[1] == "prependTo") $(id).detach().prependTo(eventOptions[0]);
+                else $(id).detach().appendTo(eventOptions[0]);
+            });
+
+        }
+
+        //scrollto function
+        //clicktarget:  required element that triggers scroll
+        //animate: optional if you want it to animate scroll, set to true in 2nd parameter of function call
+        function setScroll(clicktarget, animate) {
+
+            $(clicktarget).each(function () {
+
+                $(this).bind("click", function (event) {                    
+
+                    var scrolltarget = $(this).attr("href"); //get scroll target                  
+                    var pos = $(scrolltarget).offset();     //get postion of scrolltarget
+
+                    animate == true ? $('body').animate({ scrollTop: pos.top }) : $(document).scrollTop(pos.top);
+
+                    //prevent default click so query string of hash is not updated
+                    event.preventDefault();
+                });
+
+            });
+
+        }
+    
+</script> 
+    <!-- references from mapmashup framework -->
+    <script type="text/javascript" src="/sharedresources/shared/javascript/GMFMapMashup.js"></script>
+    <script type="text/javascript" src="/sharedresources/shared/javascript/googlehelper.js"></script><script src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false" type="text/javascript"></script><script src="http://maps.gstatic.com/intl/en_us/mapfiles/api-3/11/16/main.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/mapmashup/javascript/autocomplete/geo_autocomplete.js"></script>
+    <script type="text/javascript" src="/mapmashup/javascript/autocomplete/lib/jquery.autocomplete_geomod.js"></script>
+    <script type="text/javascript" src="/mapmashup/javascript/client-side-geocoder.js"></script>
+    <!-- jquery reference from asset framework from qa site-->
+    <script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/lib/jquery-ui-1.8.17.custom.js"></script>
+    <script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/jquery.508checkbox.js"></script>
+    <script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/jquery.508tooltip.js"></script>
+    <script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/jquery.508autocomplete.js"></script>
+    <script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/jquery.508expcollapse.js"></script>
+    <script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/jquery.508tabs.js"></script>
+    <script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/DataTables.js"></script>
+    <script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/DataTable.Pagination.js"></script>
+    <script type="text/javascript" src="//qa.assets.cms.gov/Resources/Global/JS/jquery.508accordion.js"></script>
+    <script type="text/javascript" src="/SharedResources/Shared/quality/scripts/formatting.js"></script>
+    <script type="text/javascript" src="/sharedresources/shared/javascript/GoogleAnalystics.js"></script>
+    <!-- local js -->
+    <script type="text/javascript" src="./js/group-results.js"></script>
+    <script type="text/javascript" src="./js/common.js"></script>
+    <script type="text/javascript" src="./js/MapFramework.js"></script>
+    <script type="text/javascript" src="./shared/javascript/cookieHelper.js"></script>
+    <script type="text/javascript" src="./shared/javascript/location_autosuggest.js"></script>
+    <script type="text/javascript" src="./shared/javascript/mbpGateway.js"></script>
+    <script src="//qa.assets.cms.gov/Resources/Global/JS/CGIFormValidator.js" type="text/javascript"></script>
+    <script src="shared/javascript/CGIFormValidatorConfig.js" type="text/javascript"></script>
+    <!-- end of references from asset framework -->
+    <script type="text/javascript" language="javascript">
+
+        $('#MBPDiv').hide();
+
+        $("a.map-toggle").click(function () {
+            mapToggle();
+        });
+
+        $('#vWMaps').click(function () {
+            setEncodedMBPToken(g_sTID_Encoded, '', true);
+            window.location.hash = getURL('viewmap=1');
+            viewMap();
+        });
+
+        $('#vWTable').click(function () {
+            setEncodedMBPToken(g_sTID_Encoded, '', true);
+            window.location.hash = getURL('viewmap=0');
+            viewTable();
+        });
+
+
+        function mapToggle() {
+
+            //toggle view buttons
+            $("a.map-toggle").toggle();
+
+            //toggle #wrapper classes for layout
+            $('#wrapper').toggleClass("phy-toggle-list").toggleClass("phy-toggle-map");
+
+
+            //Map View
+            if ($('#wrapper').hasClass('phy-toggle-map')) {
+
+                var type = getParameterByName("type");
+
+                if (type != "All") {
+                    generateMapOptions[id = "providerResultsTable"] = "#contentTab1";
+                } else {
+                    $('.map-banner').show();
+                    $('#providerResultsTable').hide();
+                    $('#results-list').show();
+
+                    var chkboxcol = $('#comparison_bottom input[type=checkbox]');
+
+                    if (chkboxcol.length > 0) {
+                        var selectSpltyID = chkboxcol[0].id.split('|')[0].split('_')[2];
+                        var mapViewRdo = $('input[name="mapViewRadios"]');
+
+                        for (i = 0; i < mapViewRdo.length; i++) {
+
+                            if (mapViewRdo[i].id.split('-')[1] == selectSpltyID) {
+                                var str = mapViewRdo[i].id;
+                                str = str.substr(7, str.length - 1);
+                                var append = str.split('-');
+                                $('input[name="mapViewRadios"]')[i].checked = true;
+                                changeSpecialtyResultDiv($('input[name="mapViewRadios"]')[i].id, append[2], 'All', str.split('-')[1]);
+                            }
+                        }
+                    } else {
+                        var str = $('input[name="mapViewRadios"]')[0].id;
+                        str = str.substr(7, str.length - 1);
+                        var append = str.split('-');
+                        $('input[name="mapViewRadios"]')[0].checked = true;
+                        changeSpecialtyResultDiv($('input[name="mapViewRadios"]')[0].id, append[2], 'All', str.split('-')[1]);
+                    }
+                }
+
+                window.location.hash = getURL('viewmap=1');
+                window.location.hash = decodeURIComponent(window.location.hash);
+                setEncodedMBPToken(g_sTID_Encoded, '', true);
+                generateMap();
+
+                //List View
+            } else {
+                var type = getParameterByName("type");
+
+                $("#providerResultsTable").show();
+
+                if (type !== "All") {
+
+                } else {
+
+                    var checkedRadio = $('input[name="mapViewRadios"]:checked');
+                    if (checkedRadio.length > 0) {
+                        var str = checkedRadio.attr('id');
+                        str = str.substr(7, str.length - 1);
+                        var append = str.split('-');
+
+                        changeSpecialtyResultDiv(checkedRadio.attr('id'), '', type);
+
+                    } else {
+                        if ($('input[name="mapViewRadios"]').length > 0) {
+                            if (g_ActiveSpltyID == 0) {
+                                var str = $('input[name="mapViewRadios"]')[0].id;
+                                str = str.substr(7, str.length - 1);
+                                var append = str.split('-');
+                                $('input[name="mapViewRadios"]')[0].checked = true;
+                                changeSpecialtyResultDiv($('input[name="mapViewRadios"]')[0].id, append[2], 'All', str.split('-')[1]);
+                            } else {
+                                var str = $('input[name="mapViewRadios"]')[0].id;
+                                str = str.substr(7, str.length - 1);
+                                var append = str.split('-');
+                                $('input[name="mapViewRadios"]')[0].checked = true;
+                                changeSpecialtyResultDiv($('input[name="mapViewRadios"]')[0].id, append[2], 'All', str.split('-')[1]);
+                            }
+                        }
+                    }
+                }
+
+                window.location.hash = decodeURIComponent(window.location.hash);
+                setEncodedMBPToken(g_sTID_Encoded, '', true);
+                generateList();
+            }
+
+            sessionStorage.setItem("bcReferrer", null);
+            sessionStorage.setItem("bcReferrer", document.location.href);
+
+        }
+
+        var myValidator;
+        function validateForm() {
+            var myCustomRules = {};
+            myValidator = new CGI.FormValidator($("#main-content"), $("#btnUpdateResultsTop, #btnUpdateResultsBottom"), myCustomRules);
+        }
+        $(document).ready(validateForm);
+                   
+    </script>
+    <script type="text/javascript">
+        var _favorites = "";
+
+        function txtboxLoc_onblur(txtLocation) {
+
+            if (txtLocation.value == '') {
+                txtLocation.value = 'ZIP Code/City, State/Address/Landmark';
+            }
+            if ((txtLocation.value != '') && (txtLocation.value != 'ZIP Code/City, State/Address/Landmark')) {
+                //validateGeocodeLocation($.trim(txtLocation.value));
+
+            }
+        }
+
+
+        function validateGeocodeLocation(address) {
+            var locValidationDiv = $('#divLocationValidation');
+            var blnResult = false;
+            var locationRegexp = new RegExp("^[a-zA-Z0-9,\\'\\-\\s()/.]*$");
+            blnResult = locationRegexp.test(address);
+
+            if ($.isNumeric(address)) {
+
+                if (address.length > 5) {
+                    blnResult = false;
+                } else if (!isValidUSZip(address)) {
+                    blnResult = false;
+                }
+
+            }
+
+            //clear all the div before filling new.
+            $("div.ac_results").remove();
+
+            if (blnResult) {
+                if (typeof google != "undefined") {
+                    setTimeout(function func() { }, 500);
+
+                    geocoder = new google.maps.Geocoder();
+                    geocoder.geocode(
+                { 'address': address,
+                    'region': 'US | PR | GU | MP | VA | VI | AS | FM | MH | UM | PW'
+                }, function (results, status) {
+
+                    $('#hGeocode').val('');
+
+                    if (blnResult) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            latLng = results[0].geometry.location;
+                            $('#hGeocode').val(latLng);
+                            completeUpdate();
+
+                        } else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+                            setTimeout(function func() { }, 500);
+                        }
+                        else {
+                            if (!$('#txtboxLoc-feedbackMsg').hasClass('error')) {
+                                blnResult = false;
+                                var locValidationDiv = $('#divLocationValidation');
+                                var sLocationErrorMSG = "ERROR: Please enter a valid ZIP Code or City, State";
+                                var locHref = "javascript:document.getElementById('txtboxLoc').focus();";   //used to set focus to location textbox
+                                myValidator.setError("#txtboxLoc", sLocationErrorMSG);
+                                myValidator.addSummaryListItem("#txtboxLoc", "Location : " + sLocationErrorMSG, true);
+                            }
+                        }
+                    }
+
+                });
+                }
+                else {
+                  FauxGeocodeLocation_GP();
+                  completeUpdate();
+                }
+            } else {
+
+                if (!$('#txtboxLoc-feedbackMsg').hasClass('error')) {
+                    blnResult = false;
+                    var locValidationDiv = $('#divLocationValidation');
+                    var sLocationErrorMSG = "ERROR: Please enter a valid ZIP Code or City, State";
+                    var locHref = "javascript:document.getElementById('txtboxLoc').focus();";   //used to set focus to location textbox
+                    myValidator.setError("#txtboxLoc", sLocationErrorMSG);
+                    myValidator.addSummaryListItem("#txtboxLoc", "Location : " + sLocationErrorMSG, true);
+                }
+
+            }
+            return blnResult;
+        }
+
+        var page = 'results';
+        var resultsTable;
+
+        if (typeof google != "undefined") {
+            //Manually initializeMap from results.js
+            initializeMap();
+        }
+
+        var _isLoggedInToMBP = false;
+        var g_sTID_Encoded = getParameterByName('TID');
+
+
+
+        if ((getParameterByName("TID") != "") && (getParameterByName("ComingFromMBP") == "MBP")) {
+            $('.mbp-toggle').toggle();
+            _isLoggedInToMBP = true;
+        }
+
+        var groupID = getParameterByName("ID");
+        var lat = getParameterByName("lat");
+        var lng = getParameterByName("lng");
+        var loc = getParameterByName("loc");
+
+        onLoadShowSearchResults();
+        if (getParameterByName('viewmap', 're1digit') == 0) {
+            $('.map-banner').hide();
+        }
+
+        //loadResults('', '1');
+        initializeHTMLControl();
+        $('#btnCompareNow, #btnCompareNow_bottom').click(function () {
+            compareGroupPractices();
+        });
+
+        //PHC-4290 3. Update the code to suppress the call to MBP service in public workflow
+        if (_isLoggedInToMBP) {
+            $('#favsSortColumn').val("NAME");
+            $('#favsSortOrder').val("ASC");
+            loadMBPFavorites('', '1');
+        }
+
+        $('#txtboxLoc, #DistancePullDown, #txtGPName,  #txtSpeciality').keydown(function (event) {
+            if (event.which == 13) {
+                event.preventDefault();
+                $('ui-autocomplete').remove();
+                $('#btnUpdateResultsTop').click();
+            }
+        });
+
+            $('#txtSpeciality').keydown(function (event) {
+                if (event.which == 13) {
+                    event.preventDefault();
+                    $('ui-autocomplete').remove();
+                    $('#btnUpdateResultsTop').click();
+                } else {
+                    g_specialtySelected = false;
+                }
+            });
+
+            $('#txtboxLoc, #DistancePullDown, #txtGPName').keydown(function (event) {
+                if (event.which == 13) {
+                    event.preventDefault();
+                    $('ui-autocomplete').remove();
+                    $('#btnUpdateResultsTop').click();
+                }
+            });
+        
+
+            $('#txtSpeciality').bind("blur", function (event) {
+                if ($("#txtSpeciality").val() == 'Specialty Name or Partial Spelling' || $("#txtSpeciality").val() == '') {
+                    $("#HidSpeciality_ID").val('');
+                }
+            });
+
+        $('#btnUpdateResultsTop').click(function () {
+            UpdateResults();
+        });
+        $('#btnUpdateResultsBottom').click(function () {
+            UpdateResults();
+        });
+
+
+        function viewMap() {
+            //PHC-3045
+            //update hidden H1 to state whole functionality
+            $("#hdnH1").text("Group Practice Search Results - Map View");
+
+            setEncodedMBPToken(g_sTID_Encoded, '', true);
+
+            $('#map_canvas').attr("style", "height:600px;");
+
+            if (typeof google != "undefined") {
+                //Manually initializeMap from results.js
+                initializeMap();
+
+                if ((typeof providerObjList != "undefined") && (providerObjList != null) && (providerObjList != "undefined")) {
+                    GMAP.initialize(providerObjList);
+                }
+            }
+            var page = 'results';
+        }
+
+        function viewTable() {
+            //PHC-3045
+            //update hidden H1 to state whole functionality
+            $("#hdnH1").text("Group Practice Search Results - List View");
+
+            //$('#results').appendTo($('#mainDiv'));
+            //$('#results').find('thead').toggle(true);
+            $('#results_wrapper').removeClass('dataTables_wrapper');
+        }
+
+
+        //Call Autocomplete functions;
+        AutocompleteSpecialityList();
+
+        function compareGroupPractices() {
+            $('.feedbackMsg').html("");
+            $('.errorField').removeClass('errorField');
+            $('.feedbackMsg').removeClass('error');
+            $('.errorSummaryContainer').remove();
+            var ids = "";
+            var href = window.location.host.toString();
+            var hasgroupPractices = false;
+            $('#comparison_bottom input:checkbox:checked').each(function () {
+                hasgroupPractices = true;
+                if (ids == "")
+                    ids = $(this).attr('value');
+                else
+                    ids = ids + '|' + $(this).attr('value');
+            });
+            if (hasgroupPractices) {
+
+                var lat = getParameterByName("lat");
+                var lng = getParameterByName("lng");
+                var redirecturl = '\./group-compare.html';
+
+                //  updateCrumbLink();                
+                var currentUrl = getURL("viewmap=" + getParameterByName("viewmap"));
+                setEncodedMBPToken(g_sTID_Encoded, '', true);
+
+                var querystring;
+                if (currentUrl.indexOf('cmprID') != -1) {
+                    // querystring = '#' + currentUrl.substring(currentUrl.indexOf('cmprID'));
+                    var expandedTabs = getParameterByName("expanded");
+                    var expandedParameters = "";
+                    if (expandedTabs != "") {
+                        expandedParameters = "&expanded=" + expandedTabs;
+                    }
+                    querystring = '#' + currentUrl.substring(currentUrl.indexOf('cmprID')) + '&cmprSpltID=' + getParameterByName("cmprSpltID") + '&addrID=' + getParameterByName("addrID") + expandedParameters;
+
+                    if (querystring.indexOf('viewmap') == -1) {
+                        querystring += '&viewmap=' + getParameterByName('viewmap');
+                    }
+                    //PHC-3349
+                    var paramID = getParameterByName("ID");
+                    if (paramID != "") {
+                        querystring += '&ID=' + paramID;
+                    }
+
+                    querystring += '&dist=' + $('#DistancePullDown').val();
+                }
+
+                setEncodedMBPToken(g_sTID_Encoded, redirecturl + querystring, true);
+
+            }
+            else {
+                $('#divErrors').html('<span class="feedbackMsg error">Error: Please select Group Practices to compare</span>').focus();
+                myValidator.addSummaryListItem("#divErrors", "Compare: Please select Group Practices to compare.");
+            }
+
+        }
+
+
+
+        //variable to see if mobile visited
+        var mobilevisited = false;
+        var currLayout = "";
+
+        checkResponsive = function (type) {
+
+            if (type == "desktop" || type == "tablet") {
+                if (getParameterByName("viewmap") == 0 && currLayout != "generateList") generateList();
+                if (getParameterByName("viewmap") == 1 && currLayout != "generateMap") generateMap();
+                if (mobilevisited == true) mapDataRefresh(); //refresh map if coming from mobile
+            }
+
+            if (type == "phone" || type == "phone-portrait" || type == "tablet-portrait") {
+                if (currLayout != "generateMobile") generateMobile();
+                mapDataRefresh();
+                mobilevisited = true;
+            }
+
+        }
+
+
+        $(document).ready(function () {
+
+            sidebarTabsOptions = {
+                "numberoftabs": 2,
+                "tabHeadings": "Results List, Modify Your Results",
+                "tabDivIDs": "tabs-1, tabs-2",
+                "cssClass": "DefaultTabClass",
+                "anchorable": false,
+                "header": "h2"
+            }
+            $("#tabs").GenerateTabs(sidebarTabsOptions);
+            storeOriginal($("div#tabs"));
+
+        });
+
+
+        var generateListOptions = {
+            "choose-bottom": "show",
+            "ResultsListView": "#leftcol",
+            "results-list": "#contentTab1",
+            "h2_mapView": "show",
+            "tabs": "hide",
+            "MBP_actions": "#ModifySearchContainer",
+            "divModifyYourResult": "#ModifySearchContainer",
+            "tabs-ul": "hide",
+            "groupResults": "show",
+            "mobile-screen": "hide",
+            "vWMaps": "hide"
+        }
+
+        //function for list view
+        function generateList() {
+            generateMobileFlag = false;
+            window.location.hash = getURL('viewmap=0');
+            currLayout = "generateList";
+            rwd_append(generateListOptions);
+
+            $('#wrapper').removeClass("phy-toggle-map").addClass("phy-toggle-list");
+
+            $('#leftcol').attr("class", "span8");
+            $('#rightcol').attr("class", "span4");
+
+            //if coming from mobile and listview is set
+            if (getParameterByName("viewmap") == 0) $("#providerResultsTable").detach().appendTo("#resultsTable");
+
+        }
+
+
+        var generateMobileOptions = {
+            "resultsTable": "show",
+            "providerResultsTable": "#resultsTable",
+            "ResultsListView": "#mListView",
+            "results-list": "#mapDiv_mobile",
+            "MBP_actions": "#mapDiv_mobile",
+            "map_canvas": "#mMapViewMap",
+            "h2_mapView": "hide",
+            "divModifyYourResult": "#mModifyView",
+            "groupResults": "hide",
+            "choose-bottom": "show",
+            "mobile-screen": "show"
+        }
+
+        
+        //function for mobile view
+        function generateMobile() {
+
+            generateMobileFlag = true;
+
+            if (currLayout == "generateMap") {
+                var checkedRadio = $('input[name="mapViewRadios"]:checked');
+                if (checkedRadio.length > 0) {
+                    var str = checkedRadio.attr('id');
+                    str = str.substr(7, str.length - 1);
+                    var append = str.split('-');
+                    changeSpecialtyResultDiv(checkedRadio.attr('id'), append[2], 'All', str.split('-')[1]);
+                }
+
+            }
+
+            currLayout = "generateMobile";
+            rwd_append(generateMobileOptions);
+
+            setScroll("a.addscroll");
+            $("#results-list").show();
+            $("#providerResultsTable").show();
+
+            $('#providerResultsTable div.collapse').each(function (index) {
+                var listID = $(this).attr("id");
+                if ($("#parent_" + listID).hasClass("collapsed")) {
+                    $(this).removeClass("in");
+                } else if($("#parent_" + listID).hasClass("expanded")){
+                    $(this).addClass("in");
+                }
+            });
+        }
+
+
+        var generateMapOptions = {
+            "tabs-ul": "show",
+            "map_canvas": "#mapDiv",
+            "ResultsListView": "#leftcol",
+            "mapDiv": "#leftcol",
+            "results-list": "#contentTab1",
+            "results-list-table": "#results-list",
+            "resultsProvTable": "hide",
+            "contentTab1": "show",
+            "h2_mapView": "hide",
+            "divModifyYourResult": "#contentTab2",
+            "tabs": "show",
+            "groupResults": "show",
+            "choose-bottom": "hide",
+            "mobile-screen": "hide",
+            "vWMaps": "hide"
+        }
+
+        //function for map view
+        function generateMap() {
+
+            window.location.hash = getURL('viewmap=1');
+            currLayout = "generateMap";
+            generateMobileFlag = false;
+
+            if (currLayout == "generateMap") {
+                var checkedRadio = $('input[name="mapViewRadios"]:checked');
+                if (checkedRadio.length > 0) {
+                    var str = checkedRadio.attr('id');
+                    str = str.substr(7, str.length - 1);
+                    var append = str.split('-');
+                    changeSpecialtyResultDiv(checkedRadio.attr('id'), append[2], 'All', str.split('-')[1]);
+                }
+            }
+
+            $('#wrapper').removeClass("phy-toggle-list").addClass("phy-toggle-map");
+
+            $('#leftcol').attr("class", "span7");
+            $('#rightcol').attr("class", "span5");
+
+            //if coming from mobile and mapview is set
+            if (getParameterByName("viewmap") == 1) $("#providerResultsTable").detach().appendTo("#contentTab1");
+            if (getParameterByName("type") == "All") $('#providerResultsTable').hide();
+
+            rwd_append(generateMapOptions);
+
+        }
+
+    </script><ul style="z-index: 1; top: 0px; left: 0px; display: none;" aria-activedescendant="ui-active-menuitem" role="listbox" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"></ul>
+
+
+<table class="gstl_0 gssb_c" style="width: 234px; display: none; top: 67px; left: 834px; position: absolute;" cellpadding="0" cellspacing="0"><tbody><tr><td class="gssb_f"></td><td style="width: 100%;" class="gssb_e"></td></tr></tbody></table></body>​​​​​</html>

@@ -1,0 +1,76 @@
+FBL.ns(function() {
+    with(FBL) {
+        function buildFocusObjForLanguage(abbrElem) {
+            return [{
+                action: 'scroll',
+                elem: abbrElem
+            },
+            {
+                action: 'highlight',
+                elem: abbrElem,
+                className: 'watLinkHighlight'
+            }];
+        }
+        var WAT = Firebug.WatModule;
+        WAT.infoLanguageHandler = function(tracker) {
+            var i, j;
+            if (! (tracker instanceof WAT.Tracker)) {
+                return false;
+            }
+
+            var errorsTotal = 0,
+            warningTotal = 0,
+            infosTotal = 0,
+            total = 0;
+
+            var doc = jQuery(tracker.context.browser.contentDocument);
+            /* get doc JQ */
+
+            var framesJQ = doc.find('frame, iframe');
+            var frames = [doc.get(0)];
+            if (frames.length > 0) {
+                for (i = 0; i < framesJQ.length; i++) {
+                    frames.push(framesJQ.get(i).contentDocument);
+                }
+            }
+            var location, infoElements, tempElems;
+
+            for (j = 0; j < frames.length; j++) {
+                doc = jQuery(frames[j]);
+
+                location = doc.get(0).location;
+                
+                // lang attribut
+                infoElements = doc.find("*[lang],*[xml:lang]").each(
+                    function( intIndex ) {
+                        var inputArray = WAT.strFToArray('infoLanguage', {
+                                    tag: 'shortTag',
+                                    data: this
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.lang
+                                },
+                                {
+                                    tag: 'string',
+                                    data: this.getAttribute('xml:lang')
+                                });                            
+                                             
+                        tracker.addResult('info', inputArray, buildFocusObjForLanguage(this));
+                        infosTotal++;
+                        total ++;
+                    }
+                );
+            }
+
+            tracker.summaryParts = WAT.buildSummary('infoLanguage', total, errorsTotal, warningTotal);
+            if (errorsTotal > 0) {
+                tracker.status = "error";
+            } else if (warningTotal > 0) {
+                tracker.status = "warn";
+            } else {
+                tracker.status = "info";
+            }
+        };
+    }
+});

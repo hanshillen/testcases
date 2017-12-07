@@ -1,0 +1,95 @@
+FBL.ns(function() {
+    with(FBL) {
+        function buildFocusObjForBlockquote(blockquoteElem) {
+            return [{
+                action: 'scroll',
+                elem: blockquoteElem
+            },
+            {
+                action: 'highlight',
+                elem: blockquoteElem,
+                className: 'watLinkHighlight'
+            }];
+        }
+        
+        function buildFocusObjForQ(qElem) {
+            return [{
+                action: 'scroll',
+                elem: qElem
+            },
+            {
+                action: 'highlight',
+                elem: qElem,
+                className: 'watLinkHighlight'
+            }];
+        }
+        
+        var WAT = Firebug.WatModule;
+        WAT.blockquotesHandler = function(tracker) {
+            var i, j;
+            if (! (tracker instanceof WAT.Tracker)) {
+                return false;
+            }
+
+            var errorsTotal = 0, warningTotal = 0, infosTotal = 0, total = 0;
+
+            var doc = jQuery(tracker.context.browser.contentDocument);
+            /* get doc JQ */
+
+            var framesJQ = doc.find('frame, iframe');
+            var frames = [doc.get(0)];
+            if (frames.length > 0) {
+                for (i = 0; i < framesJQ.length; i++) {
+                    frames.push(framesJQ.get(i).contentDocument);
+                }
+            }
+            var location, blockquotes, qs, tempElems;
+
+            for (j = 0; j < frames.length; j++) {
+                doc = jQuery(frames[j]);
+
+                location = doc.get(0).location;
+    
+                // <blockquote> Elements
+                blockquotes = doc.find('blockquote');
+                total += blockquotes.length;
+                tempElems = blockquotes.get();
+
+                for (i = 0; i < tempElems.length; i++) {
+                    var blockquoteElem = tempElems[i];
+                    var inputArray = WAT.strFToArray('blockquoteOK', {
+                            tag: 'shortTag',
+                            data: blockquoteElem
+                        });
+                    tracker.addResult('info', inputArray, buildFocusObjForBlockquote(blockquoteElem));
+                    infosTotal++;
+                }
+                
+                 // <q> Elements
+                qs = doc.find('q');
+                total += qs.length;
+                tempElems = qs.get();
+
+                for (i = 0; i < tempElems.length; i++) {
+                    var qElem = tempElems[i];
+                    var inputArray = WAT.strFToArray('qOK', {
+                            tag: 'shortTag',
+                            data: qElem
+                        });
+                    tracker.addResult('info', inputArray, buildFocusObjForQ(qElem));
+                    infosTotal++;
+                }
+            }
+            
+            tracker.summaryParts = WAT.buildSummary('blockquotes', total, errorsTotal, warningTotal);
+            if (errorsTotal > 0) {
+                tracker.status = "error";
+            } else if (warningTotal > 0) {
+                tracker.status = "warn";
+            } else {
+                tracker.status = "info";
+            }
+        };
+    }
+});
+

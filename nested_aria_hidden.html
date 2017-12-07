@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Nested aria-hidden</title>
+	<style>
+		.outer, .inner {
+			padding:5px;
+			border: 1px solid #000;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Nesting Aria-hidden attributes</h1>
+	<div class="outer" aria-hidden="true">
+		<h2>This content is hidden with aria-hidden='true'</h2>
+		<p>some random text</p>
+		<button>button 1</button>
+		<div class="inner" aria-hidden="false">
+			<h3>This content is marked with aria-hidden="false"</h3>
+			<p>additional random text</p>
+			<button>another button</button>
+		</div>
+	</div>
+	<h2>This content is not hidden in any way</h2>
+	<p>final text</p>
+	<button>Final button</button>
+</body>
+</html>

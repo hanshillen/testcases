@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recursive labeling</title>
+</head>
+<body>
+    <h1>Recursive labeling Issue:</h1>
+    <p>tab stop 2 is inside an element that incorrectly references its parent container using aria-labelledby. This can cause an infinite loop that can crash the browser (unless the browser checks for this).</p>
+    <button>Tab stop 1</button>
+    
+    <div id="outer">
+        <div id="inner" aria-labelledby="outer">
+            <button>tap stop 2</button>
+        </div>
+    </div>
+</body>
+</html>

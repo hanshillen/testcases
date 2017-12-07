@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#msg1 {
+		display:none;
+	}
+	#msg1.visible {
+		display: block;
+	}
+	</style>
+	 <script>
+
+	function init(e) {
+		var buttonTriggered = false;
+		function log(msg) {
+			if (console && console.log) {
+				console.log(msg)
+			}
+			outputMsg(msg);
+		}
+
+		function outputMsg(msg) {
+			var output = document.getElementById("output");
+			var p = document.createElement("p");
+	 		p.appendChild(document.createTextNode(msg));
+	 		output.appendChild(p);
+ 		}
+
+		function handleBlur() {
+	 		if (!buttonTriggered) {
+	 			document.getElementById("msg1").className = "visible";
+	 		}
+	 		log("blur");
+		}
+
+		function handleMouseDown() {
+	 		buttonTriggered = true
+	 		log("mousedown");
+		}
+
+		function handleClick() {
+		 	log("click");
+		 	buttonTriggered = false;
+		}
+		function handleReset() {
+			var msg1 = document.getElementById("msg1")
+		 	msg1.className = "";
+		 	msg1.focus();
+		}
+
+	 	document.getElementById("input1").addEventListener("blur", handleBlur);
+	 	document.getElementById("button1").addEventListener("click", handleClick);
+	 	document.getElementById("button2").addEventListener("mousedown", handleMouseDown);
+	 	document.getElementById("button2").addEventListener("click", handleClick);
+	 	document.getElementById("reset").addEventListener("click", handleReset);
+	 }
+	 window.onload = init;
+	 </script>
+</head>
+<body>
+	<div>
+		<input id="input1" type="text">
+		<p id="msg1">cannot be empty</p><br>
+		<button id="button1">button with issue</button>
+		<button id="button2">button without issue</button>
+		<input id="reset" type="reset" />
+		<div id="output"></div>
+	</div>
+</body>
+</html>
+

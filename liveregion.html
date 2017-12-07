@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	window.onload = function(){
+		var msgs = ["hello", "how are you", "I'm doing well", "thanks for asking", "Good bye!"]
+		var count = 0;
+		setInterval(function(){
+			document.getElementById("testMe").innerHTML = msgs[count++];
+			if (count >= msgs.length) {
+				count = 0;
+			};
+		}, 5000)
+		
+
+	};
+	</script>
+</head>
+<body>
+	<span id="testMe" aria-live="polite">It starts</span>
+	<button>tab stop 1</button>
+</body>
+</html>

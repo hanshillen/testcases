@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>IE8/JAWS12 Issue with Main Role</title>
+	<style>
+		[role="main"] {
+			border: 1px solid black;
+			padding: 10px;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Test Case: Main role in JAWS 12</h1>
+	<h2>Example 1: Issue</h2>
+	<p>When tabbing into the text field inside the role='main' region with IE8+ and JAWS 12, JAWS starts announcing the entire contents role='main' container before announcing the focused element</p>
+	<button>Test 1</button>
+	<p>Role='main' container:</p>
+	<div role="main">
+		<p>Some random text</p>
+		<p>Some more random text</p>
+		<a href="#">link 1</a>
+		<label for="txt1">First name</label>
+		<input type="text" id="txt1" />
+		<a href="#">link 2</a>
+		<button>test 2</button>
+		<br><br>
+		<a href="#" onclick="window.open('/supplierdirectory/staticpages/glossary.html','_blank','left=0,top=0,height=558,width=1007,menubar=0,resizable=1,scrollbars=1')" class="btn btn-pill btn-supplier-header" title="Glossary- Opens in a New Window">Glossary<span class="HiddenText">- Opens in a New Window</span></a>
+		<br><br>
+		<a href="#" onclick="window.open('/supplierdirectory/staticpages/glossary.html','_blank','left=0,top=0,height=558,width=1007,menubar=0,resizable=1,scrollbars=1')" class="btn btn-pill btn-supplier-header" title="kaas miauw">Glossary<span class="HiddenText">opens in a new window</span></a>
+	</div>
+	<button>test 3</button>
+	<h2>Example 2: Workaround Fix</h2>
+	<p>The problem is that JAWS 12 incorrectly announces the main containers accessible name before announcing the text field. Since the main landmark is not labeled,
+	JAWS uses the container's text contents as a fallback accessible name. To fix, add title='' to the role='main' element. This will set the main landmark's 
+	accessible name to an empty string. JAWS will stil announce it but because it's empty it won't actually say anything.
+	</p>
+	<button>Test 1</button>
+	<p>Role='main' container:</p>
+	<div role="main" title="">
+		
+		<p>Some random text</p>
+		<p>Some more random text</p>
+		<a href="#">link 1</a>
+		<label for="txt2">First name</label>
+		<input type="text" id="txt2" />
+		<a href="#">link 2</a>
+		<button>test 2</button>
+		<br><br>
+		<a href="#" onclick="window.open('/supplierdirectory/staticpages/glossary.html','_blank','left=0,top=0,height=558,width=1007,menubar=0,resizable=1,scrollbars=1')" class="btn btn-pill btn-supplier-header" title="Glossary- Opens in a New Window">Glossary<span class="HiddenText">- Opens in a New Window</span></a>
+		<br><br>
+		<a href="#" onclick="window.open('/supplierdirectory/staticpages/glossary.html','_blank','left=0,top=0,height=558,width=1007,menubar=0,resizable=1,scrollbars=1')" class="btn btn-pill btn-supplier-header" title="Glossary- Opens in a New Window">Glossary<span class="HiddenText">opens in a new window</span></a>
+	</div>
+	<button>test 3</button>
+</body>
+</html>

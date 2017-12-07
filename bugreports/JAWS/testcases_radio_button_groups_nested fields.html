@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>Radio Buttons in a Fieldset with Nested Fields</h1>
+<fieldset>
+<legend>Choose another shipping method:</legend>
+<input id="overnight2" type="radio" name="outeroptions" value="overnight2" />
+<label for="overnight2">Overnight</label><br />
+
+  
+	<div role="group" aria-label="test">
+		  <label for="nestedoption">Expense Reason:</label><br />
+		  <select id="nestedoption">
+		  <option value="1"></option>
+		  <option value="2">Proposal</option>
+		  <option value="3">Hardware</option>
+		  <option value="4">Perishable Item</option>
+		  </select><br />
+			<input id="insurance1" type="radio" name="inneroptions" value="waive" />
+			<label for="insurance1">I waive insurance</label><br />
+			<input id="insurance2" type="radio" name="inneroptions" value="explore" />
+			<label for="insurance2">I'm not sure; let me explore my other options</label><br />
+	</div>
+  
+<p> hello </p>
+<input type="text" />
+<input id="twoday2" type="radio" name="outeroptions" value="twoday2" />
+<label for="twoday2">Two day</label><br />
+<input id="ground2" type="radio" name="outeroptions" value="ground2" />
+<label for="ground2">Ground</label>
+</fieldset>
+
+	
+	
+</body>
+</html>

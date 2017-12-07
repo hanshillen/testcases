@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Testing support for inserted alert roles</title>
+	<style>
+		[role=alert] {
+			margin: 5px;
+			padding:5px;
+			border: 1px solid navy;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script>
+		function init() {
+			$("#showAlert1, #showAlert2, #showAlert3").click(function(e){
+				var alert;
+
+				switch (this.id) {
+					case "showAlert1":
+						$alert = $("<div id='yui_3_18_1_1_1466059550979_175' class='yui3-widget wf2-messagebar wf2-u-fixed yui3-widget-stacked' role='alert' style='opacity: 1; z-index: 1000;'><div id='yui_3_18_1_1_1466059550979_177' class='wf2-messagebar-content'><div class='wf2-messagebar-messages'><p class='wf2-messagebar-message'>Here is a message.</p><p class='wf2-messagebar-message'>Click/Tap anywhere or press any key, to dismiss me.</p><p class='wf2-messagebar-message'>The wait should not be too long.</p></div></div></div>");
+					break;
+					case "showAlert2":
+						$alert = $("<div role='alert'>This is a test message</div>");
+					break;
+					case "showAlert3":
+						$alert = $("<div role='alert'><div><div class='wf2-messagebar-messages'><p class='wf2-messagebar-message'>Here is a message.</p><p class='wf2-messagebar-message'>Click/Tap anywhere or press any key, to dismiss me.</p><p class='wf2-messagebar-message'>The wait should not be too long.</p></div></div></div>");
+					break;
+				}
+				$alert.prependTo(document.body);
+			});
+		};
+
+		window.onload = init;
+
+	</script>
+</head>
+<body>
+	
+
+
+	<h1>Alert role test case</h1>
+
+	<button id="showAlert1">Add original alert</button>
+	<button id="showAlert2">Add simple alert</button>
+	<button id="showAlert3">Add modified alert</button>
+</body>
+</html>

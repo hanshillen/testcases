@@ -1,0 +1,245 @@
+FBL.ns( function() {
+	with (FBL) {
+		function isInPageLink(link, location) {
+			return link.hash !== "" && link.hostname == location.hostname && link.pathname == location.pathname && link.search == location.search;
+		}
+		
+		function isExternalLink(link, location) {
+			return link.hostname != location.hostname || link.pathname != location.pathname || link.search != location.search;
+		}
+		
+		function isJSLink(link, location) {
+			
+			return link.protocol == "javascript:" || link.href == location.href || link.href == location.href + "#";
+		}
+		
+		function hasLayout(elem) {
+			var answer = false;
+			var JQ = jQuery(elem);
+			var styles = window.getComputedStyle(elem, null);
+			if (JQ.is('body, img, input, table, td')) {
+				answer = true;
+			}
+			else if (styles.cssFloat != "false" || styles.position == "absolute") {
+				answer = true;
+			}
+		}
+		
+		function buildFocusObjForLink(linkElem) {
+			return [ {
+			    action :'scroll',
+			    elem :linkElem
+			}, {
+			    action :'highlight',
+			    elem :linkElem,
+			    className :'watLinkHighlight'
+			}, {
+			    action :'list',
+			    elem : [ 'id', 'href', 'text', 'title']
+			}];
+		}
+		function buildFocusObjForLinkandTarget(linkElem, targetElem) {
+			return [ {
+			    action :'scroll',
+			    elem :linkElem
+			}, {
+			    action :'highlight',
+			    elem :linkElem,
+			    className :'watLinkHighlight'
+			}, {
+			    action :'list',
+			    elem : [ 'id', 'href', 'text', 'title']
+			}, {
+			    action :'highlight',
+			    elem :targetElem,
+			    className :'watLinkTargetHighlight'
+			}];
+		}
+		
+		function buildFocusObjForMultipleTargets(linkElem, targetElems) {
+			var tmpArray = []
+
+			tmpArray.push( {
+			    action :'scroll',
+			    elem :linkElem
+			}, {
+			    action :'highlight',
+			    elem :linkElem
+			}, {
+			    action :'list',
+			    elem : [ 'id', 'href', 'text', 'title']
+			});
+			for ( var i = 0; i < targetElems.length; i++) {
+				tmpArray.push( {
+				    action :'highlight',
+				    elem :targetElems[i],
+				    className :'watLinkTargetHighlight'
+				});
+			}
+			return tmpArray;
+		}
+		
+		var WAT = Firebug.WatModule;
+		WAT.linksHandler = function(tracker) {
+			var i, j;
+			if (!(tracker instanceof WAT.Tracker)) {
+				return false;
+			}
+			var errorsTotal = warningTotal = infosTotal = total = 0;
+			
+			var doc = jQuery(tracker.context.browser.contentDocument); /* get doc JQ */
+			
+			var framesJQ = doc.find('frame, iframe');
+			var frames = [ doc.get(0)];
+			if (frames.length > 0) {
+				for (i = 0; i < framesJQ.length; i++) {
+					frames.push(framesJQ.get(i).contentDocument);
+				}
+			}
+			var location, links, total, tempElems, linkElem, linkText, targetId, targetElem, targetJQ, inputArray, parents, imagesJQ, images;
+			for (j = 0; j < frames.length; j++) {
+				doc = jQuery(frames[j]);
+				
+				location = doc.get(0).location;
+				
+				links = doc.find('a, area');
+				total += links.length;
+				tempElems = links.get();
+				
+				for (i = 0; i < tempElems.length; i++) {
+					linkElem = tempElems[i]
+					linkText = linkElem.text;
+					imagesJQ = jQuery(linkElem).find('img');
+					if (imagesJQ.length > 0) {
+						images = imagesJQ.get();
+						for (j = 0; j < images.length; j++) {
+							linkText += " " + images[j].alt;
+						}
+					}
+					
+					if (isInPageLink(linkElem, location)) {
+						targetId = linkElem.hash.substr(1);
+						targetJQ = doc.find('a[name=' + targetId + '], #' + targetId);
+						if (targetJQ.length == 0) {/* link target was not found */
+							inputArray = WAT.strFToArray('linkTargetNotFound', {
+							    tag :'shortTag',
+							    data :linkElem
+							}, {
+							    tag :'string',
+							    data :linkText
+							}, {
+							    tag :'string',
+							    data :targetId
+							});
+							tracker.addResult('error', inputArray, buildFocusObjForLink(linkElem));
+							errorsTotal++;
+							
+						}
+						else if (targetJQ.length > 1) {
+							inputArray = WAT.strFToArray('multipleLinkTargets', {
+							    tag :'shortTag',
+							    data :linkElem
+							}, {
+							    tag :'string',
+							    data :linkText
+							}, {
+							    tag :'string',
+							    data :targetId
+							});
+							tracker.addResult('error', inputArray, buildFocusObjForLink(linkElem, targetJQ.get()));
+							warningsTotal++;
+						}
+						else { /* Target exists and is unique */
+							/* check for hasLayoutBug */
+							targetElem = targetJQ.get(0)
+
+							inputArray = WAT.strFToArray('linkHasCorrectTarget', {
+							    tag :'shortTag',
+							    data :linkElem
+							}, {
+							    tag :'string',
+							    data :linkText
+							}, {
+							    tag :'shortTag',
+							    data :targetElem
+							});
+							tracker.addResult('info', inputArray, buildFocusObjForLinkandTarget(linkElem, targetElem));
+							infosTotal++;
+							
+							/*
+							//HasLayout bug checking disabled for now, there are too many loopholes to check for this outside of IE
+							parents = jQuery(linkElem).parents().get();
+							for ( i = 0; i < parents.length; i++) {
+							    if (hasLayout(parents[i]) {
+							    	break; 
+							    }
+							}
+							inputArray = WAT.strFToArray('linkHasLayoutBug', {
+							    tag :'shortTag',
+							    data :linkElem
+							}, {
+							    tag :'text',
+							    data : linkText
+							}, {
+								tag : 'shortTag',
+								data : targetElem
+							},{
+								tag : 'shortTag',
+								data : parents[i]
+							});
+							tracker.addResult('warning', inputArray, buildFocusObjForLinkandTarget(linkElem, targetElem));
+							warningsTotal++;*/
+						}
+						
+					}
+					else if (isExternalLink(linkElem, location)) {
+						inputArray = WAT.strFToArray('externalLink', {
+						    tag :'shortTag',
+						    data :linkElem
+						}, {
+						    tag :'string',
+						    data :linkText
+						});
+						tracker.addResult('info', inputArray, buildFocusObjForLinkandTarget(linkElem));
+						infosTotal++;
+					}
+					else if (isJSLink(linkElem, location)) {
+						inputArray = WAT.strFToArray('scriptedLink', {
+						    tag :'shortTag',
+						    data :linkElem
+						}, {
+						    tag :'string',
+						    data :linkText
+						});
+						tracker.addResult('info', inputArray, buildFocusObjForLink(linkElem));
+						infosTotal++;
+					}
+					else {
+						WAT.trace('not sure what to do with this one:', linkElem.href)
+						inputArray = WAT.strFToArray('notSure', {
+						    tag :'shortTag',
+						    data :linkElem
+						}, {
+						    tag :'string',
+						    data :linkText
+						});
+						tracker.addResult('info', inputArray, buildFocusObjForLink(linkElem));
+						infosTotal++;
+					}
+					WAT.addDescriptivenessWarning(tracker, linkElem, linkText, 'linkTextNoGood');
+				}
+			}
+			
+			tracker.summaryParts = WAT.buildSummary('links', total, errorsTotal, warningTotal);
+			if (errorsTotal > 0) {
+				tracker.status = "error";
+			}
+			else if (warningTotal > 0) {
+				tracker.status = "warn";
+			}
+			else {
+				tracker.status = "info";
+			}
+		}
+	}
+});

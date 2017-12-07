@@ -1,0 +1,111 @@
+FBL.ns( function() {
+	with (FBL) {
+		var WAT = Firebug.WatModule;
+		
+		function buildFocusObjForButton(formElem) {
+			return [ {
+			    action :'scroll',
+			    elem :formElem
+			}, {
+			    action :'highlight',
+			    elem :formElem,
+			    className :'watFormControlHighlight'
+			}, {
+			    action :'listDetails',
+			    elem :formElem,
+			    attribs : [ 'id', 'class', 'value', 'title', 'alt']
+			}]
+		};
+
+		WAT.rolesHandler = function(tracker) {
+			if (!Firebug.A11yModule) {
+				alert('A11y extension is not installed, role rules will not be run.'); return;
+			}
+			var A11yModule = Firebug.A11yModule;
+			
+			var i, j;
+			if (!(tracker instanceof WAT.Tracker)) {
+				return false;
+			}
+			var errorsTotal = warningsTotal = infosTotal = total = 0;
+			
+			var doc = jQuery(tracker.context.browser.contentDocument); /* get doc JQ */
+			
+			var framesJQ = doc.find('frame, iframe');
+			var frames = [ doc.get(0)];
+			if (frames.length > 0) {
+				for (i = 0; i < framesJQ.length; i++) {
+					frames.push(framesJQ.get(i).contentDocument);
+				}
+			}
+			var imgs, tempElems, imgElem, inputArray;
+			var added;
+			for (j = 0; j < frames.length; j++) {
+				doc = jQuery(frames[j]);
+				
+			    // role & global states and properties
+				imgs = doc.find('[role], [aria-atomic],[aria-busy],[aria-controls],[aria-describedby],[aria-disabled],[aria-dropeffect],[aria-flowto],[aria-grab],[aria-haspopup],[aria-hidden],[aria-invalid],[aria-label],[aria-labelledby],[aria-live], [aria-owns], [aria-relevant], [aria-required] '); 
+				total += imgs.length;
+				tempElems = imgs.get();
+				
+				var added;
+				for (i = 0; i < tempElems.length; i++) {
+					var object = tempElems[i];
+			        var role= '';
+					added=false;
+					if (object.attributes != undefined) {
+				        for(var j=0; j< object.attributes.length; j++ ) {
+							if( object.attributes[j].name == 'role' ) { role = object.attributes[j].nodeValue; }
+						}
+				        if (role != '') {
+							var rolLoc = A11yModule.getRoleLocation(role);
+							var issues = A11yModule.roleChecks(object, role, rolLoc)						
+							for (var k = 0; k < issues.length; k++) { 							
+								inputArray = WAT.strFToArray(issues[k], {
+								    tag :'shortTag',
+								    data :object
+								});
+								var issueType = 'info';
+								if (issues[k].substring(0,1).toLowerCase() == 'e') { issueType = 'error'; errorsTotal++; }
+								else if (issues[k].substring(0,1).toLowerCase() == 'w') { issueType = 'warn'; warningsTotal++; }
+								tracker.addResult('error', inputArray, buildFocusObjForButton(object));
+								added = true;
+							} 
+				        } 
+				        // check aria-<> w/o associated role
+					    for(var j=0; j< object.attributes.length; j++ ) {
+							issues = A11yModule.validateARIAStatesandProps(object.attributes[j], role, rolLoc);
+							for (var k = 0; k < issues.length; k++) { 							
+								inputArray = WAT.strFToArray(issues[k], {
+									   tag :'shortTag',
+									   data :object
+								});
+								var issueType = 'info';
+								if (issues[k].substring(0,1).toLowerCase() == 'e') { issueType = 'error'; errorsTotal++; }
+								else if (issues[k].substring(0,1).toLowerCase() == 'w') { issueType = 'warn'; warningsTotal++; }
+								tracker.addResult(issueType, inputArray, buildFocusObjForButton(object));
+								added = true;
+							}
+					    }     	
+					}
+					if (!added) {
+						inputArray = WAT.strFToArray('genericValidSingle', {
+						    tag :'shortTag',
+						    data :object
+						});
+						tracker.addResult('info', inputArray, buildFocusObjForButton(object));
+						infosTotal++;
+					}
+					
+				}				
+			}
+			/*
+			 * a11y addition ends
+			 */
+
+			tracker.summaryParts = WAT.buildSummary('', total, errorsTotal, warningsTotal);
+			tracker.status = "valid";
+			tracker.render(); 
+		}
+	}
+});

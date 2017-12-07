@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test Case: Abbr Attribute</title>
+	<style>
+		table {
+			margin: 10px;
+		}
+		table, th, td {
+			border: 1px solid black;
+			cell-spacing: separate;
+			padding: 3px;
+		}
+
+		.hiddenContent {
+			clip: rect(1px, 1px, 1px, 1px);
+			height: 0;
+			overflow: hidden;
+			position: absolute;
+			width: 0;
+		}
+        
+        caption.hiddenContent {
+            display: table-caption;    
+        }
+	</style>
+</head>
+<body>
+	<h1>Example Tables Using the caption element</h1>
+	<h2>With visible caption (NVDA counts number of rows correctly</h2>
+	
+	<table>
+		<caption>Names</caption>
+		<tr>
+			<th>
+				First Name
+			</th>
+			<th abbr="Last Name">
+				Last Name
+			</th>
+		</tr>
+		<tr>
+			<td>John</td>
+			<td>Smith</td>
+		</tr>
+		<tr>
+			<td>Julia</td>
+			<td>Gulia</td>
+		</tr>
+		<tr>
+			<td>Peter</td>
+			<td>Brown</td>
+		</tr>
+	</table>
+	<h2>With hidden, absolutely positioned caption (NVDA counts an extra row)</h2>
+	
+	<table>
+		<caption class="hiddenContent">Names</caption>
+		<tr>
+			<th>
+				First Name
+			</th>
+			<th>
+				Last Name
+			</th>
+		</tr>
+		<tr>
+			<td>John</td>
+			<td>Smith</td>
+		</tr>
+		<tr>
+			<td>Julia</td>
+			<td>Gulia</td>
+		</tr>
+		<tr>
+			<td>Peter</td>
+			<td>Brown</td>
+		</tr>
+	</table>
+	<h2>Workaround: Caption with nested hidden span (NVDA rows correctly)</h2>
+	
+	<table>
+		<caption><span class="hiddenContent">Names</span></caption>
+		<tr>
+			<th>
+				First Name
+			</th>
+			<th>
+				Last Name
+			</th>
+		</tr>
+		<tr>
+			<td>John</td>
+			<td>Smith</td>
+		</tr>
+		<tr>
+			<td>Julia</td>
+			<td>Gulia</td>
+		</tr>
+		<tr>
+			<td>Peter</td>
+			<td>Brown</td>
+		</tr>
+	</table>
+</body>
+</html>

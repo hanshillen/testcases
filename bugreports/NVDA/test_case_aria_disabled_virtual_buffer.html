@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test Case: Using aria-disabled and disabled='disabled' simultaneously</title>
+	<script>
+		window.onload = init;
+
+		function init() {
+			var disabled = false, ariaDisabled = false;
+			var toggleAriaDisabled = document.getElementById("toggleSaveAriaDisabled"), 
+				toggleDisabled = document.getElementById("toggleSaveDisabled"), 
+				saveBtn = document.getElementById("saveBtn"),
+				toggleSaveAriaDisabledChk = document.getElementById("toggleSaveAriaDisabledChk"),
+				toggleSaveDisabledChk = document.getElementById("toggleSaveDisabledChk"),
+				toggleBoth = document.getElementById("toggleBoth"),
+				lr1 = document.getElementById("lr1"),
+				lr2 = document.getElementById("lr2");
+
+			function handleToggleDisabled(e) {
+				e = e || window.event;
+
+				var checkboxEvent = e ? e.target.getAttribute("type") == "checkbox" : false;
+				checkboxEvent ? disabled = e.target.checked : disabled = !disabled;
+				disabled ? saveBtn.setAttribute("disabled", "disabled") : saveBtn.removeAttribute("disabled");
+				changeText(toggleDisabled, disabled ? "Remove disabled='disabled' from Save button" : "Set disabled='disabled' for Save button");
+				if (!checkboxEvent) {
+					toggleSaveDisabledChk.checked = disabled;
+				}
+				changeText(lr2, "disabled attribute was " + (disabled ? "added" : "removed")); 
+			};
+
+			function handleToggleAriaDisabled(e) {
+				e = e || window.event;
+				var checkboxEvent = e ? e.target.getAttribute("type") == "checkbox" : false;
+				checkboxEvent ? ariaDisabled = e.target.checked : ariaDisabled = !ariaDisabled;
+				saveBtn.setAttribute("aria-disabled", ariaDisabled);
+				changeText(toggleAriaDisabled, ariaDisabled ? "Set aria-disabled='false' for Save button" : "Set aria-disabled='true' for Save button");
+				if (!checkboxEvent) {
+					toggleSaveAriaDisabledChk.checked = ariaDisabled;
+				}
+				changeText(lr1, "aria-disabled was set to " + (ariaDisabled ? "'true'" : "'false'")); 
+			};
+
+			function changeText(el, text) {
+				if (!el || !el instanceof HTMLElement) {
+					return;
+				}
+
+				if (el.textContent !== undefined) {
+					el.textContent = text;
+				}
+				else if (el.innerHTML) {
+					el.innerHTML = text;
+				}
+			}
+
+			toggleDisabled.onclick = toggleSaveDisabledChk.onchange = handleToggleDisabled;
+			toggleAriaDisabled.onclick = toggleSaveAriaDisabledChk.onchange = handleToggleAriaDisabled;
+			toggleBoth.onclick = function(e) {
+				e = e || window.event;
+				handleToggleDisabled(e);
+				handleToggleAriaDisabled(e);
+			};
+		}
+
+		
+
+	</script>
+</head>
+<body>
+	
+	<p>
+		<button id="toggleSaveAriaDisabled">Set aria-disabled='true' for Save button</button>
+	</p>
+	
+	<p>
+		<button id="toggleSaveDisabled">Set disabled='disabled' for Save button</button>	
+	</p>
+	
+	<p>
+		<button id="toggleBoth">Toggle both aria-disabled AND disabled</button>
+	</p>
+	
+	<p>
+		<button id="saveBtn" aria-disabled="false">Save</button>
+	</p>
+	
+	<p>
+		<input type="checkbox" id="toggleSaveAriaDisabledChk"> <label for="toggleSaveAriaDisabledChk">Set aria-disabled='true' for Save button</label>
+	</p>
+	
+	<p>
+		<input type="checkbox" id="toggleSaveDisabledChk"> <label for="toggleSaveDisabledChk">Set disabled='disabled' for Save button	</label>
+	</p>
+	<p aria-live="polite">
+		<i id="lr1"></i>
+	</p>
+	<p aria-live="polite">
+		<i id="lr2"></i>
+	</p>
+	
+</body>
+</html>

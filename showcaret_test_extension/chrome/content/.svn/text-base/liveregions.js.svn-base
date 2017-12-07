@@ -1,0 +1,726 @@
+var drag = {
+	currentObject : null,
+
+	initialise : function(objNode)
+	{
+		objNode.addEventListener('mousedown', drag.start, false);
+	},
+
+	start : function(objEvent)
+	{
+		drag.currentObject = this;
+
+		var objNode = drag.currentObject;
+
+		objNode.lastX = objEvent.clientX;
+		objNode.lastY = objEvent.clientY;
+
+		content.document.addEventListener('mousemove', drag.drag, false);
+		content.document.addEventListener('mouseup', drag.end, false);
+
+		return false;
+	},
+
+	drag : function(objEvent)
+	{
+		var objNode = drag.currentObject;
+
+		var iCurrentY = objEvent.clientY;
+		var iCurrentX = objEvent.clientX;
+		var iYPos = parseInt(objNode.style.top, 10);
+		var iXPos = parseInt(objNode.style.left, 10);
+		var iNewX, iNewY;
+
+		iNewX = iXPos + iCurrentX - objNode.lastX;
+		iNewY = iYPos + iCurrentY - objNode.lastY;
+
+		drag.currentObject.style.left = iNewX + 'px';
+		drag.currentObject.style.top = iNewY + 'px';
+		drag.currentObject.lastX = iCurrentX;
+		drag.currentObject.lastY = iCurrentY;
+
+		return false;
+	},
+
+	end : function()
+	{
+		content.document.removeEventListener('mousemove', drag.drag, false);
+		content.document.removeEventListener('mouseup', drag.end, false);
+		drag.currentObject = null;
+	}
+};
+
+function getElementsByClassName(objElement, strTagName, strClassName)
+{
+	var objCollection = objElement.getElementsByTagName(strTagName);
+	var arReturn = [];
+	var strClass, arClass, iClass;
+
+	for(var iCounter=0; iCounter<objCollection.length; iCounter++)
+	{
+		strClass = objCollection[iCounter].className;
+		if (strClass)
+		{
+			arClass = strClass.split(' ');
+			for (iClass=0; iClass<arClass.length; iClass++)
+			{
+				if (arClass[iClass] == strClassName)
+				{
+					arReturn.push(objCollection[iCounter]);
+					break;
+				}
+			}
+		}
+	}
+
+	objCollection = null;
+	return (arReturn);
+}
+
+function getElementsByAttribute(objElement, strTagName, strAttribute)
+{
+	var objCollection = objElement.getElementsByTagName(strTagName);
+	var arReturn = [];
+
+	for(var iCounter=0; iCounter<objCollection.length; iCounter++)
+	{
+		if (objCollection[iCounter].getAttribute(strAttribute))
+		{
+			arReturn.push(objCollection[iCounter]);
+		}
+	}
+
+	objCollection = null;
+	return (arReturn);
+}
+
+function getXPosition(objElement)
+{
+	var iLeft = 0;
+	var strPosition;
+
+	while (objElement.offsetParent)
+	{
+		strPosition = content.document.defaultView.getComputedStyle(objElement, "").getPropertyValue('position');
+		if (strPosition == 'relative')
+		{
+			iLeft -= objElement.offsetParent.offsetLeft;
+		}
+		else
+		{
+			iLeft += objElement.offsetLeft;
+		}
+		objElement = objElement.offsetParent;
+	}
+
+	return iLeft;
+}
+
+function getYPosition(objElement)
+{
+	var iTop = 0;
+	var iHeight = objElement.offsetHeight;
+	var strPosition;
+
+	while (objElement.offsetParent)
+	{
+		strPosition = content.document.defaultView.getComputedStyle(objElement, "").getPropertyValue('position');
+		if (strPosition == 'relative')
+		{
+			iTop -= objElement.offsetParent.offsetTop;
+		}
+		else
+		{
+			iTop += objElement.offsetTop;
+		}
+		objElement = objElement.offsetParent;
+	}
+
+	return (iTop + iHeight);
+}
+
+function addClass(objElement, strValue)
+{
+	var strExisting = objElement.getAttribute('class');
+	var arClass, iClass;
+
+	if (strExisting === null)
+	{
+		objElement.setAttribute('class', strValue);
+	}
+	else
+	{
+		arClass = strExisting.split(' ');
+
+		for (iClass=0; iClass<arClass.length; iClass++)
+		{
+			if (arClass[iClass] == strValue)
+			{
+				return false;
+			}
+		}
+
+		objElement.setAttribute('class', strExisting + ' ' + strValue);
+	}
+	return true;
+}
+
+function removeFocusedIDs()
+{
+	var objFocusedIDs = getElementsByClassName(content.document, '*', 'jsliveregionidfocus');
+	var strValue, iCounter;
+
+	for (iCounter=0; iCounter<objFocusedIDs.length; iCounter++)
+	{
+		strValue = objFocusedIDs[iCounter].getAttribute('class');
+		strValue = strValue.replace(/\s*jsliveregionidfocus\s*/, '');
+
+		if (strValue !== '')
+		{
+			objFocusedIDs[iCounter].setAttribute('class', strValue);
+		}
+		else
+		{
+			objFocusedIDs[iCounter].removeAttribute('class');
+		}
+	}
+}
+
+function removeDetails(objEvent)
+{
+	var objExisting = content.document.getElementById('jsliveregionexplanation');
+	var objRegions, iKeyCode;
+
+	if (objEvent.type == 'keypress')
+	{
+		iKeyCode = objEvent.keyCode;
+
+		if (iKeyCode == 27)
+		{
+			if (objExisting)
+			{
+				objExisting.parentNode.removeChild(objExisting);
+			}
+			return false;
+		}
+		else if (iKeyCode != 13)
+		{
+			return true;
+		}
+	}
+
+	if (objExisting)
+	{
+		objExisting.parentNode.removeChild(objExisting);
+	}
+
+	// If there are no live regions, remove style object
+	objRegions = getElementsByAttribute(content.document, '*', 'aria-live');
+
+	if (objRegions.length === 0)
+	{
+		objExisting = content.document.getElementById('jscssliveregionexplanation');
+		objExisting.parentNode.removeChild(objExisting);
+	}
+
+	return false;
+}
+
+function addClose(objDiv)
+{
+	var objContainer = content.document.createElement('div');
+	var objButton = content.document.createElement('button');
+
+	objButton.setAttribute('type', 'button');
+	objContainer.setAttribute('id', 'jsliveregionclose');
+	objButton.appendChild(content.document.createTextNode('Close'));
+	objButton.addEventListener('click', removeDetails, false);
+	objContainer.appendChild(objButton);
+	objDiv.appendChild(objContainer);
+}
+
+function warnNoARIA()
+{
+	var objDiv, objHeading, objContent;
+
+	objDiv = content.document.createElement('div');
+	objHeading = content.document.createElement('h2');
+	objContent = content.document.createElement('p');
+	objHeading.appendChild(content.document.createTextNode('ARIA Live Regions'));
+	objDiv.appendChild(objHeading);
+	objContent.appendChild(content.document.createTextNode('No live regions detected. If live regions are inserted dynamically, change the state of the document so that the live regions are present, and reactivate this function.'));
+	objDiv.appendChild(objContent);
+	addClose(objDiv);
+	objDiv.setAttribute('id', 'jsliveregionexplanation');
+	objDiv.setAttribute('role', 'alertdialog');
+	objDiv.style.left = '45px';
+	objDiv.style.top = parseInt(content.pageYOffset, 10) + 45 + 'px';
+	drag.initialise(objDiv);
+	content.document.body.appendChild(objDiv);
+}
+
+function highlightElement(objEvent)
+{
+	var objElement = objEvent.target;
+	var objTarget = content.document.getElementById(objElement.getAttribute('href').substr(1));
+
+	if (objTarget)
+	{
+		addClass(objTarget, 'jsliveregionidfocus');
+	}
+}
+
+function removeHighlight(objEvent)
+{
+	var objElement = objEvent.target;
+	var objTarget = content.document.getElementById(objElement.getAttribute('href').substr(1));
+	var strValue = objTarget.getAttribute('class');
+
+	strValue = strValue.replace(/\s*jsliveregionidfocus\s*/, '');
+
+	if (strValue !== '')
+	{
+		objTarget.setAttribute('class', strValue);
+	}
+	else
+	{
+		objTarget.removeAttribute('class');
+	}
+}
+
+function createIDRefAnchors(strValue)
+{
+	var arRefs = strValue.split(' ');
+	var objList = content.document.createElement('ul');
+	var objItem, objAnchor, strIDREF, iCounter;
+
+	addClass(objList, 'jsliveregionidrefs');
+
+	for (iCounter=0; iCounter<arRefs.length; iCounter++)
+	{
+		strIDREF = arRefs[iCounter];
+		objItem = content.document.createElement('li');
+		objAnchor = content.document.createElement('a');
+		objAnchor.appendChild(content.document.createTextNode(strIDREF));
+		objAnchor.addEventListener('mouseover', highlightElement, false);
+		objAnchor.addEventListener('mouseout', removeHighlight, false);
+		objAnchor.addEventListener('focus', highlightElement, false);
+		objAnchor.addEventListener('blur', removeHighlight, false);
+		objAnchor.setAttribute('href', '#' + strIDREF);
+		objAnchor.addEventListener('click', removeDetails, false);
+		objItem.appendChild(objAnchor);
+		objList.appendChild(objItem);
+	}
+
+	return objList;
+}
+
+function displayMarkupFragment(objDiv, objElement)
+{
+	var objHeading = content.document.createElement('h3');
+	var objPre = content.document.createElement('pre');
+	var objCode = content.document.createElement('code');
+	var iCounter, iAttributes, bNegTabIndex, bAddAttr, strAttr, strValue, strClass;
+
+	objHeading.appendChild(content.document.createTextNode('Markup'));
+	objDiv.appendChild(objHeading);
+
+	objCode.appendChild(content.document.createTextNode('<' + objElement.tagName.toLowerCase()));
+
+	for (iCounter=0, iAttributes=0; iCounter<objElement.attributes.length; iCounter++)
+	{
+		bNegTabIndex = false;
+		bAddAttr = true;
+		strAttr = objElement.attributes[iCounter].name.toLowerCase();
+		strValue = objElement.attributes[iCounter].value;
+
+		// Make sure it's not a tabindex value we have added
+		if (strAttr == 'tabindex')
+		{
+			strClass = objElement.getAttribute('class');
+			if (strClass.indexOf('jsliveregiontabindexmz') >= 0)
+			{
+				bNegTabIndex = true;
+			}
+			else if (strClass.indexOf('jsliveregiontabindex') >= 0)
+			{
+				bAddAttr = false;
+			}
+		}
+
+		// Make sure it's not a class name we are using
+		if (strAttr == 'class')
+		{
+			strClass = objElement.getAttribute('class');
+			strClass = strClass.replace(/\s*jsliveregiontabindexmz\s*/, '');
+			strClass = strClass.replace(/\s*jsliveregiontabindex\s*/, '');
+			strClass = strClass.replace(/\s*jsliveregiontarget\s*/, '');
+
+			if (strClass === "")
+			{
+				bAddAttr = false;
+			}
+			else
+			{
+				strValue = strClass;
+			}
+		}
+
+		if (bAddAttr)
+		{
+			if (iAttributes > 0)
+			{
+				objCode.appendChild(content.document.createTextNode('\r\n    '));
+			}
+			else
+			{
+				objCode.appendChild(content.document.createTextNode(' '));
+			}
+
+			if (bNegTabIndex)
+			{
+				objCode.appendChild(content.document.createTextNode('tabindex="-1"'));
+			}
+			else
+			{
+				objCode.appendChild(content.document.createTextNode(strAttr + '="' + strValue + '"'));
+			}
+			iAttributes++;
+		}
+	}
+
+	objCode.appendChild(content.document.createTextNode('>'));
+	objPre.appendChild(objCode);
+	objDiv.appendChild(objPre);
+}
+
+function displayARIAAttributes(objDiv, objElement)
+{
+	var objHeading = content.document.createElement('h3');
+	var objTable = content.document.createElement('table');
+	var objTR, objTH, objTD, objList;
+	var iCounter, strAttr, strValue;
+
+	objHeading.appendChild(content.document.createTextNode('ARIA Attributes'));
+	objDiv.appendChild(objHeading);
+
+	for (iCounter=0; iCounter<objElement.attributes.length; iCounter++)
+	{
+		strAttr = objElement.attributes[iCounter].name.toLowerCase();
+		strValue = objElement.attributes[iCounter].value;
+
+		if (strAttr.substr(0, 5) == 'aria-' || strAttr == 'role')
+		{
+			objTR = content.document.createElement('tr');
+			objTH = content.document.createElement('th');
+			objTD = content.document.createElement('td');
+			objTH.appendChild(content.document.createTextNode(strAttr));
+			objTH.setAttribute('scope', 'row');
+			if (strAttr == 'aria-describedby' || strAttr == 'aria-labelledby')
+			{
+				objList = createIDRefAnchors(strValue);
+				objTD.appendChild(objList);
+			}
+			else
+			{
+				objTD.appendChild(content.document.createTextNode(strValue));
+			}
+			objTR.appendChild(objTH);
+			objTR.appendChild(objTD);
+			objTable.appendChild(objTR);
+		}
+	}
+
+	objTable.setAttribute('id', 'jsliveregiontable');
+	objTable.setAttribute('summary', 'ARIA attributes along with their values');
+	objDiv.appendChild(objTable);
+}
+
+function determineVerbosity(objDiv, objElement)
+{
+	var objHeading = content.document.createElement('h3');
+	var objList = content.document.createElement('ul');
+	var objNote = content.document.createElement('p');
+	var bActive = true;
+	var objItem, strData;
+
+	objHeading.appendChild(content.document.createTextNode('Verbosity'));
+	objDiv.appendChild(objHeading);
+
+	strData = objElement.getAttribute('aria-live');
+
+	switch (strData.toLowerCase())
+	{
+		case 'off' :
+			objNote.appendChild(content.document.createTextNode('Notifications are off. This region is not currently live.'));
+			bActive = false;
+			break;
+		case 'polite' :
+			objNote.appendChild(content.document.createTextNode('Notifications will be polite. Updates will be reported to the user when they complete their current activity.'));
+			break;
+		case 'assertive' :
+			objNote.appendChild(content.document.createTextNode('Notifications will be assertive. Updates have a high priority, and will be reported to the user as soon as possible, but won\'t necessarily interrupt the user.'));
+			break;
+	}
+
+	strData = objElement.getAttribute('aria-atomic');
+
+	if (bActive)
+	{
+		if (strData == "true")
+		{
+			objNote.appendChild(content.document.createTextNode(' The whole of this region will be announced to the user when an update occurs.'));
+		}
+		else
+		{
+			objNote.appendChild(content.document.createTextNode(' Only the part of the region that is updated will be announced to the user.'));
+		}
+	}
+
+	objDiv.appendChild(objNote);
+	
+
+	// Determine relevance
+	objHeading = content.document.createElement('h3');
+	objList = content.document.createElement('ul');
+	if (bActive)
+	{
+		objHeading.appendChild(content.document.createTextNode('Expected Updates'));
+	}
+	else
+	{
+		objHeading.appendChild(content.document.createTextNode('Expected Updates (when live)'));
+	}
+
+	objDiv.appendChild(objHeading);
+	strData = objElement.getAttribute('aria-relevant');
+
+	if (strData === null)
+	{
+		// If nothing is specified, text and additions are expected
+		objItem = content.document.createElement('li');
+		objItem.appendChild(content.document.createTextNode('Text changes'));
+		objList.appendChild(objItem);
+		objItem = content.document.createElement('li');
+		objItem.appendChild(content.document.createTextNode('Nodes might be added to the region'));
+		objList.appendChild(objItem);
+	}
+	else if (strData.toLowerCase().indexOf('all') >= 0)
+	{
+		// List all expected changes
+		objItem = content.document.createElement('li');
+		objItem.appendChild(content.document.createTextNode('Text changes'));
+		objList.appendChild(objItem);
+		objItem = content.document.createElement('li');
+		objItem.appendChild(content.document.createTextNode('Nodes might be added to the region'));
+		objList.appendChild(objItem);
+		objItem = content.document.createElement('li');
+		objItem.appendChild(content.document.createTextNode('Nodes might be removed from the region'));
+		objList.appendChild(objItem);
+	}
+	else
+	{
+		// Search for specific values
+		if (strData.toLowerCase().indexOf('text') >= 0)
+		{
+			objItem = content.document.createElement('li');
+			objItem.appendChild(content.document.createTextNode('Text changes'));
+			objList.appendChild(objItem);
+		}
+		if (strData.toLowerCase().indexOf('additions') >= 0)
+		{
+			objItem = content.document.createElement('li');
+			objItem.appendChild(content.document.createTextNode('Nodes might be added to the region'));
+			objList.appendChild(objItem);
+		}
+		if (strData.toLowerCase().indexOf('removals') >= 0)
+		{
+			objItem = content.document.createElement('li');
+			objItem.appendChild(content.document.createTextNode('Nodes might be removed from the region'));
+			objList.appendChild(objItem);
+		}
+	}
+
+	objDiv.appendChild(objList);
+}
+
+function buildDialog(objElement)
+{
+	var objDiv = content.document.createElement('div');
+	var objHeading = content.document.createElement('h2');
+
+	objHeading.appendChild(content.document.createTextNode('ARIA Live Region Details'));
+	objDiv.appendChild(objHeading);
+
+	displayMarkupFragment(objDiv, objElement);
+	displayARIAAttributes(objDiv, objElement);
+	determineVerbosity(objDiv, objElement);
+	addClose(objDiv);
+
+	objDiv.style.left = getXPosition(objElement) + 'px';
+	objDiv.style.top = getYPosition(objElement) + 'px';
+	objDiv.addEventListener('keypress', removeDetails, false);
+
+	objDiv.setAttribute('id', 'jsliveregionexplanation');
+	objDiv.setAttribute('role', 'alertdialog');
+	drag.initialise(objDiv);
+
+	if (objElement.nextSibling)
+	{
+		objElement.parentNode.insertBefore(objDiv, objElement.nextSibling);
+	}
+	else
+	{
+		content.document.body.appendChild(objDiv);
+	}
+}
+
+function revealDetails(objEvent)
+{
+	var objElement = objEvent.target;
+	var objExisting = content.document.getElementById('jsliveregionexplanation');
+	var iKeyCode;
+
+	removeFocusedIDs();
+
+	// Get the element with the aria-live attribute
+	while (!objElement.getAttribute('aria-live'))
+	{
+		objElement = objElement.parentNode;
+	}
+
+	if (objEvent.type == 'keypress')
+	{
+		iKeyCode = objEvent.keyCode;
+
+		if (iKeyCode == 27)
+		{
+			if (objExisting)
+			{
+				objExisting.parentNode.removeChild(objExisting);
+			}
+			return false;
+		}
+		else if (iKeyCode != 13)
+		{
+			return true;
+		}
+	}
+
+	if (objExisting)
+	{
+		objExisting.parentNode.removeChild(objExisting);
+	}
+
+	buildDialog(objElement);
+
+	objEvent.stopPropagation();
+	objEvent.preventDefault();
+}
+
+function indicateARIA(objElement)
+{
+	var iIndex = objElement.getAttribute('tabindex');
+
+	objElement.addEventListener('click', revealDetails, false);
+	objElement.addEventListener('focus', revealDetails, false);
+	objElement.addEventListener('keypress', revealDetails, false);
+
+	addClass(objElement, 'jsliveregiontarget');
+
+	if (iIndex === null)
+	{
+		addClass(objElement, 'jsliveregiontabindex');
+	}
+	else if (iIndex == -1)
+	{
+		addClass(objElement, 'jsliveregiontabindexmz');
+	}
+
+	if (iIndex === null || iIndex == -1)
+	{
+		objElement.setAttribute('tabindex', '0');
+	}
+}
+
+function removeIndication(objElement)
+{
+	var strValue = objElement.getAttribute('class');
+
+	objElement.removeEventListener('click', revealDetails, false);
+	objElement.removeEventListener('focus', revealDetails, false);
+	objElement.removeEventListener('keypress', revealDetails, false);
+
+	// Put tabindex attributes back to what they were
+	if (strValue.indexOf('jsliveregiontabindexmz') >= 0)
+	{
+		objElement.setAttribute('tabindex', '-1');
+	}
+	else if (strValue.indexOf('jsliveregiontabindex') >= 0)
+	{
+		objElement.removeAttribute('tabindex');
+	}
+
+	// Remove classes that we set
+	strValue = strValue.replace(/\s*jsliveregiontabindexmz\s*/, '');
+	strValue = strValue.replace(/\s*jsliveregiontabindex\s*/, '');
+	strValue = strValue.replace(/\s*jsliveregiontarget\s*/, '');
+
+	if (strValue !== '')
+	{
+		objElement.setAttribute('class', strValue);
+	}
+	else
+	{
+		objElement.removeAttribute('class');
+	}
+}
+
+function highlightRegions()
+{
+	var objHead = content.document.getElementsByTagName('head')[0];
+	var objElements = getElementsByAttribute(content.document, '*', 'aria-live');
+	var objExisting = content.document.getElementById('jscssliveregionexplanation');
+	var bLive = false;
+	var objCSS, iCounter;
+
+	for (iCounter=0; iCounter<objElements.length; iCounter++)
+	{
+		if (!objExisting)
+		{
+			indicateARIA(objElements[iCounter]);
+			bLive = true;
+		}
+		else
+		{
+			removeIndication(objElements[iCounter]);
+		}
+	}
+
+	if (!objExisting)
+	{
+		objCSS = content.document.createElement('style');
+		objCSS.setAttribute('type', 'text/css');
+		objCSS.setAttribute('id', 'jscssliveregionexplanation');
+		objCSS.appendChild(content.document.createTextNode('div#jsliveregionexplanation, div#jsliveregionexplanation h2, div#jsliveregionexplanation h3, div#jsliveregionexplanation pre, div#jsliveregionexplanation code, div#jsliveregionexplanation p, table#jsliveregiontable,table#jsliveregiontable td,table#jsliveregiontable th,div#jsliveregionexplanation a{color: #000 !important; background: #cf9 !important; text-align: left !important; vertical-align: top !important; z-index: 999 !important; font-weight: normal !important; border: none  !important;} div#jsliveregionexplanation code, div#jsliveregionexplanation pre {white-space:  pre-wrap !important;} div#jsliveregionexplanation {border: 5px double #360 !important; padding: 0.2em 0.5em !important; margin: 0 !important; width: 25em !important; position: absolute !important;} .jsliveregiontarget {outline: 5px solid #360 !important;} .jsliveregiontarget:focus {outline: 5px solid #cf9 !important;} table#jsliveregiontable{border-collapse: collapse !important; border: 2px solid #360 !important;} table#jsliveregiontable td, table#jsliveregiontable th {padding: 0.2em !important; border: 1px solid #360 !important; font-weight: normal !important;} table#jsliveregiontable th {font-weight: bold !important;} div#jsliveregionexplanation a {color: #00c !important; background: #cf9 !important; text-decoration: underline !important;} div#jsliveregionexplanation a:hover, div#jsliveregionexplanation a:focus {color: #00c !important; background: #fc0 !important;} div#jsliveregionexplanation ul.jsliveregionidrefs {color: #000 !important; background: #cf9 !important; margin: 0 !important; padding: 0 !important; list-style-type: none !important;} div#jsliveregionexplanation ul.jsliveregionidrefs li {color: #000 !important; background: #cf9 !important; padding-right: 0.5em !important; display: inline !important;} .jsliveregionidfocus {outline: 2px solid #360 !important;} div#jsliveregionclose {text-align: center !important; padding-bottom: 0.5em !important;}'));
+		objHead.appendChild(objCSS);
+
+		if (!bLive)
+		{
+			warnNoARIA();
+		}
+	}
+	else
+	{
+		// Clear up
+		objHead.removeChild(objExisting);
+
+		objExisting = content.document.getElementById('jsliveregionexplanation');
+
+		if (objExisting)
+		{
+			objExisting.parentNode.removeChild(objExisting);
+		}
+		removeFocusedIDs();
+	}
+}

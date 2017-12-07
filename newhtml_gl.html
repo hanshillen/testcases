@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Test Page: HTML and WAI-ARIA methods for labeling form controls</title>
+
+<!-- Hidden Text class used to absolutely position text out of the visual design but still make the text available to AT users like screen reader users -->
+<style type="text/css">
+.hiddenText, .HiddenText, .ui-hidden-accessible, ui-helper-hidden-accessible {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 0;
+}
+
+</style>
+
+</head>
+<body>
+<h1>Test Page: HTML and WAI-ARIA methods for labeling form controls</h1>
+
+  <h2>HTML Alone</h2>
+    <p>Generally accepted WAI-ARIA best practices for implementation are that if you can use a native HTML element over WAI-ARIA markup then you should.</p>
+    <p>There are 2 primary methods of labeling form controls:</p>
+		<ol>
+		  <li>Defining a visible or hidden "explicit" form field label by defining a label element with a for attribute referencing the id attribute of the form field element</li>
+		  <li>Or NOT defining a label element at all and instead using the title attribute of the form field element (input, select, textarea).</li> 
+		</ol>
+		<p>NOTE: Use of the title attribute to provide a field label should be used sparingly and generally only when the visual design requirements restrict the addition of a visible text label in close proximity to the form control. A common example of this is when form fields appear in a data table and the column and/or row headers provide a visual indication of the field's purpose. However, even in this instance we need to provide a programmatic label for each form control so the control has an accessible name that assistive technology can use to convey the purpose of the field.</p>
+    
+		
+    <h3>Visible Explicit Labels</h3>
+    
+<!--      
+		  <h4>Explicit Label: Textbox</h3>
+-->      
+			<p><label for="uname">User Name:</label> <input type="text" id="uname" /></p>
+      
+<!--      
+      <h4>Explicit Label: Password</h3>
+-->      
+      <p><label for="pwd">Password:</label> <input type="password" id="pwd" /></p>
+
+<!--      
+      <h4>Explicit Label: Radio</h3>
+-->      
+      <p>
+			<input type="radio" name="gender" id="rd1" /><label for="rd1">Female</label>
+      <input type="radio" name="gender" id="rd2" /><label for="rd2">Male</label>
+			</p>
+
+<!--      
+		  <h4>Explicit Label: Textbox with formatting guidance</h3>
+-->      
+			<p><label for="dob">Date of Birth:</label> <input type="text" id="dob" size="8" maxlength="8" aria-describedby="dobHelpText" /><span id="dobHelpText">MM/DD/YY</span></p>
+
+<!--      
+      <h4>Explicit Label: Checkbox</h3>
+-->      
+			<fieldset>
+			<legend>Shift?</legend>
+			<input type="checkbox" name="shift" id="chk1" /><label for="chk1">Day</label>
+      <input type="checkbox" name="shift" id="chk2" /><label for="chk2">Night</label>
+			</fieldset>
+			
+<!--      
+      <h4>Explicit Label: File</h3>    
+-->      
+			<p>
+			<label for="doc">Choose Document:</label> <input type="file" id="doc" />
+			</p>
+			
+<!--      
+      <h4>Explicit Label: Select</h3>    
+-->      
+			<p>
+			<label for="doct">Document Type:</label>
+			<select id="doct">
+			<option value="1">Application</option>
+			<option value="2">Resume</option>
+			<option value="3">Portfolio</option>
+			<option value="4">References</option>
+			</select>
+			</p>
+					
+<!--      
+      <h4>Explicit Label: TextArea</h3>    
+-->      
+			<p>
+			<label for="cmmt">Comments:</label> <textarea rows="5" cols="30" id="cmmt"></textarea>
+			</p>
+		
+		
+    <h3>Hidden Explicit Labels</h3>
+		<p>To provide a unique explicit label for each form control in the data table, the &lt;label&gt; element is hidden off-screen but the for attribute of the &lt;label&gt; element references the id attribute of the corresponding form field element. The content of each field label follows the pattern of the column header text and then the row header text. For example, "User Name for Applicant 1".</p>
+		<p>Formatting guidance for the Date of Birth field is included as a visual cue in the table's column header but it also programmatically associated with each of the Date of Birth text boxes. For Applicant 2, the "MM/DD/YY" formatting guidance is positioned off-screen and an aria-described attribute is added to the &lt;input&gt; element so this text can be announced as the accessible description for the textbox for ARIA-supported browsers and assistive technology. For the Date of Birth field for Applicant 1, the same formatting guidance is also provided as a text string in the title attribute of the &lt;input&gt; element in an attempt to provide an accessible description for older browsers or AT that don't support WAI-ARIA.
+    <table>
+		<caption>Labeling Form Fields in a Data Table</caption>
+		<thead>
+		  <tr>
+		    <th>Submission</th>
+				<th>User Name</th>
+		    <th>Password</th>
+		    <th>Gender</th>
+				<th>DOB<br />MM/DD/YY</th>
+		    <th>Shift</th>
+		    <th>Choose Document</th>
+		    <th>Document Type</th>
+		    <th>Comments</th>
+			</tr>
+		</thead>
+
+		<tbody>
+		  <tr>
+		    <td>Applicant 1</td>
+				<td><label for="uname1" class="HiddenText">User Name for Applicant 1</label> <input type="text" id="uname1" /></td>
+		    <td><label for="pwd1" class="HiddenText">Password for Applicant 1</label> <input type="password" id="pwd1" /></td>
+		    <td>
+						<input type="radio" name="gender1" id="rd1A" /><label for="rd1A"><span class="HiddenText">Gender for Applicant 1: </span>Female</label>
+						<input type="radio" name="gender1" id="rd2A" /><label for="rd2A"><span class="HiddenText">Gender for Applicant 1: </span>Male</label>
+				</td>
+
+<!-- As an example I am including a title attribute with the same formatting guidance "tip" text as is visually hidden off-screen -->
+		    <td><label for="dob1" class="HiddenText">Date of Birth for Applicant 1</label> <input type="text" id="dob1" size="8" maxlength="8" title="Expected Format: MM/DD/YY" aria-describedby="dobHelpText1" /><span id="dobHelpText1" class="HiddenText">MM/DD/YY</span></td>
+
+				<td>
+						<input type="checkbox" name="shift1" id="chk1A" /><label for="chk1A"><span class="HiddenText">Shift for Applicant 1: </span>Day</label>
+						<input type="checkbox" name="shift1" id="chk2A" /><label for="chk2A"><span class="HiddenText">Shift for Applicant 1: </span>Night</label>
+				</td>
+		    <td><label for="doc1" class="HiddenText">Choose Document for Applicant 1</label> <input type="file" id="doc1" /></td>
+		    <td>			
+									<label for="doct1" class="HiddenText">Document Type for Applicant 1</label>
+									<select id="doct1">
+												<option value="1">Application</option>
+												<option value="2">Resume</option>
+												<option value="3">Portfolio</option>
+												<option value="4">References</option>
+									</select>
+			  </td>
+		    <td><label for="cmmt1" class="HiddenText">Comments for Applicant 1</label> <textarea rows="5" cols="30" id="cmmt1"></textarea></td>
+			</tr>
+
+		  <tr>
+		    <td>Applicant 2</td>
+		    <td><label for="uname2" class="HiddenText">User Name for Applicant 2</label> <input type="text" id="uname2" /></td>
+		    <td><label for="pwd2" class="HiddenText">Password for Applicant 2</label> <input type="password" id="pwd2" /></td>
+		    <td>
+						<input type="radio" name="gender2" id="rd1B" /><label for="rd1B"><span class="HiddenText">Gender for Applicant 2: </span>Female</label>
+						<input type="radio" name="gender2" id="rd2B" /><label for="rd2B"><span class="HiddenText">Gender for Applicant 2: </span>Male</label>
+				</td>
+				
+<!-- In this example I am NOT including a title attribute with the same formatting guidance "tip" text as is visually hidden off-screen -->
+		    <td><label for="dob2" class="HiddenText">Date of Birth for Applicant 2</label> <input type="text" id="dob2" size="8" maxlength="8" aria-describedby="dobHelpText2" /><span id="dobHelpText2" class="HiddenText">MM/DD/YY</span></td>
+
+		    <td>
+						<input type="checkbox" name="shift2" id="chk1B" /><label for="chk1B"><span class="HiddenText">Shift for Applicant 2: </span>Day</label>
+						<input type="checkbox" name="shift2" id="chk2B" /><label for="chk2B"><span class="HiddenText">Shift for Applicant 2: </span>Night</label>
+				</td>
+		    <td><label for="doc2" class="HiddenText">Choose Document for Applicant 2</label> <input type="file" id="doc2" /></td>
+		    <td>			
+									<label for="doct2" class="HiddenText">Document Type for Applicant 2</label>
+									<select id="doct2">
+												<option value="1">Application</option>
+												<option value="2">Resume</option>
+												<option value="3">Portfolio</option>
+												<option value="4">References</option>
+									</select>
+			  </td>
+		    <td><label for="cmmt2" class="HiddenText">Comments for Applicant 2</label> <textarea rows="5" cols="30" id="cmmt2"></textarea></td>
+			</tr>
+
+		</tbody>
+		</table>
+		
+    <h3>Use a Title Attribute</h3>
+
+
+
+<h2>HTML Combined with WAI-ARIA</h2>
+<p>When WAI-ARIA attributes are defined in addition to an HTML label the WAI-ARIA label "wins". However, it's still beneficial to define a label in HTML for older browsers that may not support or recognize the WAI-ARIA markup.</p>
+
+<h2>WAI-ARIA Alone</h2>
+<p>You should NOT rely on WAI-ARIA alone as older browsers and some assistive technology (like Dragon Naturally Speaking) do not support WAI-ARIA.</p>
+
+</body>
+</html>

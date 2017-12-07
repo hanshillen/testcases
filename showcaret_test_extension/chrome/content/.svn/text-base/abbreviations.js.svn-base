@@ -1,0 +1,161 @@
+FBL.ns(function() {
+    with(FBL) {
+        function buildFocusObjForAbbreviation(abbrElem) {
+            return [{
+                action: 'scroll',
+                elem: abbrElem
+            },
+            {
+                action: 'highlight',
+                elem: abbrElem,
+                className: 'watLinkHighlight'
+            }];
+        }
+
+        function buildFocusObjForAcronym(acronymElem) {
+            return [{
+                action: 'scroll',
+                elem: acronymElem
+            },
+            {
+                action: 'highlight',
+                elem: acronymElem,
+                className: 'watLinkHighlight'
+            }];
+        }
+
+        var WAT = Firebug.WatModule;
+        WAT.abbreviationsHandler = function(tracker) {
+            var i, j;
+            if (! (tracker instanceof WAT.Tracker)) {
+                return false;
+            }
+
+            var errorsTotal = 0,
+            warningTotal = 0,
+            infosTotal = 0,
+            total = 0;
+
+            var doc = jQuery(tracker.context.browser.contentDocument);
+            /* get doc JQ */
+
+            var framesJQ = doc.find('frame, iframe');
+            var frames = [doc.get(0)];
+            if (frames.length > 0) {
+                for (i = 0; i < framesJQ.length; i++) {
+                    frames.push(framesJQ.get(i).contentDocument);
+                }
+            }
+            var location, abbreviations, acronyms, tempElems;
+
+            for (j = 0; j < frames.length; j++) {
+                doc = jQuery(frames[j]);
+
+                location = doc.get(0).location;
+
+                // <abbr> Elements
+                abbreviations = doc.find('abbr');
+                total += abbreviations.length;
+                tempElems = abbreviations.get();
+
+                for (i = 0; i < tempElems.length; i++) {
+                    var abbrElem = tempElems[i];
+                    var abbrTitle = abbrElem.getAttribute('title').replace(/^\s+|\s+$/, '');
+                    var abbrText = abbrElem.textContent.replace(/^\s+|\s+$/, '');
+                    if (abbrText.length == 0) {
+                            var inputArray = WAT.strFToArray('abbreviationWithoutText', {
+                                tag: 'shortTag',
+                                data: abbrElem
+                            });
+                            tracker.addResult('error', inputArray, buildFocusObjForAbbreviation(abbrElem));
+                            errorsTotal++;
+                    } else {
+                        if (abbrTitle.length == 0) {
+                            var inputArray = WAT.strFToArray('abbreviationWithoutTitle', {
+                                tag: 'shortTag',
+                                data: abbrElem
+                            },
+                            {
+                                tag: 'string',
+                                data: abbrText
+                            });
+                            tracker.addResult('error', inputArray, buildFocusObjForAbbreviation(abbrElem));
+                            errorsTotal++;
+                        } else {
+                            var inputArray = WAT.strFToArray('abbreviationOK', {
+                                tag: 'shortTag',
+                                data: abbrElem
+                            },
+                            {
+                                tag: 'string',
+                                data: abbrText
+                            },
+                            {
+                                tag: 'string',
+                                data: abbrTitle
+                            });
+                            tracker.addResult('info', inputArray, buildFocusObjForAbbreviation(abbrElem));
+                            infosTotal++;
+                        }
+                    }
+                }
+
+                // <acronym> Elements
+                acronyms = doc.find('acronym');
+                total += acronyms.length;
+                tempElems = acronyms.get();
+
+                for (i = 0; i < tempElems.length; i++) {
+                    var acronymElem = tempElems[i];
+                    var acronymTitle = acronymElem.getAttribute('title').replace(/^\s+|\s+$/, '');
+                    var acronymText = acronymElem.textContent.replace(/^\s+|\s+$/, '');
+                    if (acronymText.length == 0) {
+                            var inputArray = WAT.strFToArray('acronymWithoutText', {
+                                tag: 'shortTag',
+                                data: acronymElem
+                            });
+                            tracker.addResult('error', inputArray, buildFocusObjForAcronym(acronymElem));
+                            errorsTotal++;
+                    } else {
+                        if (acronymTitle.length == 0) {
+                            var inputArray = WAT.strFToArray('acronymWithoutTitle', {
+                                tag: 'shortTag',
+                                data: acronymElem
+                            },
+                            {
+                                tag: 'string',
+                                data: acronymText
+                            });
+                            tracker.addResult('error', inputArray, buildFocusObjForAcronym(acronymElem));
+                            errorsTotal++;
+                        } else {
+                            var inputArray = WAT.strFToArray('acronymOK', {
+                                tag: 'shortTag',
+                                data: acronymElem
+                            },
+                            {
+                                tag: 'string',
+                                data: acronymText
+                            },
+                            {
+                                tag: 'string',
+                                data: acronymTitle
+                            });
+                            tracker.addResult('info', inputArray, buildFocusObjForAcronym(acronymElem));
+                            infosTotal++;
+                        }
+                    }
+                }
+            }
+
+            tracker.summaryParts = WAT.buildSummary('abbreviations', total, errorsTotal, warningTotal);
+            if (errorsTotal > 0) {
+                tracker.status = "error";
+            } else if (warningTotal > 0) {
+                tracker.status = "warn";
+            } else {
+                tracker.status = "info";
+            }
+        };
+    }
+});

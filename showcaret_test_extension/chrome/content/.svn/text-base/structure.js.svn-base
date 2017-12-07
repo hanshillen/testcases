@@ -1,0 +1,167 @@
+// Outlines all headings
+function wat_headingsVisiToggle(checked) {
+	wat_toggleStyleSheet(checked, "chrome://wat_toolbar/content/stylesheets/toggle_headings.css", "wat_outlineHeadingsStylesheet");
+}
+
+/* 
+ Caller is optional, and contains a reference to the appropriate tracking object on which multiple properties can be set (only needed when verbose is set to false )
+*/ 
+
+function Wat_results(tree, colsCount, outputDoc, resultsPackage) {
+	this.tree = tree;
+	this.view = false;
+	this.outputDoc = outputDoc;
+	this.header = [];
+	this.results = resultsPackage.results;
+	this.createCols(colsCount);
+	this.populateRows();
+}
+
+Wat_results.prototype.createCols = function(colsCount) {
+	while (this.tree.firstChild.hasChildNodes()){
+		this.tree.firstChild.removeChild(this.tree.firstChild.firstChild);
+	}
+	this.tree.firstChild.appendChild(wat_buildElement(
+		this.outputDoc, 'treecol', 
+				{'id': 'wat_tree_statusIcon',
+				'ignoreincolumnpicker': 'true',
+				'width': '20'
+				}, false));
+	for (var i = 0; i < colsCount; i++) {
+		//add label somehow? (use separate array)
+		this.tree.firstChild.appendChild(wat_buildElement(
+			this.outputDoc, 'treecol', 
+			{'id': 'wat_treecol' + i,
+			'flex':i==0?'1':'3',
+			
+			}, false));
+		if (i < colsCount - 1)
+			this.tree.firstChild.appendChild(wat_buildElement(
+			this.outputDoc, 'splitter', {'class':'tree-splitter'}, false));
+	}
+}
+
+Wat_results.prototype.appendRow = function(values) {
+	var row = [];
+	for (var i in values)
+		row[this.cols[i]] = values[i];
+	this.results.push(row);
+}
+
+Wat_results.prototype.populateRows = function() {
+	//for (var i in resultsArray) {
+	//	this.appendRow(resultsArray[i]);
+	//}
+	this.tree.view = new wat_outputTreeView(this.results,this.tree.getElementsByTagName('treecol'));
+}
+function createResult(level, className /* N additional values for actual celldata */) {
+	var result = [];
+	result.push(level);
+	result.push(className);
+	for (var i = 2; i < arguments.length; i++)
+		result.push(arguments[i]);
+	return result;
+}
+
+function createVerboseOutput(type, resultsPackage, colsCount) {
+	if (type=="tree") {
+		var sidebarDoc = document.getElementById('sidebar').contentWindow.document;
+		var tree = sidebarDoc.getElementById('wat_outputTree');
+		//var resultsPackage = [];
+		//resultsPackage.results = [['hallo','hoe gaat het'],[345345,345645],['met mij goed','en met jou?'],[345345,345645]];
+		//alert(resultsPackage.results.length);
+		var cols = [];
+		var resultsObj = new Wat_results(tree, colsCount, sidebarDoc, resultsPackage)
+		//tree.view = new wat_outputTreeView(results,cols); //reload view	
+	}
+}
+
+function wat_headingsOutput(verbose, outputDoc, caller) {	
+	var i, j, headingCount = 0, headingErrors = 0, headingsList, headingLvl, previousLvl = 0, headingText;
+	var headerContent, bodyContent, className = "", strFeedback = document.getElementById('wat_strings_feedbackBundle'), title;
+	/**************** RESULTS PACKAGE ******************/
+	var resultsHeader;
+	var results = [];
+	var result;
+	if (verbose) {		
+		headerContent = wat_getOutputHeaderSection(outputDoc);
+		bodyContent = wat_getOutputBodySection(outputDoc);
+		//FIX: title creation must get more efficient
+		title = wat_buildElement(outputDoc, 'h1', {'class':'wat_outputTitle'}, strFeedback.getString
+('headingStructureFor') + " ");
+		title.appendChild(wat_buildElement(outputDoc, 'a', {'href':getBrowser().currentURI.spec, 'target':'_blank'}, getBrowser().currentURI.spec))
+		headerContent.appendChild(title);
+	}
+	//loop over documents in content window
+	documents = wat_getDocuments(wat_getContentWindow());
+	for (i in documents) {
+		//build Dom Structure 
+		//fetch all heading elements
+		headingList = wat_evaluateXPath(documents[i], "//h1 | //h2 | //h3 | //h4 | //h5 | //h6");
+
+		for (j in headingList) {
+			className = '';
+			heading = headingList[j];
+			headingLvl = parseInt(heading.nodeName.substring(1));
+			headingCount += 1;
+			for (k = previousLvl + 1; k < headingLvl; k++) {
+				if (verbose) {
+					result = [];
+					bodyContent.appendChild(wat_buildElement(outputDoc, 'p', {'class':'wat_error'}," " + strFeedback.getFormattedString('headingNestingError',[k])));
+					result = {
+						'level':k - 1, 
+						'className':'wat_error', 
+						'wat_treecol0': '', 
+						'wat_treecol1': strFeedback.getFormattedString('headingNestingError',[k]),
+						}
+						results[results.length - 1]['isContainer'] = true;
+					results.push(result);
+				}
+				headingErrors++;
+			}			
+			if (verbose) {
+				result = [];
+				headingText = wat_getElementText(heading);
+				if (headingText.trim() == '') {
+					
+					headingText = strFeedback.getString('emptyHeading');
+					className = "wat_warning";
+				}
+				bodyContent.appendChild(wat_buildElement(outputDoc, 'h' + headingLvl, {'class':className}, " " + headingText));
+				result = {'level':headingLvl - 1, 
+					'className':className, 
+					'wat_treecol0':'h' + headingLvl, 
+					'wat_treecol1': headingText
+					}
+				if (headingLvl > previousLvl && previousLvl > 0)
+					results[results.length - 1]['isContainer'] = true;
+				results.push(result);
+			}
+			previousLvl = headingLvl;			
+		//alert(results.length);
+		}
+	}
+	
+	if (headingCount == 0)
+		shortOutput = strFeedback.getString('noHeadingsFound');
+	else
+		shortOutput = strFeedback.getFormattedString('headingShortOutput',[headingCount, headingErrors]);
+	statusClass = wat_getStatusClass(headingErrors > 0, headingCount == 0, true);
+	if (!verbose) {
+		if (caller) {
+			caller.results = shortOutput;
+			caller.statusClass = statusClass;
+		}
+	}
+	else {
+		headerContent.appendChild(wat_buildElement(outputDoc, 'h2',{'class':'wat_summary ' +  statusClass}, shortOutput));
+		resultsHeader = ['wat_summary ' +  statusClass, shortOutput];
+		//createVerboseOutput('tree', {'header': resultsHeader, 'results':results}, 2);
+		}
+}
+
+// Outlines all listitems
+function wat_toggleListItems(caller) {
+	var checked = wat_updateCheckedStatus(caller);
+	wat_toggleStyleSheet(checked, "chrome://wat_toolbar/content/stylesheets/toggle_listitems.css", "wat_outlineListitemsStylesheet");
+}

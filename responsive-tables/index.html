@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			Responsive Tables
+		</title><!-- viewport -->
+		<meta name="viewport" content=
+		"width=device-width, initial-scale=1.0"><!-- CSS -->
+		<link rel="stylesheet" href="style_HH.css" type="text/css">
+		<link rel="stylesheet" href="layout.css" type="text/css">
+		<link rel="stylesheet" href="skeleton.css" type="text/css">
+		<!-- JS -->
+
+		<script type="text/javascript" src="jquery-1.7.1.min.js">
+</script>
+<!--<script type="text/javascript" src="css3-mediaqueries.js"></script>-->
+
+		<script type="text/javascript" src="html5.js">
+</script><!-- REPLACE TABLE JQUERY -->
+
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				// Set Header text as HTML data attributes so that it can be used by :before selector
+				$(".responsiveTableHH").each(function(){
+					var table = $(this);
+					var colHeaders = table.find("th[scope=col]");
+					table.find("tr").each(function(){
+						$(this).children("td").each(function(i){
+							$(this).attr("data-hdr", colHeaders.eq(i + 1).text().trim());
+						});
+					});
+				});
+
+
+				function createMediaMatch(maxWidth) {
+					var match;
+					if (window.matchMedia) {
+						match = window.matchMedia("(max-width: "+ maxWidth +"px)");
+					} else {
+						match = {};
+						match.maxWidth = maxWidth;
+					}	
+					return match;
+				}
+				
+				function checkMediaMatch(match) {
+					if (window.matchMedia) {
+						return match.matches
+					}
+					else {
+						return window.innerWidth < match.maxWidth;
+					}
+				}
+
+				var match = createMediaMatch(767);
+
+				$(".responsiveTableHH th[scope=row]").click(function(e) {
+					if (!checkMediaMatch(match))
+						return;
+					var rowHeader = $(this);
+					if (rowHeader.parent().hasClass("expanded")) {
+						rowHeader.parent().removeClass("expanded");
+
+					} else {
+						rowHeader.parent().addClass("expanded");
+					}
+				}); 
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="sixteen columns alpha omega">
+			<!--
+				<table class="responsiveTableHH">
+					<tr>
+						<th scope="row">1.1</th>
+						<td>1.2</td>
+						<td>1.3</td>
+						<td>1.4</td>
+					</tr>
+					<tr>
+						<th scope="row">2.1</th>
+						<td>2.2</td>
+						<td>2.3</td>
+						<td>2.4</td>
+					</tr>
+					<tr>
+						<th scope="row">3.1</th>
+						<td>3.2</td>
+						<td>3.3</td>
+						<td>3.4</td>
+					</tr>
+					<tr>
+						<th scope="row">4.1</th>
+						<td>4.2</td>
+						<td>4.3</td>
+						<td>4.4</td>
+					</tr>
+					<tr>
+						<th scope="row">5.1</th>
+						<td>5.2</td>
+						<td>5.3</td>
+						<td>5.4</td>
+					</tr>
+				</table>
+			-->
+				
+				<table class="responsiveTableHH" aria-labelledby>
+					<caption><h1>ARIA Language Features</h1></caption>
+					<thead>
+						<tr>
+							<th scope="col">
+								Language feature
+							</th>
+							<th scope="col">
+								default implied ARIA semantics
+							</th>
+							<th scope="col">
+								Use default ARIA semantic?
+							</th>
+							<th scope="col">
+								What Other ARIA can I use?
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">
+								<code>a</code> element
+							</th>
+							<td class="nosupport">
+								<code>link</code> role
+							</td>
+							<td class="nosupport">
+								<strong>NO</strong>
+							</td>
+							<td class="support">
+								<p>
+									<strong>Roles:</strong>
+									<code>button, checkbox,
+									menuitem, menuitemcheckbox,
+									menuitemradio, tab, or
+									treeitem</code>
+								</p>
+								<p>
+									Any global <code>aria-*</code>
+									attributes and any
+									<code>aria-*</code> attributes
+									applicable to the allowed roles
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<code>address</code> element
+							</th>
+							<td class="partial">
+								NONE
+							</td>
+							<td class="partial">
+								<strong>N/A</strong>
+							</td>
+							<td class="support">
+								<p>
+									Role: contentinfo<br>
+									Any global aria-* attributes
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<code>area</code> element
+							</th>
+							<td class="nosupport">
+								<code>link</code> role
+							</td>
+							<td class="nosupport">
+								<strong>NO</strong>
+							</td>
+							<td class="support">
+								Any aria-* attributes applicable to
+								link role. Any global aria-*
+								attributes
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<code>article</code> element
+							</th>
+							<td class="support">
+								<code>article</code> role
+							</td>
+							<td class="support">
+								<strong>YES</strong>
+							</td>
+							<td class="support">
+								<p>
+									Roles: article, document,
+									application, or main.<br>
+									Any global aria-* attributes
+									and any aria-* attributes
+									applicable to the allowed roles
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<code>aside</code> element
+							</th>
+							<td class="nosupport">
+								<code>note</code> role
+							</td>
+							<td class="nosupport">
+								<strong>NO</strong>
+							</td>
+							<td class="support">
+								<p>
+									Roles: <code>note,
+									complementary</code>, or
+									<code>search</code>.(Recommend
+									<code>role="complementary"</code>)<br>
+
+									Any global aria-* attributes
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<code>audio</code> element
+							</th>
+							<td class="partial">
+								<a title="concept-role-none" href=
+								"http://dev.w3.org/html5/spec/wai-aria.html#concept-role-none">
+								none</a>
+							</td>
+							<td class="partial">
+								<strong>N/A</strong>
+							</td>
+							<td class="support">
+								<p>
+									Role: application<br>
+									Any aria-* attributes
+									applicable to application role.
+									Any global aria-* attributes
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<code>base</code> element
+							</th>
+							<td class="partial">
+								NONE
+							</td>
+							<td class="nosupport">
+								<strong>N/A</strong>
+							</td>
+							<td class="nosupport">
+								<strong>NONE</strong>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<code>button</code> element
+							</th>
+							<td class="nosupport">
+								button role
+							</td>
+							<td class="nosupport">
+								<strong>NO</strong>
+							</td>
+							<td class="support">
+								<p>
+									Roles: link, menuitem,
+									menuitemcheckbox,
+									menuitemradio, radio.<br>
+									Any global aria-* attributes
+									and any aria-* attributes
+									applicable to the allowed roles
+								</p>
+							</td>
+						</tr>
+						<tr class="support">
+							<th scope="row">
+								<code>datalist</code> element
+							</th>
+							<td class="support">
+								listbox role, with the
+								aria-multiselectable property set
+								to "false"
+							</td>
+							<td class="support">
+								<strong>Yes - If used in scripted
+								polyfill</strong>
+							</td>
+							<td class="support">
+								Any global aria-* attributes and
+								any aria-* attributes applicable to
+								the listbox role.
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">
+								<code>details</code> element
+							</th>
+							<td class="support">
+								group role, with aria-expanded
+								state set to "true" if the
+								element's open attribute is
+								present, and set to "false"
+								otherwise
+							</td>
+							<td class="support">
+								<strong>Yes</strong>
+							</td>
+							<td class="support">
+								Any global aria-* attributes and
+								any aria-* attributes applicable to
+								the group role.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

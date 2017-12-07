@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+    var changes = ["Hello how are you", "I would like to fix this issue", "I wonder what the source of the problem could be", "please get solved!"];
+        var changesIndex = 0;
+    var test1, test2;
+    function updateText(node, text, mode){
+        if (mode) {
+            node.innerHTML = "<span>"+ text +"</span>"    
+        }
+        else {
+            node.innerText = text;
+        }
+        
+    }
+
+    window.onload = function() {
+        test1 = document.getElementById("testMeNow1");
+        test2 = document.getElementById("testMeNow2");
+        
+        setInterval(function() {
+            updateText(test1, "Seconds " + (new Date()).getSeconds(), false);
+        }, 4000);
+        setInterval(function() {
+            if (changesIndex >= changes.length) {
+                changesIndex = 0;
+            };
+            updateText(test2, changes[changesIndex++], true);
+        }, 9000);
+    };
+    </script>
+</head>
+
+<body>
+    <h1>Live Region Tests</h1>
+    <h2>Method 1</h2>
+    <div id="testMeNow1"  role="status" aria-live="polite" aria-relevant="additions"></div>
+    <h2>Method 2</h2>
+    <span id="testMeNow2" role="status" aria-live="polite"></span>
+</body>
+
+</html>

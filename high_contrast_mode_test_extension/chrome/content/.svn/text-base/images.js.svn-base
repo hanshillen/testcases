@@ -1,0 +1,179 @@
+FBL.ns( function() {
+	with (FBL) {
+		var WAT = Firebug.WatModule;
+		
+		//a11y addition		
+		function buildFocusObjForImgElem(formElem) {
+			return [ {
+			    action :'scroll',
+			    elem :formElem
+			}, {
+			    action :'highlight',
+			    elem :formElem,
+			    className :'watFormControlHighlight'
+			}, {
+			    action :'listDetails',
+			    elem :formElem,
+			    attribs : [ 'id', 'class', 'src', 'alt', 'title', 'height', 'width']
+			}]
+		};
+
+		WAT.imagesHandler = function(tracker) {
+/*			var i;
+			var total = 3122, errors = 273, warnings = 1;
+
+			tracker.summaryParts = WAT.buildSummary('', total, errors, warnings);
+			tracker.status = "valid";
+			tracker.render(); 
+*/		
+			/*
+			 * a11y addition begins
+			 */
+			if (!Firebug.A11yModule) {
+				alert('A11y extension is not installed, image rules will not be run.'); return;
+			}
+			
+			var i, j;
+			if (!(tracker instanceof WAT.Tracker)) {
+				return false;
+			}
+			var errorsTotal = warningsTotal = infosTotal = total = 0;
+			
+			var doc = jQuery(tracker.context.browser.contentDocument); /* get doc JQ */
+			
+			var framesJQ = doc.find('frame, iframe');
+			var frames = [ doc.get(0)];
+			if (frames.length > 0) {
+				for (i = 0; i < framesJQ.length; i++) {
+					frames.push(framesJQ.get(i).contentDocument);
+				}
+			}
+			var imgs, tempElems, imgElem, inputArray;
+			var added;
+			for (j = 0; j < frames.length; j++) {
+				doc = jQuery(frames[j]);
+				
+				imgs = doc.find('img');
+				total += imgs.length;
+				tempElems = imgs.get();
+				
+				for (i = 0; i < tempElems.length; i++) {
+					imgElem = tempElems[i];
+					added=false;
+					for (j = 0; j < tempElems[i].attributes.length && !added; j++) {
+						if (tempElems[i].attributes[j].name == 'alt') {
+							var issues = Firebug.A11yModule.imageAltChecks(imgElem.attributes[j]);
+							for (var k = 0; k < issues.length; k++) { 							
+								inputArray = WAT.strFToArray(issues[k], {
+									tag :'shortTag',
+									data :imgElem
+								});
+								var issueType = 'info';
+								if (issues[k].substring(0,1).toLowerCase() == 'e') { issueType = 'error'; errorsTotal++; }
+								else if (issues[k].substring(0,1).toLowerCase() == 'w') { issueType = 'warn'; warningsTotal++; }
+								tracker.addResult(issueType, inputArray, buildFocusObjForImgElem(imgElem));
+								added = true;
+							}
+						}
+					}
+					if (!added) {
+						inputArray = WAT.strFToArray('genericValidSingle', {
+						    tag :'shortTag',
+						    data :imgElem
+						});
+						tracker.addResult('info', inputArray, buildFocusObjForImgElem(imgElem));
+						infosTotal++;
+					}
+				}				
+			}
+			/*
+			 * a11y addition ends
+			 */
+
+			tracker.summaryParts = WAT.buildSummary('', total, errorsTotal, warningsTotal);
+			tracker.status = "valid";
+			tracker.render(); 
+		}
+	}
+});
+
+
+/*
+ // Outlines all headings
+ function wat_imagesVisiToggle(checked) {
+ wat_toggleStyleSheet(checked, "chrome://wat/content/stylesheets/toggle_images.css", "wat_outlineImagesStylesheet");
+ }
+
+ function wat_imagesOutput(verbose, outputDoc, caller) {	
+ var i, j, imgCount = 0, noAlts = 0, emptyAlts=0, imageList, imgElement, height, width, src, altText;
+ var headerContent, bodyContent, imgListItem, thumbWidth, className = "", strFeedback = document.getElementById('wat_strings_feedbackBundle'), title, propertiesList, li, a;
+ if (verbose) {		
+ headerContent = wat_getOutputHeaderSection(outputDoc);
+ bodyContent = wat_getOutputBodySection(outputDoc);
+ //FIX: title creation must get more efficient
+ title = wat_buildElement(outputDoc, 'h1', {'class':'wat_outputTitle'}, strFeedback.getString
+ ('imageListFor') + " ");
+ title.appendChild(wat_buildElement(outputDoc, 'a', {'href':getBrowser().currentURI.spec, 'target':'_blank'}, getBrowser().currentURI.spec))
+ headerContent.appendChild(title);
+ }
+ //loop over documents in content window
+ documents = wat_getDocuments(wat_getContentWindow());
+ for (i in documents) {
+ //build Dom Structure 
+ //fetch all heading elements
+ imgList = wat_evaluateXPath(documents[i], "//img");
+ //var_dump(imgList);
+ for (j in imgList) {
+ className="";
+ imgElement = imgList[j];
+
+
+ imgCount += 1;
+ try {
+ altText = imgElement.getAttribute('alt');
+ if (typeof altText != "string") {
+ noAlts++;
+ //wat_buildElement('')
+ className = "wat_error";
+ altText = strFeedback.getString('imageNoAlt')
+ }
+ else if(altText.trim() == '') {
+ emptyAlts++;
+ className = "wat_warning";
+ altText = strFeedback.getString('imageEmptyAlt')
+ }
+
+ } 
+ catch(e) {
+ }
+ if (verbose) {
+ imgListItem = wat_buildElement(outputDoc, 'div', {'class':"wat_imgListItem"}, false);
+ thumbWidth = imgElement.width > 100 ? 100 : width;
+ imgListItem.appendChild(wat_buildElement(outputDoc, 'img', {'src':imgElement.src,'width':thumbWidth}, false));
+ propertiesList = imgListItem.appendChild(wat_buildElement(outputDoc, 'ul', false, false));
+ propertiesList.appendChild(wat_buildElement(outputDoc, 'li',{'class':className}, strFeedback.getFormattedString('imagesAltProperty',[altText])));
+ li = propertiesList.appendChild(wat_buildElement(outputDoc, 'li', false, false));
+ a = wat_buildElement(outputDoc, 'a', {'href':imgElement.src, 'title': imgElement.src, 'target':'_blank'}, strFeedback.getFormattedString('imagesSrcProperty',[imgElement.src]));
+ li.appendChild(a);
+ propertiesList.appendChild(wat_buildElement(outputDoc, 'li', false, strFeedback.getFormattedString('imagesDimensionsProperty', [imgElement.width, imgElement.height])));
+ bodyContent.appendChild(imgListItem);
+ }
+
+ }
+ }
+
+ if (imgCount == 0)
+ shortOutput = strFeedback.getString('noImagesFound');
+ else
+ shortOutput = strFeedback.getFormattedString('imagesShortOutput',[imgCount, noAlts, emptyAlts]);
+ statusClass = wat_getStatusClass(noAlts > 0, emptyAlts > 0, true);
+ if (!verbose) {
+ if (caller) {
+ caller.results = shortOutput;
+ caller.statusClass = statusClass;
+ }
+ }
+ else 
+ headerContent.appendChild(wat_buildElement(outputDoc, 'h2',{'class':'wat_summary ' +  statusClass}, shortOutput));
+ }
+ */

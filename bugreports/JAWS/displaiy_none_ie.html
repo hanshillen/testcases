@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test Case: display none not honored on links by JAWS</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+		}
+		.hidden {
+			display: none;
+			visibility:hidden;
+		}
+		.issue {
+			color: #95080C;
+		}
+	</style>
+</head>
+<body>
+	<h1>IE/JAWS Issues related to Hidden Links</h1>
+	<p>When display:none or aria-hidden='true' is directly placed on a link, IE will expose the link as having the 'invisible' state but JAWS will still announce the link. If these attributes are placed on a parent of the link, the parent and the link are correctly ignored by JAWS. Note that virtual navigation has to be used to detect the issues for links 2 and 3. The issue extends to link lists as well. Adding visibility:hidden has no effect, as shown below.</p>
+	<h2>1. Visible Link:</h2>
+	<a href="#">Test 1</a>
+	<h2>2. Invisible Link styled with display:none and visibility:hidden <span class="issue">(Issue: still read with JAWS16/IE11)</span>:</h2>
+	<a href="#" class="hidden">Test 2</a>
+	<h2>3. Invisible Link with display:none, visibility:hidden and aria-hidden='true' <span class="issue">(Issue: still read with JAWS16/IE11)</span>:</h2>
+	<a href="#" class="hidden" aria-hidden="true">Test 3</a>
+	<h2>4. Visible Link with aria-hidden='true' <span class="issue">(Issue: still read with JAWS16/IE11)</span>:</h2>
+	<a href="#" aria-hidden="true">Test 4</a>
+	<h2>5. Hidden Div Containing Link, hidden with display: none and visibility:hidden </h2>
+	<div class="hidden">
+		<p>Some random text</p>
+		<p><a href="#">Test 5</a></p>
+	</div>
+	<h2>6. Hidden List Containing Link, hidden with display: none and visibility:hidden </h2>
+	<ul class="hidden">
+		<li><a href="#">Test 6</a></li>
+	</ul>
+	<h2>7. Visible div with aria-hidden='true'</h2>
+	<div aria-hidden='true'>
+		<p>This text is marked up with aria-hidden='true' and should be ignored by AT. <a href="#" >Test 7</a></p>
+	</div>
+</body>
+</html>

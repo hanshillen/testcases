@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>:Before vs aria-hidden test case</title>
+	<style>
+		body {
+			padding: 50px;
+		}
+		.test1::before {
+			content: "Hello ";
+		}
+
+		.test1::after {
+			content: " good bye";
+		}
+	</style>
+</head>
+<body>
+	<button>tab stop 1</button>
+	<br><br>
+	<p class="test1" aria-hidden="true">AND</p>
+	<br><br>
+	<button>tab stop  2</button>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>DescribedBy Table Issue</title>
+</head>
+
+<body role="application">
+
+<table width="200" border="1" id="descTable">
+	<tr>
+		<td>Hello</td>
+		<td>This</td>
+		<td>Is</td>
+	</tr>
+	<tr>
+		<td>A</td>
+		<td>Table</td>
+		<td>used</td>
+	</tr>
+	<tr>
+		<td>as</td>
+		<td>a </td>
+		<td>description</td>
+	</tr>
+</table>
+<label for="txt1">First Name</label>
+<input type="text"  id="txt1" aria-describedby="txtDesc1"/>
+<p tabindex="-1" id="txtDesc1">The one your parents gave you</p>
+
+<p id="testDesc">This is my description</p>
+
+<div id="testDesc2" role="presentation"><p><span>And another description</span></p></div>
+
+<div tabindex="0" aria-describedby="descTable" role="button">Button 2</div>
+
+<div tabindex="0" aria-describedby="testDesc descTable testDesc2" role="button">Button 1</div>
+
+
+</body>
+</html>

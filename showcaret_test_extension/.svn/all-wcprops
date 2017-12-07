@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/repos/!svn/ver/327/trunk/tools/wat_toolbar
+END
+install.rdf
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/!svn/ver/235/trunk/tools/wat_toolbar/install.rdf
+END
+chrome.manifest
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/repos/!svn/ver/204/trunk/tools/wat_toolbar/chrome.manifest
+END
+wat_toolbar.xpi
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/repos/!svn/ver/235/trunk/tools/wat_toolbar/wat_toolbar.xpi
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/!svn/ver/204/trunk/tools/wat_toolbar/.project
+END
+update.rdf
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/repos/!svn/ver/204/trunk/tools/wat_toolbar/update.rdf
+END

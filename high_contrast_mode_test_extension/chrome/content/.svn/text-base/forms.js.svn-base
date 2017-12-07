@@ -1,0 +1,406 @@
+FBL.ns( function() {
+	with (FBL) {
+		var WAT = Firebug.WatModule;
+		
+		function buildFocusObjForFormPair(labelElem, formElem) {
+			return [ {
+			    action :'scroll',
+			    elem :labelElem
+			}, {
+			    action :'highlight',
+			    elem :labelElem,
+			    className :'watLabelElemHighlight'
+			}, {
+			    action :'highlight',
+			    elem :formElem,
+			    className :'watFormControlHighlight'
+			}, {
+			    action :'listDetails',
+			    elem :labelElem,
+			    attribs : [ 'id', 'class', 'for', 'textContent']
+			}, {
+			    action :'listDetails',
+			    elem :formElem,
+			    attribs : [ 'id', 'class', 'type', 'title', 'aria-labelledby']
+			}]
+		};
+		
+		function buildFocusObjForFormElem(formElem) {
+			return [ {
+			    action :'scroll',
+			    elem :formElem
+			}, {
+			    action :'highlight',
+			    elem :formElem,
+			    className :'watFormControlHighlight'
+			}, {
+			    action :'listDetails',
+			    elem :formElem,
+			    attribs : [ 'id', 'class', 'type', 'title', 'aria-labelledby']
+			}]
+		};
+		
+		function buildFocusObjForLabelElem(labelElem) {
+			return [ {
+			    action :'scroll',
+			    elem :labelElem
+			}, {
+			    action :'highlight',
+			    elem :labelElem,
+			    className :'watLabelElemHighlight'
+			}, {
+			    action :'listDetails',
+			    elem :labelElem,
+			    attribs : [ 'id', 'class', 'title', 'for']
+			}]
+		};
+		
+		function buildFocusObjForButton(formElem) {
+			return [ {
+			    action :'scroll',
+			    elem :formElem
+			}, {
+			    action :'highlight',
+			    elem :formElem,
+			    className :'watFormControlHighlight'
+			}, {
+			    action :'listDetails',
+			    elem :formElem,
+			    attribs : [ 'id', 'class', 'value', 'title', 'alt']
+			}]
+		};
+		
+		/**
+		 * Checks available form controls and summarizes results
+		 */
+		WAT.formControlsHandler =
+		function(tracker) {
+			var i, j;
+			if (!(tracker instanceof WAT.Tracker)) {
+				return false;
+			}
+			var errorsTotal = warningsTotal = infosTotal = totalControls = 0;
+			
+			var doc = jQuery(tracker.context.browser.contentDocument); /* get doc JQ */
+			
+			var framesJQ = doc.find('frame, iframe');
+			var frames = [ doc.get(0)];
+			if (frames.length > 0) {
+				for (i = 0; i < framesJQ.length; i++) {
+					frames.push(framesJQ.get(i).contentDocument);
+				}
+			}
+			
+			var labels, formControls, buttons, withFor, withoutFor, labelElem, formElem, labelText, forAttr, tempJQ, safeId, inputArray, tempElems;
+			for (j = 0; j < frames.length; j++) {
+				doc = jQuery(frames[j]);
+				
+				/* get all label elements */
+				labels = doc.find('label');
+				/* get all form controls */
+				formControls =
+				doc.find("input[type='text'], input[type='checkbox'], input[type='radio'], input[type='file'], "
+				+ "input[type='password'], select, textarea, [role=input], [role=select], [role=listbox], [role=combobox], "
+				+ "[role=option], [role=checkbox], [role=radiogroup], [role=radio], [role=textbox], [role=range], " + "[role=slider], [role=spinbutton], [role=button]");
+				buttons = doc.find("button, input[type='button'], input[type='submit'], input[type='reset'], input[type='image']");
+				totalControls += formControls.length + buttons.length;
+				
+				/*
+				 * a11y addition begins
+				 */
+				if (Firebug.A11yModule) {		
+					var A11yModule = Firebug.A11yModule;
+					for (i = 0; i < formControls.length; i++) {
+						var object = formControls[i];
+				        var role= '';
+						if (object.attributes != undefined) {
+					        for(var j=0; j< object.attributes.length; j++ ) {
+								if( object.attributes[j].name == 'role' ) { role = object.attributes[j].nodeValue; }
+							}
+					        if (role != '') {
+								var rolLoc = A11yModule.getRoleLocation(role);
+								var issues = A11yModule.roleChecks(object, role, rolLoc)						
+								for (var k = 0; k < issues.length; k++) { 							
+									inputArray = WAT.strFToArray(issues[k], {
+									    tag :'shortTag',
+									    data :object
+									});
+									var issueType = 'info';
+									if (issues[k].substring(0,1).toLowerCase() == 'e') { issueType = 'error'; errorsTotal++; }
+									else if (issues[k].substring(0,1).toLowerCase() == 'w') { issueType = 'warn'; warningsTotal++; }
+									tracker.addResult('error', inputArray, buildFocusObjForButton(object));
+								} 
+								/* Should role attributes be checked here? */
+						        for(var j=0; j< object.attributes.length; j++ ) {
+									issues = A11yModule.validateARIAStatesandProps(object.attributes[j], role, rolLoc);
+									for (var k = 0; k < issues.length; k++) { 							
+										inputArray = WAT.strFToArray(issues[k], {
+										    tag :'shortTag',
+										    data :object
+										});
+										var issueType = 'info';
+										if (issues[k].substring(0,1).toLowerCase() == 'e') { issueType = 'error'; errorsTotal++; }
+										else if (issues[k].substring(0,1).toLowerCase() == 'w') { issueType = 'warn'; warningsTotal++; }
+										tracker.addResult(issueType, inputArray, buildFocusObjForButton(object));
+									}
+						        }
+					        }
+						}
+					}
+				}
+				/*
+				 * a11y addition ends
+				 */
+				
+				WAT.trace('it starts: ');
+				/* start with labels that have a 'for' attribute */
+				withFor = labels.filter('[for]');
+				withoutFor = labels.not('[for]');
+				
+				/* WAT.trace('Form controls:', formControls); */
+				/* WAT.trace('labels:', labels); */
+				/* WAT.trace('buttons: ', buttons); */
+
+				/* STEP 1: check buttons */
+				tempElems = buttons.get();
+				for (i = 0; i < tempElems.length; i++) {
+					labelText = false;
+					formElem = tempElems[i];
+					if (formElem.type != "image") {
+						if (formElem.value || formElem.textContent != "") {
+							/* OK: Button has a value text */
+							labelText = formElem.nodeName.toLowerCase() == "button" ? formElem.textContent : formElem.value;
+							inputArray = WAT.strFToArray('buttonWithValue', {
+							    tag :'shortTag',
+							    data :formElem
+							}, {
+							    tag :'string',
+							    data :labelText
+							});
+							tracker.addResult('info', inputArray, buildFocusObjForButton(formElem));
+							infosTotal++;
+						}
+						else {
+							/* error: button has no value text */
+							errorsTotal++;
+							inputArray = WAT.strFToArray('buttonWithoutValue', {
+							    tag :'shortTag',
+							    data :formElem
+							});
+							tracker.addResult('error', inputArray, buildFocusObjForButton(formElem));
+						}
+					}
+					else {
+						if (!formElem.alt) {
+							errorsTotal++;
+							/* error: Image button does not have alt */
+							inputArray = WAT.strFToArray('imageButtonHasNoAlt', {
+							    tag :'shortTag',
+							    data :formElem
+							});
+							tracker.addResult('error', inputArray, buildFocusObjForButton(formElem));
+						}
+						else {
+							infosTotal++;
+							labelText = formElem.alt;
+							/* OK: image button has alt */
+							inputArray = WAT.strFToArray('imageButtonHasAlt', {
+							    tag :'shortTag',
+							    data :formElem
+							}, {
+							    tag :'string',
+							    data :labelText
+							});
+							tracker.addResult('info', inputArray, buildFocusObjForButton(formElem));
+						}
+					}
+					WAT.addDescriptivenessWarning(tracker, formElem, labelText, 'labelTextNoGood');
+					
+				}
+				/* STEP 2: loop over label elements with for attrib */
+				tempElems = withFor.get();
+				for (i = 0; i < tempElems.length; i++) {
+					labelElem = tempElems[i];
+					labelText = labelElem.textContent;
+					forAttr = labelElem.htmlFor;
+					/* check if 'for' points to as valid form control */
+					safeId = '#' + forAttr.replace(/:/g, "\\:") /* sometimes web apps use */
+					/* colons in their IDs, */
+					/* which would break JQ */
+					/* selector; */
+					tempJQ = doc.find(safeId)
+					if (tempJQ.length >= 1) {/* label points to an existing form element */
+						formElem = tempJQ.get(0);
+						
+						/* WAT.trace(labelText); */
+						if (WAT.isFormControl(formElem)) {/* label points to an element */
+							/* that is not a form control */
+							/* OK: element exists, and is a valid form control (mark / */
+							/* remove element from JQ) */
+							inputArray = WAT.strFToArray('labelProgAssociated', {
+							    tag :'shortTag',
+							    data :formElem
+							}, {
+							    tag :'string',
+							    data :labelText
+							}, {
+							    tag :'shortTag',
+							    data :labelElem
+							});
+							tracker.addResult('info', inputArray, buildFocusObjForFormPair(labelElem, formElem));
+							
+							infosTotal++;
+							formControls = formControls.not(safeId); /* remove form control from collection, it has already been covered. */
+						}
+						else {
+							inputArray = WAT.strFToArray('labelForNotFormElem', {
+							    tag :'shortTag',
+							    data :labelElem
+							}, {
+							    tag :'string',
+							    data :labelText
+							}, {
+							    tag :'shortTag',
+							    data :formElem
+							});
+							tracker.addResult('error', inputArray, buildFocusObjForFormPair(labelElem, formElem));
+							/* ERROR: element exists, but is not a valid form control */
+							errorsTotal++;
+						}
+					}
+					else {
+						inputArray = WAT.strFToArray('labelForNonExistingElem', {
+						    tag :'shortTag',
+						    data :labelElem
+						}, {
+						    tag :'string',
+						    data :labelText
+						});
+						tracker.addResult('error', inputArray, buildFocusObjForLabelElem(labelElem));
+						/* ERROR: element does not exist */
+						errorsTotal++;
+					}
+					WAT.addDescriptivenessWarning(tracker, formElem, labelText, buildFocusObjForFormPair(labelElem));
+				}
+				
+				/* STEP 3 loop over form elements */
+				for (i = 0; i < formControls.length; i++) {
+					labelText = false;
+					formElem = formControls[i]
+					tempJQ = jQuery(formElem).parent('label');
+					/* STEP 3: check if unassociated form controls have a label element as ancestor */
+					if (tempJQ.length >= 1) {
+						/* OK: control is labeled by ancestor label */
+						labelElem = tempJQ.get(0);
+						withoutFor = withoutFor.not(tempJQ.get(0));
+						labelText = labelElem.textContent;
+						inputArray = WAT.strFToArray('labeledByParent', {
+						    tag :'shortTag',
+						    data :formElem
+						}, {
+						    tag :'string',
+						    data :labelText
+						}, {
+						    tag :'shortTag',
+						    data :labelElem
+						});
+						tracker.addResult('info', inputArray, buildFocusObjForFormPair(labelElem, formElem));
+						infosTotal++;
+					}
+					/* STEP 4: check if element has title */
+					else if (formElem.title) {
+						/* WARNING: title text is not always readable by everyone */
+						labelText = formElem.title;
+						inputArray = WAT.strFToArray('labeledByTitle', {
+						    tag :'shortTag',
+						    data :formElem
+						}, {
+						    tag :'string',
+						    data :labelText
+						});
+						tracker.addResult('warn', inputArray, buildFocusObjForFormElem(formElem));
+						warningsTotal++;
+					}
+					else if (formElem.hasAttribute('aria-labelledby')) {
+						/* OK: labeled using ARIA */
+						var labelElem = formElem.ownerDocument.getElementById(formElem.getAttribute('aria-labelledby'));
+						if (labelElem) {
+							labelText = labelElem.textContent;
+							inputArray = WAT.strFToArray('labeledByAria', {
+							    tag :'shortTag',
+							    data :formElem
+							}, {
+							    tag :'string',
+							    data :labelText
+							}, {
+							    tag :'shortTag',
+							    data :labelElem
+							});
+							tracker.addResult('warn', inputArray, buildFocusObjForFormPair(labelElem, formElem));
+							warningsTotal++;
+						}
+						else {
+							/* Error: labelled-by elem doesn't exist */
+							inputArray = WAT.strFToArray('labeledByAriaNonExisting', {
+							    tag :'shortTag',
+							    data :formElem
+							});
+							tracker.addResult('error', inputArray, buildFocusObjForFormElem(formElem));
+							errorsTotal++;
+						}
+					}
+					else if (WAT.isAriaControl(formElem) && formElem.textContent != "") {
+						inputArray = WAT.strFToArray('ariaControlLabeledByContents', {
+						    tag :'shortTag',
+						    data :formElem
+						}, {
+						    tag :'string',
+						    data :formElem.textContent
+						});
+						tracker.addResult('info', inputArray, buildFocusObjForFormElem(formElem));
+						infosTotal++;
+					}
+					else {
+						/* ERROR: there is no descriptive text */
+						inputArray = WAT.strFToArray('controlNotLabeled', {
+						    tag :'shortTag',
+						    data :formElem
+						});
+						tracker.addResult('error', inputArray, buildFocusObjForFormElem(formElem));
+						errorsTotal++;
+					}
+					WAT.addDescriptivenessWarning(tracker, formElem, labelText, 'labelTextNoGood');
+				}
+				
+				/* STEP 4: Loop over label elements without for attrib and without a form control as a child */
+				for (i = 0; i < withoutFor.length; i++) {
+					labelElem = withoutFor[i];
+					labelText = labelElem.textContent
+					/* Error label does not describe anything */
+					inputArray = WAT.strFToArray('labelHasNoFormControl', {
+					    tag :'shortTag',
+					    data :labelElem
+					}, {
+					    tag :'string',
+					    data :labelText
+					});
+					tracker.addResult('error', inputArray, buildFocusObjForLabelElem(labelElem));
+					errorsTotal++;
+				}
+			}
+			
+			/* WAT.trace('it ends: ' + formControls.length); */
+			/* WAT.trace ('controls: ' +totalControls); */
+			tracker.summaryParts = WAT.buildSummary('formControls', totalControls, errorsTotal, warningsTotal);
+			if (errorsTotal > 0) {
+				tracker.status = "error";
+			}
+			else if (warningsTotal > 0) {
+				tracker.status = "warn";
+			}
+			else {
+				tracker.status = "info";
+			}
+		}
+	}
+});

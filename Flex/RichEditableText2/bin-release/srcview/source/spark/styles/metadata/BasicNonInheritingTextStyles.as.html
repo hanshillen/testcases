@@ -1,0 +1,123 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>BasicNonInheritingTextStyles.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptComment">////////////////////////////////////////////////////////////////////////////////
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">//  ADOBE SYSTEMS INCORPORATED
+</span><span class="ActionScriptComment">//  Copyright 2008 Adobe Systems Incorporated
+</span><span class="ActionScriptComment">//  All Rights Reserved.
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">//  NOTICE: Adobe permits you to use, modify, and distribute this file
+</span><span class="ActionScriptComment">//  in accordance with the terms of the license agreement accompanying it.
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">////////////////////////////////////////////////////////////////////////////////
+</span>
+<span class="ActionScriptASDoc">/**
+ *  Controls word wrapping within the container.
+ * 
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.blockProgression.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#lineBreak
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"lineBreak"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"String"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"toFit,explicit"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"no"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Bottom inset, in pixels.
+ * 
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.paddingBottom.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#paddingBottom
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"paddingBottom"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Number"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Length"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"no"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">minValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"0.0"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">maxValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"1000.0"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Left inset, in pixels.
+ * 
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.paddingLeft.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#paddingLeft
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"paddingLeft"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Number"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Length"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"no"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">minValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"0.0"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">maxValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"1000.0"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Right inset, in pixels.
+ * 
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.paddingRight.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#paddingRight
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"paddingRight"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Number"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Length"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"no"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">minValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"0.0"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">maxValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"1000.0"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Top inset, in pixels.
+ * 
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.paddingRight.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#paddingRight
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"paddingTop"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Number"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Length"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"no"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">minValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"0.0"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">maxValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"1000.0"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Vertical alignment or justification.
+ * 
+ *  &lt;p&gt;&lt;b&gt;For the Spark theme, see
+ *  flashx.textLayout.formats.ITextLayoutFormat.verticalAlign.&lt;/b&gt;&lt;/p&gt;
+ *
+ *  &lt;p&gt;&lt;b&gt;For the Mobile theme, this is not supported.&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  @see flashx.textLayout.formats.ITextLayoutFormat#verticalAlign
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"verticalAlign"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"String"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"top,middle,bottom,justify"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"no"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+</pre></body>
+</html>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:components="spark.components.*"
+			   defaultButton="{dbtn}" viewSourceURL="srcview/index.html">
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace components "spark.components.*";
+		
+		global
+		{
+			color : #323232;
+			dropShadowColor: #afafaf;
+			dividerStrokeAlpha : 0.3;
+			dividerHighlightAlpha : 0.3;
+			fontSize: 16;
+		}
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import flashx.textLayout.elements.TextFlow;
+			import flashx.textLayout.formats.TextLayoutFormat;
+			
+			import mx.core.mx_internal;
+			
+			import spark.components.RichEditableText2;
+			import spark.events.LinkElementFocusEvent;
+			
+			use namespace mx_internal;
+			
+			protected function button_clickHandler(event:MouseEvent):void
+			{
+				var str:String = event.target == this.defaultButton ? "DEFAULT BUTTON CLICKED!" : String(event.target["label"]).toUpperCase()+" BUTTON CLICKED!";
+				trace("\n"+str+"\n");
+			}
+			
+			protected function linkFocusHandler(event:LinkElementFocusEvent):void
+			{
+				var t:RichEditableText2 = RichEditableText2(event.target);
+				var bounds:Rectangle = RichEditableText2(event.target).getElementBounds(event.linkElement);
+				trace("\n"+event+"\n\t"+event.target+"\n\tlink element bounds: "+bounds+"\n");
+			}
+			
+		]]>
+	</fx:Script>
+	<s:Button label="Before" click="button_clickHandler(event)" tabIndex="1" />
+	<s:HGroup width="80%" height="80%" horizontalCenter="0" verticalCenter="0" gap="16" paddingTop="16" paddingBottom="16">
+		<s:VGroup width="100%" height="100%" gap="16">
+			<s:Label text="RichEditableText2" tabIndex="2" fontWeight="bold">
+			</s:Label>
+			<s:Scroller width="100%" height="100%" horizontalCenter="0" verticalCenter="0">
+				<components:RichEditableText2 id="ret" width="100%" height="100%" editable="false" selectable="true" tabIndex="3"
+											  linkFocusIn="linkFocusHandler(event)" 
+											  linkFocusOut="linkFocusHandler(event)">
+				
+					<components:textFlow>
+						<s:TextFlow paragraphSpaceAfter="16">
+							<s:linkActiveFormat>
+								<s:TextLayoutFormat color="#0022f2" textDecoration="underline"/>
+							</s:linkActiveFormat>
+							<s:linkHoverFormat>
+								<s:TextLayoutFormat color="#0022f2" textDecoration="underline"/>
+							</s:linkHoverFormat>
+							<s:linkNormalFormat>
+								<s:TextLayoutFormat color="#0022f2"/>
+							</s:linkNormalFormat>
+							<s:p><s:a href="http://goo.gl/JUBDH" target="_blank">But as in landlessness alone resides highest truth, shoreless, indefinite as God</s:a>—so, better is it to perish in that howling infinite, than be ingloriously dashed upon the lee, even if that were safety! For worm-like, then, oh! who would craven crawl to land! Terrors of the terrible! is all this agony so vain? Take heart, take heart, O Bulkington! Bear thee grimly, demigod! Up from the spray of thy ocean-perishing—straight up, leaps thy apotheosis!</s:p>
+							<s:p><s:a href="http://goo.gl/LtleQ" target="_blank">As Queequeg and I are now fairly embarked in this business of whaling</s:a>; and as this business of whaling has somehow come to be regarded among landsmen as a rather unpoetical and disreputable pursuit; therefore, I am all anxiety to convince ye, ye landsmen, of the injustice hereby done to us hunters of whales.</s:p>
+							<s:p>In the first place, it may be deemed almost superfluous to establish the fact, that among people at large, the business of whaling is not accounted on a level with what are called the liberal professions. If a stranger were introduced into any miscellaneous metropolitan society, it would but slightly advance the general opinion of his merits, were he presented to the company as a harpooneer, say; <s:a href="http://goo.gl/8hpKz" target="_blank">and if in emulation of the naval officers he should append the initials S.W.F. (Sperm Whale Fishery) to his visiting card, such a procedure would be deemed pre-eminently presuming and ridiculous</s:a>.</s:p>
+							<s:p>Doubtless one leading reason why the world declines honouring us whalemen, is this: they think that, at best, our vocation amounts to a butchering sort of business; and that when actively engaged therein, we are surrounded by all manner of defilements. Butchers we are, that is true. But butchers, also, and butchers of the bloodiest badge have been all Martial Commanders whom the world invariably delights to honour. And as for the matter of the alleged uncleanliness of our business, ye shall soon be initiated into certain facts hitherto pretty generally unknown, and which, upon the whole, will triumphantly plant the sperm whale-ship at least among the cleanliest things of this tidy earth. But even granting the charge in question to be true; what disordered slippery decks of a whale-ship are comparable to the unspeakable carrion of those battle-fields from which so many soldiers return to drink in all ladies' plaudits? And if the idea of peril so much enhances the popular conceit of the soldier's profession; let me assure ye that many a veteran who has freely marched up to a battery, would quickly recoil at the apparition of the sperm whale's vast tail, fanning into eddies the air over his head. For what are the comprehensible terrors of man compared with the interlinked terrors and wonders of God!</s:p>
+						</s:TextFlow>
+					</components:textFlow>
+				
+				</components:RichEditableText2>
+			</s:Scroller>
+		</s:VGroup>
+	</s:HGroup>
+	<s:NumericStepper maximum="10"
+					  minimum="-10" tabIndex="8"/>
+	<s:Button id="dbtn" label="Default Button" click="button_clickHandler(event)" tabIndex="9"/>
+</s:Application>

@@ -1,0 +1,47 @@
+FBL.ns( function() {
+	with (FBL) {
+		var WAT = Firebug.WatModule;
+		WAT.trackerDetails = {
+			wat_toggleFormControlsBC : {
+				title : WAT.str('formControlsTrackerTitle'),
+				handler : WAT.formControlsHandler 
+			},
+			wat_toggleLinksBC : {
+				title : WAT.str('linksTrackerTitle'),
+				handler : WAT.linksHandler 
+			},
+			wat_toggleImagesBC : {
+				title : WAT.str('imagesTrackerTitle'),
+				handler : WAT.imagesHandler 
+			},
+			wat_toggleRolesBC : {
+				title : WAT.str('rolesTrackerTitle'),
+				handler : WAT.rolesHandler 
+			},
+			wat_toggleParagraphsBC : {
+				title : WAT.str('paragraphsTrackerTitle'),
+				handler : WAT.paragraphsHandler 
+			},
+			wat_toggleBlockquotesBC : {
+				title : WAT.str('blockquotesTrackerTitle'),
+				handler : WAT.blockquotesHandler 
+			},
+			wat_toggleAbbreviationsBC : {
+				title : WAT.str('abbreviationsTrackerTitle'),
+				handler : WAT.abbreviationsHandler 
+			},
+			wat_toggleTabOrderBC : {
+				title : WAT.str('tabOrderTrackerTitle'),
+				handler : WAT.tabOrderHandler 
+			},
+			wat_toggleInfoMetadataBC : {
+				title : WAT.str('infoMetadataTrackerTitle'),
+				handler : WAT.infoMetadataHandler 
+			},
+			wat_toggleInfoLanguageBC : {
+				title : WAT.str('infoLanguageTrackerTitle'),
+				handler : WAT.infoLanguageHandler 
+			}
+		}
+	}
+});		

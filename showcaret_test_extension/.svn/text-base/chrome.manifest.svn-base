@@ -1,0 +1,6 @@
+content wat_toolbar chrome/content/
+content wat_toolbar chrome/content/ contentaccessible=yes
+overlay chrome://browser/content/browser.xul			chrome://wat_toolbar/content/wat.xul
+locale wat_toolbar en-US chrome/locale/en-US/
+skin wat_toolbar classic/1.0 chrome/skin/classic/
+style	chrome://browser/content/browser.xul			chrome://wat_toolbar/skin/wat.css

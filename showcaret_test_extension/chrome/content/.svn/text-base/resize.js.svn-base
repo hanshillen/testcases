@@ -1,0 +1,67 @@
+// Resizes the window or viewport to the given width and height
+function wat_resizeWindow(width, height, viewport) {
+    var windowX = window.screenX;
+    var windowY = window.screenY;
+
+    // If resizing the viewport
+    if(viewport) {
+        var contentWindow = wat_getContentWindow();
+
+        contentWindow.innerHeight = height;
+        contentWindow.innerWidth  = width;
+    }
+    else {
+        window.resizeTo(width, height);
+    }
+    window.screenX = windowX;
+    window.screenY = windowY;
+}
+
+function wat_initResize(width, height) {
+	var viewport = document.getElementById('wat_resizeViewportToggleBC').getAttribute("checked") == "true" ? true: false;
+	wat_resizeWindow(width, height, viewport)
+}
+
+function wat_showCustomResizeWindow() {
+    var contentWindow = wat_getContentWindow();
+	window.openDialog("chrome://wat/content/dialogs/resize.xul", "wat_resizeDialog", "centerscreen,chrome,modal", document.getElementById('wat_resizeViewportToggleBC').getAttribute("checked"));
+}
+
+// Displays the current window size
+function webdeveloper_displayWindowSize()
+{
+    var contentWindow = webdeveloper_getContentWindow();
+    var stringBundle  = document.getElementById("webdeveloper-string-bundle");
+
+    webdeveloper_message(stringBundle.getString("webdeveloper_windowSize"), stringBundle.getFormattedString("webdeveloper_displayWindowSizeResult", [contentWindow.outerWidth, contentWindow.outerHeight, contentWindow.innerWidth, contentWindow.innerHeight]));
+}
+
+// Displays the current window size in the title bar
+function wat_showDimensionsInTitle(element) {
+	var contentDocument = wat_getContentDocument();
+	// If the menu is checked
+    if(element.getAttribute("checked") == "true") {
+        var contentWindow = wat_getContentWindow();
+        contentDocument.title += " - " + contentWindow.outerWidth + "x" + contentWindow.outerHeight + " [" + contentWindow.innerWidth + "x" + contentWindow.innerHeight + "]";
+		
+        window.addEventListener("resize", wat_updateWindowSizeInTitle, false);
+    }
+    else {
+        var title = contentDocument.title;
+        contentDocument.title = title.substring(0, title.lastIndexOf(" - "));
+        // Try to remove the event listener
+        try {
+            window.removeEventListener("resize", wat_updateWindowSizeInTitle, false);
+        }
+        catch(e) {}
+    }
+}
+
+// Updates the window size in the title bar
+//FIX: Doesn't update correctly when: menuitem checked -> page reloads -> window resizes
+function wat_updateWindowSizeInTitle() {
+    var contentDocument = wat_getContentDocument();
+    var contentWindow   = wat_getContentWindow();
+    var title           = contentDocument.title;
+    contentDocument.title = title.substring(0, title.lastIndexOf(" - ")) + " - " + contentWindow.outerWidth + "x" + contentWindow.outerHeight + " [" + contentWindow.innerWidth + "x" + contentWindow.innerHeight + "]";
+}

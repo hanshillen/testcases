@@ -1,0 +1,140 @@
+FBL.ns(
+	function() {
+	with(FBL) {
+		var WAT = Firebug.WatModule;
+		WAT.domplates = domplate(Firebug.Rep, {
+			// common tags
+			noItemsMessage : FirebugReps.OBJECTBLOCK({class : 'watHasMargins'},
+				TAG(FirebugReps.Caption.tag, {object :"$msg"})				
+			),
+		
+			overviewList : UL({id : 'watOverviewList', class : "watList" , onkeypress : '$handleListKeyPress'}
+			),
+			overviewListItem : LI({id : "$obj.id|getTrackerId", class : '.watResultItemRow watResultItemRow', 
+				tabindex : "-1", onfocus : "$obj.handleSummaryItemFocus", onblur : "$obj.handleSummaryItemBlur"}, 
+				DIV({class: "objectBox objectBox-errorMessage"},
+					TAG('$overviewItemTitle', {obj : '$obj'}),
+					DIV({class: 'summaryDetails'})
+				)
+					
+			),
+			overviewItemTitle : DIV({class : 'errorTitle caption'}, 
+					DIV({class:"objectLink-sourceLink"},
+						TAG('$closeButton', {obj :'$obj'}),
+						TAG('$refreshButton', {obj :'$obj'})
+					),
+					' $obj.title'
+			),
+			
+			resultsList : UL({id : 'watResultsList', class : "watList", onkeypress : '$handleListKeyPress'}
+			),
+			
+			resultListItem : LI({class :"watResultItemRow $obj.status|getStatusClass", onfocus : "$obj.handleResultItemFocus", onblur : "$obj.handleResultItemBlur", tabindex : '-1'}, 
+				DIV({class: "objectBox"} 
+				)
+			),
+			
+			shortTag : FirebugReps.OBJECTLINK(
+				SPAN({class: "selectorTag $object|FirebugReps.Element.getVisible"},
+						"&lt;",
+						SPAN({class: ""}, "$object|FirebugReps.Element.getSelectorTag"),
+						FOR('attr', '$object|getRelevantAttribs',
+							TAG("$attrTag", {attr : '$attr'})	
+						),
+						"&gt;"
+	            )
+	         ),
+	        
+	        getRelevantAttribs : function(elem) {
+	        	var attribNames = [];
+				var attribDetails = [];
+				var attrib;
+	        	switch(elem.nodeName.toLowerCase()) {
+					case 'input':
+							attribNames.push('type');
+						break;
+					case 'label':
+							// attribNames.push('for');
+						break;
+				}
+	        	attribNames.push('role');
+	        	attribNames.push('alt'); //a11y addition
+	        	for (var i = 0; i < attribNames.length; i++) {
+	        		attrib = elem.getAttribute(attribNames[i]);
+	        		if (attrib !== null) {
+	        			attribDetails.push({nodeName : attribNames[i], nodeValue : attrib});
+	        		}
+	        	}
+	        	return attribDetails;
+	        },
+	        
+			text : SPAN({}, '$object'),
+			string : SPAN({class : "watResultString"}, '$object'),
+			image : IMG({src: '$object'}),
+			valid : SPAN({class : "watValid"}, '$msg'),
+			error : SPAN({class : "watError"}, '$msg'),
+			warning : SPAN({class : "watWarning"}, '$msg'),
+			waiting : SPAN({class : "watWaiting"}, '$msg'),
+			closeButton : INPUT({class: "watCloseTrackerBtn", 
+				type : "image", 
+				src :"chrome://firebug/skin/win/close.png", 
+				alt : WAT.str('stopTracker', '$obj,title'), 
+				title : WAT.str('stopTracker', '$obj.title'), 
+				onclick : "$obj.handleCloseButtonClick"}),
+			refreshButton : INPUT({class: "watRefreshTrackerBtn", 
+				type : "image", 
+				src :"chrome://wat_toolbar/skin/arrow_refresh_small.png", 
+				alt : WAT.str('refreshTracker', '$obj,title'), 
+				title : WAT.str('refreshTracker', '$obj.title'), 
+				onclick : "$obj.handleRefreshButtonClick"}),
+			attrTag : SPAN({class: "nodeAttr editGroup"},
+				"&nbsp;", SPAN({class: "nodeName editable"}, "$attr.nodeName"), "=&quot;",
+				SPAN({class: "nodeValue editable"}, "$attr.nodeValue"), "&quot;"
+			),
+			
+			getFormattedCloseLabel : function(title) {
+	        	return WAT.strF('stopTracker', title);
+	        },
+	        getFormattedRefreshLabel : function(title) {
+	        	return WAT.strF('refreshTracker', title);
+	        },
+	        detailsList: TAG(Firebug.DOMPanel.DirTable, {object : '$obj'})
+	        
+	        ,
+			// handlers
+			handleListKeyPress : function(event) {
+				var passThrough = true;
+				switch(event.keyCode) {
+					case 40: // up
+						if (event.target.nextSibling && event.target.nextSibling.nodeType == Node.ELEMENT_NODE) {
+							event.target.nextSibling.focus();
+							passThrough = false
+						}
+						break;
+					case 38: // down
+						if (event.target.previousSibling && event.target.previousSibling.nodeType == Node.ELEMENT_NODE) {
+							event.target.previousSibling.focus();
+							passThrough = false;
+						}
+						break;
+					case 37:
+					case 39:
+						passThrough = false;
+						break;
+				}
+				if (!passThrough) {
+					event.stopPropagation();
+					event.preventDefault();
+				}
+			},
+			// helpers
+			getTrackerId : function(id) {
+				return id + "_trackerRow";
+			},
+			getStatusClass : function(status) {
+				return 'logRow-' + status;
+			}		
+		});
+	}
+}
+);

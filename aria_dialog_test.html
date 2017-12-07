@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+
+<script language="javascript">
+	var msgArray = [
+		"My first message",
+		"Second statement",
+		"Something else",
+		"Let's hope this is working"
+	];
+	
+	var index = 0;
+	window.onload =function() {
+		setInterval(function() {
+			index = index >= msgArray.length -1? 0 : ++index;
+			document.getElementById("liveTest1").textContent = msgArray[index];
+		}, 5000);
+	}
+</script>
+</head>
+
+<body>
+
+<div tabindex="0" hidefocus="true" role="alert" aria-live="assertive" id="liveTest1" class=" x-info x-component" style="position: absolute; left: 1205px; top: 177px; width: 225px;"></div>
+
+<p id="liveTest2" aria-live="assertive"></p>
+
+
+<div role="alertdialog" aria-labelledby="lbl1" aria-describedby="msg1">
+	<div id="lbl1">Problem</div>
+	<div id="msg1">The name you provided is incorrect</div>
+	<button>OK</button>
+</div>
+
+<div role="alertdialog" aria-labelledby="lbl1" aria-describedby="txt1">
+	<div id="lbl1">Problem</div>
+	<div id="txt1">The name you provided is incorrect</div>
+	<label for="txt1"> <input type="text" id="txt1"/>
+</div>
+
+
+
+
+<div  hidefocus="true" role="dialog" aria-labelledby="x-auto-1-label" aria-describedby="x-auto-6" id="x-auto-5" class=" x-panel x-component x-abs-layout-item" style="width: 300px; left: 570px; top: 107px;"><div class="x-panel-tl" role="presentation"><div class="x-panel-tr" role="presentation"><div class="x-panel-tc" role="presentation"><div role="presentation" class=" x-small-editor x-panel-header x-component x-unselectable" id="x-auto-1" unselectable="on"><div style="overflow: visible; float: right;" role="presentation" id="x-auto-2" class=" x-panel-toolbar x-component x-hide-display"><table cellspacing="0" cellpadding="0" role="presentation"><tbody role="presentation"><tr role="presentation"></tr></tbody></table></div><span id="x-auto-1-label" role="heading" aria-level="1" class="x-panel-header-text">Navigation Instructions</span></div></div></div></div><div class="x-panel-bwrap" role="presentation"><div class="x-panel-ml" role="presentation"><div class="x-panel-mr" role="presentation"><div class="x-panel-mc" role="presentation"><div class="x-panel-body" role="presentation" style="width: 288px;"><div id="x-auto-6"  class=" x-component" title="This is where we tell users how to use the focus manager API. To navigate the children of a container use the tab and shift-tab keys. To step into a container use the Enter key. To step out of a container use the Escape key." style="margin: 2px; width: 284px; height: 56px;">This is where we tell users how to use the focus manager API. To navigate the children of a container use the tab and shift-tab keys. To step into a container use the Enter key. To step out of a container use the Escape key.</div></div></div></div></div><div class="x-panel-bl" role="presentation"><div class="x-panel-br" role="presentation"><div class="x-panel-bc" role="presentation"><div class="x-panel-footer" role="presentation"><div class=" x-panel-btns"><div class=" x-small-editor x-panel-fbar x-component x-toolbar-layout-ct"  hidefocus="true" role="toolbar" id="x-auto-3" style="width: 274px;"><table cellspacing="0" role="presentation" class="x-toolbar-ct"><tbody><tr><td align="left" class="x-toolbar-left"><table cellspacing="0" role="presentation"><tbody><tr class="x-toolbar-left-row" role="presentation"></tr></tbody></table></td><td align="right" class="x-toolbar-right"><table cellspacing="0" role="presentation" class="x-toolbar-right-ct"><tbody><tr><td><table cellspacing="0" role="presentation"><tbody><tr role="presentation" class="x-toolbar-right-row"><td class="x-toolbar-cell" role="presentation"><table cellspacing="0" role="presentation" class="x-btn x-component  x-btn-noicon" id="x-auto-4" style="margin-right: 0px;"><tbody class="x-btn-small x-btn-icon-small-left"><tr><td class="x-btn-tl"><i>&nbsp;</i></td><td class="x-btn-tc"></td><td class="x-btn-tr"><i>&nbsp;</i></td></tr><tr><td class="x-btn-ml"><i>&nbsp;</i></td><td class="x-btn-mc"><em unselectable="on" class=""><button style="position: relative; width: 69px;" type="button" class="x-btn-text " tabindex="0" role="button">OK</button></em></td><td class="x-btn-mr"><i>&nbsp;</i></td></tr><tr><td class="x-btn-bl"><i>&nbsp;</i></td><td class="x-btn-bc"></td><td class="x-btn-br"><i>&nbsp;</i></td></tr></tbody></table></td></tr></tbody></table></td><td><table cellspacing="0" role="presentation"><tbody><tr class="x-toolbar-extras-row" role="presentation"></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></div><div class="x-clear"></div></div></div></div></div></div></div></div>
+
+</body>
+</html>
+

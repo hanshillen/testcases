@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		.hidden, .offscreen {
+			position: absolute;
+			left: -9999px;
+			width: 1px;
+			overflow: hidden;
+		}
+		
+		body {
+			padding: 50px;
+		}
+	</style>
+	<script>
+		function test() {
+			var updater = setInterval(function(){
+				var slider = document.getElementById("mySlider");
+				var newValue = parseInt(slider.getAttribute("aria-valuenow"), 10) + 10;
+				if (newValue >= 110) {
+					clearInterval(updater);
+					return;
+				}
+				slider.setAttribute("aria-valuenow", newValue);
+				slider.setAttribute("aria-valuetext", newValue + " minutes");
+				slider.innerHTML = newValue + " minutes";
+				var progress = document.getElementById("progress");
+				progress.innerHTML = newValue + " cats";
+			}, 2000);
+		}
+		
+		window.onload = test;
+	</script>
+</head>Here are 
+<body>
+	<button>test 1</button>
+	<span id="mySlider" aria-label="My Progress" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" aria-valuetext="20 minutes">20 minutes</span>
+	<button onclick="document.body.appendChild(document.createTextNode('hey'));">test 2</button>
+	<span id="progress" class="offscreen" aria-live="polite">20 minutes</span>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
+	<script>
+		$(function(){
+
+			function combobox(element) {
+				var selectedIndex = 0;
+				var oldSelectedIndex = 0;
+				var combo = $(element);
+				var id= combo.attr("id");
+				var hiddenClass= "hidden-accessible";
+				var useLink = false;
+				var nested, txt;
+
+				if (!combo.is("input[type=text],a")) {
+					txt = combo.children(":first-child");
+					combo.attr("aria-labelledby", txt.attr("id"));
+					nested = true;
+				}
+				else {
+					txt = combo;
+					nested = false;
+				}
+
+				if (txt.is("a")) {
+					useLink = true;
+				}
+
+				var list = txt.next("ul");
+				var items = list.find("li");
+				var expanded = false;
+
+				if (nested) {
+					txt.attr("role", "textbox")
+					.attr("aria-readonly", "true");
+				}
+				combo.attr({
+					"role" : "combobox",
+					"aria-expanded" : "false",
+					"aria-haspopup" : "true",
+					"aria-owns" : list.attr("id"),
+					"aria-autocomplete" : "none"
+				});
+				list.attr({
+					"id" : combo.attr("id") + "-list",
+					"role" : "listbox",
+					"aria-hidden" : "true"
+				}).addClass(hiddenClass);
+
+				items.attr({
+					"role" : "option",
+					"tabindex" : "-1",
+					"aria-selected" : "false"
+				}).each(function(i, e){
+					$(this).attr("id", id + "-item" + i);
+				});
+
+				function increment() {
+					var index = ++selectedIndex;
+					if (index >= items.length) {
+						index = 0;
+					} else if (index < 0) {
+						index = items.length - 1;
+					}
+					selectedIndex = index;
+				}
+
+				function decrement() {
+					var index = --selectedIndex;
+					if (index >= items.length) {
+						index = 0;
+					} else if (index < 0) {
+						index = items.length - 1;
+					}
+					selectedIndex = index;
+				}
+
+				function getSelectedItem(index) {
+					if (!index) {
+						index = selectedIndex;
+					}
+	 				return items.eq(index);
+
+				}
+
+				function expand() {
+					oldSelectedIndex = selectedIndex;
+					list.removeClass(hiddenClass).attr("aria-hidden", "false");
+					combo.attr("aria-expanded", "true");
+					setTimeout(
+						function(){selectIndex(selectedIndex, true);
+						}, 50);
+					expanded = true;
+				}
+
+				function collapse() {
+					txt.removeAttr("aria-activedescendant");
+					list.addClass(hiddenClass).attr("aria-hidden", "true");
+					combo.attr("aria-expanded", "false");
+					items.removeClass("focused");
+					expanded = false;
+
+				}
+
+				function selectIndex(index, setFocus) {
+					var item = getSelectedItem(index);
+					selectItem(item, setFocus);
+				}
+
+				function selectItem(item, setFocus) {
+					useLink ? txt.text(item.text()) : txt.val(item.text());
+					items.attr("aria-selected", false);
+					item.attr("aria-selected", true);
+					if (setFocus) {
+						txt.attr("aria-activedescendant", item.attr("id"));
+						items.removeClass("focused");
+						item.addClass("focused");
+					}
+				}
+
+				txt.click(function(e){
+					expanded ? collapse() : expand();
+					event.preventDefault();
+				})
+				.keydown(function(e){
+					var changeSelection = false;
+					if ($.inArray(e.which, [38, 40, 13, 27]) != -1) {
+						e.stopPropagation();
+						e.preventDefault();
+					}
+
+					switch (e.which) {
+						case 40:
+							if (e.altKey) {
+								expand();
+							}
+							else {
+								increment();
+								changeSelection = true;		
+							}
+						break;
+						case 38:
+							decrement();
+							changeSelection = true;
+						break;
+						case 13:
+						case 27:
+							if (e.which == 27) {
+								selectIndex(oldSelectedIndex);
+							}
+							collapse();
+						break;
+					}
+
+					if (changeSelection) {
+						selectIndex(selectedIndex, expanded);
+					}
+				});
+
+				items.click(function(){
+					
+					var index = items.index($(this));
+					selectedIndex = index;
+					selectIndex(index, true);
+					collapse();
+
+				});
+			}
+
+			$(".combobox").each(function() {
+				combobox(this);
+			});
+
+		});
+	</script>
+	
+	<style>
+		body {
+			padding : 0 50px 250px 50px;
+		}
+
+		[role=combobox]>input[type=text], input[type=text][role=combobox], [role=combobox]>a, a[role=combobox] {
+			background: url(http://cdn1.iconfinder.com/data/icons/splashyIcons/arrow_state_blue_expanded.png) no-repeat center right;
+			width: 9em;
+			padding: 3px 1em 3px 3px;
+			height: 1em;
+			font-size: 1em;
+			border: 1px solid #000;
+			display: block;
+			color: #000;
+			text-decoration: none;
+			margin: 0;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		.hidden-accessible {
+			position: absolute !important;
+			height: 1px;
+			width: 1px;
+			overflow: hidden;
+			clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+			clip: rect(1px, 1px, 1px, 1px);
+		}
+
+		.hidden {
+			display: none;
+		}
+
+
+		input[type=text]:focus, a:focus, .focused {
+			outline: 2px solid navy;
+
+		}
+
+		.focused {
+			background-color: #EEE;
+		}
+
+		[role=combobox]>ul, [role=combobox]+ul {
+			background-color: white;
+			position: absolute;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		[role=combobox]>ul>li, [role=combobox]+ul>li {
+			padding: 3px;
+			border: 1px solid #CCC;
+			width: 10em;
+			height: 1em;
+		}
+
+		[role=combobox]>ul>li:hover, [role=combobox]+ul>li:hover {
+			background-color: #EEE;
+		}
+
+		a {
+			margin : 10px;
+			display: block;
+		}
+
+	</style>
+	
+</head>
+<body>
+	<h1>ARIA Select Menu Markup Proof of Concept</h1>
+	<a href="#">Place holder 1</a>
+		<h2>Combobox role on text input's parent</h2>
+		<label for="speedTxt1">Speed 1</label><br />	
+		<div id="speedCombo1" class="combobox">
+			<input id="speedTxt1" type="text" readonly="readonly" value="slowest" />
+			<ul>
+				<li>slowest</li>
+				<li>slower</li>
+				<li>faster</li>
+				<li>fastest</li>
+			</ul>
+		</div>
+		<br><a href="#">Place holder 2</a><br>
+	<h2>Combobox role on text input</h2>
+	<label for="speedTxt2">Speed 2</label><br />
+	
+		<input id="speedTxt2" class="combobox" type="text" readonly="readonly" value="slowest" />
+		<ul>
+			<li>slowest</li>
+			<li>slower</li>
+			<li>faster</li>
+			<li>fastest</li>
+		</ul>
+		
+
+		<a href="#">Place holder 3</a>
+		<h2>Combobox role on link's parent</h2>
+		<label for="speedTxt3">Speed 3</label><br />	
+		<div id="speedCombo3" class="combobox">
+			<a id="speedTxt3" href="#">Slowest</a>
+			<ul>
+				<li>slowest</li>
+				<li>slower</li>
+				<li>faster</li>
+				<li>fastest</li>
+			</ul>
+		</div>
+		<a href="#">Place holder 4</a>
+		<h2>Combobox role on link</h2>
+		<label for="speedTxt4">Speed 4</label><br />	
+		<div>
+			<a id="speedTxt4" class="combobox" href="#">Slowest</a>
+			<ul>
+				<li>slowest</li>
+				<li>slower</li>
+				<li>faster</li>
+				<li>fastest</li>
+			</ul>
+		</div>
+		<a href="#">Place holder 5</a>
+</body>
+</html>
