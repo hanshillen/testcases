@@ -1,0 +1,2 @@
+content highcontrast_test chrome/content/
+overlay chrome://browser/content/browser.xul			chrome://highcontrast_test/content/browseroverlay.xul

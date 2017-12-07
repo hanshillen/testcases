@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test Case: Form Controls</title>
+	<style>
+		input, textarea, select, button {
+			border: 1px solid black;
+		}
+		input:focus, textarea:focus, select:focus, button:focus {
+			outline-width: 3px;
+			outline-style: ridge;
+		}
+
+		body input, body textarea, body select, body button {
+			border-style: ridge;
+			border-width: 2px;	
+		}
+
+	</style>
+</head>
+<body>
+	<p>
+		<label for="field1">First Name</label>
+		<input type="text" id="field1">
+	</p>
+	<p>
+		<label for="field2">Password</label>
+		<input type="password" id="field2">
+	</p>
+	<p>
+		<label for="field3">Comments</label>
+		<textarea id="field3">
+			
+		</textarea>
+	</p>
+	<p>
+		<label for="field4">Remember me</label>
+		<input type="checkbox" id="field4">
+	</p>
+	<p>
+		<fieldset>
+			<legend>Delivery Options</legend>
+			
+			<input type="radio" id="field5">
+			<label for="field5">Email</label>
+			<input type="radio" id="field6">
+			<label for="field6">Post</label>
+			<input type="radio" id="field7">
+			<label for="field7">Fax</label>
+		</fieldset>
+	</p>
+	<p>
+		<input type="button" value="Save">
+	</p>
+	<p>
+		<input type="reset">
+	</p>
+	<p>
+		<button>click me</button>
+	</p>
+	<p>
+		<input type="submit">
+	</p>
+	<p>
+		<label for="field8">Meeting notes</label>
+		<input type="file" id="field8">
+	</p>
+	<p>
+		<label for="field9">States</label>
+		<select id="field9">
+			<option value="DE">Delaware</option>
+			<option value="VA">Virginia</option>
+			<option value="CA">California</option>
+		</select>
+	</p>
+	<p><a href="#">test</a></p>
+</body>
+</html>

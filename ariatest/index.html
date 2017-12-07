@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Test ARIA Forward - Test Cases</title>
+	<style type="text/css">
+		body{
+			font-size: 12px;
+			font-family: Arial,Helvetica,Garuda,sans-serif;	
+		}
+	
+		.roleTest {
+			border: 2px solid black;
+			width: 1em;
+			height: 1em;
+			margin: 5px;
+			-webkit-user-select: none;  /* Chrome all / Safari all */
+			-moz-user-select: none;     /* Firefox all */
+			s-ms-user-select: none;      /* IE 10+ */
+			cursor: pointer;
+		}
+		.container {
+			width: 15em;
+			height: 10em;
+		}
+		
+		.widgetDemo {
+			border: 1px solid #EEE;
+			width: 15em;	
+			margin-right: 5px;
+			margin-bottom: 5px;
+			padding: 5px;
+			float: left;
+		}
+		
+		.widgetDemo p {
+			color: #696969;
+			font-size: 0.9em;
+			padding: 0;
+			margin: 0 0 5px 0;
+		}
+		
+		h1, h2,h3, h4,h5, h6 {
+			margin-top: 10px;
+			margin-bottom: 5px; 	
+		}
+		
+		/* new clearfix */
+		.clearfix:after {
+			visibility: hidden;
+			display: block;
+			font-size: 0;
+			content: " ";
+			clear: both;
+			height: 0;
+			}
+		* html .clearfix             { zoom: 1; } /* IE6 */
+		*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+		
+		h3 {
+			padding: 0.5em;
+			border-top: 3px solid #630;
+			
+			margin-top: 2em;
+			margin-bottom:1.5em;
+		}
+		
+		h2 {
+			font-size:2em;
+			padding: 2em 1em .5em 1em;
+		}
+		
+		#filterList {
+			columns: 20em 4;
+			-webkit-columns:20em 4;
+			-moz-columns:20em 4;
+		}
+		
+		#filterList li {
+			list-style: none;
+			margin-bottom: 5px;
+		}
+		
+		#filterList label {
+			margin-left: 5px;
+		}
+		
+		#settings {
+		
+			xdisplay:none;
+		}
+		
+		
+		span[tabindex]:focus, p[tabindex]:focus, span[tabindex]:hover, p[tabindex]:hover, button:focus, button:hover, input:focus, input:hover, a:focus, a:hover {
+			outline:3px solid orange;
+		}
+		
+		span[tabindex]t:hover, p[tabindex]:hover {cursor:pointer;}
+		
+	</style>
+    <script src="jquery-1.6.2.min.js"></script>
+    <script src="testcase.js"></script
+</head>
+<body>
+
+	<h1>Test ARIA Forward - test cases</h1>
+
+	<h2>settings</h2>
+	<button>Expand Settings</button>
+	<div id="settings">
+		<input id="includeOption" type="radio" name="filterType" value="include" checked="checked"/>
+			<label for="includeOption">Include the checked items below</label>
+		<input id="excludeOption" type="radio" name="filterType" value="exclude" />
+			<label for="excludeOption">Exclude the checked items below</label>
+		<fieldset>
+			<legend>
+				
+			</legend>
+			<ul id="filterList">
+				
+			</ul>
+		</fieldset>
+	</div>
+	<button id="focusAdvancer">Auto focus everything</button>
+	<div id="demoContent"></div>
+	<h2>Label and Description Parts</h2>
+	<p id="lbl1" tabindex="0">Label 1</p><p id="lbl2" tabindex="0">Label 2</p>
+	<p id="desc1" tabindex="0">Description 1</p><p id="desc2" tabindex="0">Description 2</p>
+	<p id="flowTo1" tabindex="0">Flow To Target 1</p><p id="flowTo2" tabindex="0">Flow To Target 2</p>
+	<p id="owns1" tabindex="0">Owns Target 1</p><p id="owns2" tabindex="0">Owns Target 2</p>
+	<p id="controls1" tabindex="0">Controls Target 1</p><p id="controls2" tabindex="0">Controls Target 2</p>
+	<!-- Begin Web-Stat hit counter code -->
+<script type="text/javascript">
+<!--
+/*
+var page_name = 'Test ARIA F';
+var invisible = '';
+var framed = 'no';
+function sE(){return true;}window.onError=sE;var base=document;
+if(framed=='yes'){base=top.document;}var rn=Math.random();
+var ui='mpaciello';var al='Web-Stat hit counters';
+var qry=ui+':2::'+escape(base.referrer)+'::'+screen.width
++'x'+screen.height+'::'+screen.colorDepth+'::'+escape(page_name)
++'::'+invisible+'::'+rn+'::'+escape(base.URL);
+document.write('<a href="http://www.web-stat.com/stats/');
+document.write(ui+'.htm"><img src="http://server3.web-stat.com/count.pl?');
+document.write(qry+'" alt="'+al+'"/><\/a>');
+//-->
+//*/
+</script>
+<noscript>
+<p>
+<a href="http://www.web-stat.com">
+<img src="http://server3.web-stat.com/count.pl?mpaciello:2::NoJavaScript" alt="">
+</a>
+</p>
+</noscript>
+</body>
+</html>

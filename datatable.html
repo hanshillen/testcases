@@ -1,0 +1,165 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+		<title>
+			Example: Data tables
+		</title>
+		<style type="text/css">
+/*<![CDATA[*/
+		table td, table th{
+			border: 1px solid black;
+			width:  10em;
+			text-align: center; 
+		}
+		/*]]>*/
+		</style>
+	</head>
+	<body>
+		<h1>
+			Example Data Tables
+		</h1>
+		
+		<fieldset>
+                <legend class="form_label marginBtm10">By Application Data</legend>
+                <p class="collapsible-heading padding5">(-)</p>
+                
+                  <input type="checkbox" checked="checked" id="Checkbox1">
+                  <label style="padding-left:16px;" for="Checkbox1" class="checkBox_label">ALL</label>
+                  <br>
+                  <input type="checkbox" id="Checkbox2">
+                  <label style="padding-left:16px;" for="Checkbox2" class="checkBox_label">A12346</label>
+                  <br>
+                  <input type="checkbox" id="Checkbox3">
+                  <label style="padding-left:16px;" for="Checkbox3" class="checkBox_label">A12300</label>
+                  <br>
+                  <input type="checkbox" id="Checkbox4">
+                  <label style="padding-left:16px;" for="Checkbox4" class="checkBox_label">A123689</label>
+                  <br>
+                
+              </fieldset>
+		
+		<div>
+			<table datatable="1">
+				<caption>
+					<h2>
+						Animals
+					</h2>
+				</caption>
+				<tr>
+					<th scope="col" abbr="pet name">
+						Name
+					</th>
+					<th scope="col">
+						Age
+					</th>
+					<th scope="col">
+						Species
+					</th>
+				</tr>
+				<tr>
+					<th scope="row">
+						Fido
+					</th>
+					<td>
+						4
+					</td>
+					<td>
+						Dog
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						Whiskers
+					</th>
+					<td>
+						6
+					</td>
+					<td>
+						Cat
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						Glenn
+					</th>
+					<td>
+						2
+					</td>
+					<td>
+						Sheep
+					</td>
+				</tr>
+			</table>
+			<h2 id="testMe">
+				Table 2
+			</h2>
+			<table summary="Each row can be edited or deleted using the buttons in the actions column" id="example" class="display dataTable" aria-describedby="example_info">
+			        <caption class="HiddenText">Healthcare Clients</caption>
+			        <thead>
+			          <tr><th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 154px;" abbr="First Name ">First Name <img alt="Sortable column, activate to sort ascending" src="../images/sort_both.png" class="headerSortIcon"></th><th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" style="width: 149px;" aria-sort="ascending" abbr="Last Name ">Last Name <img alt="Sorted ascending: activate to sort column descending" src="../images/sort_asc.png" class="headerSortIcon"></th><th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 121px;" abbr="DOB ">DOB <img alt="Sortable column, activate to sort ascending" src="../images/sort_both.png" class="headerSortIcon"></th><th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 212px;" abbr="Coverage Level ">Coverage Level <img alt="Sortable column, activate to sort ascending" src="../images/sort_both.png" class="headerSortIcon"></th><th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 101px;" abbr="Plan ">Plan <img alt="Sortable column, activate to sort ascending" src="../images/sort_both.png" class="headerSortIcon"></th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 173px;" aria-label="Actions" abbr="Actions">Actions</th></tr>
+			        </thead>
+			        
+			    <tbody><tr class="odd">
+			                <td class=" "> Daniel </td>
+			                <td class="  sorting_1"> Angel </td>
+			                <td class=" "> 02/06/1976 </td>
+			                <td class=" "> Premium </td>
+			                <td class=" "> Individual </td> 
+			            <td class=" "><button class="edit">Edit <span class="HiddenText"> row 3</span></button> <button class="delete">Delete <span class="HiddenText"> row 3</span></button></td></tr><tr class="even">
+			                <td class=" "> Jack </td>
+			                <td class="  sorting_1"> Cruise </td>
+			                <td class=" "> 12/12/1996 </td>
+			                <td class=" "> Standard </td>
+			                <td class=" "> Family </td>
+			            <td class=" "><button class="edit">Edit <span class="HiddenText"> row 18</span></button> <button class="delete">Delete <span class="HiddenText"> row 18</span></button></td></tr><tr class="odd">
+			                <td class=" "> John </td>
+			                <td class="  sorting_1"> Daniels </td>
+			                <td class=" "> 04/04/2000 </td>
+			                <td class=" "> Standard </td>
+			                <td class=" "> Individual </td>
+			            <td class=" "><button class="edit">Edit <span class="HiddenText"> row 6</span></button> <button class="delete">Delete <span class="HiddenText"> row 6</span></button></td></tr><tr class="even">
+			                <td class=" "> John </td>
+			                <td class="  sorting_1"> Doe </td>
+			                <td class=" "> 10/10/1989 </td>
+			                <td class=" "> Standard </td>
+			                <td class=" "> Family </td>
+			            <td class=" "><button class="edit">Edit <span class="HiddenText"> row 2</span></button> <button class="delete">Delete <span class="HiddenText"> row 2</span></button></td></tr><tr class="odd">
+			                <td class=" "> Jane </td>
+			                <td class="  sorting_1"> Doe </td>
+			                <td class=" "> 10/10/1979 </td>
+			                <td class=" "> Premium </td>
+			                <td class=" "> Family </td>
+			            <td class=" "><button class="edit">Edit <span class="HiddenText"> row 4</span></button> <button class="delete">Delete <span class="HiddenText"> row 4</span></button></td></tr><tr class="even">
+			                <td class=" "> Sarah </td>
+			                <td class="  sorting_1"> Doe </td>
+			                <td class=" "> 10/10/1979 </td>
+			                <td class=" "> Premium </td>
+			                <td class=" "> Family </td>
+			            <td class=" "><button class="edit">Edit <span class="HiddenText"> row 21</span></button> <button class="delete">Delete <span class="HiddenText"> row 21</span></button></td></tr><tr class="odd">
+			                <td class=" "> Nathan </td>
+			                <td class="  sorting_1"> Drake </td>
+			                <td class=" "> 10/03/1975 </td>
+			                <td class=" "> Extended </td>
+			                <td class=" "> Family </td>
+			            <td class=" "><button class="edit">Edit <span class="HiddenText"> row 14</span></button> <button class="delete">Delete <span class="HiddenText"> row 14</span></button></td></tr><tr class="even">
+			                <td class=" "> Chris </td>
+			                <td class="  sorting_1"> Jameson </td>
+			                <td class=" "> 10/10/1989 </td>
+			                <td class=" "> Standard </td>
+			                <td class=" "> Family </td>
+			            <td class=" "><button class="edit">Edit <span class="HiddenText"> row 19</span></button> <button class="delete">Delete <span class="HiddenText"> row 19</span></button></td></tr><tr class="odd">
+			                <td class=" "> Norman </td>
+			                <td class="  sorting_1"> Jayden </td>
+			                <td class=" "> 10/07/1959 </td>
+			                <td class=" "> Extended </td>
+			                <td class=" "> Individual </td>
+			            <td class=" "><button class="edit">Edit <span class="HiddenText"> row 13</span></button> <button class="delete">Delete <span class="HiddenText"> row 13</span></button></td></tr><tr class="even">
+			                <td class=" "> Boris </td>
+			                <td class="  sorting_1"> Jayden </td>
+			                <td class=" "> 10/07/1959 </td>
+			                <td class=" "> Extended </td>
+			                <td class=" "> Individual </td>
+			            <td class=" "><button class="edit">Edit <span class="HiddenText"> row 30</span></button> <button class="delete">Delete <span class="HiddenText"> row 30</span></button></td></tr></tbody></table>
+		</div>
+	</body>
+</html>

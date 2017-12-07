@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test Case: Table with grouped Rows</title>
+    <style>
+        table,
+        td,
+        th {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <caption>Random Things</caption>
+        <thead>
+            <tr>
+                <th>Animals</th>
+                <th>Cars</th>
+                <th>People</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Dog</td>
+                <td>Mercedes</td>
+                <td>Bob Sagat</td>
+            </tr>
+            <tr>
+                <td>Cat</td>
+                <td>Porsche</td>
+                <td>Steve Wonder</td>
+            </tr>
+            <tr>
+                <td>Mouse</td>
+                <td>BMW</td>
+                <td>Ricky Gervais</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <table cellspacing="0" id="Table_prnt1grp1" class="content-table resp-wrap-table compare" cellpading="0">
+        <caption class="HiddenText">
+            <h2>Survey of patients experiences</h2>
+        </caption>
+        <thead role="presentation">
+            <tr id="showHideRow">
+                <th class="gradient" scope="col"><span class="HiddenText">Measure Description</span>
+                </th>
+                <th class="target-compare-col1 row-header-col gradient" abbr="MEDSTAR GEORGETOWN UNIVERSITY HOSPITAL" scope="col">
+                    <div class="infoWrapAll">
+                        <div class="address-wrapper" >
+                            <div>
+                                <a onclick="removeID('090004','1');return false;" class="hide-column-btn" href="javascript:void(0);"><img alt="Delete MEDSTAR GEORGETOWN UNIVERSITY HOSPITAL from Compare" src="//assets.cms.gov/resources/medicare/images/icons/xIcon.png">
+                                </a>
+                            </div><span class="vcard text name_of"><a onclick="bindCmprItem(this);return false;" href="profile.html#profTab=0&amp;ID=090004&amp;Distn=1.2&amp;cmprID=090004%2C090001%2C490050&amp;cmprDist=1.2%2C1.6%2C3.8&amp;dist=25&amp;loc=22209&amp;lat=38.8922092&amp;lng=-77.070837" id="provNm_090004">MEDSTAR GEORGETOWN UNIVERSITY HOSPITAL</a></span><span class="header-address">3800 RESERVOIR RD <br>WASHINGTON, DC 20007<br>(202) 784-3000</span>
+                        </div>
+                        <div class="toggle"><b>Distance</b>
+                            <a title="From the center of ZIP code searched" href="javascript:void(0);" class="info"><img alt="From the center of ZIP code searched" src="/sharedresources/shared/quality/images/info_icon.png">
+                            </a><b>:</b> <span id="Dist_090004">1.2</span> miles
+                            <br>
+                            <br>
+                        </div>
+                        <div class="favDirectionLinks">
+                            <br><a onclick="addFav('090004','MEDSTAR GEORGETOWN UNIVERSITY HOSPITAL','3800 RESERVOIR RD ','WASHINGTON','DC','20007','(202) 784-3000','HR')" href="javascript:void(0);" class="add_favorites" title="Add to My Favorites - Opens in New Window" id="link_AddFav">Add <span class="HiddenText"> MEDSTAR GEORGETOWN UNIVERSITY HOSPITAL</span> to My Favorites</a>
+                            <br><a href="/hospitalcompare/map-and-directions.html?ID=090004" target="_blank" class="map_directions" title="Maps and Directions - Opens in New Window" id="link_Map">Map and Directions<span class="HiddenText"> for MEDSTAR GEORGETOWN UNIVERSITY HOSPITAL - Opens in a new window</span></a>
+                        </div>
+                    </div>
+                </th>
+                <th class="target-compare-col2 row-header-col gradient" abbr="GEORGE WASHINGTON UNIV HOSPITAL" scope="col">
+                    <div class="infoWrapAll">
+                        <div class="address-wrapper" >
+                            <div>
+                                <a onclick="removeID('090001','2');return false;" class="hide-column-btn" href="javascript:void(0);"><img alt="Delete GEORGE WASHINGTON UNIV HOSPITAL from Compare" src="//assets.cms.gov/resources/medicare/images/icons/xIcon.png">
+                                </a>
+                            </div><span class="vcard text name_of"><a onclick="bindCmprItem(this);return false;" href="profile.html#profTab=0&amp;ID=090001&amp;Distn=1.6&amp;cmprID=090004%2C090001%2C490050&amp;cmprDist=1.2%2C1.6%2C3.8&amp;dist=25&amp;loc=22209&amp;lat=38.8922092&amp;lng=-77.070837" id="provNm_090001">GEORGE WASHINGTON UNIV HOSPITAL</a></span><span class="header-address">900 23RD ST NW <br>WASHINGTON, DC 20037<br>(202) 716-4605</span>
+                        </div>
+                        <div class="toggle"><b>Distance</b>
+                            <a title="From the center of ZIP code searched" href="javascript:void(0);" class="info"><img alt="From the center of ZIP code searched" src="/sharedresources/shared/quality/images/info_icon.png">
+                            </a><b>:</b> <span id="Dist_090001">1.6</span> miles
+                            <br>
+                            <br>
+                        </div>
+                        <div class="favDirectionLinks">
+                            <br><a onclick="addFav('090001','GEORGE WASHINGTON UNIV HOSPITAL','900 23RD ST NW ','WASHINGTON','DC','20037','(202) 716-4605','HR')" href="javascript:void(0);" class="add_favorites" title="Add to My Favorites - Opens in New Window" id="link_AddFav">Add <span class="HiddenText"> GEORGE WASHINGTON UNIV HOSPITAL</span> to My Favorites</a>
+                            <br><a href="/hospitalcompare/map-and-directions.html?ID=090001" target="_blank" class="map_directions" title="Maps and Directions - Opens in New Window" id="link_Map">Map and Directions<span class="HiddenText"> for GEORGE WASHINGTON UNIV HOSPITAL - Opens in a new window</span></a>
+                        </div>
+                    </div>
+                </th>
+                <th class="target-compare-col3 row-header-col gradient" abbr="VIRGINIA HOSPITAL CENTER" scope="col">
+                    <div class="infoWrapAll">
+                        <div class="address-wrapper" >
+                            <div>
+                                <a onclick="removeID('490050','3');return false;" class="hide-column-btn" href="javascript:void(0);"><img alt="Delete VIRGINIA HOSPITAL CENTER from Compare" src="//assets.cms.gov/resources/medicare/images/icons/xIcon.png">
+                                </a>
+                            </div><span class="vcard text name_of"><a onclick="bindCmprItem(this);return false;" href="profile.html#profTab=0&amp;ID=490050&amp;Distn=3.8&amp;cmprID=090004%2C090001%2C490050&amp;cmprDist=1.2%2C1.6%2C3.8&amp;dist=25&amp;loc=22209&amp;lat=38.8922092&amp;lng=-77.070837" id="provNm_490050">VIRGINIA HOSPITAL CENTER</a></span><span class="header-address">1701 NORTH GEORGE MASON DRIVE <br>ARLINGTON, VA 22205<br>(703) 558-5000</span>
+                        </div>
+                        <div class="toggle"><b>Distance</b>
+                            <a title="From the center of ZIP code searched" href="javascript:void(0);" class="info"><img alt="From the center of ZIP code searched" src="/sharedresources/shared/quality/images/info_icon.png">
+                            </a><b>:</b> <span id="Dist_490050">3.8</span> miles
+                            <br>
+                            <br>
+                        </div>
+                        <div class="favDirectionLinks">
+                            <br><a onclick="addFav('490050','VIRGINIA HOSPITAL CENTER','1701 NORTH GEORGE MASON DRIVE ','ARLINGTON','VA','22205','(703) 558-5000','HR')" href="javascript:void(0);" class="add_favorites" title="Add to My Favorites - Opens in New Window" id="link_AddFav">Add <span class="HiddenText"> VIRGINIA HOSPITAL CENTER</span> to My Favorites</a>
+                            <br><a href="/hospitalcompare/map-and-directions.html?ID=490050" target="_blank" class="map_directions" title="Maps and Directions - Opens in New Window" id="link_Map">Map and Directions<span class="HiddenText"> for VIRGINIA HOSPITAL CENTER - Opens in a new window</span></a>
+                        </div>
+                    </div>
+                </th>
+                <th scope="col" class="row-header-col-static average gradient" >VIRGINIA AVERAGE</th>
+                <th scope="col" class="row-header-col-static average gradient" >NATIONAL AVERAGE</th>
+            </tr>
+        </thead>
+        <tbody role="presentation">
+            <tr class="generalInfo odd">
+                <th scope="row" id="H_STAR_RATING" class="row-header" ><b>Patient survey summary star rating. More stars are better. </b> <a target="_blank" title="Learn more about star rating - Opens in a new window" href="/hospitalcompare/About/HCAHPS-Star-Ratings.html">Learn More</a>
+                </th>
+                <td abbr="090004" >
+                    <p ><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-star fa-stack-1x ratingColor adobeBlank" ></i> <i aria-hidden="true" class="fa fa-star-o fa-stack-1x adobeBlank" ></i></em><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-star fa-stack-1x ratingColor adobeBlank" ></i> <i aria-hidden="true" class="fa fa-star-o fa-stack-1x adobeBlank" ></i></em><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-star fa-stack-1x ratingColor adobeBlank " ></i> <i aria-hidden="true" class="fa fa-star-o fa-stack-1x adobeBlank " ></i></em><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-circle noRating noRatingCircle adobeBlank " ></i></em><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-circle noRating noRatingCircle adobeBlank " ></i></em><span class="sr-only HiddenText">Rating: 3 out of 5</span>
+                    </p>
+                    <br>
+                </td>
+                <td abbr="090001" >
+                    <p ><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-star fa-stack-1x ratingColor adobeBlank " ></i> <i aria-hidden="true" class="fa fa-star-o fa-stack-1x adobeBlank " ></i></em><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-star fa-stack-1x ratingColor adobeBlank " ></i><i aria-hidden="true" class="fa fa-star-o fa-stack-1x adobeBlank " ></i></em><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-circle noRating noRatingCircle adobeBlank " ></i></em><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-circle noRating noRatingCircle adobeBlank " ></i></em><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-circle noRating noRatingCircle adobeBlank " ></i></em><span class="sr-only HiddenText">Rating: 2 out of 5</span>
+                    </p>
+                    <br>
+                </td>
+                <td abbr="490050" >
+                    <p ><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-star fa-stack-1x ratingColor adobeBlank " ></i><i aria-hidden="true" class="fa fa-star-o fa-stack-1x adobeBlank " ></i></em><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-star fa-stack-1x ratingColor adobeBlank " ></i><i aria-hidden="true" class="fa fa-star-o fa-stack-1x adobeBlank " ></i></em><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-star fa-stack-1x ratingColor adobeBlank " ></i><i aria-hidden="true" class="fa fa-star-o fa-stack-1x adobeBlank " ></i></em><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-star fa-stack-1x ratingColor adobeBlank " ></i><i aria-hidden="true" class="fa fa-star-o fa-stack-1x adobeBlank " ></i></em><em aria-hidden="true" class="fa-stack widthAdjust"><i aria-hidden="true" class="fa fa-circle noRating noRatingCircle adobeBlank " ></i></em><span class="sr-only HiddenText">Rating: 4 out of 5</span>
+                    </p>
+                    <br>
+                </td>
+                <td abbr="VA" ></td>
+                <td abbr="NATION" ></td>
+            </tr>
+            <tr class="generalInfo">
+                <th scope="row" id="H_COMP_1_A_P" class="row-header"><b>Patients who reported that their nurses "Always" communicated well</b>
+                </th>
+                <td abbr="090004">77%</td>
+                <td abbr="090001">71%</td>
+                <td abbr="490050">84%</td>
+                <td abbr="VA">79%</td>
+                <td abbr="NATION">79%</td>
+            </tr>
+            <tr class="generalInfo odd">
+                <th scope="row" id="H_COMP_2_A_P" class="row-header"><b>Patients who reported that their doctors "Always" communicated well</b>
+                </th>
+                <td abbr="090004">79%</td>
+                <td abbr="090001">76%</td>
+                <td abbr="490050">83%</td>
+                <td abbr="VA">82%</td>
+                <td abbr="NATION">82%</td>
+            </tr>
+            <tr class="generalInfo">
+                <th scope="row" id="H_COMP_3_A_P" class="row-header"><b>Patients who reported that they "Always" received help as soon as they wanted</b>
+                </th>
+                <td abbr="090004">59%</td>
+                <td abbr="090001">55%</td>
+                <td abbr="490050">72%</td>
+                <td abbr="VA">65%</td>
+                <td abbr="NATION">68%</td>
+            </tr>
+            <tr class="generalInfo odd">
+                <th scope="row" id="H_COMP_4_A_P" class="row-header"><b>Patients who reported that their pain was "Always" well controlled</b>
+                </th>
+                <td abbr="090004">69%</td>
+                <td abbr="090001">64%</td>
+                <td abbr="490050">78%</td>
+                <td abbr="VA">70%</td>
+                <td abbr="NATION">71%</td>
+            </tr>
+            <tr class="generalInfo">
+                <th scope="row" id="H_COMP_5_A_P" class="row-header"><b>Patients who reported that staff "Always" explained about medicines before giving it to them</b>
+                </th>
+                <td abbr="090004">64%</td>
+                <td abbr="090001">57%</td>
+                <td abbr="490050">70%</td>
+                <td abbr="VA">64%</td>
+                <td abbr="NATION">65%</td>
+            </tr>
+            <tr class="generalInfo odd">
+                <th scope="row" id="H_CLEAN_HSP_A_P" class="row-header"><b>Patients who reported that their room and bathroom were "Always" clean</b>
+                </th>
+                <td abbr="090004">66%</td>
+                <td abbr="090001">64%</td>
+                <td abbr="490050">79%</td>
+                <td abbr="VA">72%</td>
+                <td abbr="NATION">74%</td>
+            </tr>
+            <tr class="generalInfo">
+                <th scope="row" id="H_QUIET_HSP_A_P" class="row-header"><b>Patients who reported that the area around their room was "Always" quiet at night</b>
+                </th>
+                <td abbr="090004">53%</td>
+                <td abbr="090001">53%</td>
+                <td abbr="490050">63%</td>
+                <td abbr="VA">61%</td>
+                <td abbr="NATION">62%</td>
+            </tr>
+            <tr class="generalInfo odd">
+                <th scope="row" id="H_COMP_6_Y_P" class="row-header"><b>Patients who reported that YES, they were given information about what to do during their recovery at home</b>
+                </th>
+                <td abbr="090004">87%</td>
+                <td abbr="090001">81%</td>
+                <td abbr="490050">88%</td>
+                <td abbr="VA">87%</td>
+                <td abbr="NATION">86%</td>
+            </tr>
+            <tr class="generalInfo">
+                <th scope="row" id="H_COMP_7_SA" class="row-header"><b>Patients who "Strongly Agree" they understood their care when they left the hospital<b></b></b>
+                </th>
+                <td abbr="090004">51%</td>
+                <td abbr="090001">45%</td>
+                <td abbr="490050">57%</td>
+                <td abbr="VA">51%</td>
+                <td abbr="NATION">52%</td>
+            </tr>
+            <tr class="generalInfo odd">
+                <th scope="row" id="H_HSP_RATING_9_10" class="row-header"><b>Patients who gave their hospital a rating of 9 or 10 on a scale from 0 (lowest) to 10 (highest)</b>
+                </th>
+                <td abbr="090004">69%</td>
+                <td abbr="090001">65%</td>
+                <td abbr="490050">85%</td>
+                <td abbr="VA">69%</td>
+                <td abbr="NATION">71%</td>
+            </tr>
+            <tr class="generalInfo">
+                <th scope="row" id="H_RECMND_DY" class="row-header"><b>Patients who reported YES, they would definitely recommend the hospital</b>
+                </th>
+                <td abbr="090004">74%</td>
+                <td abbr="090001">70%</td>
+                <td abbr="490050">87%</td>
+                <td abbr="VA">70%</td>
+                <td abbr="NATION">71%</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

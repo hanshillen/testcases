@@ -1,0 +1,402 @@
+FBL.ns( function() {
+	with (FBL) {
+		var WAT = Firebug.WatModule;
+		
+		/**
+		 * Manages tracker objects for currently selected trackers. One Trackers object is created for each context
+		 * 
+		 * @constructor
+		 * @param {array} Ids of selected tracker features
+		 */
+		WAT.Trackers = function(selectedIds, context) {
+			var that = this;
+			var _trackers = {};
+			var _trackerIds = [];
+			var _overviewListElem;
+			var _currentTrackerId = null;
+			
+			that.context = context;
+			
+			var init = function() {
+				WAT.trace('initializing trackers obj')
+				that.stale = true;
+				for ( var i = 0; i < selectedIds.length; i++) {
+					that.createTracker(selectedIds[i]);
+				}
+				WAT.trace('Trackers obj initialized with ' + _trackerIds.length + '  trackers', _trackers);
+			};
+			
+			that.getTrackerIds = function() {
+				return cloneArray(_trackerIds)
+			};
+			
+			/* tracker handling */
+			that.createTracker = function(id) {
+				
+				var trackerDetails = WAT.trackerDetails[id];
+				
+				var tracker = new WAT.Tracker(id, trackerDetails.title, trackerDetails.handler, that);
+				
+				return that.addTracker(tracker);
+			};
+			
+			that.addTracker = function(tracker) {
+				
+				if (tracker instanceof WAT.Tracker) {
+					var id = tracker.getId();
+					_trackers[id] = tracker;
+					_trackerIds.push(id);
+					if (!that.getCurrentTrackerId()) {
+						that.setCurrentTrackerId(tracker.getId());
+					}
+					that.stale = true;
+					WAT.trace('tracker obj added to trackers', _trackerIds);
+					return _trackers[id]; /* verify that tracker is added and return it */
+				}
+				else {
+					return false;
+				}
+			};
+			
+			that.removeTracker = function(id, updateBC) {
+				if (_trackers[id]) {
+					if (updateBC) {
+						Firebug.WatModule.uncheck(jQuery('#' + id).get(0));
+					}
+					var tracker = _trackers[id];
+					tracker.unRender(); /* remove item in overview list */
+					delete _trackers[id]; /* delete actual tracker object */
+					var index = jQuery.inArray(id, _trackerIds);
+					if (index != -1) {
+						_trackerIds.splice(index, 1);
+					}
+					if (_trackerIds.length == 0) {
+						that.renderEmptyMsg();
+					}
+				}
+			};
+			
+			that.render = function() {
+				for ( var i = 0; i < _trackersIds.length; i++) {
+					WAT.trace('rendering individual tracker: ' + _trackerIds[i]);
+					if (_trackers[_trackerIds[i]]) {
+						_trackers[_trackerIds[i]].render();
+					}
+				}
+			};
+			
+			that.renderWaiting = function() {
+				if (_trackerIds.length == 0) {
+					that.renderEmptyMsg();
+				}
+				else {
+					for ( var i = 0; i < _trackerIds.length; i++) {
+						WAT.trace('rendering individual waiting message: ' + _trackerIds[i]);
+						if (_trackers[_trackerIds[i]]) {
+							_trackers[_trackerIds[i]].renderWaiting();
+						}
+					}
+				}
+			};
+			
+			that.refresh = function(specificIds) {
+				WAT.trace('refreshing all trackers...', _trackers);
+				if (_trackerIds.length == 0) {
+					that.renderEmptyMsg();
+				}
+				else {
+					if (!that.getCurrentTrackerId()) {
+						that.setCurrentTrackerId(_trackerIds[0]);
+					}
+					if (typeof specificIds == "undefined") {
+						specificIds = _trackerIds; /* if no specific set is given, just refresh all */
+					}
+					var tracker;
+					for ( var i = 0; i < specificIds.length; i++) {
+						tracker = _trackers[_trackerIds[i]];
+						if (tracker instanceof WAT.Tracker) {
+							tracker.refresh();
+						}
+					}
+					that.stale = false;
+				}
+			};
+			
+			that.renderEmptyMsg = function() {
+				var panel = that.context.getPanel('watOverview');
+				if (_trackerIds.length == 0) {
+					WAT.trace('rendering empty msg', panel);
+					_overviewListElem = undefined;
+					WAT.domplates.noItemsMessage.replace( {
+						msg :WAT.str('noTrackerSelected')
+					}, panel.panelNode, WAT.domplates);
+				}
+			};
+			
+			that.renderOverViewListElem = function() {
+				var panelNode = that.context.getPanel('watOverview').panelNode;
+				if (!_overviewListElem) {
+					_overviewListElem = WAT.domplates.overviewList.replace( {}, panelNode, WAT.domplates);
+				}
+				return _overviewListElem;
+			};
+			
+			that.get = function(indexOrId) {
+				if (typeof indexOrId == "undefined") {
+					return _trackers;
+				}
+				else if (typeof indexOrId == "number" && _trackerIds[indexOrId] && _trackers[_trackerIds[indexOrId]]) {
+					return _trackers[_trackerIds[indexOrId]];
+				}
+				if (typeof indexOrId == "string" && _trackers[indexOrId]) {
+					return _trackers[indexOrId];
+				}
+			};
+			
+			that.getCurrentTrackerId = function() {
+				return _currentTrackerId;
+			};
+			
+			that.setCurrentTrackerId = function(id) {
+				if (_currentTrackerId) {
+					var tracker = _trackers[id];
+					if (tracker && tracker instanceof WAT.Tracker) {
+						jQuery(tracker.elem).removeClass('selected');
+					}
+				}
+				if (id) {
+					var tracker = _trackers[id];
+					if (tracker && tracker instanceof WAT.Tracker) {
+						jQuery(tracker.elem).addClass('selected');
+					}
+					_currentTrackerId = id
+				}
+			};
+			
+			init();
+		};
+		
+		/**
+		 * Manages the results found for a particular selected feature.
+		 * 
+		 * @constructor
+		 */
+		WAT.Tracker = function(id, title, handler, trackers) {
+			var that = this;
+			that.summaryParts = [];
+			var _status = "waiting";
+			var _title = title;
+			that.elem;
+			var _listElem;
+			var _results = [];
+			var _id = id;
+			var _handler = handler;
+			var _trackers = trackers;
+			that.context = _trackers.context;
+			var init = function() {
+				WAT.trace('tracker Obj initialized: ' + _id);
+			};
+			that.getId = function() {
+				return _id;
+			};
+			that.status = function(newValue) {
+				return typeof newValue == "undefined" ? _status : _status = newValue;
+			};
+			
+			that.addResult = function(status, parts, focusHandlerObj, tag) {
+				var result = new WAT.Result(that, status, parts, focusHandlerObj, tag);
+				_results.push(result);
+			};
+			
+			that.getResults = function() {
+				return _results;
+			};
+			
+			that.refresh = function() {
+				_results = [];
+				_status = 'waiting';
+				that.summaryParts = [];
+				_handler(that);
+				that.render();
+				
+			};
+			that.render = function(parts) {
+				WAT.trace('rendering tracker: ' + _id)
+				if (!parts) {
+					parts = that.summaryParts;
+				}
+				var panel = _trackers.context.getPanel('watOverview');
+				var list = _trackers.renderOverViewListElem(); /* Render list if not present, otherwise just reference it */
+				if (!that.elem) {
+					var input = {
+					    id :_id,
+					    status :_status,
+					    title :_title,
+					    handleSummaryItemFocus : function(event) {
+						    _trackers.setCurrentTrackerId(_id);
+						    that.renderResults();
+					    },
+					    handleSummaryItemBlur : function(event) {
+						    
+					    },
+					    handleCloseButtonClick : function(event) {
+						    Firebug.WatModule.removeTracker(_id, true);
+						    /* _trackers.removeTracker(_id, true) */
+					    },
+					    handleRefreshButtonClick : function(event) {
+						    that.refresh();
+					    }
+					};
+					
+					that.elem = WAT.domplates.overviewListItem.append( {
+						obj :input
+					}, list, WAT.domplates);
+				}
+				var summaryContainer = jQuery(that.elem).find('.summaryDetails');
+				if (summaryContainer.length == 0) {
+					summaryContainer = that.elem;
+				}
+				else {
+					summaryContainer = summaryContainer.get(0);
+				}
+				
+				for ( var i = 0; i < parts.length; i++) {
+					WAT.domplates[parts[i].tag][i == 0 ? 'replace' : 'append']( {
+						msg :parts[i].data
+					}, summaryContainer, WAT.domplates);
+				}
+				if (_id == _trackers.getCurrentTrackerId()) {
+					that.renderResults();
+				}
+			};
+			that.renderWaiting = function() {
+				var waitingParts = [ {
+				    tag :'waiting',
+				    data :WAT.str('waitingForResults')
+				}];
+				that.render(waitingParts);
+			},
+
+			that.renderResults = function() {
+				
+				var resultsPanel = _trackers.context.getPanel('watResults');
+				resultsPanel.panelNode.innerHTML = "";
+				if (that.status == "waiting") {
+					WAT.domplates.noItemsMessage.replace( {
+						msg :WAT.str('waitingForResults')
+					}, resultsPanel.panelNode, WAT.domplates);
+				}
+				else if (_results.length > 0) {
+					var i;
+					that.renderListContainer(true);
+					for (i = 0; i < _results.length; i++) {
+						result = _results[i];
+						result.render();
+					}
+				}
+				else {
+					that.renderEmptyResultsMsg()
+					WAT.domplates.noItemsMessage.replace( {
+						msg :WAT.str('noResultsAvailable')
+					}, resultsPanel.panelNode, WAT.domplates);
+				}
+			};
+			/* WAT.domplates.results.replace({obj : _results}, root, WAT.domplates); */
+			that.unRender = function() {
+				jQuery(that.elem).remove();
+				that.elem = undefined;
+				that.renderEmptyResultsMsg()
+			};
+			that.renderEmptyResultsMsg = function() {
+				var resultsPanel = _trackers.context.getPanel('watResults');
+				WAT.domplates.noItemsMessage.replace( {
+					msg :WAT.str('noResultsAvailable')
+				}, resultsPanel.panelNode, WAT.domplates);
+			};
+			that.renderListContainer = function(forceRedraw) {
+				if (!_listElem || forceRedraw) {
+					_listElem = WAT.domplates.resultsList.replace( {}, that.context.getPanel('watResults').panelNode, WAT.domplates);
+				}
+				return _listElem;
+			};
+			init();
+		};
+		
+		/** ** Represents a single result. One tracker can have zero or more results associated *** */
+		WAT.Result = function(tracker, status, parts, focusHandlerObj, tag) {
+			var that = this;
+			var _tracker = tracker;
+			var _status = status;
+			
+			var _parts = parts;
+			var _tag = !tag ? 'resultListItem' : tag;
+			var _focusHandlerObj = focusHandlerObj;
+			var _resultsPanel = _tracker.context.getPanel('watResults');
+			
+			that.render = function() {
+				var resultsList = _tracker.renderListContainer();
+				var input = {
+				    status :_status,
+				    handleResultItemFocus : function(event) {
+					    var panelNode = _resultsPanel.panelNode;
+					    jQuery(event.target).addClass('selected');
+					    var obj;
+					    /* WAT.trace('focusObj: ', _focusHandlerObj); */
+					    for ( var i = 0; i < _focusHandlerObj.length; i++) {
+						    obj = focusHandlerObj[i];
+						    switch (obj.action) {
+							    case 'highlight':
+								    var doc = jQuery(_tracker.context.browser.contentDocument);
+								    /* jQuery(doc).find('.watHighlightedElem').removeClass('watHighlightedElem ' + obj.className); */
+								    jQuery(obj.elem).addClass(obj.className + ' watHighlightedElem' + "_" + _status);
+								    break;
+							    case 'scroll':
+							    	obj.elem.scrollIntoView(true);
+								    break;
+							    case 'listDetails':
+								    WAT.domplates.detailsList[i == 0 ? 'replace' : 'append']( {
+									    obj :obj.attribs
+								    }, panelNode, WAT.domplates)
+								    break;
+						    }
+					    }
+					    
+				    },
+				    handleResultItemBlur : function(event) {
+					    var panelNode = _resultsPanel.panelNode;
+					    jQuery(event.target).removeClass('selected');
+					    for ( var i = 0; i < _focusHandlerObj.length; i++) {
+						    obj = focusHandlerObj[i];
+						    switch (obj.action) {
+							    case 'highlight':
+								    var doc = jQuery(_tracker.context.browser.contentDocument);
+								    jQuery(obj.elem).removeClass(obj.className + ' watHighlightedElem' + "_" + _status);
+								    break;
+							    case 'scroll':
+								    break;
+							    case 'listDetails':
+								    WAT.domplates.detailsList[i == 0 ? 'replace' : 'append']( {
+									    obj :obj.attribs
+								    }, panelNode, WAT.domplates)
+								    break;
+						    }
+						    
+					    }
+					    
+				    }
+				
+				};
+				var resultsListItem = WAT.domplates[_tag].append( {
+					obj :input
+				}, resultsList, WAT.domplates);
+				var i, result, part;
+				for (i = 0; i < _parts.length; i++) {
+					part = _parts[i];
+					WAT.domplates[part.tag].append( {
+						object :part.data
+					}, resultsListItem, WAT.domplates);
+				}
+			};
+		};
+	}
+});

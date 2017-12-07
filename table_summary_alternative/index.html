@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Table Summary Alternative</title>
+	<style>
+		body {
+			margin: 50px;
+		}
+		table, td, th {
+			border: 1px solid #AAA;
+		}
+
+		.tabStop {
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<button class="tabStop">tab stop 1</button>
+	<details>
+		<summary>Table summary</summary>
+		<div id="table1Summary" tabindex="-1">
+			<p>The table columns can be sorted by clicking the column header cells</p>
+		</div>
+
+	</details>
+	<table aria-describedby="table1Summary">
+		<caption>Random Things</caption>
+		<tr>
+			<th>Animals</th>
+			<th>Cars</th>
+			<th>People</th>
+		</tr>
+		<tr>
+			<td>Dog</td>
+			<td>Mercedes</td>
+			<td>Bob Sagat</td>
+		</tr>
+		<tr>
+			<td>Cat</td>
+			<td>Porsche</td>
+			<td>Steve Wonder</td>
+		</tr>
+		<tr>
+			<td>Mouse</td>
+			<td>BMW</td>
+			<td>Ricky Gervais</td>
+		</tr>
+	</table>
+	<button class="tabStop">tab stop 1</button>
+</body>
+</html>

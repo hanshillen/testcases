@@ -1,0 +1,2708 @@
+
+<!DOCTYPE html>
+<html lang="en_US" class="IE9"><head>
+	<!--Avoid Compatibility Mode-->
+    <meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+	
+	<title>Sign Up - Step 1</title>
+
+		
+		<!--note need to see if this affects the my account registration-->
+		
+		
+		
+	<link rel="stylesheet" type="text/css" href="css/publicUI/reset.css" media="all">
+	<!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css" />
+	<link href="http://fonts.googleapis.com/css?family=Bitter" rel="stylesheet" type="text/css" />-->
+	
+	<link rel="stylesheet" type="text/css" href="css/publicUI/bootstrap_ee.css" media="all">
+	<link rel="stylesheet" type="text/css" href="css/publicUI/bootstrap-responsive.css" media="all">
+	<link rel="stylesheet" type="text/css" href="css/publicUI/jquery-ui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="css/publicUI/datepicker.css" media="all">
+	<link rel="stylesheet" type="text/css" href="css/publicUI/datatables.css" media="all">
+    <link rel="stylesheet" type="text/css" href="css/publicUI/print.css" media="all">
+	<link rel="stylesheet" type="text/css" href="css/publicUI/glyphicon.css" media="all">
+	<link rel="stylesheet" type="text/css" href="css/publicUI/globalHeaderFooter.css" media="all">
+		
+	
+			<link rel="stylesheet" type="text/css" href="css/publicUI/main_styles.css" media="all">
+		<link rel="stylesheet" type="text/css" href="css/publicUI/symbol.css" media="all">
+		
+	
+	
+		
+		
+	
+	
+	<!--common JS Files -->
+	<script type="text/javascript" src="https://dnn506yrbagrg.cloudfront.net/pages/scripts/0011/1179.js?383490"></script><script src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="https://stats.g.doubleclick.net/dc.js"></script><script src="//www.googletagmanager.com/gtm.js?id=GTM-23P7J"></script><script src="//rum-static.pingdom.net/prum.min.js"></script><script type="text/javascript" src="js/jquery.min.js"></script>
+	 	
+	<!--HTML5 shim, for IE6-8 support of HTML5 elements must be after CSS-->
+	
+	
+	
+	<!-- load the JQuery UI JS . Back to 1 file. -->
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	
+	<!-- load Base UI files under marketplace -->
+	<script type="text/javascript" src="js/underscore-1.3.1.full.js"></script>
+	<script type="text/javascript" src="js/json2.js"></script>
+	<script type="text/javascript" src="js/backbone-0.9.2.full.js"></script> 
+	<script type="text/javascript" src="js/crypto-min.js"></script>
+	<script type="text/javascript" src="js/backbone.validations-fork.js"></script> 
+	<script type="text/javascript" src="js/backbone-nested-1.1.2-fork.js"></script>
+	<script type="text/javascript" src="js/cms-common.js"></script>
+	<script type="text/javascript" src="js/jquery.alerts.js"></script>
+	<script type="text/javascript" src="js/jquery.blockUI.js"></script> 
+	<script type="text/javascript" src="js/jquery.formatCurrency-1.4.0.js"></script>
+	<script type="text/javascript" src="js/jQuery.collapsible.js"></script>
+	<script type="text/javascript" src="js/wait.js"></script>
+	<script type="text/javascript" src="js/jquery.hcmode-detection.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="js/jquery.fileupload.js"></script>
+	<script type="text/javascript" src="js/jquery.iframe-transport.js"></script>
+	
+			<script type="text/javascript" src="js/datepicker.js"></script>
+		
+	<script type="text/javascript" src="js/tipsy.js"></script> 
+ 
+
+	<!--fix for IE not liking all the console Logging statements-->
+	<script type="text/javascript">
+    	if (typeof console == "undefined") 
+    	{
+    		this.console = {log: function() {}};
+    	}
+	</script>
+	
+
+	<script type="text/javascript" src="js/ee/eeBackbone.js"></script>
+	<script type="text/javascript" src="js/ee/eeCommon.js"></script>
+	<script type="text/javascript" src="js/ee/eeConstants.js"></script>
+	<script type="text/javascript" src="js/ee/eeState.js"></script>
+	<script type="text/javascript" src="js/jquery.browser.js"></script>
+	<script type="text/javascript" src="js/ee/loginCommon.js"></script>
+	<script type="text/javascript" src="js/ee/eeCustomValidators.js"></script>
+	<script type="text/javascript" src="js/ee/dateUtil.js"></script>
+	<script type="text/javascript" src="js/ee/dummyData.js"></script>
+	<script type="text/javascript" src="js/date.format.js"></script>
+	<script type="text/javascript" src="js/ee/stateConfigurationManagement.js"></script>
+	<script type="text/javascript" src="js/ee/modalDialogCommon.js"></script>
+	<script type="text/javascript" src="js/ee/eeTransitionEffects.js"></script>
+	<script type="text/javascript" src="js/ee/508Utils.js"></script>
+	<script type="text/javascript" src="js/ee/eeReferenceData.js"></script>
+	<script type="text/javascript" src="js/jQuery.equalHeights.js"></script>
+	<script type="text/javascript" src="js/FFMFormValidatorConfig.js"></script>
+	<script type="text/javascript" src="js/FFMFormValidator.js"></script>
+	<script type="text/javascript" src="js/ee/eeFormValidatorCommon.js"></script>
+	<script type="text/javascript" src="js/ee/eeCookies.js"></script>
+	<script type="text/javascript" src="js/ee/utilities.js"></script>
+	<script type="text/javascript" src="js/ee/securityUtil.js"></script>
+	<script type="text/javascript" src="js/ee/documents.js"></script>
+	<script type="text/javascript" src="js/ee/base64.js"></script>
+	<script type="text/javascript" src="js/ee/directEnrollment.js"></script>
+	<script type="text/javascript" src="js/ee/eeIDProofing.js"></script>
+	<script type="text/javascript" src="js/ee/navigationCommon.js"></script>
+	
+	
+	<!-- load data tables from ee not base-ui-->
+	<script type="text/javascript" src="js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>  
+	<script type="text/javascript" src="js/jquery.maskedinput-1.3.js"></script>	
+	<script type="text/javascript" src="js/custominput.js"></script> 
+	<script type="text/javascript" src="js/jQuery.fileinput.js"></script> 
+	<script type="text/javascript" src="js/xdr.js"></script>		
+			
+		
+		
+					
+	
+		
+		
+		
+			<script type="text/javascript" src="js/ee/registration/registrationModel.js"></script>
+		<script type="text/javascript" src="js/ee/registration/registrationCommon.js"></script>
+		
+	<!--Set session timeout on auth directories -->
+		
+	<script>
+	
+	changeLanguage('en_US');
+	</script>
+	
+	<!--Charbeat, pingdom, and p3p healthcare.gov code-->
+	    	<script>
+        var _prum = [['id', '51f02658abe53d1414000000'],
+                     ['mark', 'firstbyte', (new Date()).getTime()]];
+        (function() {
+            var s = document.getElementsByTagName('script')[0]
+              , p = document.createElement('script');
+            p.async = 'async';
+            p.src = '//rum-static.pingdom.net/prum.min.js';
+            s.parentNode.insertBefore(p, s);
+        })();
+        </script>
+		<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+	<link rel="P3Pv1" href="http://www.Healthcare.gov/w3c/p3p.xml">
+	
+
+    </head><body class="WIN">
+		<div class="skipnav">
+			<span class="HiddenText">&nbsp;</span>
+    		<a id="skipNavLink" href="#main_content">Skip to Main Content</a>
+        </div>	
+			
+    	<!--IE6 error must be directly under body-->
+    	
+		
+		<!-- Google Tag Manager must be directly under body-->
+		<!--JSOFF error must be directly under body-->  
+        <noscript>
+			&lt;iframe title='googletagmanager' src="//www.googletagmanager.com/ns.html?id=GTM-BZGHG" height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;
+		</noscript>
+		
+				<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-23P7J');</script>
+				
+		<!-- End Google Tag Manager -->
+		<!-- Start of application content-->
+		
+
+
+
+
+<script type="text/javascript" src="registration.js"></script>
+
+
+
+   
+<div class="wrapper">
+	<div class="overlayBox banner affix"></div>
+	<div class="container-fluid">
+			<!-- Start header -->
+    <header role="banner">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left"> <a class="brand" href="https://www.healthcare.gov/"> <img alt="HealthCare.gov" src="images/logo.png"></a></div>
+                <div class="center">
+                    <ul class="nav">
+                        <li><a class="headerLink" href="/">Learn<span class="HiddenText">, section</span></a> </li>
+                        <li class="active"> <a class="headerLink" href="/marketplace/individual">Get Insurance<span class="HiddenText">, current section</span></a> </li>
+                    </ul>
+                </div>
+                <div class="right">				
+					<ul class="nav pull-right userActionList">
+                        <li style="display: none;" id="headerUserItem" class="user-item">
+													<a aria-haspopup="true" id="dLabel1" class="dropdown-toggle loginLink" role="button" href="#" data-toggle="dropdown">
+                            	<span id="headerUserName" class="user-firstname">$ffeUserTool.getFFEUserPrincipal().getFirstName()</span>
+                            	<i aria-hidden="true" class="icon-user"></i>
+    						</a>
+                            <div class="dropdown-menu profile-dropdown">
+                                <ul role="menu" aria-labelledby="dLabel1">
+                                     <li role="menuitem">
+										<a id="landingPageMenuLink" href="/marketplace/auth/global/en_US/myProfile#landingPage"><i aria-hidden="true" class="iconCustom-medkit"></i>My Applications &amp; Coverage</a>
+									</li>
+									<li role="menuitem">
+										<a id="helpProfile" href="/marketplace/auth/global/en_US/myProfile#settings"><i aria-hidden="true" class="icon-cogwheel"></i>My Profile</a>
+									</li>
+                                   
+                                   <!-- <li role="menuitem">
+    									<a href="/marketplace/auth/logout" id="logout"><i class="icon-share" aria-hidden="true"></i>Logout</a>
+								   </li>-->
+                                </ul>
+                            </div>
+						                        </li>
+						<li style="display: none;" id="headerEmail"> 
+							<a id="logout" href="/marketplace/auth/logout"><i aria-hidden="true" class="icon-share"></i>Logout</a> 
+						</li>
+                        <!-- <li lang="ES">
+                            <button class="btn btn-info btn-xmini" onclick="toggleLanguageURL('');">Espa&ntilde;ol</button>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+ 
+    </header>
+<!-- end header --> 
+<noscript>
+	&lt;p style="clear: both; background: none repeat scroll 0 0 #EC1C2D; border-radius: 6px 6px 6px 6px; color: #FFFFFF; font-size: 1.0em; font-weight: bold; padding: 10px;"&gt;
+     &lt;strong&gt;Alert&lt;/strong&gt;: The page could not be loaded.  This page currently does not fully support browsers with "JavaScript" disabled.  Please note that if you choose to continue without enabling "JavaScript" certain functionalities on this website may not be available.
+        &lt;a href="javascript:location.reload(true)" style="color:#00a;"&gt;Press to reload after enabling JavaScript&lt;/a&gt;
+	&lt;/p&gt;
+</noscript>	</div>
+	<div style="display: none;" id="agentBrokerStateBar" class="container-fluid">
+        <div class="utilitySection">
+            <div class="row-fluid">
+                <div class="stateBar"></div>
+                <div class="statusBar"> </div>
+            </div>
+        </div>
+    </div>
+	<div class="container-fluid">
+		<div class="innerContainer">
+			<div style="display: none;" id="agentBrokerSubNav" class="row-fluid subNav">
+    <div class="span12">
+        <div class="subNavigationContainer ul-myaccount  my-plans">
+            <ul class="subNavigationSection">
+				 <li class="subLink firstLink pull-left"> 
+					<a id="backToPortalLink" class="subLink-inner" href="javascript:void(0);">
+						<i aria-hidden="true" class="icon-notes_2"></i> 
+						<span class="headerLabel">Return to issuer website</span>
+					</a>
+				</li> 
+            </ul>
+        </div>
+    </div>
+</div>			<div class="contentContainer" role="main">
+				<div class="row-fluid">
+					<div class="span12">
+						<div id="myAccountContentSection">
+							<a id="main_content" tabIndex="-1" name="main_content"></a>
+							<div style="display: none;" id="registrationSignUp"></div>
+							<div id="registrationSignUpOne">
+      <h1 class="HiddenText">Marketplace Account Registration - Sign Up - Step 1</h1>
+<div style="margin-top: 0px;" class="row-fluid sectionSimple">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account?</span>
+		<button class="btn btn-select goToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section step1ValidationGroup" role="form" action="#" tile="">
+	<div class="modalSteps">
+		<div class="modalStep modalStep-custom activeModalStep">
+			<h2 class=" largeText signup-heading">Create a Marketplace account
+			</h2>
+			<p class="requiredFormText">All fields are required unless they're marked optional. Don't enter any letters with special characters, like accents, tildes, etc. </p>
+			<h3>Your Information</h3>
+			<div id="registrationStep1ValidationContainer" class="validatorFormGroup">
+				<div class="row-fluid sectionSimple">
+					<div class="span3">
+						<label for="registrationThreeStepFirstName">First name</label>
+						<input id="registrationThreeStepFirstName" aria-required="true" aria-describedby="registrationThreeStepFirstName-feedbackMsg" maxLength="20" type="text" autocomplete="off" data-validate="notBlank EIDMFirstName"><span id="registrationThreeStepFirstName-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+					</div>
+					<div class="span3">
+						<label for="registrationThreeStepMiddleName">Middle
+						<span class="instructionalText">optional</span></label>
+						<input id="registrationThreeStepMiddleName" aria-describedby="registrationThreeStepMiddleName-feedbackMsg" name="name" type="text" autocomplete="off" data-validate="EIDMMiddleName"><span id="registrationThreeStepMiddleName-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+					</div>
+					<div class="span3">
+						<label for="registrationThreeStepLastName">Last name<span class="error blockElement"></span></label>
+						<input id="registrationThreeStepLastName" aria-required="true" aria-describedby="registrationThreeStepLastName-feedbackMsg" maxLength="25" type="text" autocomplete="off" data-validate="notBlank EIDMLastName"><span id="registrationThreeStepLastName-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+					</div>
+					<div id="registrationStep1SignUpSuffixContainer" class="span3">
+	<label class="form_label" for="registrationSignUpStep1Suffix">
+   
+        
+    	Suffix <span class="instructionalText">optional</span>
+	    
+<!-- leave label tag open, it will be closed in the templates -->		</label> <!-- closing label tag from common label template -->
+<select id="registrationSignUpStep1Suffix" aria-describedby="registrationSignUpStep1Suffix-feedbackMsg" data-validate="EIDMSuffix">
+	<option value="">Select...</option>
+	<option value="Jr.">Jr.</option>
+	<option value="Sr.">Sr.</option>
+	<option value="III">III</option>
+	<option value="IV">IV</option>
+</select><span id="registrationSignUpStep1Suffix-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span></div>
+				</div>
+				<div class="row-fluid sectionSimple">
+						<div class="span5">
+							<label for="registrationStateStep1SignUp">State you live in</label>
+							<div id="registrationStep1SignUpStateContainer">
+         <select id="registrationStateStep1SignUp" aria-required="true" aria-describedby="registrationStateStep1SignUp-feedbackMsg" data-validate="notBlank EIDMState">
+	<option value="">Select...</option>
+    <option value="AL">Alabama</option>	
+    <option value="AK">Alaska</option> 	
+    <option value="AZ">Arizona</option>
+    <option value="AR">Arkansas</option>
+    <option value="DE">Delaware</option>
+    <option value="FL">Florida</option>
+    <option value="GA">Georgia</option>
+	<option value="ID">Idaho</option>
+    <option value="IL">Illinois</option>
+    <option value="IN">Indiana</option>
+    <option value="IA">Iowa</option>
+    <option value="KS">Kansas</option>
+    <option value="LA">Louisiana</option>
+    <option value="ME">Maine</option>
+    <option value="MI">Michigan</option>
+    <option value="MS">Mississippi</option>
+    <option value="MO">Missouri</option>
+    <option value="MT">Montana</option>
+    <option value="NE">Nebraska</option>
+    <option value="NH">New Hampshire</option>
+    <option value="NJ">New Jersey</option>
+	<option value="NM">New Mexico</option>
+    <option value="NC">North Carolina</option>
+    <option value="ND">North Dakota</option>
+    <option value="OH">Ohio</option>
+    <option value="OK">Oklahoma</option>
+    <option value="PA">Pennsylvania</option>
+    <option value="SC">South Carolina</option>
+    <option value="SD">South Dakota</option>
+    <option value="TN">Tennessee</option>
+    <option value="TX">Texas</option>
+	<option value="UT">Utah</option>
+    <option value="VA">Virginia</option>
+    <option value="WV">West Virginia</option>
+    <option value="WI">Wisconsin</option>
+    <option value="WY">Wyoming</option>
+</select><span id="registrationStateStep1SignUp-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span></div>
+						</div>
+				</div>
+				<div class="row-fluid sectionSimple">
+					<div class="span6">
+						<label for="registrationThreeStepEmailUpdates">Email address<span class="error blockElement"></span></label>
+						<input id="registrationThreeStepEmailUpdates" class="errorField" aria-invalid="true" aria-required="true" aria-describedby="registrationThreeStepEmailUpdates-feedbackMsg" type="text" autocomplete="off" data-validate="notBlank EIDMEmail"><span id="registrationThreeStepEmailUpdates-feedbackMsg" class="feedbackMsg error" tabIndex="-1"><span aria-hidden="true" class="iconCustom-exclamation-sign"></span><span class="HiddenText">Important: </span>Important: This is not a valid Email address</span>
+					</div>
+					<div class="span6">
+						<label for="emailConfirm">Confirm email address<span class="error blockElement"></span></label>
+						<input id="emailConfirm" class="errorField" aria-invalid="true" aria-required="true" aria-describedby="emailConfirm-feedbackMsg" type="text" autocomplete="off" data-validate="notBlank EIDMEmail sameEmail-registrationThreeStepEmailUpdates-emailConfirm"><span id="emailConfirm-feedbackMsg" class="feedbackMsg error" tabIndex="-1"><span aria-hidden="true" class="iconCustom-exclamation-sign"></span><span class="HiddenText">Important: </span>This field is required</span>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="custom-checkbox">
+							<div class="custom-checkbox"><input id="registrationStepOneCheckbox" CHECKED="checked" type="checkbox"><label class="checked" for="registrationStepOneCheckbox">I want to have news and updates sent to this email address
+							<span class="instructionalText">optional</span></label></div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid sectionSimple">
+									<div class="span12">
+										<p class="inlineElement">You need an email address to sign up. You can get one now for free:</p>
+										<ul class="inline smallText inlineElement"> <li> <a href="https://mail.google.com/" target="_blank"><strong>Gmail</strong></a></li><li> <a href="https://login.live.com/" target="_blank"><strong>Outlook</strong></a></li><li> <a href="https://login.yahoo.com/" target="_blank"><strong>Yahoo</strong></a></li><li> <a href="https://mail.aol.com/" target="_blank"><strong>AOL</strong></a></li></ul>
+									</div>
+                                </div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="multiStep">
+			<ul class="inlineList">
+				<li><i class="iconCustom-circle-filled circleCurrent"></i><span class="ui-helper-hidden-accessible">you are in step 1 of 3</span></li>
+				<li><i class="iconCustom-circle-filled"></i><!--span class="ui-helper-hidden-accessible">Step 2</span--></li>
+				<li><i class="iconCustom-circle-filled"></i><!--span class="ui-helper-hidden-accessible">Step 3</span--></li>
+				<!--li><i class="iconCustom-circle-filled"></i><span class="ui-helper-hidden-accessible">Step 4</span></li-->
+			</ul>
+		</div>
+		<div class="ui-dialog-buttonset">
+			<button aria-disabled="false" id="step1Close" class="btn btn-secondary modal-close" role="button" type="button"><span class="ui-button-text">Cancel</span><span class="HiddenText">Log In</span></button>
+			<button aria-disabled="false" id="goToStepTwo" class="btn btn-primary modal-next" role="button" type="button"> <span class="ui-button-text">Next</span><span class="HiddenText">Marketplace Account Registration - Sign Up - Step 2</span></button>
+		</div>
+	</div>
+</div>
+</div>
+							<div style="display: none;" id="registrationSignUpTwo">
+      <h1 class="HiddenText">Marketplace Account Registration - Sign Up - Step 2</h1>
+<div style="margin-top: 0px;" class="row-fluid sectionSimple">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account?</span>
+		<button class="btn btn-select goToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section step2ValidationGroup" role="form" action="#">
+	<div class="modalSteps">		
+		<div class="modalStep modalStep-custom activeModalStep">
+		<h2 class=" largeText signup-heading">Create a Marketplace account
+		</h2>
+		<p class="requiredFormText">All fields are required unless they're marked optional. Don't enter any letters with special characters, like accents, tildes, etc. </p>
+		<div id="registrationValidationStep2Container" class="validatorFormGroup">
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<h3>Create your username</h3>
+					<!--span>Username</span-->
+					<label class="noBold" for="registrationThreeStepUsername">Username</label>
+					<input id="registrationThreeStepUsername" aria-required="true" aria-describedby="usernameHelpText registrationThreeStepUsername-feedbackMsg" type="text" autocomplete="off" data-validate="notBlank EIDMUserLogin notAnEmail eeExt eeUserName">
+					<p id="usernameHelpText" class="supportText blockElement" tabIndex="-1">The username is case sensitive. Choose a username that is 6-74 characters long and must contain a lowercase or capital letter, a number, or one of these symbols _.@/-</p><span id="registrationThreeStepUsername-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>	
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span12">
+					<h3>Create a password</h3>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span6">
+					<!--span>Password</span-->
+					<label class="noBold" for="registrationThreeStepPassword">Password</label>
+					<input id="registrationThreeStepPassword" aria-required="true" aria-describedby="pwd1HelpText registrationThreeStepPassword-feedbackMsg" type="password" autocomplete="off" data-validate="notBlank EIDMPassword">
+					<p id="pwd1HelpText" class="supportText blockElement" tabIndex="-1">Your password must contain 8-20 characters. There must be at least 1 upper case letter, 1 lower case letter, and 1 number. It must be different from your last 6 passwords. It can't contain your username or any of these characters = ?&lt;&gt; ( ) ‘ " / \ &amp;</p><span id="registrationThreeStepPassword-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+				</div>
+				<div class="span6">
+					<!--span for="registrationThreeStepConfirmPassword">Confirm password</span-->
+					<label class="noBold" for="registrationThreeStepConfirmPassword">Confirm password</label>
+					<input id="registrationThreeStepConfirmPassword" aria-required="true" aria-describedby="pwd2HelpText registrationThreeStepConfirmPassword-feedbackMsg" type="password" autocomplete="off" data-validate="notBlank EIDMPassword sameEEPassword-registrationThreeStepPassword-registrationThreeStepConfirmPassword">
+					<p id="pwd2HelpText" class="supportText blockElement" tabIndex="-1">You must enter the same password as the Password field.</p><span id="registrationThreeStepConfirmPassword-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="multiStep">
+			<ul class="inlineList">
+				<li><i class="iconCustom-circle-filled circleComplete"></i><!--span class="ui-helper-hidden-accessible">Step 1</span--></li>
+				<li><i class="iconCustom-circle-filled circleCurrent"></i><span class="ui-helper-hidden-accessible">you are in step 2 of 3</span></li>
+				<li><i class="iconCustom-circle-filled"></i><!--span class="ui-helper-hidden-accessible">Step 3</span--></li>
+				<!--li><i class="iconCustom-circle-filled"></i><span class="ui-helper-hidden-accessible">Step 4</span></li-->
+			</ul>
+		</div>
+		<div class="ui-dialog-buttonset">
+			<button aria-disabled="false" id="gobackToStepOne" class="btn btn-secondary modal-close" role="button" type="button"><span class="ui-button-text">Back</span><span class="HiddenText">Marketplace Account Registration - Sign Up - Step 1</span></button>
+			<button aria-disabled="false" id="goToStepThree" class="btn btn-primary modal-next" role="button" type="button"> <span class="ui-button-text">Next</span><span class="HiddenText">Marketplace Account Registration - Sign Up - Step 3</span></button>
+		</div>
+	</div>
+</div></div>
+							<div style="display: none;" id="registrationSignUpThree">
+      <h1 class="HiddenText">Marketplace Account Registration - Sign Up - Step 3</h1>
+<div style="margin-top: 0px;" class="row-fluid sectionSimple">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account?</span>
+		<button class="btn btn-select goToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section step3ValidationGroup" role="form" action="#">
+	<div class="modalSteps">
+	<div class="modalStep modalStep-custom activeModalStep">
+		<h2 class=" largeText signup-heading">Create a Marketplace account
+		</h2>
+		<p class="requiredFormText">All fields are required unless they're marked optional. Don't enter any letters with special characters, like accents, tildes, etc. </p>
+		<div id="registrationValidationStep3Container" class="validatorFormGroup">
+			<h3>Security Questions</h3>
+			<p class="muted smallText supportText">The answers to your security questions must contain letters or numbers and can't be longer than 30 characters. The following special characters are allowed, as long as they follow a letter or number. This means that your answers can't start with one of these characters, apostrophe ('), hyphen (-), spaces, period (.).</p>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+						<label for="registrationSignUpStep3SecurityQ0">Question 1</label>
+						<select id="registrationSignUpStep3SecurityQ0" class="securityQuestions" aria-required="true" aria-describedby="registrationSignUpStep3SecurityQ0-feedbackMsg" data-validate="notBlank"></select><span id="registrationSignUpStep3SecurityQ0-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+					</div>
+					<div class="span6">
+						<label for="registrationSignUpStep3SecurityQ0Answer">Answer 1</label>
+						<input id="registrationSignUpStep3SecurityQ0Answer" aria-required="true" aria-describedby="registrationSignUpStep3SecurityQ0Answer-feedbackMsg" maxLength="30" type="text" autocomplete="off" data-validate="notBlank EIDMOutofwalletAnswers"><span id="registrationSignUpStep3SecurityQ0Answer-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+					</div>
+			</div>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<label for="registrationSignUpStep3SecurityQ1">Question 2</label>
+					<select id="registrationSignUpStep3SecurityQ1" class="securityQuestions" aria-required="true" aria-describedby="registrationSignUpStep3SecurityQ1-feedbackMsg" data-validate="notBlank"></select><span id="registrationSignUpStep3SecurityQ1-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+				</div>
+				<div class="span6">
+					<label for="registrationSignUpStep3SecurityQ1Answer">Answer 2</label>
+					<input id="registrationSignUpStep3SecurityQ1Answer" aria-required="true" aria-describedby="registrationSignUpStep3SecurityQ1Answer-feedbackMsg" maxLength="30" type="text" autocomplete="off" data-validate="notBlank EIDMOutofwalletAnswers"><span id="registrationSignUpStep3SecurityQ1Answer-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+				</div>
+			</div>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<label for="registrationSignUpStep3SecurityQ2">Question 3</label>
+					<select id="registrationSignUpStep3SecurityQ2" class="securityQuestions" aria-required="true" aria-describedby="registrationSignUpStep3SecurityQ2-feedbackMsg" data-validate="notBlank"></select><span id="registrationSignUpStep3SecurityQ2-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+				</div>
+				<div class="span6">
+					<label for="registrationSignUpStep3SecurityQ2Answer">Answer 3</label>
+					<input id="registrationSignUpStep3SecurityQ2Answer" aria-required="true" aria-describedby="registrationSignUpStep3SecurityQ2Answer-feedbackMsg" maxLength="30" type="text" autocomplete="off" data-validate="notBlank EIDMOutofwalletAnswers"><span id="registrationSignUpStep3SecurityQ2Answer-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="multiStep">
+			<ul class="inlineList">
+				<li><i class="iconCustom-circle-filled circleComplete"></i><!--span class="ui-helper-hidden-accessible">Step 1</span--></li>
+				<li><i class="iconCustom-circle-filled circleComplete"></i><!--span class="ui-helper-hidden-accessible">Step 2</span--></li>
+				<li><i class="iconCustom-circle-filled circleCurrent"></i><span class="ui-helper-hidden-accessible">you are in step 3 of 3</span></li>
+				<!--li><i class="iconCustom-circle-filled"></i><span class="ui-helper-hidden-accessible">Step 4</span></li-->
+			</ul>
+		</div>
+		<div class="ui-dialog-buttonset">
+			<button aria-disabled="false" id="gobackToPrevious" class="btn btn-secondary modal-close" role="button" type="button"><span class="ui-button-text">Back</span><span class="HiddenText">Marketplace Account Registration - Sign Up - Step 2</span></button>
+			<button aria-disabled="false" id="signUpCreate" class="btn btn-primary modal-next" role="button" type="button"> <span class="ui-button-text">Create account</span> </button>
+		</div>
+	</div>
+</div></div>
+							<div style="display: none;" id="registrationSignUpResults"></div>							
+							<div style="display: none;" id="logInPage">
+      <h1 class="HiddenText">Marketplace Account Registration - Log In</h1>
+<div style="margin-top: 0px;" id="signUpButton" class="row-fluid sectionSimple">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button id="loginSignUpButton" class="btn btn-select">Create Account</button>
+    </div>
+</div>
+<div class="section">
+	<form id="loginData" role="form" method="POST" name="loginData" action="https://eidmt.cms.gov/oam/server/authentication">
+		<div class="page-content">
+			<div class="row-fluid">
+				<div class="loginImg">
+					<img class="alignRight" alt="" src="images/myaccount-registration-login.png">
+				</div>
+				<div class="loginText">
+					<input name="successurl" value="https://eidmt.cms.gov/success.html" type="hidden">
+					<h2 class="largerH2  no-margin">Log In
+					</h2>
+					<p class="requiredFormText">All fields are required unless they're marked optional.</p>
+					<div style="display: none;" id="alertText">
+						<div class="alert alert-error" aria-live="polite">
+								<div class="iconSpan"><i aria-hidden="true" class="iconCustom-warning-sign"></i></div>
+								<div class="alertContent">
+									<p class="alertHeading"><strong>Important:</strong> You attempted to sign in too many times.</p>
+								</div>
+						</div>	
+						<ul class="spacedList">
+							<li>If you have a Marketplace account and forgot your username or password, click on the links below.</li>
+						</ul>
+					</div>
+					<div id="loginSubmitContainer" class="validatorFormGroup">
+						<div class="row-fluid sectionSimple">
+							<div class="span12">
+								<label for="username">Username</label>
+								<input id="username" aria-required="true" aria-describedby="username-feedbackMsg" name="username" type="text" autocomplete="off" data-validate="notBlank"><span id="username-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+							</div>
+						</div>
+						<div class="row-fluid sectionSimple">
+							<div class="span12">
+								<label for="password">Password</label>
+								<input id="password" aria-required="true" aria-describedby="password-feedbackMsg" name="password" type="password" autocomplete="off" data-validate="notBlank"><span id="password-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+								
+							</div>
+						</div>
+						<div id="forgotUserNamePasswordDiv" class="row-fluid sectionSimple">
+							<div class="span12">
+								<p class="supportText blockElement">
+									<a id="forgotUsernameLink" href="#forgotUsername">
+										<strong>
+											Forgot your username?
+										</strong>
+									</a>
+									<span class="vertical-bar">|</span>			
+									<a id="forgotPasswordLink" href="#forgotPassword">
+										<strong>
+											Forgot your password?
+										</strong>
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div id="loginErrorMessageContainer" class="feedbackMsg error"></div>
+				</div>
+			</div>
+		</div>
+		<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+          <div class="span6">
+            <p class="supportText">
+              <a href="/help/i-am-having-trouble-logging-in-to-my-marketplace-account/">
+                <strong>Having trouble logging in?</strong>
+              </a>
+            </p>
+          </div>
+
+         <div class="ui-dialog-buttonset alignRight">
+				 <input id="loginSubmit" class="btn btn-primary btn-large" value="Log in" type="submit"> 
+			</div>
+		</div>
+	</form>
+</div>
+
+</div>							<div style="display: none;" id="logInTermsAndConditionsPage">
+      <h1 class="HiddenText">Marketplace Account Registration - Log In - Terms &amp; Conditions</h1>
+<div class="section sectionSimple"> 
+	<div class="page-content">
+			<h2>Terms &amp; Conditions</h2>
+			<p>So that</p>
+			<p>remains accurate and available to you and all other visitors, we monitor network traffic to identify unauthorized attempts to upload or change information or otherwise cause damage to the web service. Use of this system constitutes consent to such monitoring and auditing. Unauthorized attempts to upload information and/or change information on this web site are strictly prohibited and are subject to prosecution under the Computer Fraud and Abuse Act of 1986 and Title 18 U.S.C. Sec.1001 and 1030.</p>
+			<p>To continue, you must accept the terms and conditions. If you decline, your login will automatically be cancelled.</p>
+			<ul>
+				<li>You have no reasonable expectation of privacy regarding any communication or data transiting or stored on this information system.</li>
+				<li>At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this information system.</li>
+			</ul>
+			<p>Any communication or data transiting or stored on this information system may be disclosed or used for any lawful Government purpose.</p>
+			<p><strong>To continue, you must accept the terms and conditions. If you decline, your login will automatically be cancelled.</strong></p>  
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="ui-dialog-buttonset">
+			<button id="termsAndConditionsDecline" class="btn btn-secondary">Decline</button>
+			<button id="termsAndConditionsAccept" class="btn btn-primary">I accept</button>
+		 </div>
+	</div>
+</div>	
+</div>							
+							<div style="display: none;" id="forgotPasswordPage">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password</h1>
+<div style="margin-top: 0px;" class="row-fluid sectionSimple">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button id="forgotPasswordSignUpButton" class="btn btn-select">Create Account</button>
+    </div>
+</div>
+<div class="section" role="form">
+   	<div class="page-content">
+		<h2>Forgot password</h2>
+		<p class="requiredFormText">All fields are required unless they're marked optional.</p>
+		<div id="forgotPasswordContainer" class="validatorFormGroup">
+			<p>Please give us the following information and we'll send you an email with instructions.</p>
+			<div class="row-fluid sectionSimple">
+				<div class="span5">
+					<label for="userNameForgotPassword">What is your Marketplace username?</label>
+					<input id="userNameForgotPassword" aria-required="true" aria-describedby="userNameForgotPassword-feedbackMsg" type="text" autocomplete="off" data-validate="notBlank EIDMUserLogin"><span id="userNameForgotPassword-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+				</div>
+			</div>
+        </div>
+        <div style="display: none;" id="Iremember">
+        	<div class="row-fluid sectionSimple">
+            	<div class="span12">
+             		<label for="forgotPasswordUsername">What is your Marketplace username?</label>
+                    <div class="row-fluid">
+                    	<div class="span6">
+                        	<input id="forgotPasswordUsername" type="text" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div style="display: none;" id="Idont">
+         	<div class="row-fluid sectionSimple">
+                <div class="span12">
+                	<fieldset>
+                    	<legend>Provide these details to reset your password:</legend>
+                        <div class="row-fluid sectionSimple">
+                        	<div class="span6">
+                            	<label for="fname1">First name</label>
+                                <input id="fname1" type="text" autocomplete="off">
+                            </div>
+                            <div class="span6">
+                            	<label for="lname1">Last name</label>
+                                <input id="lname1" type="text" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="row-fluid sectionSimple">
+                        	<div class="span6">
+                            	<label for="email1">Email address associated with your account:</label>
+                                <input id="email1" type="text" autocomplete="off">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+         </div>
+	</div>
+    <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="multiStep">
+			<ul class="inlineList">
+				<li><i class="iconCustom-circle-filled circleCurrent"></i><span class="ui-helper-hidden-accessible">you are in step 1 of 2</span></li>
+				<li><i class="iconCustom-circle-filled"></i><!--span class="ui-helper-hidden-accessible">Step 2</span--></li>
+			</ul>
+		</div>
+		<div class="ui-dialog-buttonset">
+			<button id="forgotPasswordCancel" class="btn btn-secondary">Cancel <span class="HiddenText">Log In</span></button>
+			<button id="forgotPasswordSendEmail" class="btn btn-primary">Send email <span class="HiddenText">Forgot password</span></button>
+		</div>
+	</div>
+</div>
+</div>  
+							<div style="display: none;" id="passwordChallengeQuestionsPage">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Security Questions</h1>
+<div role="main">
+	<h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Security Questions</h1>
+	<!--<div class="row-fluid sectionSimple" style="margin-top: 0;">
+		<div class="span12 alignRight">
+			<span class="signupText">New to HealthCare.gov?</span>
+			<button id="challengeQuestionsSignUpButton" class="btn btn-info">Create Account</button>
+		</div>
+	</div> -->
+	<div class="section">
+		<div class="page-content">        
+			<h2>Forgot password</h2>
+			<p class="requiredFormText">All fields are required unless they're marked optional.</p>
+			<div id="forgotPasswordQuestionsContainer">
+				<p>We found your Marketplace account. Please answer the following questions to reset your password.</p>
+				<div id="questionTemplateSection" role="form"></div> 
+			</div>
+		</div>
+	</div>
+		
+	<input style="display: none;" id="userNameForgotPassword" type="hidden">
+	<input style="display: none;" id="forgotPasswordUuid" type="hidden">
+		
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="ui-dialog-buttonset">
+			<button id="challengeQuestionsBack" class="btn btn-secondary">Back <span class="HiddenText">Log In</span></button>
+			<button id="challengeQuestionsContinue" class="btn btn-primary">Continue <span class="HiddenText">Marketplace Account Registration - Forgot Password - Reset Password - Unsuccessful</span></button>
+		</div>
+	</div>
+</div>
+</div>							<div style="display: none;" id="forgotPasswordResultsPage">
+        	
+</div>							<div style="display: none;" id="expiredPasswordPage">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Password Expired</h1>
+<div style="margin-top: 0px;" class="row-fluid sectionSimple">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button id="passwordExpiredSignUpButton" class="btn btn-select">Create Account</button>
+    </div>
+</div>
+<div class="section" role="form">
+   	<div class="page-content">
+        <h2>Your password has expired</h2>
+        <p>Enter your current password, and then provide a new password.</p>
+        <div class="row-fluid sectionSimple">
+            <div class="span6">
+                <label for="expiredPasswordOldPassword">
+                    Current password<span class="error blockElement"></span>
+                </label>
+                <input id="expiredPasswordOldPassword" type="password">
+            </div>
+        </div>
+        <div class="row-fluid sectionSimple">
+            <div class="span6">
+                <label for="expiredPasswordNewPassword">
+                    New password<span class="error blockElement"></span>
+                </label>
+                <input id="expiredPasswordNewPassword" aria-describedby="pwd1HelpText" type="password">
+                <p id="pwd1HelpText" class="supportText blockElement" tabIndex="-1">
+        		Your password must contain 8-20 characters. There must be at least 1 upper case letter, 1 lower case letter, and 1 number. It must be different from your last 6 passwords. It can't contain your username or any of these characters = ?&lt;&gt; ( ) ‘ " / \ &amp;</p>
+            </div>
+            <div class="span6">
+                <label for="pwd2">
+                    Confirm new password<span class="error blockElement"></span>
+                </label>
+                <input id="pwd2" aria-describedby="pwd2HelpText" type="password">
+                <p id="pwd2HelpText" class="supportText blockElement" tabIndex="-1">
+        		You must enter the same password as the Password field.</p>
+            </div>
+        </div> 
+	</div>
+    <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="ui-dialog-buttonset">
+            <button id="expiredPasswordContinue" class="btn btn-primary">Continue</button>
+		</div>
+    </div>
+</div>
+</div>							<div style="display: none;" id="resetPasswordPage">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Reset Password</h1>
+<!--<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">New to HealthCare.gov?</span>
+		<button id="resetLoginInSignUpButton" class="btn btn-info">Create Account</button>
+	</div>
+</div> -->
+<div class="section" role="form">
+	<div class="page-content">
+		<h2>Forgot password</h2>
+		<p class="requiredFormText">All fields are required unless they're marked optional.</p>
+		<div id="resetPasswordContainer" class="validatorFormGroup">
+			<p>Please create a new password.</p>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<label for="resetPasswordNewPassword">Password<span class="error blockElement"></span></label>
+					<input id="resetPasswordNewPassword" aria-required="true" aria-describedby="pwd1HelpText resetPasswordNewPassword-feedbackMsg" type="password" data-validate="notBlank EIDMPassword">
+					<p id="pwd1HelpText" class="supportText blockElement" tabIndex="-1">Your password must contain 8-20 characters. There must be at least 1 upper case letter, 1 lower case letter, and 1 number. It must be different from your last 6 passwords. It can't contain your username or any of these characters = ?&lt;&gt; ( ) ‘ " / \ &amp;</p><span id="resetPasswordNewPassword-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+				</div>
+			</div>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<label for="resetPasswordConfirmPassword">Confirm password<span class="error blockElement"></span></label>
+					<input id="resetPasswordConfirmPassword" aria-required="true" aria-describedby="pwd2HelpText resetPasswordConfirmPassword-feedbackMsg" type="password" data-validate="notBlank EIDMPassword sameEEPassword-resetPasswordNewPassword-resetPasswordConfirmPassword">
+					<p id="pwd2HelpText" class="supportText blockElement" tabIndex="-1">You must enter the same password as the Password field.</p><span id="resetPasswordConfirmPassword-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+				</div>
+			</div> 
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="ui-dialog-buttonset">
+           	<button id="resetPasswordBack" class="btn btn-secondary">Back <span class="HiddenText">Forgot Password - Security Questions</span></button>
+            <button id="resetPasswordReset" class="btn btn-primary">Reset Password</button>
+		</div>
+	</div>
+</div></div>
+							
+							
+							<div style="display: none;" id="forgotUsernameDetails">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Username</h1>
+<div class="row-fluid">
+	<div class="span12" role="form">
+		<div style="margin-top: 0px;" class="row-fluid sectionSimple">
+			<div class="span12 alignRight">
+				<span class="signupText">New to HealthCare.gov?</span>
+				<button id="signUp" class="btn btn-select">Create Account</button>
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="page-content">
+				<h2>Forgot username</h2>
+				<p class="requiredFormText">All fields are required unless they're marked optional.</p>
+				<div id="forgotUserNameContainer" class="validatorFormGroup">
+					<p>Please give us the following information and we'll send you an email with instructions.</p>
+					<div class="row-fluid sectionSimple">
+						<div class="span6">
+							<label for="forgotUserNameFirstName">First name</label>
+							<input id="forgotUserNameFirstName" aria-required="true" aria-describedby="forgotUserNameFirstName-feedbackMsg" type="text" autocomplete="off" data-validate="notBlank EIDMFirstName"><span id="forgotUserNameFirstName-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+						</div>
+						<div class="span6">
+							<label for="forgotUserNameLastName">Last name</label>
+							<input id="forgotUserNameLastName" aria-required="true" aria-describedby="forgotUserNameLastName-feedbackMsg" type="text" autocomplete="off" data-validate="notBlank EIDMLastName"><span id="forgotUserNameLastName-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+						</div>
+					</div>  
+					<div class="row-fluid sectionSimple">
+						<div class="span12">
+							<label for="forgotUserNameEmail">What is your email address associated with your account?</label>
+							<div class="row-fluid">
+								<div class="span6">
+									<input id="forgotUserNameEmail" aria-required="true" aria-describedby="forgotUserNameEmail-feedbackMsg" type="text" autocomplete="off" data-validate="notBlank EIDMEmail"><span id="forgotUserNameEmail-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+				<div class="multiStep">
+					<ul class="inlineList">
+						<li><i class="iconCustom-circle-filled circleCurrent"></i><span class="ui-helper-hidden-accessible">you are in step 1 of 2</span></li>
+						<li><i class="iconCustom-circle-filled"></i><!--span class="ui-helper-hidden-accessible">Step 2</span--></li>
+					</ul>
+				</div>
+				<div class="ui-dialog-buttonset">
+					<button id="forgotUsernameCancel" class="btn btn-secondary">Cancel <span class="HiddenText">Log In</span></button>
+					<button id="forgotUsernameSendEmail" class="btn btn-primary">Send email <span class="HiddenText">Marketplace Account Registration - Forgot Username - Email Sent</span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>							<div style="display: none;" id="forgotUsernameResultsPage"></div>
+							
+							<!--contains sections for different messages -->
+<div style="display: none;" id="saveBlocker" class="blocker" role="alert">
+	<div>
+        <h1> Please wait</h1>
+        <img aria-busy="true" role="progressbar" aria-valuenow="0" aria-valuemax="100" aria-valuemin="0" aria-describedby="desc" alt="" src="images/pleaseWait.gif">
+    	<!--p id="desc">
+			Please wait while we save your application
+		</p-->
+		<p id="desc" class="HiddenText">
+		Please wait while we update your Marketplace account
+		</p>
+  	</div>
+</div>
+
+<div style="display: none;" id="loginBlocker" class="blocker" role="alert">
+	<div>
+        <h1> Please wait</h1>
+        <img aria-busy="true" role="progressbar" aria-valuenow="0" aria-valuemax="100" aria-valuemin="0" aria-describedby="desc" alt="" src="images/pleaseWait.gif">
+    	<!--p id="desc">
+			Please wait while we log you into your account
+		</p-->
+		<p id="desc" class="HiddenText">
+		Please wait while we update your Marketplace account
+		</p>
+  	</div>
+</div>
+
+<div style="display: none;" id="emailValidationBlocker" class="blocker" role="alert">
+	<div>
+        <h1> Please wait</h1>
+        <img aria-busy="true" role="progressbar" aria-valuenow="0" aria-valuemax="100" aria-valuemin="0" aria-describedby="desc" alt="" src="images/pleaseWait.gif">
+    	<!--p id="desc">
+			Please wait while we validate your email
+		</p-->
+		<p id="desc" class="HiddenText">
+		Please wait while we update your Marketplace account
+		</p>
+  	</div>
+</div>
+
+<div style="display: none;" id="profileBlocker" class="blocker" role="alert">
+	<div>
+		<h1> Please wait</h1>
+		<img alt="" src="images/pleaseWait.gif">
+			<p id="desc" class="HiddenText">
+		Please wait while we update your Marketplace account
+		</p>
+	</div>
+</div>
+
+						</div>
+					</div>
+				</div><!-- end content container-->
+			</div>
+			<!--end inner container -->
+		</div>
+		<!-- begin footer -->
+<div class="footerSection">
+        <div id="footer" class="footerContainer" role="contentinfo">
+            <h2 class="HiddenText">Footer</h2>
+            <div class="footer-bottom">
+                <div class="footer-row">
+                    <div class="row-fluid" role="navigation">
+						<div class="span5 pull-left links">
+                            <ul class="clearfix">
+                                <li><a href="/sitemap/">SITEMAP<span class="HiddenText">opens in a new window</span></a></li>
+                                <li><a href="/glossary/">GLOSSARY<span class="HiddenText">opens in a new window</span></a></li>
+                                <li><a href="/help-center/">CONTACT US<span class="HiddenText">opens in a new window</span></a></li>
+                                <li><a href="/archive/">ARCHIVE <span class="HiddenText">opens in a new window</span></a></li>
+                            </ul>
+                        </div>
+						<div class="pagination-right pull-right links">
+                            <ul class="clearfix">
+                                <li><a href="/accessibility/">ACCESSIBILITY<span class="HiddenText">opens in a new window</span></a></li>
+                                <li><a href="/privacy/">PRIVACY POLICY<span class="HiddenText">opens in a new window</span></a></li>
+                                <li><a href="http://www.hhs.gov/open/recordsandreports/plainwritingact/index.html" target="_blank">PLAIN WRITING <span class="HiddenText">opens in a new window</span></a></li>
+                                <li><a href="http://www.cms.gov/About-CMS/Agency-Information/Aboutwebsite/Help.html" target="_blank">VIEWERS &amp; PLAYERS <span class="HiddenText">opens in a new window</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-row">
+                    <div class="row-fluid" role="navigation">
+                        <div class="span4">
+                            <p class="descriptionText"> <a class="logo_HHS" href="http://www.hhs.gov/" target="_blank"><img alt="HHS.gov Department of Health and Human Services USA - opens in a new window" src="images/logo_HHS.png"></a>A federal government website managed by the U.S. Centers for Medicare &amp; Medicaid Services. 7500 Security Boulevard, Baltimore, MD 21244</p>
+                        </div>
+                        <div class="span8 pull-right"> <a class="logo_whitehouse" href="http://www.whitehouse.gov/" target="_blank"><img alt="Whitehouse.gov The White House Washington - opens in a new window" src="images/logo_WhiteHouse.png"></a> <a class="logo_usagov" href="http://www.usa.gov/" target="_blank"><img alt="USA.gov Government made easy - opens in a new window" src=" images/logo_USAgov.png"></a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ </div>
+<!-- end footer --> 	</div>
+	<div class="container-fluid">
+    <div class="bottom-chat-link">
+		<a id="webchat" class="chatLink chat-launcher" role="complementary" href="#">Live Chat<i aria-hidden="true" class="icon-resize_full"></i>
+		</a> 
+	</div>
+</div>
+<div class="chat-iframe-container"> </div>
+
+
+<script type="text/javascript">
+var chatWindow = null;
+var windowFeatures = "width=465,height=452,menubar=0,location=0,resizable=0,scrollbars=0,status=0";
+
+
+function startChat(el){
+    $(el).click(function(e){
+        e.preventDefault();
+        chatWindow = window.open('/chat','WebChat',windowFeatures);
+    })
+}
+
+startChat('#webchat');
+startChat('#chatHelp');
+
+</script></div><!--END MAIN WRAPPER --> 
+
+<!--log in-->
+<script id="logInTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Log In</h1>
+<div id="signUpButton" class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button id="loginSignUpButton" class="btn btn-select">Create Account</button>
+    </div>
+</div>
+<div class="section">
+	<form id="loginData" action="<%=oamServerURL%>" method="POST" name="loginData" role="form">
+		<div class="page-content">
+			<div class="row-fluid">
+				<div class="loginImg">
+					<img alt="" src="images/myaccount-registration-login.png" class="alignRight">
+				</div>
+				<div class="loginText">
+					<input type="hidden" name="successurl" value="<%=oamSuccessURL%>" />
+					<h2 class="largerH2  no-margin">Log In
+					</h2>
+					<p class="requiredFormText">All fields are required unless they&#39;re marked optional.</p>
+					<div id="alertText" style="display:none;">
+						<div class="alert alert-error" aria-live="polite">
+								<div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+								<div class="alertContent">
+									<p class="alertHeading"><strong>Important:</strong> You attempted to sign in too many times.</p>
+								</div>
+						</div>	
+						<ul class="spacedList">
+							<li>If you have a Marketplace account and forgot your username or password, click on the links below.</li>
+						</ul>
+					</div>
+					<div id="loginSubmitContainer">
+						<div class="row-fluid sectionSimple">
+							<div class="span12">
+								<label for="username">Username</label>
+								<input type="text" name="username" id="username" autocomplete="off"  data-validate="notBlank" aria-required="true">
+							</div>
+						</div>
+						<div class="row-fluid sectionSimple">
+							<div class="span12">
+								<label for="password">Password</label>
+								<input type="password" id="password" name="password" autocomplete="off" data-validate="notBlank" aria-required="true">
+								
+							</div>
+						</div>
+						<div id="forgotUserNamePasswordDiv" class="row-fluid sectionSimple">
+							<div class="span12">
+								<p class="supportText blockElement">
+									<a id="forgotUsernameLink"  href="#forgotUsername">
+										<strong>
+											Forgot your username&#63;
+										</strong>
+									</a>
+									<span class="vertical-bar">|</span>			
+									<a id="forgotPasswordLink" href="#forgotPassword">
+										<strong>
+											Forgot your password&#63;
+										</strong>
+									</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div id="loginErrorMessageContainer" class="feedbackMsg error">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+          <div class="span6">
+            <p class="supportText">
+              <a href="/help/i-am-having-trouble-logging-in-to-my-marketplace-account/">
+                <strong>Having trouble logging in?</strong>
+              </a>
+            </p>
+          </div>
+
+         <div class="ui-dialog-buttonset alignRight">
+				 <input id="loginSubmit" type="submit" value="Log in" class="btn btn-primary btn-large" /> 
+			</div>
+		</div>
+	</form>
+</div>
+
+</script>
+
+<script id="logInTermsAndConditionsTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Log In - Terms &#38; Conditions</h1>
+<div class="section sectionSimple"> 
+	<div class="page-content">
+			<h2>Terms & Conditions</h2>
+			<p>So that</p>
+			<p>remains accurate and available to you and all other visitors, we monitor network traffic to identify unauthorized attempts to upload or change information or otherwise cause damage to the web service. Use of this system constitutes consent to such monitoring and auditing. Unauthorized attempts to upload information and/or change information on this web site are strictly prohibited and are subject to prosecution under the Computer Fraud and Abuse Act of 1986 and Title 18 U.S.C. Sec.1001 and 1030.</p>
+			<p>To continue, you must accept the terms and conditions. If you decline, your login will automatically be cancelled.</p>
+			<ul>
+				<li>You have no reasonable expectation of privacy regarding any communication or data transiting or stored on this information system.</li>
+				<li>At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this information system.</li>
+			</ul>
+			<p>Any communication or data transiting or stored on this information system may be disclosed or used for any lawful Government purpose.</p>
+			<p><strong>To continue, you must accept the terms and conditions. If you decline, your login will automatically be cancelled.</strong></p>  
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+			<button id="termsAndConditionsDecline" class="btn btn-secondary">Decline</button>
+			<button id="termsAndConditionsAccept" class="btn btn-primary">I accept</button>
+		 </div>
+	</div>
+</div>	
+</script>
+
+<script id="logInSignUpTemplate" type="text/template">
+      <h1 class="HiddenText"><%=h1Heading%></h1>
+<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText"><%=signUpText%></span>
+        <button id="logInSignUpButton" class="btn btn-info"><%=buttonText%></button>
+    </div>
+</div></script>
+
+
+
+<!-- SignUp -->
+<script id="registrationSignUpOneStepTemplate" type="text/template">
+      <div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account&#63;</span>
+		<button class="btn btn-info goBackToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section" role="form">
+	<div class="page-content">
+		<div class="row-fluid">
+			<div class="span7">
+				<h2 class="largerH2">Create a Marketplace account
+				<span class="requiredFormText">Please Note: All fields are required unless noted as optional</span>
+				</h2>
+				<ul>
+					<li>View plans on the Marketplace, and save favorites</li>
+					<li>Find people who can help you choose the best coverage options</li>
+					<li>Get information about the Marketplace</li>
+				</ul>
+			</div>
+			<div class="span5">
+				<img alt="" src="http://placehold.it/360x150/e83838/ffffff&amp;text=PLACEHOLDER+FOR+ILLUSTRATIONS" class="alignRight">
+			</div>
+		</div>
+
+		<hr class="grayRule thin">
+		<div id="registrationValidationSignUp">
+			<h2>Profile Information</h2>
+			<div class="row-fluid sectionSimple">
+				<div class="span3" id="registrationValidationFirstName">
+					<label for="registrationSignUpFirstName">First name<span class="error blockElement"></span></label>
+					<input id="registrationSignUpFirstName" type="text" data-validate="notBlank EIDMFirstName" autocomplete="off"/>
+				</div>
+				<div class="span3">
+					<label for="registrationSignUpMiddleName">Middle<span class="error blockElement"></span></label>
+					<input id="registrationSignUpMiddleName" data-validate="EIDMMiddleName" type="text" name="name" autocomplete="off"/>
+				</div>
+				<div class="span3" id="registrationValidationLastName">
+					<label for="registrationSignUpLastName">Last name<span class="error blockElement"></span></label>
+					<input id="registrationSignUpLastName" type="text" data-validate="notBlank EIDMLastName"  autocomplete="off"/>
+				</div>
+				<div class="span3" id="registrationSignUpSuffixContainer"></div>
+			</div>
+			<div class="row-fluid sectionSimple">
+				<div class="span5" id="registrationSignUpStateContainer">
+
+				</div>
+			</div>
+			<div class="row-fluid sectionSimple">
+				<div class="span6" id="registrationValidationEmail">
+					<label for="registrationSignUpEmail">Email address<span class="error blockElement"></span></label>
+					<input id="registrationSignUpEmail" data-validate="notBlank EIDMEmail" type="text" autocomplete="off"/>
+				</div>
+				<div class="span6" id="registrationValidationEmailConfirm">
+					<label for="registrationSignUpEmailConfirm">Confirm email address<span class="error blockElement"></span>
+					</label>
+					<input id="registrationSignUpEmailConfirm" data-validate="notBlank EIDMEmail sameEmail-registrationSignUpEmail-registrationSignUpEmailConfirm" type="text" autocomplete="off"/>
+				</div>
+			</div>
+			<div class="row-fluid sectionSimple">
+				<div class="span12">
+					<input type="checkbox" id="registrationSignUpEmailUpdates" checked>
+					<label for="registrationSignUpEmailUpdates" class="checked">I want to have news and updates sent to this email address</label>
+				</div>
+			</div>
+			<p>You need an email address to sign up. You can get one now for free:</p>
+
+			<hr class="grayRule thin">
+
+			<h2>Log In Information</h2>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<label for="registrationSignUpUsername">Username<span class="error blockElement"></span></label>
+					<input id="registrationSignUpUsername" type="text" data-validate="notBlank EIDMUserLogin EIDMUserNotEmail" aria-describedby="usernameHelpText" autocomplete="off"/>
+					<p class="supportText blockElement" id="usernameHelpText" tabindex="-1">The username is case sensitive. Choose a username that is 6&#45;74 characters long and must contain a lowercase or capital letter, a number, or one of these symbols &#95;&#46;&#64;&#47;&#45;</p>
+				</div>
+			</div>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<label for="registrationSignUpPassword">Password<span class="error blockElement"></span></label>
+					<input id="registrationSignUpPassword" type="password" autocomplete="off" data-validate="notBlank EIDMPassword" aria-describedby="pwd1HelpText" />
+					<p class="supportText blockElement" id="pwd1HelpText" tabindex="-1">Your password must contain 8&#45;20 characters&#46; There must be at least 1 upper case letter&#44; 1 lower case letter&#44; and 1 number&#46; It must be different from your last 6 passwords&#46; It can&#39;t contain your username or any of these characters &#61; &#63;&#60;&#62; &#40; &#41; &#8216; &#34; &#47; &#92; &#38;</p>
+				</div>
+				<div class="span6">
+					<label for="registrationSignUpPasswordConfirm">Confirm Password<span class="error blockElement"></span></label>
+					<input id="registrationSignUpPasswordConfirm" type="password" autocomplete="off" data-validate="notBlank EIDMPassword sameEEPassword-registrationSignUpPassword-registrationSignUpPasswordConfirm" aria-describedby="pwd2HelpText" />
+					<p class="supportText blockElement" id="pwd2HelpText" tabindex="-1">You must enter the same password as the Password field.</p>
+				</div>
+			</div>
+
+			<hr class="grayRule thin">
+
+			<h2>Security Questions</h2>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<label for="registrationSignUpSecurityQ0">Question 1</label>
+					<select id="registrationSignUpSecurityQ0" data-validate="notBlank" class="securityQuestions"></select>
+				</div>
+				<div class="span6">
+					<label for="registrationSignUpsecurityQ0Answer">Answer 1</label>
+					<input id="registrationSignUpsecurityQ0Answer" maxlength="30" type="text" data-validate="notBlank EIDMOutofwalletAnswers" autocomplete="off"/>
+				</div>
+			</div>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<label for="registrationSignUpSecurityQ1">Question 2</label>
+					<select id="registrationSignUpSecurityQ1" data-validate="notBlank" class="securityQuestions"></select>
+				</div>
+				<div class="span6">
+					<label for="registrationSignUpsecurityQ1Answer">Answer 2</label>
+					<input id="registrationSignUpsecurityQ1Answer" maxlength="30" type="text" data-validate="notBlank EIDMOutofwalletAnswers" aria-describedby="registrationSignUpsecurityQ1Answer-feedbackMsg" autocomplete="off"/>
+				</div>
+			</div>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<label for="registrationSignUpSecurityQ2">Question 3</label>
+					<select id="registrationSignUpSecurityQ2" data-validate="notBlank" class="securityQuestions"></select>
+				</div>
+				<div class="span6">
+					<label for="registrationSignUpsecurityQ2Answer">Answer 3</label>
+					<input id="registrationSignUpsecurityQ2Answer" maxlength="30" type="text" data-validate="notBlank EIDMOutofwalletAnswers" aria-describedby="registrationSignUpsecurityQ2Answer-feedbackMsg" autocomplete="off"/>
+				</div>
+			</div>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<label for="registrationSignUpSecurityQ3">Question 4</label>
+					<select id="registrationSignUpSecurityQ3" data-validate="notBlank" class="securityQuestions"></select>
+				</div>
+				<div class="span6">
+					<label for="registrationSignUpsecurityQ3Answer">Answer 4</label>
+					<input id="registrationSignUpsecurityQ3Answer" maxlength="30" data-validate="notBlank EIDMOutofwalletAnswers" type="text" autocomplete="off"/>
+				</div> 
+			</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+			<button class="btn btn-primary" id="signUpCreate">Create account</button>
+		</div>
+	</div>
+</div></script>
+
+<script id="profileAlreadyExistsTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration &#45; Sign Up &#45; Account Creation Unsuccessful</h1>
+<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account&#63;</span>
+		<button class="btn btn-info goBackToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section">
+	<div class="page-content">
+		<h2>Create a Marketplace account</h2>
+		<div class="alert alert-error">
+			<div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+			<div class="alertContent" aria-live="assertive">
+				<p class="alertHeading">An account already exists with this information.</p>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+				<ul class="spacedList">
+					<li>If you forgot your username&#44;<a href="#"> recover it here</a>.</li>
+					<li>If you forgot your password,<a href="#"> reset it now</a>.</li>
+					<!--li>If you think you got this message in error, call 1-800-318-2596. TTY users should call 1-855-889-4325.</li-->
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+			<button class="btn btn-primary gobackToSignUp" type="button" role="button" aria-disabled="false" style="display: inline-block;"> <span class="ui-button-text">Return to Create account page</span> </button>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="profileCouldNotBeCreatedTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Sign Up - Unsuccessful</h1>
+<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account&#63;</span>
+		<button class="btn btn-info goBackToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section">
+	<div class="page-content">
+		<h2>Create a Marketplace account</h2>
+		<div class="alert alert-error">
+			<div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+			<div class="alertContent" aria-live="assertive">
+				<p class="alertHeading">Important: Your account couldnt be created at this time. The system is unavailable.</p>
+			</div>
+		</div>
+		<!--div class="row-fluid">
+			<div class="span12">
+				<p>Please wait a few moments and try again&#46;</p>
+				<p>Please note that one of the errors below may have occurred&#58;</p>
+				<ul>
+					<li>User ID already exists. Choose a different User ID. </li>
+					<li>Invalid format for answers of security questions.</li>
+					<li>Two or more answers to your security questions were the same. You must provide different answers to each security question.</li>
+				</ul>
+			</div>
+		</div-->
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+			<button class="btn btn-primary gobackToSignUp" type="button" role="button" aria-disabled="false" style="display: inline-block;"> <span class="ui-button-text">Try again</span> </button>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="registrationSignUpStepOneTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Sign Up - Step 1</h1>
+<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account&#63;</span>
+		<button class="btn btn-select goToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section step1ValidationGroup" action="#" role="form">
+	<div class="modalSteps">
+		<div class="modalStep modalStep-custom activeModalStep">
+			<h2 class=" largeText signup-heading">Create a Marketplace account
+			</h2>
+			<p class="requiredFormText">All fields are required unless they&#39;re marked optional. Don&#39;t enter any letters with special characters, like accents, tildes, etc. </p>
+			<h3>Your Information</h3>
+			<div id="registrationStep1ValidationContainer">
+				<div class="row-fluid sectionSimple">
+					<div class="span3">
+						<label for="registrationThreeStepFirstName">First name</label>
+						<input id="registrationThreeStepFirstName" type="text" data-validate="notBlank EIDMFirstName" autocomplete="off" maxlength="20" />
+					</div>
+					<div class="span3">
+						<label for="registrationThreeStepMiddleName">Middle
+						<span class="instructionalText">optional</span></label>
+						<input id="registrationThreeStepMiddleName" data-validate="EIDMMiddleName" type="text" name="name" autocomplete="off" />
+					</div>
+					<div class="span3">
+						<label for="registrationThreeStepLastName">Last name<span class="error blockElement"></span></label>
+						<input id="registrationThreeStepLastName" type="text" data-validate="notBlank EIDMLastName" autocomplete="off" maxlength="25" />
+					</div>
+					<div class="span3" id="registrationStep1SignUpSuffixContainer"></div>
+				</div>
+				<div class="row-fluid sectionSimple">
+						<div class="span5">
+							<label for= "registrationStateStep1SignUp">State you live in</label>
+							<div id="registrationStep1SignUpStateContainer"></div>
+						</div>
+				</div>
+				<div class="row-fluid sectionSimple">
+					<div class="span6">
+						<label for="registrationThreeStepEmailUpdates">Email address<span class="error blockElement"></span></label>
+						<input id="registrationThreeStepEmailUpdates" type="text" data-validate="notBlank EIDMEmail" autocomplete="off" />
+					</div>
+					<div class="span6">
+						<label for="emailConfirm">Confirm email address<span class="error blockElement"></span></label>
+						<input id="emailConfirm" type="text"  data-validate="notBlank EIDMEmail sameEmail-registrationThreeStepEmailUpdates-emailConfirm" type="text" autocomplete="off" />
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="custom-checkbox">
+							<input type="checkbox" id="registrationStepOneCheckbox" checked="checked"/>
+							<label for="registrationStepOneCheckbox" class="checked">I want to have news and updates sent to this email address
+							<span class="instructionalText">optional</span></label>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid sectionSimple">
+									<div class="span12">
+										<p class="inlineElement">You need an email address to sign up. You can get one now for free:</p>
+										<ul class="inline smallText inlineElement"> <li> <a href="https://mail.google.com/"  target="_blank"><strong>Gmail</strong></a></li><li> <a href="https://login.live.com/"  target="_blank"><strong>Outlook</strong></a></li><li> <a href="https://login.yahoo.com/"  target="_blank"><strong>Yahoo</strong></a></li><li> <a href="https://mail.aol.com/"  target="_blank"><strong>AOL</strong></a></li></ul>
+									</div>
+                                </div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="multiStep">
+			<ul class="inlineList">
+				<li><i class="iconCustom-circle-filled circleCurrent"></i><span class="ui-helper-hidden-accessible">you are in step 1 of 3</span></li>
+				<li><i class="iconCustom-circle-filled"></i><!--span class="ui-helper-hidden-accessible">Step 2</span--></li>
+				<li><i class="iconCustom-circle-filled"></i><!--span class="ui-helper-hidden-accessible">Step 3</span--></li>
+				<!--li><i class="iconCustom-circle-filled"></i><span class="ui-helper-hidden-accessible">Step 4</span></li-->
+			</ul>
+		</div>
+		<div class="ui-dialog-buttonset">
+			<button id="step1Close" class="btn btn-secondary modal-close" type="button" role="button" aria-disabled="false"><span class="ui-button-text">Cancel</span><span class="HiddenText">Log In</span></button>
+			<button id="goToStepTwo" class="btn btn-primary modal-next" type="button" role="button" aria-disabled="false"> <span class="ui-button-text">Next</span><span class="HiddenText">Marketplace Account Registration - Sign Up - Step 2</span></button>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="registrationSignUpStepTwoTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Sign Up - Step 2</h1>
+<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account&#63;</span>
+		<button class="btn btn-select goToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section step2ValidationGroup" action="#" role="form">
+	<div class="modalSteps">		
+		<div class="modalStep modalStep-custom activeModalStep">
+		<h2 class=" largeText signup-heading">Create a Marketplace account
+		</h2>
+		<p class="requiredFormText">All fields are required unless they&#39;re marked optional. Don&#39;t enter any letters with special characters, like accents, tildes, etc. </p>
+		<div id="registrationValidationStep2Container">
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<h3>Create your username</h3>
+					<!--span>Username</span-->
+					<label class="noBold" for="registrationThreeStepUsername">Username</label>
+					<input id="registrationThreeStepUsername" type="text" data-validate="notBlank EIDMUserLogin notAnEmail eeExt eeUserName" aria-describedby="usernameHelpText" autocomplete="off" />
+					<p class="supportText blockElement" id="usernameHelpText" tabindex="-1">The username is case sensitive. Choose a username that is 6&#45;74 characters long and must contain a lowercase or capital letter, a number, or one of these symbols &#95;&#46;&#64;&#47;&#45;</p>	
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span12">
+					<h3>Create a password</h3>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span6">
+					<!--span>Password</span-->
+					<label class="noBold" for="registrationThreeStepPassword">Password</label>
+					<input id="registrationThreeStepPassword" type="password" autocomplete="off" data-validate="notBlank EIDMPassword" aria-describedby="pwd1HelpText" />
+					<p class="supportText blockElement" id="pwd1HelpText" tabindex="-1">Your password must contain 8&#45;20 characters&#46; There must be at least 1 upper case letter&#44; 1 lower case letter&#44; and 1 number&#46; It must be different from your last 6 passwords&#46; It can&#39;t contain your username or any of these characters &#61; &#63;&#60;&#62; &#40; &#41; &#8216; &#34; &#47; &#92; &#38;</p>
+				</div>
+				<div class="span6">
+					<!--span for="registrationThreeStepConfirmPassword">Confirm password</span-->
+					<label class="noBold" for="registrationThreeStepConfirmPassword">Confirm password</label>
+					<input id="registrationThreeStepConfirmPassword" type="password" autocomplete="off" data-validate="notBlank EIDMPassword sameEEPassword-registrationThreeStepPassword-registrationThreeStepConfirmPassword" aria-describedby="pwd2HelpText" />
+					<p class="supportText blockElement" id="pwd2HelpText" tabindex="-1">You must enter the same password as the Password field.</p>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="multiStep">
+			<ul class="inlineList">
+				<li><i class="iconCustom-circle-filled circleComplete"></i><!--span class="ui-helper-hidden-accessible">Step 1</span--></li>
+				<li><i class="iconCustom-circle-filled circleCurrent"></i><span class="ui-helper-hidden-accessible">you are in step 2 of 3</span></li>
+				<li><i class="iconCustom-circle-filled"></i><!--span class="ui-helper-hidden-accessible">Step 3</span--></li>
+				<!--li><i class="iconCustom-circle-filled"></i><span class="ui-helper-hidden-accessible">Step 4</span></li-->
+			</ul>
+		</div>
+		<div  class="ui-dialog-buttonset">
+			<button id="gobackToStepOne" class="btn btn-secondary modal-close" type="button" role="button" aria-disabled="false"><span class="ui-button-text">Back</span><span class="HiddenText">Marketplace Account Registration - Sign Up - Step 1</span></button>
+			<button id="goToStepThree" class="btn btn-primary modal-next" type="button" role="button" aria-disabled="false"> <span class="ui-button-text">Next</span><span class="HiddenText">Marketplace Account Registration - Sign Up - Step 3</span></button>
+		</div>
+	</div>
+</div></script>
+
+<script id="registrationSignUpStepThreeTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Sign Up - Step 3</h1>
+<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account&#63;</span>
+		<button class="btn btn-select goToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section step3ValidationGroup" action="#" role="form">
+	<div class="modalSteps">
+	<div class="modalStep modalStep-custom activeModalStep">
+		<h2 class=" largeText signup-heading">Create a Marketplace account
+		</h2>
+		<p class="requiredFormText">All fields are required unless they&#39;re marked optional. Don&#39;t enter any letters with special characters, like accents, tildes, etc. </p>
+		<div id="registrationValidationStep3Container">
+			<h3>Security Questions</h3>
+			<p class="muted smallText supportText">The answers to your security questions must contain letters or numbers and can&#39;t be longer than 30 characters. The following special characters are allowed, as long as they follow a letter or number. This means that your answers can&#39;t start with one of these characters, apostrophe (&#39;), hyphen (-), spaces, period (.).</p>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+						<label for="registrationSignUpStep3SecurityQ0">Question 1</label>
+						<select id="registrationSignUpStep3SecurityQ0" data-validate="notBlank" class="securityQuestions"></select>
+					</div>
+					<div class="span6">
+						<label for="registrationSignUpStep3SecurityQ0Answer">Answer 1</label>
+						<input id="registrationSignUpStep3SecurityQ0Answer" type="text" maxlength="30" data-validate="notBlank EIDMOutofwalletAnswers" autocomplete="off"/>
+					</div>
+			</div>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<label for="registrationSignUpStep3SecurityQ1">Question 2</label>
+					<select id="registrationSignUpStep3SecurityQ1" data-validate="notBlank" class="securityQuestions" ></select>
+				</div>
+				<div class="span6">
+					<label for="registrationSignUpStep3SecurityQ1Answer">Answer 2</label>
+					<input id="registrationSignUpStep3SecurityQ1Answer" type="text" maxlength="30" data-validate="notBlank EIDMOutofwalletAnswers" aria-describedby="registrationSignUpStep3SecurityQ1Answer-feedbackMsg" autocomplete="off" />
+				</div>
+			</div>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<label for="registrationSignUpStep3SecurityQ2">Question 3</label>
+					<select id="registrationSignUpStep3SecurityQ2" data-validate="notBlank" class="securityQuestions" ></select>
+				</div>
+				<div class="span6">
+					<label for="registrationSignUpStep3SecurityQ2Answer">Answer 3</label>
+					<input id="registrationSignUpStep3SecurityQ2Answer" type="text" maxlength="30" data-validate="notBlank EIDMOutofwalletAnswers" autocomplete="off"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="multiStep">
+			<ul class="inlineList">
+				<li><i class="iconCustom-circle-filled circleComplete"></i><!--span class="ui-helper-hidden-accessible">Step 1</span--></li>
+				<li><i class="iconCustom-circle-filled circleComplete"></i><!--span class="ui-helper-hidden-accessible">Step 2</span--></li>
+				<li><i class="iconCustom-circle-filled circleCurrent"></i><span class="ui-helper-hidden-accessible">you are in step 3 of 3</span></li>
+				<!--li><i class="iconCustom-circle-filled"></i><span class="ui-helper-hidden-accessible">Step 4</span></li-->
+			</ul>
+		</div>
+		<div  class="ui-dialog-buttonset">
+			<button class="btn btn-secondary modal-close" type="button" role="button" aria-disabled="false" id="gobackToPrevious"><span class="ui-button-text">Back</span><span class="HiddenText">Marketplace Account Registration - Sign Up - Step 2</span></button>
+			<button class="btn btn-primary modal-next" type="button" role="button" aria-disabled="false" id="signUpCreate"> <span class="ui-button-text">Create account</span> </button>
+		</div>
+	</div>
+</div></script>
+
+<script id="signUpSuccessTemplate" type="text/template">
+      <div class="row-fluid">
+	<div class="span12">
+		<h1 class="HiddenText">Registration - Sign Up Success</h1>
+		<div class="section">
+			<div class="modalSteps">
+				<p class="ui-hidden-accessible">you are in step modal</p>
+				<div id="modalStep1" class="outterBorderBox" aria-live="polite">
+					<div class="successBox">
+    					<h2 class="largeText">Success</h2>
+    					<p><strong>Your account has been created.</strong> </p>
+    					<p>With this account, you can use the Health Insurance Marketplace beginning October 1 to find health coverage that fits your budget and your needs.</p>
+					</div>
+				</div>
+			</div>
+			<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+				<div class="multiStep">
+					<ul class="inlineList hiddenText">
+						<li><i class="iconCustom-circle-filled circleComplete"></i><span class="ui-helper-hidden-accessible">Step 1 of 3</span></li>
+						<li><i class="iconCustom-circle-filled circleComplete"></i><span class="ui-helper-hidden-accessible">Step 2 of 3</span></li>
+						<li><i class="iconCustom-circle-filled circleComplete"></i><span class="ui-helper-hidden-accessible">Step 3 of 3</span></li>
+						<li><i class="iconCustom-circle-filled circleCurrent"></i><span class="ui-helper-hidden-accessible">???ffe.ee.myAccount.signUpSuccess.step4???</span></li>
+					</ul>
+				</div>
+				<div class="ui-dialog-buttonset">
+					<button class="btn btn-primary goBackToLogIn" type="button" role="button" aria-disabled="false"> 
+						<span class="ui-button-text">Continue</span> 
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="registrationAlmostFinishedTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Sign Up - Email Verification</h1>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="section">
+			<div class="outterBorderBox">
+                <div class="errorBox" aria-live="polite">
+					<div class="modalSteps">
+						<p class="ui-hidden-accessible">you are in step modal</p>
+						<div id="modalStep1" class="modalStep activeModalStep">
+							<h2 class="largeText">Almost there...</h2>
+							<p><strong>We sent an email to <%=email%>.</strong></p>
+							<p>Click the link in the email message and you&#39;ll be one step closer to having health insurance.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+</div>
+</script>
+
+<script id="profileCouldNotCreateAccountTemplate" type="text/template">
+      <div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account&#63;</span>
+		<button class="btn btn-info goBackToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section">
+	<div class="page-content">
+		<h2>Create a Marketplace account</h2>
+		<div class="alert alert-error">
+			<div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+			<div class="alertContent" aria-live="assertive">
+				<p class="alertHeading">Important: Your account couldnt be created at this time.</p>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+				<p>Please note that two or more answers to the security questions cannot be the same. You must provide distinct answers to the chosen security questions.</p>
+				<p>Please wait a few moments and try again&#46;</p>
+			</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+			<button class="btn btn-primary gobackToSignUp" type="button" role="button" aria-disabled="false" style="display: inline-block;"> <span class="ui-button-text">Return to Create account page</span> </button>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="userIDAlreadyExistsTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration &#45; Sign Up &#45; Account Creation Unsuccessful</h1>
+<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account&#63;</span>
+		<button class="btn btn-info goBackToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section">
+	<div class="page-content">
+		<h2>Create a Marketplace account</h2>
+		<div class="alert alert-error">
+			<div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+			<div class="alertContent" aria-live="assertive">
+				<p class="alertHeading">Important: Your account couldnt be created at this time. This username already exists. Enter a different username.</p>
+			</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+			<button class="btn btn-primary gobackToSignUp" type="button" role="button" aria-disabled="false" style="display: inline-block;"> <span class="ui-button-text">Return to Create account page</span> </button>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="combinationNotUniqueTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration &#45; Sign Up &#45; Account Creation Unsuccessful</h1>
+<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account&#63;</span>
+		<button class="btn btn-info goBackToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section">
+	<div class="page-content">
+		<h2>Create a Marketplace account</h2>
+		<div class="alert alert-error">
+			<div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+			<div class="alertContent" aria-live="assertive">
+				<p class="alertHeading">Important: Your account couldnt be created at this time. The combination of the first name, last name, and email address aren&#39;t unique.</p>
+			</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+			<button class="btn btn-primary gobackToSignUp" type="button" role="button" aria-disabled="false" style="display: inline-block;"> <span class="ui-button-text">Return to Create account page</span> </button>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="securityQuestionsDuplicateTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration &#45; Sign Up &#45; Account Creation Unsuccessful</h1>
+<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account&#63;</span>
+		<button class="btn btn-info goBackToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section">
+	<div class="page-content">
+		<h2>Create a Marketplace account</h2>
+		<div class="alert alert-error">
+			<div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+			<div class="alertContent" aria-live="assertive">
+				<p class="alertHeading">Important: Your account couldnt be created at this time. Two or more answers to your security questions were the same. You must provide different answers to each security question.</p>
+			</div>
+		</div>
+		<!-- div class="row-fluid">
+			<div class="span12">
+				<ul class="spacedList">
+					<li>Two or more answers to your security questions were the same. You must provide different answers to each security question.</li>
+				</ul>
+			</div>
+		</div-->
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+			<button class="btn btn-primary gobackToSignUp" type="button" role="button" aria-disabled="false" style="display: inline-block;"> <span class="ui-button-text">Return to Create account page</span> </button>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="securityQuestionsInvalidFormatTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration &#45; Sign Up &#45; Account Creation Unsuccessful</h1>
+<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account&#63;</span>
+		<button class="btn btn-info goBackToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section">
+	<div class="page-content">
+		<h2>Create a Marketplace account</h2>
+		<div class="alert alert-error">
+			<div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+			<div class="alertContent" aria-live="assertive">
+				<p class="alertHeading">Important: Your account couldnt be created at this time. Invalid format for answers of security questions.</p>
+			</div>
+		</div>
+		<!-- div class="row-fluid">
+			<div class="span12">
+				<ul class="spacedList">
+					<li>Invalid format for answers of security questions.</li>
+				</ul>
+			</div>
+		</div-->
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+			<button class="btn btn-primary gobackToSignUp" type="button" role="button" aria-disabled="false" style="display: inline-block;"> <span class="ui-button-text">Return to Create account page</span> </button>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="mlErrorTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration &#45; Sign Up &#45; Account Creation Unsuccessful</h1>
+<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account&#63;</span>
+		<button class="btn btn-info goBackToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section">
+	<div class="page-content">
+		<h2>Create a Marketplace account</h2>
+		<div class="alert alert-error">
+			<div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+			<div class="alertContent" aria-live="assertive">
+				<p class="alertHeading">Important: Your account couldnt be created at this time. The user account could not be saved&#46;  Please create a new account with a different username&#59; however&#44; if you choose to use the same username&#44; please wait until 48 hours to create another account&#46;</p>
+			</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+			<button class="btn btn-primary gobackToSignUp" type="button" role="button" aria-disabled="false" style="display: inline-block;"> <span class="ui-button-text">Return to Create account page</span> </button>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="govDeliveryErrorTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration &#45; Sign Up &#45; Account Creation Unsuccessful</h1>
+<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">Already have an account&#63;</span>
+		<button class="btn btn-info goBackToLogIn">Log In</button>
+	</div>
+</div>
+<div class="section">
+	<div class="page-content">
+		<h2>Create a Marketplace account</h2>
+		<div class="alert alert-error">
+			<div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+			<div class="alertContent" aria-live="assertive">
+				<p class="alertHeading">Important: Your account couldnt be created at this time. We had an issue in sending you an email&#46;  Please create a new account with a different username&#59; however&#44; if you choose to use the same username&#44; please wait until 48 hours to create another account&#46;</p>
+			</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+			<button class="btn btn-primary gobackToSignUp" type="button" role="button" aria-disabled="false" style="display: inline-block;"> <span class="ui-button-text">Return to Create account page</span> </button>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="registrationWaitingTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Verification</h1>
+<div class="section">
+  <div class="modalSteps">
+    <p class="ui-hidden-accessible">you are in</p>
+    <div id="modalStep1" class="outterBorderBox">
+	  <div class="errorBox" aria-live="polite">
+		  <h2 class="largeText">Please wait&#46;&#46;&#46;</h2>
+		  <p><strong>We&#39;re processing your request&#46; This may take a few moments.</strong> </p>
+	  </div>
+    </div>
+  </div>
+</div></script>
+
+
+
+<!--forgot username-->
+<script id="forgotUsernameResultConfirmationTemplate" type="text/template">
+      <div class="section">
+	<div class="page-content">
+		<h2>Forgot username</h2>
+		<div class="alert alert-success">
+			<div class="iconSpan"><i class="icon-circle_ok" aria-hidden="true"></i></div>
+			<div class="alertContent" aria-live="polite">
+				<p class="alertHeading"><strong>SUCCESS:</strong> Your username was found!</p>
+			</div>
+		</div> 
+		<div class="row-fluid sectionSimple">
+			<div class="span12">
+				<p>We sent an email to <%=emailTo%> with your username.</p>
+				<p>You can click on the link in the email to log in.</p>
+			</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+			<button class="btn btn-primary returnLogin">Return to log in page</button>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="forgotUsernameResultUnsuccessfulTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Log In</h1>
+<!--<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button  class="btn btn-info signUpButton">Create Account</button>
+    </div>
+</div> -->
+<div class="section">
+	<div class="page-content">
+		<h2>Forgot username</h2>
+		<div class="alert alert-error">
+			<div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+			<div class="alertContent" aria-live="assertive">
+				<p class="alertHeading">Your username couldn&#39;t be found, because there is no Marketplace account that matches the information you provided.</p>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+				<ul class="spacedList">
+					<li>If you don&#39;t have an account,<a class="signUpButton" href="#"> sign up for one now.</a></li>
+					<li>If you think you made a mistake,<a id="returnToForgotUsername" href="#"> try again.</a></li>
+					<!--<li>If you think you got this message in error, call 1-800-318-2596. TTY users should call 1-855-889-4325.</li>-->
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+			<button class="btn btn-primary returnLogin">Return to log in page</button>
+		</div>
+	</div>
+</div></script>
+
+<script id="forgotUsernameDetailsTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Username</h1>
+<div class="row-fluid">
+	<div class="span12" role="form">
+		<div class="row-fluid sectionSimple" style="margin-top: 0;">
+			<div class="span12 alignRight">
+				<span class="signupText">New to HealthCare.gov?</span>
+				<button class="btn btn-select" id="signUp">Create Account</button>
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="page-content">
+				<h2>Forgot username</h2>
+				<p class="requiredFormText">All fields are required unless they&#39;re marked optional.</p>
+				<div id="forgotUserNameContainer">
+					<p>Please give us the following information and we&#39;ll send you an email with instructions.</p>
+					<div class="row-fluid sectionSimple">
+						<div class="span6">
+							<label for="forgotUserNameFirstName">First name</label>
+							<input type="text" id="forgotUserNameFirstName" autocomplete="off" data-validate="notBlank EIDMFirstName" />
+						</div>
+						<div class="span6">
+							<label for="forgotUserNameLastName">Last name</label>
+							<input type="text" id="forgotUserNameLastName" autocomplete="off" data-validate="notBlank EIDMLastName" />
+						</div>
+					</div>  
+					<div class="row-fluid sectionSimple">
+						<div class="span12">
+							<label for="forgotUserNameEmail">What is your email address associated with your account&#63;</label>
+							<div class="row-fluid">
+								<div class="span6">
+									<input type="text" id="forgotUserNameEmail" autocomplete="off" data-validate="notBlank EIDMEmail"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+				<div class="multiStep">
+					<ul class="inlineList">
+						<li><i class="iconCustom-circle-filled circleCurrent"></i><span class="ui-helper-hidden-accessible">you are in step 1 of 2</span></li>
+						<li><i class="iconCustom-circle-filled"></i><!--span class="ui-helper-hidden-accessible">Step 2</span--></li>
+					</ul>
+				</div>
+				<div class="ui-dialog-buttonset">
+					<button id="forgotUsernameCancel" class="btn btn-secondary">Cancel <span class="HiddenText">Log In</span></button>
+					<button class="btn btn-primary" id="forgotUsernameSendEmail">Send email <span class="HiddenText">Marketplace Account Registration - Forgot Username - Email Sent</span></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="forgotUsernameCouldNotProsessRequestTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Username - Profile Not Found</h1>
+<!-- <div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button class="btn btn-info signUpButton">Create Account</button>
+    </div>
+</div> -->
+<div class="section">
+	<div class="page-content">
+		<h2>Forgot username</h2>
+		<div class="alert alert-error">
+			<div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+			<div class="alertContent" aria-live="assertive">
+				<p class="alertHeading">We weren&#39;t able to process your request because we couldn&#39;t find a Marketplace profile that matched the information that you provided.</p>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+				<ul class="spacedList">
+					<li>We weren&#39;t able to process your request.</li>
+					<li>try again.<a href="#"> Forgot username?</a>again.</li>
+					<li>If you think you got this message in error, call 1-800-318-2596. TTY users should call 1-855-889-4325.</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+			<button class="btn btn-primary returnLogin">Return to log in page</button>
+		</div>
+	</div>
+</div></script>
+
+
+
+<!--forgot password-->
+<script id="forgotPasswordTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password</h1>
+<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button id="forgotPasswordSignUpButton" class="btn btn-select">Create Account</button>
+    </div>
+</div>
+<div class="section" role="form">
+   	<div class="page-content">
+		<h2>Forgot password</h2>
+		<p class="requiredFormText">All fields are required unless they&#39;re marked optional.</p>
+		<div id="forgotPasswordContainer">
+			<p>Please give us the following information and we&#39;ll send you an email with instructions.</p>
+			<div class="row-fluid sectionSimple">
+				<div class="span5">
+					<label for="userNameForgotPassword">What is your Marketplace username?</label>
+					<input id="userNameForgotPassword" type="text" autocomplete="off" data-validate="notBlank EIDMUserLogin"/>
+				</div>
+			</div>
+        </div>
+        <div style="display:none;" id="Iremember">
+        	<div class="row-fluid sectionSimple">
+            	<div class="span12">
+             		<label for="forgotPasswordUsername">What is your Marketplace username?</label>
+                    <div class="row-fluid">
+                    	<div class="span6">
+                        	<input type="text" id="forgotPasswordUsername" autocomplete="off"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div style="display:none;" id="Idont">
+         	<div class="row-fluid sectionSimple">
+                <div class="span12">
+                	<fieldset>
+                    	<legend>Provide these details to reset your password:</legend>
+                        <div class="row-fluid sectionSimple">
+                        	<div class="span6">
+                            	<label for="fname1">First name</label>
+                                <input type="text" id="fname1" autocomplete="off"/>
+                            </div>
+                            <div class="span6">
+                            	<label for="lname1">Last name</label>
+                                <input type="text" id="lname1" autocomplete="off"/>
+                            </div>
+                        </div>
+                        <div class="row-fluid sectionSimple">
+                        	<div class="span6">
+                            	<label for="email1">Email address associated with your account:</label>
+                                <input type="text" id="email1" autocomplete="off"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+         </div>
+	</div>
+    <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="multiStep">
+			<ul class="inlineList">
+				<li><i class="iconCustom-circle-filled circleCurrent"></i><span class="ui-helper-hidden-accessible">you are in step 1 of 2</span></li>
+				<li><i class="iconCustom-circle-filled"></i><!--span class="ui-helper-hidden-accessible">Step 2</span--></li>
+			</ul>
+		</div>
+		<div class="ui-dialog-buttonset">
+			<button id="forgotPasswordCancel" class="btn btn-secondary">Cancel <span class="HiddenText">Log In</span></button>
+			<button id="forgotPasswordSendEmail" class="btn btn-primary">Send email <span class="HiddenText">Forgot password</span></button>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="forgotPasswordUsernameEmailTemplate" type="text/template">
+      <h1 class="HiddenText"><%=hiddenText%></h1>
+<div class="section">
+	<div class="page-content">
+		<h2>Check your email!</h2>
+        <div>
+            <div aria-hidden="true"></div>
+            <div aria-live="polite" >
+                <h3><strong><%=emailScreenText%></strong></h3>
+				<p><%=emailScreenText2%></p>
+            </div>
+        </div>
+	</div>
+   <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="multiStep">
+			<ul class="inlineList">
+				<li><i class="iconCustom-circle-filled circleComplete"></i><!--span class="ui-helper-hidden-accessible">Step 1</span--></li>
+				<li><i class="iconCustom-circle-filled circleCurrent"></i><span class="ui-helper-hidden-accessible">you are in step 2 of 2</span></li>
+			</ul>
+		</div>
+		<div class="ui-dialog-buttonset">
+			<button class="btn btn-primary returnLogin">Return to log in page</button>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="forgotPasswordChallengeQuestionsTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Security Questions</h1>
+<div role="main" role="form">
+	<h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Security Questions</h1>
+	<!--<div class="row-fluid sectionSimple" style="margin-top: 0;">
+		<div class="span12 alignRight">
+			<span class="signupText">New to HealthCare.gov?</span>
+			<button id="challengeQuestionsSignUpButton" class="btn btn-info">Create Account</button>
+		</div>
+	</div> -->
+	<div class="section">
+		<div class="page-content">        
+			<h2>Forgot password</h2>
+			<p class="requiredFormText">All fields are required unless they&#39;re marked optional.</p>
+			<div id="forgotPasswordQuestionsContainer">
+				<p>We found your Marketplace account. Please answer the following questions to reset your password.</p>
+				<div id="questionTemplateSection" role="form"></div> 
+			</div>
+		</div>
+	</div>
+		
+	<input id="userNameForgotPassword"  type="hidden" style="display:none;"/>
+	<input id="forgotPasswordUuid"  type="hidden" style="display:none;"/>
+		
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="ui-dialog-buttonset">
+			<button id="challengeQuestionsBack" class="btn btn-secondary">Back <span class="HiddenText">Log In</span></button>
+			<button id="challengeQuestionsContinue" class="btn btn-primary">Continue <span class="HiddenText">Marketplace Account Registration - Forgot Password - Reset Password - Unsuccessful</span></button>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="forgotPasswordResultSuccessTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Reset Password - Successful</h1>
+<!-- <div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button class="btn btn-info signUpButton">Create Account</button>
+    </div>
+</div>-->
+
+<div class="section">
+	<div class="page-content">
+    	<h2>Forgot password</h2>
+        <div class="alert alert-success">
+            <div class="iconSpan"><i class="icon-circle_ok" aria-hidden="true"></i></div>
+            <div class="alertContent" aria-live="polite" >
+                <p class="alertHeading"><strong>SUCCESS:</strong> Your password was reset.</p>
+            </div>
+        </div>
+        <div class="row-fluid sectionSimple">
+        	<div class="span12">
+                <p>We have sent you an email to <%=email%> with a confirmation of your request to update your password.</p>
+            </div>
+        </div>
+	</div>
+   <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+            <button class="btn btn-primary returnLogin">Return to log in page</button>
+       	</div>
+    </div>
+</div>
+</script>
+
+<script id="forgotPasswordResultNotFoundTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Log In - Forgot Password - Account Not Found</h1>
+<!--<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button class="btn btn-info signUpButton">Create Account</button>
+    </div>
+</div> -->
+<div class="section">
+	<div class="page-content">
+		<h2>Forgot password</h2>
+        <div class="alert alert-error">
+            <div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+            <div class="alertContent" aria-live="assertive" >
+                <p class="alertHeading">Your password couldn&#39;t be found, because there is no Marketplace account that matches the information you provided..</p>
+            </div>
+        </div>
+        <ul class="spacedList">
+			<li>If you don&#39;t have an account,<a class="signUpButton" href="#"> sign up for one now.</a></li>
+			<li>If you think you made a mistake,<a class="retryForgotPasswordLink" href="#"> try again.</a></li>
+        	<!--<li>If you think you got this message in error, call 1-800-318-2596. TTY users should call 1-855-889-4325.</li>-->
+        </ul>
+	</div>
+    <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+              <button class="btn btn-primary returnLogin">Return to log in page</button>
+         </div>
+    </div>
+</div></script>
+
+<script id="forgotPasswordResultIncorrectTemplate" type="text/template">
+      <h1 class="HiddenText">???ffe.ee.myAccount.forgotPassword.incorrect.h1HiddenText???</h1>
+<!-- <div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button class="btn btn-info signUpButton">Create Account</button>
+    </div>
+</div> -->
+
+<div class="section">
+	<div class="page-content">
+		<h2>Forgot password</h2>
+        <div class="alert alert-error">
+            <div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+            <div class="alertContent" aria-live="assertive" >
+                <p class="alertHeading">One or more of your answers was incorrect.</p>
+            </div>
+        </div>
+        
+        <p>You answered one or more of your security questions incorrectly.</p>
+        <p>If you think you made a mistake,<a class="retryForgotPasswordLink" href="#"> try again.</a></p>
+	</div>
+    <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+			<div  class="ui-dialog-buttonset">
+                <button class="btn btn-primary returnLogin">Return to log in page</button>
+           </div>
+     </div>
+</div></script>
+
+<script id="resetPasswordTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Reset Password</h1>
+<!--<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+		<span class="signupText">New to HealthCare.gov?</span>
+		<button id="resetLoginInSignUpButton" class="btn btn-info">Create Account</button>
+	</div>
+</div> -->
+<div class="section" role="form">
+	<div class="page-content">
+		<h2>Forgot password</h2>
+		<p class="requiredFormText">All fields are required unless they&#39;re marked optional.</p>
+		<div id="resetPasswordContainer">
+			<p>Please create a new password.</p>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<label for="resetPasswordNewPassword">Password<span class="error blockElement"></span></label>
+					<input id="resetPasswordNewPassword" type="password" data-validate="notBlank EIDMPassword" aria-describedby="pwd1HelpText"/>
+					<p class="supportText blockElement" id="pwd1HelpText" tabindex="-1">Your password must contain 8&#45;20 characters&#46; There must be at least 1 upper case letter&#44; 1 lower case letter&#44; and 1 number&#46; It must be different from your last 6 passwords&#46; It can&#39;t contain your username or any of these characters &#61; &#63;&#60;&#62; &#40; &#41; &#8216; &#34; &#47; &#92; &#38;</p>
+				</div>
+			</div>
+			<div class="row-fluid sectionSimple">
+				<div class="span6">
+					<label for="resetPasswordConfirmPassword">Confirm password<span class="error blockElement"></span></label>
+					<input id="resetPasswordConfirmPassword" type="password" data-validate="notBlank EIDMPassword sameEEPassword-resetPasswordNewPassword-resetPasswordConfirmPassword" aria-describedby="pwd2HelpText"  />
+					<p class="supportText blockElement" id="pwd2HelpText" tabindex="-1">You must enter the same password as the Password field.</p>
+				</div>
+			</div> 
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+           	<button id="resetPasswordBack" class="btn btn-secondary">Back <span class="HiddenText">Forgot Password - Security Questions</span></button>
+            <button id="resetPasswordReset" class="btn btn-primary">Reset Password</button>
+		</div>
+	</div>
+</div></script>
+
+<script id="expiredPasswordTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Password Expired</h1>
+<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button id="passwordExpiredSignUpButton" class="btn btn-select">Create Account</button>
+    </div>
+</div>
+<div class="section" role="form">
+   	<div class="page-content">
+        <h2>Your password has expired</h2>
+        <p>Enter your current password, and then provide a new password.</p>
+        <div class="row-fluid sectionSimple">
+            <div class="span6">
+                <label for="expiredPasswordOldPassword">
+                    Current password<span class="error blockElement"></span>
+                </label>
+                <input id="expiredPasswordOldPassword" type="password" />
+            </div>
+        </div>
+        <div class="row-fluid sectionSimple">
+            <div class="span6">
+                <label for="expiredPasswordNewPassword">
+                    New password<span class="error blockElement"></span>
+                </label>
+                <input id="expiredPasswordNewPassword" type="password" aria-describedby="pwd1HelpText" />
+                <p class="supportText blockElement" id="pwd1HelpText" tabindex="-1">
+        		Your password must contain 8&#45;20 characters&#46; There must be at least 1 upper case letter&#44; 1 lower case letter&#44; and 1 number&#46; It must be different from your last 6 passwords&#46; It can&#39;t contain your username or any of these characters &#61; &#63;&#60;&#62; &#40; &#41; &#8216; &#34; &#47; &#92; &#38;</p>
+            </div>
+            <div class="span6">
+                <label for="pwd2">
+                    Confirm new password<span class="error blockElement"></span>
+                </label>
+                <input id="pwd2" type="password" aria-describedby="pwd2HelpText" />
+                <p class="supportText blockElement" id="pwd2HelpText" tabindex="-1">
+        		You must enter the same password as the Password field&#46;</p>
+            </div>
+        </div> 
+	</div>
+    <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+            <button id="expiredPasswordContinue" class="btn btn-primary">Continue</button>
+		</div>
+    </div>
+</div>
+</script>
+
+<script id="forgotPasswordQuestionTemplate" type="text/template">
+      <div class="row-fluid sectionSimple">
+	<div class="span6">
+    	<label for="forgotPasswordSecurityQAnswer<%=index%>"><%=question%></label>
+        <input type="text" id="forgotPasswordSecurityQAnswer<%=index%>" autocomplete="off" data-validate="notBlank EIDMOutofwalletAnswers">
+    </div>
+</div> </script>
+
+<script id="forgotPasswordCouldNotProcessRequestTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Profile Not Found</h1>
+<!--<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button class="btn btn-info signUpButton">Create Account</button>
+    </div>
+</div>-->
+
+<div class="section">
+	<div class="page-content">
+		<h2>Forgot password</h2>
+        <div class="alert alert-error">
+            <div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+            <div class="alertContent" aria-live="assertive" >
+                <p class="alertHeading">We weren&#39;t able to process your request because we couldn&#39;t find a Marketplace profile that matched the information that you provided.</p>
+            </div>
+        </div>
+        
+        <p>You answered one or more of your security questions incorrectly.</p>
+        <!--p>???ffe.ee.myAccount.forgotPassword.incorrect.alertDescription2???</p-->
+	</div>
+    <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+              <button class="btn btn-primary returnLogin">Return to log in page</button>
+        </div>
+    </div>
+</div></script>
+
+<script id="forgotPasswordCouldNotProcessUsernameTemplate" type="text/template">
+      <h1 class="HiddenText">???ffe.ee.myAccount.forgotPassword.incorrect.h1HiddenText???</h1>
+<!--<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button class="btn btn-info signUpButton">Create Account</button>
+    </div>
+</div> -->
+
+<div class="section">
+	<div class="page-content">
+		<h2>Forgot password</h2>
+        <div class="alert alert-error">
+            <div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+            <div class="alertContent" aria-live="assertive" >
+                <p class="alertHeading">We weren&#39;t able to process your request because we couldn&#39;t find a Marketplace profile that matched the information that you provided.</p>
+            </div>
+        </div>
+	</div>
+    <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+              <button class="btn btn-primary returnLogin">Return to log in page</button>
+         </div>
+    </div>
+</div></script>
+
+<script id="forgotPasswordQuestionsAndAnswersDoNotMatchTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Profile Not Found</h1>
+<!--<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button class="btn btn-info signUpButton">Create Account</button>
+    </div>
+</div>-->
+
+<div class="section">
+	<div class="page-content">
+		<h2>Forgot password</h2>
+        <div class="alert alert-error">
+            <div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+            <div class="alertContent" aria-live="polite" >
+                <p class="alertHeading">Please note that one of the errors below may have occurred&#58;</p>
+            </div>
+        </div>
+        
+        <p>Two or more answered to the Security questions are the same. Enter different answers to the security questions.</p>
+	</div>
+    <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+              <button class="btn btn-primary returnLogin">Return to log in page</button>
+        </div>
+    </div>
+</div>
+</script>
+
+<script id="forgotPasswordAnswersDoNotMatchTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Profile Not Found</h1>
+<!--<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button class="btn btn-info signUpButton">Create Account</button>
+    </div>
+</div>-->
+
+<div class="section">
+	<div class="page-content">
+		<h2>Forgot password</h2>
+        <div class="alert alert-error">
+            <div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+            <div class="alertContent" aria-live="assertive" >
+                <p class="alertHeading">Please note that one of the errors below may have occurred&#58;</p>
+            </div>
+        </div>
+        
+        <p>Two or more answered to the Security questions are the same. Enter different answers to the security questions.</p>
+	</div>
+    <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+              <button class="btn btn-primary returnLogin">Return to log in page</button>
+        </div>
+    </div>
+</div>
+</script>
+
+<script id="forgotPasswordInvalidPasswordTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Profile Not Found</h1>
+<!--<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button class="btn btn-info signUpButton">Create Account</button>
+    </div>
+</div>-->
+
+<div class="section">
+	<div class="page-content">
+		<h2>Forgot password</h2>
+        <div class="alert alert-error">
+            <div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+            <div class="alertContent" aria-live="assertive" >
+                <p class="alertHeading">Please note that one of the errors below may have occurred&#58;</p>
+            </div>
+        </div>
+        
+        <p>Invalid format. Please choose another password based on the guidelines provided.</p>
+	</div>
+    <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+              <button class="btn btn-primary returnLogin">Return to log in page</button>
+        </div>
+    </div>
+</div>
+</script>
+
+<script id="forgotPasswordPasswordsDoNotMatchTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Profile Not Found</h1>
+<!--<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button class="btn btn-info signUpButton">Create Account</button>
+    </div>
+</div>-->
+
+<div class="section">
+	<div class="page-content">
+		<h2>Forgot password</h2>
+        <div class="alert alert-error">
+            <div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+            <div class="alertContent" aria-live="assertive" >
+                <p class="alertHeading">Please note that one of the errors below may have occurred&#58;</p>
+            </div>
+        </div>
+        
+        <p>Important: Password does not match the confirm password.</p>
+	</div>
+    <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+              <button class="btn btn-primary returnLogin">Return to log in page</button>
+        </div>
+    </div>
+</div>
+</script>
+
+<script id="forgotPasswordUserIDisInvalidTemplate" type="text/template">
+      <h1 class="HiddenText">Marketplace Account Registration - Forgot Password - Profile Not Found</h1>
+<!--<div class="row-fluid sectionSimple" style="margin-top: 0;">
+	<div class="span12 alignRight">
+        <span class="signupText">New to HealthCare.gov?</span>
+        <button class="btn btn-info signUpButton">Create Account</button>
+    </div>
+</div>-->
+
+<div class="section">
+	<div class="page-content">
+		<h2>Forgot password</h2>
+        <div class="alert alert-error">
+            <div class="iconSpan"><i class="iconCustom-warning-sign" aria-hidden="true"></i></div>
+            <div class="alertContent" aria-live="assertive" >
+                <p class="alertHeading">Please note that one of the errors below may have occurred&#58;</p>
+            </div>
+        </div>
+        
+        <p>The user account is invalid.</p>
+	</div>
+    <div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div  class="ui-dialog-buttonset">
+              <button class="btn btn-primary returnLogin">Return to log in page</button>
+        </div>
+    </div>
+</div>
+</script>
+
+
+
+<!-- common -->
+
+<!--using the indApp suffix and state dropdowns since they have the same set-up as what we need for 
+	registration, the label without a colon-->
+<script id="suffixDropDownUSTemplate" type="text/template">
+	<label class="form_label" for="<%=forToUse%>">
+   <%if(labelToUse != null){%>
+        <%if(isRequired) {%>
+        	   <span class="required">*</span>
+        	<%}%>
+    	<%=labelToUse%>
+	    <% }%>
+<!-- leave label tag open, it will be closed in the templates -->		</label> <!-- closing label tag from common label template -->
+<select id="<%=idToUse%>"
+    <%if(nameToUse !=null){%>
+       name="<%=nameToUse%>"
+    <%}%> 
+    >
+	<option value="">Select...</option>
+	<option value="Jr.">Jr&#46;</option>
+	<option value="Sr.">Sr.</option>
+	<option value="III">III</option>
+	<option value="IV">IV</option>
+</select></script>
+
+<script id="stateDropDownUSTemplate" type="text/template">
+	<label class="form_label" for="<%=forToUse%>">
+   <%if(labelToUse != null){%>
+        <%if(isRequired) {%>
+        	   <span class="required">*</span>
+        	<%}%>
+    	<%=labelToUse%>
+	    <% }%>
+<!-- leave label tag open, it will be closed in the templates -->		</label> <!-- closing label tag from common label template -->
+	<select id="<%=idToUse%>" 
+		<%if(nameToUse !=null){%>
+		   name="<%=nameToUse%>"
+		 <%}%>  
+		>
+		<option value="">Select...</option>
+        <option value="AL">Alabama</option> 
+        <option value="AK">Alaska</option> 
+        <option value="AZ">Arizona</option> 
+        <option value="AR">Arkansas</option> 
+        <option value="CA">California</option> 
+        <option value="CO">Colorado</option> 
+        <option value="CT">Connecticut</option> 
+        <option value="DE">Delaware</option> 
+        <option value="DC">District Of Columbia</option> 
+        <option value="FL">Florida</option> 
+        <option value="GA">Georgia</option> 
+        <option value="HI">Hawaii</option> 
+        <option value="ID">Idaho</option> 
+        <option value="IL">Illinois</option> 
+        <option value="IN">Indiana</option> 
+        <option value="IA">Iowa</option> 
+        <option value="KS">Kansas</option> 
+        <option value="KY">Kentucky</option> 
+        <option value="LA">Louisiana</option> 
+        <option value="ME">Maine</option> 
+        <option value="MD">Maryland</option> 
+        <option value="MA">Massachusetts</option> 
+        <option value="MI">Michigan</option> 
+        <option value="MN">Minnesota</option> 
+        <option value="MS">Mississippi</option> 
+        <option value="MO">Missouri</option> 
+        <option value="MT">Montana</option> 
+        <option value="NE">Nebraska</option> 
+        <option value="NV">Nevada</option> 
+        <option value="NH">New Hampshire</option> 
+        <option value="NJ">New Jersey</option> 
+        <option value="NM">New Mexico</option> 
+        <option value="NY">New York</option> 
+        <option value="NC">North Carolina</option> 
+        <option value="ND">North Dakota</option> 
+        <option value="OH">Ohio</option> 
+        <option value="OK">Oklahoma</option> 
+        <option value="OR">Oregon</option> 
+        <option value="PA">Pennsylvania</option> 
+        <option value="RI">Rhode Island</option> 
+        <option value="SC">South Carolina</option> 
+        <option value="SD">South Dakota</option> 
+        <option value="TN">Tennessee</option> 
+        <option value="TX">Texas</option> 
+        <option value="UT">Utah</option> 
+        <option value="VT">Vermont</option> 
+        <option value="VA">Virginia</option> 
+        <option value="WA">Washington</option> 
+        <option value="WV">West Virginia</option> 
+        <option value="WI">Wisconsin</option> 
+        <option value="WY">Wyoming</option>
+	</select>
+
+</script>
+
+<script id="stateDropDownUSTemplateFFM" type="text/template">
+         <select id="<%=idToUse%>">
+	<option value="">Select...</option>
+    <option value="AL">Alabama</option>	
+    <option value="AK">Alaska</option> 	
+    <option value="AZ">Arizona</option>
+    <option value="AR">Arkansas</option>
+    <option value="DE">Delaware</option>
+    <option value="FL">Florida</option>
+    <option value="GA">Georgia</option>
+	<option value="ID">Idaho</option>
+    <option value="IL">Illinois</option>
+    <option value="IN">Indiana</option>
+    <option value="IA">Iowa</option>
+    <option value="KS">Kansas</option>
+    <option value="LA">Louisiana</option>
+    <option value="ME">Maine</option>
+    <option value="MI">Michigan</option>
+    <option value="MS">Mississippi</option>
+    <option value="MO">Missouri</option>
+    <option value="MT">Montana</option>
+    <option value="NE">Nebraska</option>
+    <option value="NH">New Hampshire</option>
+    <option value="NJ">New Jersey</option>
+	<option value="NM">New Mexico</option>
+    <option value="NC">North Carolina</option>
+    <option value="ND">North Dakota</option>
+    <option value="OH">Ohio</option>
+    <option value="OK">Oklahoma</option>
+    <option value="PA">Pennsylvania</option>
+    <option value="SC">South Carolina</option>
+    <option value="SD">South Dakota</option>
+    <option value="TN">Tennessee</option>
+    <option value="TX">Texas</option>
+	<option value="UT">Utah</option>
+    <option value="VA">Virginia</option>
+    <option value="WV">West Virginia</option>
+    <option value="WI">Wisconsin</option>
+    <option value="WY">Wyoming</option>
+</select></script>
+
+<script id="applicationErrorMessageTemplate" type="text/template">
+	<div>
+	<span class="hiddenText">Application ID&#58; <%=applicationId%> &nbsp; &nbsp; Date&#58; <%=errorDateTime%></span><span class="smallText" ><%=responseMessages%></span><br/><br/><span class="smallText" >Error ID:</span><%=errorID%>
+</div></script>
+<script type="text/javascript">
+    //suppress login link, hide message center
+    $('#headerEmail').css('display','none');
+    $('#headerUserItem').css('display','none');
+    runAffix(); 
+</script>
+
+  
+
+
+<script type="text/javascript">
+if($("#logInPage").length == 0) {
+$.ajax(
+	{
+	url:"/ee-rest/global/en_US/DirectEnrollment/getSecureRedirectInfo", 
+    type:"GET",
+    contentType:"application/json",
+    dataType:"json",
+    success:function(response)
+    {
+      agentBrokerInfo = response;
+      //fetch the url and go back to the portal
+	  if(!isEmpty(response ))
+	  {
+		  //modify the
+		  makeDirectEnrollmentUIChanges();
+		
+		  var directEnrollmentKeepAliveURL= response["Keep Alive URL"]; 
+		  if(!isEmpty(directEnrollmentKeepAliveURL))
+		  {
+		     	window.setInterval( function() { updateDirectEnrollmentKeepAliveUrl(directEnrollmentKeepAliveURL)} , 300000);
+		  }
+	   }
+    },
+    error:function(response)
+    {
+      return null;
+    }	
+  }); 
+	}
+</script>
+
+
+	
+<script type="text/javascript">var _GA={versions:{}};_GA.versions.init=2.4;window.jQuery&&(_GA.jQuery=!0,jQuery.fn.hasAttr=function(a,b){var c=void 0!==b?b:!1;return void 0!==this.attr(a)?!0===c?this.attr(a):!1===c?!0:this.attr(a).match(b):!1},jQuery.fn.hasParent=function(a,b){var c=this.parents(a);return"undefined"!=typeof b&&b?!0==b?c:c.children(b):0<c.length?!0:!1});
+try{(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"==document.location.protocol?"https://":"http://")+"stats.g.doubleclick.net/dc.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})(),_GA.jQuery&&jQuery(window).load(function(){setTimeout(function(){if("undefined"===typeof _gat){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"==document.location.protocol?"https://ssl":
+"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);_gaq.push(["_trackEvent","GA Remarketing Tag","DC Script","Failed",0,!0])}},1E3)})}catch(e$$12){}
+(function(a,b,c,d,e,f,g){a.GoogleAnalyticsObject=e;a[e]=a[e]||function(){(a[e].q=a[e].q||[]).push(arguments)};a[e].l=1*new Date;f=b.createElement(c);g=b.getElementsByTagName(c)[0];f.async=1;f.src=d;g.parentNode.insertBefore(f,g)})(window,document,"script","//www.google-analytics.com/analytics.js","_ua");_GA.getDomain=function(a){return(a.replace(/^https?\:\/\//i,"").split("/")[0].split(".").reverse()[1]+"."+a.replace(/^https?\:\/\//i,"").split("/")[0].split(".").reverse()[0]).toLowerCase()};
+_GA.getFromURL=function(a,b){a=a.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");rS="[\\?\x26]"+a+"\x3d([^\x26#]*)";rG=RegExp(rS,"i");var c="undefined"!=typeof b?rG.exec(b):rG.exec(window.location.href);return null==c?null:decodeURIComponent(c[1].replace(/\+/g," "))};_GA.fullHostname=document.location.hostname.toLowerCase();_GA.thisDomain=_GA.getDomain(_GA.fullHostname);_GA.pageURI=document.location.pathname.toLowerCase();
+_GA.pageURIstate=function(){var a=_GA.pageURI.replace(/(^.*auth\/)|(\/en_.*)/gi,"");return a.match(/global/i)?"":a}();_GA.pageHash=document.location.hash.toLowerCase();_GA.hrefRedirectURL="";
+_GA.trackEvent=function(a,b,c,d,e,f){d=void 0==d||NaN!=parseInt(d)?0:parseInt(d);e=void 0==e||"boolean"!=typeof e?!1:e;a=a.replace(/%20/g," ");b=b.replace(/%20/g," ").replace(/%26/g,"\x26");c=void 0==c?void 0:c.replace(/%20/g," ");_gaq.push(["_trackEvent",a,b,c,d,e]);f?(_GA.hrefRedirect=f,_ua("send","event",a,b,c,d,{nonInteraction:e,hitCallback:_GA.hitCallbackHandler})):_ua("send","event",a,b,c,d,{nonInteraction:e})};
+_GA.setCV=function(a,b,c,d){_gaq.push(["_setCustomVar",a,b,c,d]);_ua("set","dimension"+a,c)};_GA.setCM=function(a,b){_ua("set","metric"+a,b)};_GA.trackPageview=function(a){!_GA.initialPV||_GA.pageHash?(_gaq.push(["_trackPageview",a]),_ua("send","pageview",{page:a})):_GA.initialPV=!1};_GA.setVirtualPage=function(a){_gaq.push(["_set","page",a]);_ua("set","page",a)};
+_GA.trackSocial=function(a,b,c,d){_gaq.push(["_trackSocial",a,b,c,d]);_ua("send","social",{socialNetwork:a,socialAction:b,socialTarget:c});_GA.trackEvent("Social",a,b)};_GA.createCookie=function(a,b,c){if(c){var d=new Date;d.setTime(d.getTime()+864E5*c);c="; expires\x3d"+d.toGMTString()}else c="";document.cookie=a+"\x3d"+b+c+"; path\x3d/"};
+_GA.readCookie=function(a){a+="\x3d";for(var b=document.cookie.split(";"),c=0;c<b.length;c++){for(var d=b[c];" "==d.charAt(0);)d=d.substring(1,d.length);if(0==d.indexOf(a))return d.substring(a.length,d.length)}return null};_GA.setCookiedEvents=function(){var a,b;if(a=_GA.readCookie("gaFormVals")||""){b=a.split("|")[1].split("!");for(var c=0;c<b.length;c++)_GA.trackEvent(a.split("|")[0],b[c].split("::")[0],b[c].split("::")[1],0,!0)}_GA.createCookie("gaFormVals","",-1)};
+_GA.hitCallbackHandler=function(){window.location.href=_GA.hrefRedirect};_GA.trackOptimizely=function(a,b){void 0!=window.optimizely&&window.optimizely.push([a,b])};_GA.checkForOptimizelyExperiment=function(){try{window.optimizely&&0<window.optimizely.data.state.activeExperiments.length&&_GA.setCV(5,window.optimizely.data.experiments[window.optimizely.data.state.activeExperiments[0]].name,window.optimizely.data.state.variationNamesMap[window.optimizely.data.state.activeExperiments[0]],1)}catch(a){}};
+_GA.optimizelyDataCheck=function(){/\/marketplace\/global\/.*\/emailverification/i.test(_GA.pageURI)?(_GA.trackOptimizely("trackEvent","account_verified"),_GA.trackOptimizely("addToSegment","account_holders"),_GA.setCV(8,"Account Verified Date","20130930",1),_GA.setCV(9,"Account Holder","true",1)):/\/marketplace\/auth\/global\/.*\/myProfile/i.test(_GA.pageURI)&&(_GA.trackOptimizely("addToSegment","account_holders"),_GA.setCV(9,"Account Holder","true",1))};
+_GA.checkForHash=function(){if(/\/marketplace\/global\/.*\/registration/.test(_GA.pageURI)&&0<_GA.pageHash.length){var a=_GA.pageHash.replace("#","");_GA.setVirtualPage((_GA.pageURI+"/"+a).replace("//","/"))}};
+"healthcare.gov"==_GA.thisDomain?"www.healthcare.gov"==_GA.fullHostname?(_GA.accountClassic="UA-15356370-24",_GA.accountUniversal="UA-41471344-1"):(_GA.accountClassic="UA-15356370-35",_GA.accountUniversal="UA-41471344-2"):"cuidadodesalud.gov"==_GA.thisDomain?"www.cuidadodesalud.gov"==_GA.fullHostname?(_GA.accountClassic="UA-15356370-37",_GA.accountUniversal="UA-41471344-3"):(_GA.accountClassic="UA-15356370-35",_GA.accountUniversal="UA-41471344-2"):(_GA.accountClassic="UA-15356370-35",_GA.accountUniversal=
+"UA-41471344-2");_ua("create",_GA.accountUniversal,{cookieDomain:_GA.thisDomain});var _gaq=_gaq||[];_gaq.push(["_setAccount",_GA.accountClassic]);_gaq.push(["_setDomainName","."+_GA.thisDomain]);_gaq.push(["_addIgnoredRef","odlinks.govdelivery.com"]);_GA.checkForOptimizelyExperiment();_GA.optimizelyDataCheck();_GA.checkForHash();_GA.appId=_GA.getFromURL("appId");_GA.initialPV=/\/marketplace\/auth\/global/i.test(_GA.pageURI);dataLayer.push({event:"initLoaded"});</script><script type="text/javascript">setTimeout(function(){var a=document.createElement("script"),b=document.getElementsByTagName("script")[0];a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0011/1179.js?"+Math.floor((new Date).getTime()/36E5);a.async=!0;a.type="text/javascript";b.parentNode.insertBefore(a,b)},1);</script><script type="text/javascript">_GA.versions.backbonenavlistener=2.2;"object"==typeof Backbone&&function(){Backbone.History.prototype.loadUrl=function(a){var b=this.fragment=this.getFragment(a);a=_.any(this.handlers,function(a){if(a.route.test(b))return a.callback(b),!0});try{"object"==typeof dataLayer&&(_GA.pageURI=_GA.pageURIstate&&!_GA.pageURIstate.match(/global/i)?_GA.pageURI.replace(_GA.pageURIstate+"/",""):_GA.pageURI,dataLayer.push({backboneNav:(_GA.pageURI+"/"+b.toLowerCase()).replace("//","/"),event:"backboneNav"}))}catch(c){}return a}}.call(this);</script><script type="text/javascript">var _sf_async_config={uid:41112,domain:"test2.healthcare.gov",useCanonical:!0};if(window.jQuery)try{jQuery("meta[name\x3dtopics]").attr("content")&&(_sf_async_config.sections=jQuery("meta[name\x3dtopics]").attr("content"))}catch(e$$12){}var cb_trailingSlashTest=/^(\/[a-z0-9/_-]*[^/])$/;cb_trailingSlashTest.test(document.location.pathname)&&(_sf_async_config.path=document.location.pathname+"/");
+(function(){function b(){window._sf_endpt=(new Date).getTime();var a=document.createElement("script");a.setAttribute("language","javascript");a.setAttribute("type","text/javascript");a.setAttribute("src","//static.chartbeat.com/js/chartbeat.js");document.body.appendChild(a)}var c=window.onload;window.onload="function"!=typeof window.onload?b:function(){c();b()}})();</script><script type="text/javascript">_GA.versions.gaST=1;var _gaST=_gaST||[];_gaST.getSocialActionTrackers_=function(a,c,b,f){return function(){for(var g=_gat._getTrackers(),d=0,e;e=g[d];d++)e._trackSocial(a,c,b,f)}};_gaST.twitterHandler_=function(a,c){var b;if(a&&"tweet"==a.type||"click"==a.type)"IFRAME"==a.target.nodeName&&(b=_gaST.extractParamFromUri_(a.target.src,"url")),_gaq.push(_gaST.getSocialActionTrackers_("twitter",a.type+("click"==a.type?"-"+a.region:""),b,c))};
+_gaST.extractParamFromUri_=function(a,c){if(a){var b=RegExp("[\\?\x26#]"+c+"\x3d([^\x26#]*)").exec(a);if(null!=b)return unescape(b[1])}};
+_GA.trackFacebook=function(a){try{FB&&FB.Event&&FB.Event.subscribe&&(FB.Event.subscribe("edge.create",function(b){_gaq.push(_gaST.getSocialActionTrackers_("facebook","like",b,a))}),FB.Event.subscribe("edge.remove",function(b){_gaq.push(_gaST.getSocialActionTrackers_("facebook","unlike",b,a))}),FB.Event.subscribe("message.send",function(b){_gaq.push(_gaST.getSocialActionTrackers_("facebook","send",b,a))}))}catch(c){}};
+_GA.trackTwitter=function(a){intent_handler=function(c){_gaST.twitterHandler_(c,a)};twttr.events.bind("click",intent_handler);twttr.events.bind("tweet",intent_handler)};</script><script type="text/javascript">_GA.versions.extendedtracking=2.1;
+_GA.extendTracking=function(g){g("body").on("click","a",function(d){var c=/\.(doc.*|jpg|png|xls|ppt.*|pdf|xls.*|zip|txt|js|mov|avi|epub|mobi)$/i;d=g(this);var e=!0,b="undefined"!=typeof d.attr("href")?d.attr("href"):"",f=b.match(_GA.thisDomain);if(!b.match(/^javascript:/i)){var a=[];a.value=0;a.non_i=!1;a.toLow=!0;b.match(/^mailto\:/i)?(a.category="email",a.action="click",a.label=b.replace(/^mailto\:/i,""),a.loc=b):b.match(c)?(c=/[.]/.exec(b)?/[^.]+$/.exec(b):void 0,a.category="download",a.action=
+"click-"+c[0],a.label=b.replace(/ /g,"-"),a.loc=b):b.match(/^https?\:/i)&&!f?(a.category="external",a.action="click",a.label=b.replace(/^https?\:\/\//i,""),a.non_i=!0,a.loc=b):b.match(/^tel\:/i)?(a.category="telephone",a.action="click",a.label=b.replace(/^tel\:/i,""),a.loc=b):d.is("#chatHelp, #webchat")?(a.category="Live Chat",a.action="Click",a.label="",a.loc=b,a.toLow=!1):e=!1;if(e)return e=!0,a.toLow&&(a.category=a.category.toLowerCase(),a.action=a.action.toLowerCase(),a.label=a.label.toLowerCase()),
+_GA.trackEvent(a.category,a.action,a.label,a.value,a.non_i,"external"!=a.category&&"download"!=a.category||void 0!=d.attr("target")&&"_blank"==d.attr("target").toLowerCase()?void 0:(e=!1,g(this).attr("href"))),e}});jQuery("body").on("mousedown","button",function(){var d=jQuery(this),c="",e,b,f;d.is("#contactInformationSaveContinue")?(c+="Spoken Language::"+jQuery('#contactSpokenLanguage option[value\x3d"'+jQuery("#contactSpokenLanguage").val()+'"]').text(),c+="!Written Language::"+jQuery('#contactWrittenLanguage option[value\x3d"'+
+jQuery("#contactWrittenLanguage").val()+'"]').text(),c+="!Do you want to read your notices::"+(/yes/i.test(jQuery("#contactPreferencesFieldset :checked").attr("id"))?"Yes_"+jQuery("#noticesCheckboxContainer label.checked").text():"no")):d.is("#navigatorAssistorSaveContinue")?c+="Getting help from::"+jQuery('#navAssistFieldset label[for^\x3d"navAssistorType"].checked').text():d.hasAttr("id","fahRaceSaveContinue")&&(e=jQuery('label[for^\x3d"hispanicOrigin"].checked').text(),b=jQuery('label[for*\x3d"EthnicityCheckbox"].checked').text(),
+f=jQuery('label[for*\x3d"CheckBoxPerson"].checked').text(),c=c+(e?"Is Hispanic, Latino or Spanish origin::"+e:"NA")+(b?"!Ethnicity::"+b:"NA"),c+=f?"!Race::"+f:"NA");c&&_GA.createCookie("gaFormVals","Application|"+c,0.007);d.is(".priorCardButton")&&_GA.createCookie("gaFormVals","",-1);d.is("#goToCompleteApplication")&&(_GA.trackEvent("Application","Application Continue",_GA.appId,0,!0),_GA.setCM("metric2",1));d.is("#viewEligibility")&&(_GA.trackEvent("Application","Application View Eligibility Results",
+_GA.appId,0,!0),_GA.trackPageview(_GA.pageURI+"/ViewResults"));d.is("#indvLink")&&_GA.trackEvent("Application","Application Start",jQuery("a#openChangeTenantModal").parent().text().split("?")[0].replace("Not a resident of ",""),0,!0);d.is("#reviewAppPrint")&&(_GA.trackEvent("Application","Application Print",_GA.appId,0,!0),_GA.trackPageview(_GA.pageURI+"/PrintApplication"),_GA.setCM("metric3",1));d.is("#reviewAppDownload")&&(_GA.trackEvent("Application","Application Download",_GA.appId,0,!0),_GA.trackPageview(_GA.pageURI+
+"/DownloadApplication"),_GA.setCM("metric4",1));d.is("#reviewSignAndSubmitSaveContinue")&&jQuery('label[for\x3d"reviewSignAndSubmitRadioYes"]').hasClass("checked")&&0<jQuery("#reviewSignAndSubmitTextSignature").val().length&&(_GA.trackEvent("Application","Application Submit",_GA.appId,0,!0),_GA.trackPageview(_GA.pageURI+"/SubmitApplication"),_GA.setCM("metric5",1))})};dataLayer.push({event:"initCustom"});</script><script type="text/javascript">_GA.versions.customtracking=2.1;
+_GA.trackMobile=function(){if(void 0!=window.addEventListener){var a=0;void 0!=window.orientation&&window.addEventListener("orientationchange",function(){setTimeout(function(){switch(window.orientation){case 0:a="portrait-up";break;case 90:a="landscape-left";break;case -90:a="landscape-right";break;case 180:a="portrait-down"}_GA.trackEvent("mobile","orientation change",a)},500)});var b=0;void 0!=window.gestureend&&window.addEventListener("gestureend",function(a){1>a.scale?b="Zoom Out":1<a.scale&&
+(b="Zoom In");_GA.trackEvent("mobile",b)})}};_GA.jQuery&&jQuery(document).ready(function(a){_GA.extendTracking(a);_GA.trackMobile()});</script><script language="javascript" type="text/javascript" src="//static.chartbeat.com/js/chartbeat.js"></script></body></html>

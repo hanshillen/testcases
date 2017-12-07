@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Events Logger</title>
+    <style>
+        #mainText, #mainLink {
+            display: inline;    
+        }
+    </style>
+    <script>
+    
+        window.onload = function(e) {
+            var mainLink = document.getElementById("mainLink");            
+            
+            mainLink.addEventListener("click", handleLinkClick, false);
+        
+            
+            /*
+            mainLink.addEventListener("mousedown", handleMouseDown, false);
+            mainLink.addEventListener("mouseup", handleMouseUp, false);
+            mainLink.addEventListener("click", handleClick, false);
+            mainLink.addEventListener("keydown", handleKeyDown, false);
+            mainLink.addEventListener("keyup", handleKeyUp, false);
+            mainLink.addEventListener("keypress", handleKeyPress, false);
+            mainLink.addEventListener("focus", handleFocus, false);
+            mainLink.addEventListener("blur", handleBlur, false);
+            //*/
+        };
+        
+        function handleLinkClick(e) {
+            var hidden = this.getAttribute("data-hidden") == "true";
+            hidden = !hidden;
+            this.innerHTML = hidden ? "Read more about this" : "Read less about this";
+            document.getElementById("extraSection").style.display = hidden ? "none" : "inline";
+            this.setAttribute("data-hidden", hidden + "");
+        }
+        
+        function handleMouseDown(e) {
+            console.log("mousedown");
+        }
+        
+        function handleMouseUp(e) {
+            console.log("mouseup");
+        }
+        
+        function handleClick(e) {
+            e.preventDefault();
+            console.log("click");
+        }
+        
+        function handleKeyDown(e) {
+            console.log("keydown");
+        }
+        
+        function handleKeyUp(e) {
+            console.log("keyup");
+        }
+        
+        function handleKeyPress(e) {
+            console.log("keypress");
+        }
+        
+        function handleFocus(e) {
+            console.log("focus");
+        }
+        
+        function handleBlur(e) {
+            console.log("blur");
+        }
+        
+    </script>
+</head>
+<body>
+    <button>Tab stop 1</button>
+    <br><br>
+    <p id="mainText">
+        Lorem ipsum dolor sit amet,<span id="extraSection"> consectetur adipisicing elit. Unde maiores quaerat consectetur culpa facere incidunt temporibus quae harum, et, nemo, voluptatibus voluptatum dolore repellat quibusdam! Ea adipisci assumenda, a perspiciatis!</span><span>Cumque rerum officia, quibusdam animi, nihil accusantium adipisci. Voluptatum accusamus, cum, autem placeat, vitae omnis aperiam dicta consequuntur dolore laborum animi mollitia odit. Rerum quis voluptatem asperiores iusto excepturi, sapiente.</span>
+    </p>
+    <br>
+    <a href="#" id="mainLink" data-hidden="false">Read less about this</a>
+    <br><br>
+    <button>Tab stop 2</button>
+</body>
+</html>

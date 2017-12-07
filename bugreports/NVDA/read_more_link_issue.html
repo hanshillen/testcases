@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Toggle &amp; Click Issue</title>
+</head>
+
+<body>
+    <span id="test-extra" style="display:none" aria-hidden="true">Extra text</span>
+    <a id="test-link" href="#">read more</a>
+    <script>
+        window.onload = function () {
+            var testLink = document.getElementById("test-link");
+            testLink.addEventListener("click", handleClick);
+        };
+
+        function handleClick(e) {
+            console.log("click");
+            var el = document.getElementById("test-extra");
+            if (el.getAttribute('aria-hidden') == "true") {
+                el.setAttribute("aria-hidden", "false");
+                el.style.removeProperty("display");
+            } else {
+                el.setAttribute("aria-hidden", "true");
+                el.style.display = "none";
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>

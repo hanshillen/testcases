@@ -1,0 +1,104 @@
+/* Hans Hillen try out */
+
+
+
+body {
+	margin:0;
+	padding:20px 0;
+	background-color:#fff;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color:#666;
+}
+
+.hiddenAccessible {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+.responsiveTableHH {
+	border-collapse: collapse;
+	margin-bottom: 50px;
+	width: 100%;
+}
+
+.responsiveTableHH th, .responsiveTableHH td {
+	border: 1px solid #666;
+	padding: 10px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.responsiveTableHH p {
+	margin-top: 0;
+}
+
+.responsiveTableHH code {
+		font-size: 1.1em;
+	}
+
+
+/* #Tablet (Portrait) (768px - 959px) */ 
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+/* @media only screen and (min-width: 48em) and (max-width: 59.9375em) { */
+}
+
+/*  #Mobile (Portrait) ( < 767px) */ 
+@media only screen and (max-width: 767px) {
+/*@media only screen and (max-width:  47.9375em) {*/
+	.responsiveTableHH, .responsiveTableHH thead, .responsiveTableHH caption, .responsiveTableHH tbody, .responsiveTableHH tr, .responsiveTableHH th, .responsiveTableHH td {
+		display: block;
+	}
+
+	.responsiveTableHH {
+		text-align: center;
+	}
+
+	.responsiveTableHH thead {
+		display: none;
+	}
+
+	.responsiveTableHH tbody {
+		
+	}
+
+	.responsiveTableHH th {
+		background-color: #042F55;
+		color: #FFF;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	.responsiveTableHH th[scope=row] a {
+		color: #fff;
+
+	}
+
+	.responsiveTableHH td {
+		display: none;
+	} 
+
+	.responsiveTableHH td:before {
+		content: attr(data-hdr)":";
+		display: block;
+		
+		font-style: italic;
+		color: #042F55;
+	}
+
+	.responsiveTableHH .expanded td {
+		display: block;
+		font-size: 0.8em;	
+		padding: 5px;
+	}    
+}
+
+/* Mobile Landscape (480px - 767px) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+/*@media only screen and (min-width: 30em) and (max-width: 47.9375em) {*/
+	.responsiveTableHH th[scope=row] {
+	}
+}
+
+  
+

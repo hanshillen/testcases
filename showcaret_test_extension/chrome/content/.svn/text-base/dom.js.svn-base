@@ -1,0 +1,388 @@
+// Returns the current content document
+function wat_buildElement(doc, elementName, attribs, textContent) {
+	var el = doc.createElement(elementName);
+	for (var i in attribs) {
+		el.setAttribute(i, attribs[i]);
+	}
+	if (textContent) {
+		var text = doc.createTextNode(textContent);
+		el.appendChild(text);
+	}
+	return el;	
+}
+
+function wat_getContentDocument() {
+    return window.top.getBrowser().browsers[window.top.getBrowser().mTabBox.selectedIndex].contentDocument;
+}
+
+// Returns the current content window
+function wat_getContentWindow()
+{
+    return window.top.getBrowser().browsers[window.top.getBrowser().mTabBox.selectedIndex].contentWindow;
+}
+
+// Gets all the documents from the current page
+function wat_getDocuments(frame)
+{
+    var documents = new Array();
+
+    // If the frame is set
+    if(frame)
+    {
+        var frames       = frame.frames;
+        var framesLength = frames.length;
+
+        // If the frame document exists
+        if(frame.document)
+        {
+            documents.push(frame.document);
+        }
+
+        // Loop through the frames
+        for(var i = 0; i < framesLength; i++)
+        {
+            documents = documents.concat(wat_getDocuments(frames[i]));
+        }
+    }
+
+    return documents;
+}
+
+// Get the ancestors of the element
+function wat_getElementAncestors(element)
+{
+    var ancestors = wat_getElementAncestorsInternal(element);
+
+    // Reverse the list and remove the last element which is the original element
+    ancestors.reverse();
+    ancestors.pop();
+
+    return ancestors;
+}
+
+// Recursively gets the ancestors of an element
+function wat_getElementAncestorsInternal(element)
+{
+    var ancestors = new Array();
+
+    // If the element is set
+    if(element)
+    {
+        var parentElement = element.parentNode;
+
+        // If the element has a tag name
+        if(element.tagName)
+        {
+            ancestors.push(element);
+        }
+
+        // If there is a parent element
+        if(parentElement)
+        {
+            ancestors = ancestors.concat(wat_getElementAncestorsInternal(parentElement));
+        }
+    }
+
+    return ancestors;
+}
+
+// Get the children of the element
+function wat_getElementChildren(element)
+{
+    var children = new Array();
+
+    // If the element is set
+    if(element)
+    {
+        var child       = null;
+        var childNodes  = element.childNodes;
+        var childLength = childNodes.length;
+
+        // Loop through the children
+        for(var i = 0; i < childLength; i++)
+        {
+            child = childNodes[i];
+
+            // If the child and tag name are set
+            if(child && child.tagName)
+            {
+                children.push(child);
+            }
+        }
+    }
+
+    return children;
+}
+
+// Get the position of the element
+function wat_getElementPosition(element, xPosition)
+{
+    var position = 0;
+
+    // If the element is set
+    if(element)
+    {
+        var elementOffsetParent = element.offsetParent;
+
+        // If the element has an offset parent
+        if(elementOffsetParent)
+        {
+            // While there is an offset parent
+            while((elementOffsetParent = element.offsetParent) != null)
+            {
+                // If getting the x position
+                if(xPosition)
+                {
+                    position += element.offsetLeft;
+                }
+                else
+                {
+                    position += element.offsetTop;
+                }
+
+                element = elementOffsetParent;
+            }
+        }
+        else
+        {
+            // If getting the x position
+            if(xPosition)
+            {
+                position = element.offsetLeft;
+            }
+            else
+            {
+                position = element.offsetTop;
+            }
+        }
+    }
+
+    return position;
+}
+
+// Get the x position of the element
+function wat_getElementPositionX(element)
+{
+    return wat_getElementPosition(element, true);
+}
+
+// Get the y position of the element
+function wat_getElementPositionY(element)
+{
+    return wat_getElementPosition(element, false);
+}
+
+// Returns the text from an element
+function wat_getElementText(element)
+{
+    var elementText = "", alt;
+    // If the element is set
+    if(element)
+    {
+        var childNode       = null;
+        var childNodeList   = element.childNodes;
+        var childNodeLength = childNodeList.length;
+        var childNodeType   = null;
+
+        // Loop through the child nodes
+        for(var i = 0; i < childNodeLength; i++) {
+            childNode     = childNodeList[i];
+            childNodeType = childNode.nodeType;
+            // If the child node type is an element
+            if(childNodeType == Node.ELEMENT_NODE) {
+				if (childNode.tagName.toLowerCase() == 'img') {
+					try {
+						alt = childNode.getAttribute('alt');
+						if (alt.trim() !== "")
+							elementText += 	alt + "(alt)";
+					}
+					catch(e){};				
+				}
+				else	
+					elementText += wat_getElementText(childNode);
+            }
+            else if(childNodeType == Node.TEXT_NODE) {
+                elementText += childNode.nodeValue + " ";
+            }
+        }
+    }
+    return elementText;
+}
+
+// Returns the list of the images for the specified document
+function wat_getImagesForDocument(contentDocument, includeBackgroundImages, includeIcons)
+{
+    var images = new Array();
+
+    // If the content document is set
+    if(contentDocument)
+    {
+        var backgroundImage = null;
+        var cssURI          = CSSPrimitiveValue.CSS_URI;
+        var documentURL     = contentDocument.documentURI;
+        var element         = null;
+        var image           = null;
+        var imageInterface  = Components.interfaces.nsIDOMHTMLImageElement;
+        var inputInterface  = Components.interfaces.nsIDOMHTMLInputElement
+        var linkInterface   = Components.interfaces.nsIDOMHTMLLinkElement
+        var treeWalker      = contentDocument.createTreeWalker(contentDocument, NodeFilter.SHOW_ELEMENT, null, false);
+        var url             = Components.classes["@mozilla.org/network/standard-url;1"].createInstance(Components.interfaces.nsIURL);
+
+        // While the tree walker has more nodes
+        while((element = treeWalker.nextNode()) != null)
+        {
+            // If this is an image element
+            if(element instanceof imageInterface)
+            {
+                images.push(element);
+            }
+            else if(element instanceof inputInterface && element.src && element.type && element.type.toLowerCase() == "image")
+            {
+                image     = new Image();
+                url.spec  = documentURL;
+                image.src = url.resolve(element.src);
+
+                // If this is not a chrome image
+                if(image.src.indexOf("chrome://") != 0)
+                {
+                    images.push(image);
+                }
+            }
+            else if(includeIcons && element instanceof linkInterface && element.href && element.href.indexOf("chrome://") != 0 && element.rel && element.rel.indexOf("icon") != -1)
+            {
+                image     = new Image();
+                url.spec  = documentURL;
+                image.src = url.resolve(element.href);
+
+                images.push(image);
+            }
+            else if(includeBackgroundImages)
+            {
+                backgroundImage = element.ownerDocument.defaultView.getComputedStyle(element, null).getPropertyCSSValue("background-image");
+
+                // If this element has a background image and it is a URI
+                if(backgroundImage && backgroundImage.primitiveType == cssURI)
+                {
+                    image     = new Image();
+                    image.src = backgroundImage.getStringValue();
+
+                    // If this is not a chrome image
+                    if(image.src.indexOf("chrome://") != 0)
+                    {
+                        images.push(image);
+                    }
+                }
+            }
+        }
+    }
+
+    return images;
+}
+
+// Returns the list of the scripts for the specified document
+function wat_getScriptsForDocument(contentDocument, includeInline)
+{
+    var scripts = new Array();
+
+    // If the content document is set
+    if(contentDocument)
+    {
+        var documentScript        = null;
+        var documentScripts       = contentDocument.getElementsByTagName("script");
+        var documentScriptsLength = documentScripts.length;
+        var documentURL           = contentDocument.documentURI;
+
+        // Loop through the document scripts
+        for(var i = 0; i < documentScriptsLength; i++)
+        {
+            documentScript = documentScripts[i];
+
+            // If including inline scripts or this is not inline
+            if(includeInline || documentScript.src != documentURL)
+            {
+                scripts.push(documentScript);
+            }
+        }
+    }
+
+    return scripts;
+}
+
+// Inserts the given child as the first child of the element
+function wat_insertAsFirstChild(element, child)
+{
+    // If the element and child are set
+    if(element && child)
+    {
+        // If the element has child nodes
+        if(element.hasChildNodes())
+        {
+            element.insertBefore(child, element.firstChild);
+        }
+        else
+        {
+            element.appendChild(child);
+        }
+    }
+}
+
+// Returns true if the ancestor element is an ancestor of the element
+function wat_isAncestor(element, ancestorElement)
+{
+    // If the element and ancestor element are set
+    if(element && ancestorElement)
+    {
+        var parentElement = null;
+
+        // Loop through the parent elements
+        while((parentElement = element.parentNode) != null)
+        {
+            // If the parent element is the ancestor element
+            if(parentElement == ancestorElement)
+            {
+                return true;
+            }
+            else
+            {
+                element = parentElement;
+            }
+        }
+    }
+
+    return false;
+}
+
+// Removes all child nodes from a node
+function wat_removeAllChildNodes(node)
+{
+    // If the node is set
+    if(node)
+    {
+        var childNodes = node.childNodes;
+
+        // Loop through the child nodes
+        for(var i = 0; i < childNodes.length; i++)
+        {
+            node.removeChild(childNodes[i]);
+        }
+
+        childNodes = node.childNodes;
+
+        // Loop through the child nodes
+        while(childNodes.length > 0)
+        {
+            node.removeChild(childNodes[0]);
+        }
+    }
+}
+
+function wat_getElementsByClassName(root, clsName,elementName){ 
+	var arr = []; 
+	var elems = root.getElementsByTagName(elementName);
+	for (var i = 0; ( elem = elems[i] ); i++ ) {
+		if ( elem.className.search("(^|\s+)" + clsName + "(\s+|$)" ) != -1 ) {
+			arr[arr.length] = elem;
+		}
+	}
+	return arr;
+}

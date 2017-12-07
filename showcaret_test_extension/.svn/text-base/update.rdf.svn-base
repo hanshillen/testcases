@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="rdf:#$t+JZq2"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="1.5"
+                   em:maxVersion="3.*"
+                   em:updateLink="http://sd-5358.dedibox.fr/wat_toolbar/wat_toolbar0.2.xpi" />
+  <RDF:Description RDF:about="rdf:#$q+JZq2"
+                   em:version="0.2">
+    <em:targetApplication RDF:resource="rdf:#$t+JZq2"/>
+  </RDF:Description>
+  <RDF:Seq RDF:about="rdf:#$p+JZq2">
+    <RDF:li RDF:resource="rdf:#$q+JZq2"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="urn:mozilla:extension:toolbar@wat-c.org"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBAFQIvnuWD8ClxJeMy00Q4VNz2/RRnFr8VepxTbG/giCwIlSHA6/Lgh9hF+DVd/gz3xoDFfYhqDlDNrrTpsqZt/S+ezaAiXdqUGf3lOT23iokNsdYD9RZsDO81Ni7jMRe60KyPf3c8mXrAyZkpg3RH7X+ywWTrxek+fStT74UxJ0S">
+    <em:updates RDF:resource="rdf:#$p+JZq2"/>
+  </RDF:Description>
+</RDF:RDF>

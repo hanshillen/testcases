@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>NVDA announcement link in tab list</title>
+</head>
+<body>
+	<h1 id="main-desc" tabindex="-1">Compare dialysis facilities</h1>
+	<button>Tab stop 1</button>
+	<ul role="tablist" >
+		<li aria-selected="false" aria-labelledby="ui-id-7" aria-controls="tabs-0" tabindex="-1" role="tab" >
+			<a id="ui-id-7" tabindex="-1" role="presentation" href="#tabs-0" data-tabid="0" data-name="Compare"> General information</a>
+		</li>
+		<li tabindex="0" aria-selected="true" aria-labelledby="ui-id-8" aria-controls="tabs-1" role="tab" >
+			<a id="ui-id-8" tabindex="-1" role="presentation" href="#tabs-1" data-tabid="1" data-name="metricsCompare"> Best treatment practices</a>
+		</li>
+		<li aria-selected="false" aria-labelledby="ui-id-9" aria-controls="tabs-2" tabindex="-1" role="tab" >
+			<a id="ui-id-9" tabindex="-1" role="presentation" href="#tabs-2" data-tabid="2" data-name="metricsCompare"> Hospitalizations &amp; deaths</a>
+		</li>
+	</ul>
+	<div aria-hidden="true" aria-expanded="false" style="display: none;" role="tabpanel" aria-labelledby="ui-id-7" id="tabs-0" data-target="tabs-0">
+	</div>
+	<div aria-hidden="false" aria-expanded="true" style="display: block;" role="tabpanel" aria-labelledby="ui-id-8" id="tabs-1" data-target="tabs-1">
+		<h3>Best treatment practices</h3>
+		<p>
+			Best treatment practices are <a href="#">services</a> that dialysis facilities provide that can help patients avoid hospitalization and death.				
+		</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda facilis atque modi nam iure culpa cumque, accusamus nemo dignissimos quis voluptatibus aperiam saepe veniam pariatur perspiciatis delectus esse quibusdam labore.</p>
+	</div>
+	<div aria-hidden="true" aria-expanded="false" style="display: none;" role="tabpanel" aria-labelledby="ui-id-9" id="tabs-2" data-target="tabs-2">
+	</div>
+	<button>Tab stop 2</button>
+	
+</body>
+</html>

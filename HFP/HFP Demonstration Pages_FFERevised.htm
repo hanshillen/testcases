@@ -1,0 +1,629 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+<title>HFP Demonstration Pages</title>
+<style type="text/css">
+			 table {
+						 border-collapse: collapse;
+						 border-spacing: 0;
+						 border: 1px solid #000000;
+						 text-align: left;
+						 width: 800px;
+						 font-family: Arial, Verdana, sans-serif;
+			 }
+			 
+			 th, td {
+			 		 padding: 0.5em;
+					 border: 1px solid #000000;
+			 }
+			 
+			 th[scope=col] {
+			 		 padding-top: 1em;
+					 padding-bottom: 1em;
+			 }
+			 
+			 td {
+			 		font-size: 90%
+			 }
+
+			 /* Zebra Stripes technique for alternating rows of a different color is achieved using CSS3's nth-child pseudo-element selector. It is supported across most browsers EXCEPT for IE. */
+			 tbody tr {
+			 			 background-color: #FFFFFF;
+			 }	 
+
+ 			 tbody tr:nth-child(odd) {
+			 			 background-color: #C0FFFF;
+			 }	 
+
+</style>
+
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
+</head>
+<body>
+<h1>JAWS Test Page: Reading Form Controls</h1>
+<b>NOTE: 12/22/2010 ESW - I called FreedomScientific about the differences between the Read All and Read line by line commands.  FS agreed with my findings based on if data was present within textboxes, textareas, etc.  As per FS, form elements, with data not present, are read for example "Name 1:" with the Read All command.  The form element type is relayed with the read line by line feature because forms mode is on when in this mode, regardless if data is present in the form element or not.</b>
+<h2>Sample Data Entry Form Controls</h2>
+<form action="" method="post">
+<h3>Textbox (Input Type=Text)</h3>
+<label for="name">Name 1:</label>
+<input id="name" type="text" name="textfield" />
+
+<label for="name2">Name 2:</label>
+<input id="name2" type="text" name="textfield" value="Sam"  />
+
+<h3>Text Area</h3>
+<label for="address">Enter your address 1:</label>
+<textarea id="address" name="addresstext" rows="3" cols="50">12601 Fair Lakes Circle, Fairfax, VA 22033</textarea> <br /><br />
+
+<label for="address2">Enter your address 2:</label>
+<textarea id="address2" name="addresstext" rows="3" cols="50"></textarea>
+
+<h3>Checkboxes in a Fieldset</h3>
+<fieldset>
+<legend>Select your pizza toppings:</legend>
+<input id="ham" type="checkbox" name="toppings" value="ham" />
+<label for="ham">Ham</label><br />
+<input id="pepperoni" type="checkbox" name="toppings" value="pepperoni" />
+<label for="pepperoni">Pepperoni</label><br />
+<input id="mushrooms" type="checkbox" name="toppings" value="mushrooms" />
+<label for="mushrooms">Mushrooms</label><br />
+<input id="olives" type="checkbox" name="toppings" value="olives" />
+<label for="olives">Olives</label>
+</fieldset>
+
+<h3>Radio Buttons in a Fieldset</h3>
+<fieldset>
+<legend>Choose a shipping method:</legend>
+<input id="overnight" type="radio" name="shipping" value="overnight" />
+<label for="overnight">Overnight</label><br />
+<input id="twoday" type="radio" name="shipping" value="twoday" />
+<label for="twoday">Two day</label><br />
+<input id="ground" type="radio" name="shipping" value="ground" />
+<label for="ground">Ground</label>
+</fieldset>
+
+<!-- JLG 3/11/2013: Test Case for FFE Wireframe Showing Nested Fields Under a Radio Button -->
+<h3>Radio Buttons in a Fieldset with Nested Fields</h3>
+<fieldset>
+<legend>Choose another shipping method:</legend>
+<input id="overnight2" type="radio" name="outeroptions" value="overnight2" />
+<label for="overnight2">Overnight</label><br />
+
+  
+	<div role="group" aria-label="test">
+		  <label for="nestedoption">Expense Reason:</label><br />
+		  <select id="nestedoption">
+		  <option value="1"></option>
+		  <option value="2">Proposal</option>
+		  <option value="3">Hardware</option>
+		  <option value="4">Perishable Item</option>
+		  </select><br />
+			<input id="insurance1" type="radio" name="inneroptions" value="waive" />
+			<label for="insurance1">I waive insurance</label><br />
+			<input id="insurance2" type="radio" name="inneroptions" value="explore" />
+			<label for="insurance2">I'm not sure; let me explore my other options</label><br />
+	</div>
+  
+<p> hello </p>
+<input type="text" />
+<input id="twoday2" type="radio" name="outeroptions" value="twoday2" />
+<label for="twoday2">Two day</label><br />
+<input id="ground2" type="radio" name="outeroptions" value="ground2" />
+<label for="ground2">Ground</label>
+</fieldset>
+
+<h3>Drop-down List With No Default Selected</h3>
+<label for="favcity0">Choose your favorite city:</label>
+<select id="favcity0" name="select">
+<option value="1"></option>
+<option value="2">Amsterdam</option>
+<option value="3">Buenos Aires</option>
+<option value="4">Delhi</option>
+<option value="5">Hong Kong</option>
+</select>
+
+<h3>Drop-down List With Default Selected</h3>
+<label for="favcity1">Choose the most beautiful city:</label>
+<select id="favcity1" name="select">
+<option value="1"></option>
+<option value="2" selected="selected">Amsterdam</option>
+<option value="3">Buenos Aires</option>
+<option value="4">Delhi</option>
+<option value="5">Hong Kong</option>
+</select>
+
+<br />
+<h3>Drop-down List Using Optgroup</h3>
+<p>This code includes Opt group for the following dropdown box:</p>
+<label for="favcity2">Choose your favorite city?</label>
+<select id="favcity2" name="favcity2">
+<optgroup label="Asia">
+  <option value="3">Delhi</option>
+  <option value="4">Hong Kong</option>
+  <option value="8">Mumbai</option>
+  <option value="11">Tokyo</option>
+</optgroup>
+<optgroup label="Europe">
+  <option value="1">Amsterdam</option>
+  <option value="5">London</option>
+  <option value="7">Moscow</option>
+</optgroup>
+<optgroup label="North America">
+  <option value="6">Los Angeles</option>
+  <option value="9">New York</option>
+</optgroup>
+<optgroup label="South America">
+  <option value="2">Buenos Aires</option>
+  <option value="10">Sao Paulo</option>
+</optgroup>
+</select>
+
+<h3>List Box - Single Value Selection With No Default</h3>
+<label for="favcity3">Where are you traveling to?</label>
+<select id="favcity3" name="select" size="5">
+<option value="1">Paris</option>
+<option value="2">Amsterdam</option>
+<option value="3">Buenos Aires</option>
+<option value="4">Delhi</option>
+<option value="5">Hong Kong</option>
+</select>
+
+<h3>List Box - Single Value Selection With Default Selected</h3>
+<label for="favcity4">Arrival City</label>
+<select id="favcity4" name="select" size="5">
+<option value="1" selected="selected">Paris</option>
+<option value="2">Amsterdam</option>
+<option value="3">Buenos Aires</option>
+<option value="4">Delhi</option>
+<option value="5">Hong Kong</option>
+</select>
+
+<h3>List Box - Multiple Value Selection With No Default</h3>
+<label for="favcity5">Choose your favorite cities:</label>
+<select id="favcity5" name="select" size="5" multiple="multiple">
+<option value="1">Paris</option>
+<option value="2">Amsterdam</option>
+<option value="3">Buenos Aires</option>
+<option value="4">Delhi</option>
+<option value="5">Hong Kong</option>
+</select>
+
+<h3>List Box - Multiple Value Selection With 2 Defaults Selected</h3>
+<label for="favcity6">Where have you traveled to?</label>
+<select id="favcity6" name="select" size="5" multiple="multiple">
+<option value="1" selected="selected">Paris</option>
+<option value="2">Amsterdam</option>
+<option value="3" selected="selected">Buenos Aires</option>
+<option value="4">Delhi</option>
+<option value="5">Hong Kong</option>
+</select>
+
+<h3>Buttons</h3>
+<input type="submit" name="submit" value="Submit Search" />
+<br />
+<input type="reset" name="reset" value="Reset" /> 
+<br />
+<input type="image" name="submitbutton" alt="submit!" src="" />
+</form>
+<b>NOTE: When navigating the page with JAWS either using Tab or pressing the "F" key, the user is navigated to the form element on the page.  JAWS reads all legend, label, etc. correctly also conveying the type of form element selected (i.e. Name 1: Edit).  A noteworthy difference is a textbox, navigating by pressing "F", is read as "Name 1: Edit" yet a textarea with data within is read as "Enter your address 1: contains text" not reading the data within the text area.  All other form elements are read the same across all versions of JAWS that we use.</b>
+<h2>Say All (Insert + Down Arrow) VS. Line by Line Reading (Down Arrow) Commands</h2>
+<table><caption style="Font-weight:bold">Findings from Testing Performed in Internet Explorer 7</caption>
+<thead>
+<tr>
+<td></td>
+<th scope="col">JAWS 9</th>
+<th scope="col">JAWS 10</th>
+<th scope="col">JAWS 11</th>
+<th scope="col">JAWS 12</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<th scope="row">Textbox with Read All Command</th>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+</tr>
+
+<tr>
+<th scope="row">Textbox read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">Text Area Read All Command</th>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+</tr>
+
+<tr>
+<th scope="row">Text Area read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">Checkboxes in a Fieldset Read All Command</th>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+</tr>
+
+<tr>
+<th scope="row">Checkboxes in a Fieldset read line by line</th>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+</tr>
+
+<tr>
+<th scope="row">Radio Buttons in a Fieldset Read All Command</th>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+</tr>
+
+<tr>
+<th scope="row">Radio Buttons in a Fieldset read line by line</th>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+</tr>
+
+<tr>
+<th scope="row">Drop-down List With No Default Selected Read All Command</th>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+</tr>
+
+<tr>
+<th scope="row">Drop-down List With No Default Selected read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">Drop-down List With Default Selected Read All Command</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">Drop-down List With Default Selected read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">Drop-down List Using Optgroup Read All Command</th>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+</tr>
+
+<tr>
+<th scope="row">Drop-down List Using Optgroup read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Single Value Selection With No Default Read All Command</th>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Single Value Selection With No Default read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Single Value Selection With Default Selected Read All Command</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Single Value Selection With Default Selected read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Multiple Value Selection With No Default Read All Command</th>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Multiple Value Selection With No Default read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Multiple Value Selection With Default Selected Read All Command</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Multiple Value Selection With Default Selected read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+
+<tr>
+<th scope="row">Buttons Read All Command</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">Buttons read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+</tbody>
+</table>
+
+<table><caption style="Font-weight:bold">Findings for Testing Performed in Firefox 3.6.13</caption>
+<thead>
+<tr>
+<td></td>
+<th scope="col">JAWS 9</th>
+<th scope="col">JAWS 10</th>
+<th scope="col">JAWS 11</th>
+<th scope="col">JAWS 12</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<th scope="row">Textbox with Read All Command</th>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+</tr>
+
+<tr>
+<th scope="row">Textbox read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">Text Area Read All Command</th>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+</tr>
+
+<tr>
+<th scope="row">Text Area read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">Checkboxes in a Fieldset Read All Command</th>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+</tr>
+
+<tr>
+<th scope="row">Checkboxes in a Fieldset read line by line</th>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+</tr>
+
+<tr>
+<th scope="row">Radio Buttons in a Fieldset Read All Command</th>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+</tr>
+
+<tr>
+<th scope="row">Radio Buttons in a Fieldset read line by line</th>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+<td>Correctly Read including Status and Legend</td>
+</tr>
+
+<tr>
+<th scope="row">Drop-down List With No Default Selected Read All Command</th>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+</tr>
+
+<tr>
+<th scope="row">Drop-down List With No Default Selected read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">Drop-down List With Default Selected Read All Command</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">Drop-down List With Default Selected read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">Drop-down List Using Optgroup Read All Command</th>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+</tr>
+
+<tr>
+<th scope="row">Drop-down List Using Optgroup read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Single Value Selection With No Default Read All Command</th>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Single Value Selection With No Default read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Single Value Selection With Default Selected Read All Command</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Single Value Selection With Default Selected read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Multiple Value Selection With No Default Read All Command</th>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+<td>Incorrectly Read, when empty only label is read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Multiple Value Selection With No Default read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Multiple Value Selection With Default Selected Read All Command</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">List Box - Multiple Value Selection With Default Selected read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+
+<tr>
+<th scope="row">Buttons Read All Command</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+
+<tr>
+<th scope="row">Buttons read line by line</th>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+<td>Correctly Read</td>
+</tr>
+</tbody>
+</table>
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay SYSTEM "chrome://wat_toolbar/locale/menu.dtd">
+
+<?xml-stylesheet href="chrome://wat_toolbar/skin/wat.css" type="text/css"?>
+<?xml-stylesheet href="chrome://wat_toolbar/skin/watreporter.css" type="text/css"?>
+<overlay id="wat-c-overlay" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"> 
+	
+	<script type="application/x-javascript"
+		src="chrome://wat_toolbar/content/jquery/jquery-1.2.6.min.js"></script>
+	<script type="application/x-javascript" src="chrome://wat_toolbar/content/wat.js"></script>
+	<script type="application/x-javascript" src="chrome://wat_toolbar/content/classes.js"></script>
+	<script type="application/x-javascript" src="chrome://wat_toolbar/content/domplates.js"></script>
+	<script type="application/x-javascript" src="chrome://wat_toolbar/content/forms.js"></script>
+	<script type="application/x-javascript" src="chrome://wat_toolbar/content/links.js"></script>
+	<script type="application/x-javascript" src="chrome://wat_toolbar/content/images.js"></script>
+	<script type="application/x-javascript" src="chrome://wat_toolbar/content/roles.js"></script>
+	<script type="application/x-javascript" src="chrome://wat_toolbar/content/paragraphs.js"></script>	
+	<script type="application/x-javascript" src="chrome://wat_toolbar/content/blockquotes.js"></script>	
+	<script type="application/x-javascript" src="chrome://wat_toolbar/content/abbreviations.js"></script>	
+	<script type="application/x-javascript" src="chrome://wat_toolbar/content/taborder.js"></script>	
+	<script type="application/x-javascript" src="chrome://wat_toolbar/content/metadata.js"></script>
+	<script type="application/x-javascript" src="chrome://wat_toolbar/content/language.js"></script>
+	<script type="application/x-javascript" src="chrome://wat_toolbar/content/trackerDetails.js"></script>
+	<!--
+		<script type="application/x-javascript"
+		src="chrome://wat_toolbar/content/resize.js" /> <script
+		type="application/x-javascript"
+		src="chrome://wat_toolbar/content/liveregions.js"
+		id="jslrscript"></script> <script type="application/x-javascript"
+		src="chrome://wat_toolbar/content/tableinspector.js"></script> <script
+		type="application/x-javascript"
+		src="chrome://wat_toolbar/content/cca.js"
+		id="jsaccessccascript"></script> <script
+		type="application/x-javascript"
+		src="chrome://wat_toolbar/content/dom.js" />
+	-->
+	<!--
+		<script type="application/x-javascript"
+		src="chrome://wat_toolbar/content/structure.js" /> <script
+		type="application/x-javascript"
+		src="chrome://wat_toolbar/content/sidebar/outputtree.js"></script>
+		<script type="application/x-javascript"
+		src="chrome://wat_toolbar/content/common/xpath.js" /> <script
+		type="application/x-javascript"
+		src="chrome://wat_toolbar/content/common/documents.js" /> <script
+		type="application/x-javascript"
+		src="chrome://wat_toolbar/content/stylesheets.js" /> <script
+		type="application/x-javascript"
+		src="chrome://wat_toolbar/content/wat.js" />
+	-->
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="wat_toolbar_strings"
+			src="chrome://wat_toolbar/locale/wat_toolbar_strings.properties" />
+		<stringbundle id="wat_strings_feedbackBundle"
+			src="chrome://wat_toolbar/locale/feedback.properties" />
+	</stringbundleset>
+	<keyset id="mainKeyset">
+		<key id="key_testWAT" command="cmd_watTest" key="." modifiers="accel" />
+	</keyset>
+	<menupopup id="viewSidebarMenu">
+		<menuitem key="." observes="wat_viewSidebar" />
+	</menupopup>
+	<broadcasterset id="mainBroadcasterSet">
+		<broadcaster id="wat_viewSidebar" label="&wat.sidebar.title.lbl;"
+			autoCheck="false" type="checkbox" group="sidebar"
+			sidebarurl="chrome://wat_toolbar/content/sidebar/sidebar.xul"
+			sidebartitle="WAT sidebar" oncommand="toggleSidebar('wat_viewSidebar');" />	
+		<!-- RESIZE -->
+		<broadcaster id="wat_resizeViewportToggleBC" label="&wat.resize.toggleviewport.lbl;"
+			accesskey="" persist="checked" oncommand="wat_updateCheckedStatus(this);" />
+		<broadcaster id="wat_resizeShowInTitleToggleBC" label="&wat.resize.showintitle.lbl;"
+			persist="checked" accesskey=""
+			oncommand="wat_updateCheckedStatus(this); wat_showDimensionsInTitle(this);" />
+		<!-- IMAGES -->
+		<broadcaster id="wat_toggleImagesBC" class="wat_featureBC"
+			label="&wat.images.togglealt.lbl;" accesskey=""
+			oncommand="WAT.toggleTracker(this); " persist="" />
+		<broadcaster id="wat_imagesOutputBC" class="wat_featureBC"
+			label="&wat.images.imagelist.lbl;" accesskey=""
+			oncommand="wat_updateTracking(this, false); log('hello!')" />
+		<!-- STRUCTURE -->
+		<broadcaster id="wat_headingsToggleBC" class="wat_featureBC"
+			label="&wat.structure.headingsOutline.lbl;" accesskey="&wat.structure.headingsOutline.key;"
+			oncommand="wat_updateTracking(this, true);" />
+		<broadcaster id="wat_headingsOutputBC" class="wat_featureBC"
+			label="&wat.structure.headingStructure.lbl;" accesskey="&wat.structure.headingStructure.key;"
+			oncommand="WAT.toggleTracker(this);" />
+		<broadcaster id="wat_toggleLinksBC" class="wat_featureBC"
+			label="&wat.structure.links.lbl;" accesskey="&wat.structure.links.key;"
+			oncommand="WAT.toggleTracker(this);" />
+		<broadcaster id="wat_toggleListItemsBC" class="wat_featureBC"
+			label="&wat.structure.listItems.lbl;" accesskey="&wat.structure.listItems.key;"
+			oncommand="" />
+		<broadcaster id="wat_toggleFormControlsBC" label="&wat.structure.formfields_labels.lbl;"
+			accesskey="&wat.structure.formfields_labels.key;" oncommand="WAT.toggleTracker(this);" />	
+		<broadcaster id="wat_toggleParagraphsBC" class="wat_featureBC"
+			label="&wat.structure.paragraphs.lbl;" accesskey="&wat.structure.paragraphs.key;"
+			oncommand="WAT.toggleTracker(this);" />
+		<broadcaster id="wat_toggleBlockquotesBC" class="wat_featureBC"
+			label="&wat.structure.blockquotes.lbl;" accesskey="&wat.structure.blockquotes.key;"
+			oncommand="WAT.toggleTracker(this);" />
+		<broadcaster id="wat_toggleAbbreviationsBC" class="wat_featureBC"
+			label="&wat.structure.abbreviations.lbl;" accesskey="&wat.structure.abbreviations.key;"
+			oncommand="WAT.toggleTracker(this);" />
+		<broadcaster id="wat_toggleTabOrderBC" class="wat_featureBC"
+			label="&wat.structure.tabOrder.lbl;" accesskey="&wat.structure.tabOrder.key;"
+			oncommand="WAT.toggleTracker(this);" />
+		
+		<!-- COLOR -->
+		<broadcaster id="wat_CaaAppBC" label="&wat.color.cca_app.lbl;"
+			oncommand="WAT.launchProgram('chrome/content/tools/CCA/Colour_Contrast_Analyser.exe');" />
+		<broadcaster id="wat_color_allTestsBC" label="&wat.color.allTests.lbl;"
+			oncommand="examineContrast(1)" />
+		<broadcaster id="wat_color_test1BC" label="&wat.color.LCR.lbl;"
+			oncommand="examineContrast(2)" />
+		<broadcaster id="wat_color_test2BC"
+			label="&wat.color.AERTColourContrastAlgorithm.label;" oncommand="examineContrast(3)" />
+		<!-- ARIA -->
+		<broadcaster id="wat_liveRegionsHighlightBC" label="Examine ARIA live regions"
+			oncommand="highlightRegions();" />
+		<broadcaster id="wat_toggleRolesBC" label="Examine Roles"
+			oncommand="WAT.toggleTracker(this);" /> 
+		
+		<!--TABLES -->
+		<broadcaster id="wat_tableInspectorBC" label="Table Inspector"
+			oncommand="jstiinspectTables();" />
+		<!-- DOC INFOS -->
+		<broadcaster id="wat_toggleInfoMetadataBC" class="wat_featureBC"
+			label="&wat.docinfos.metadata.lbl;" accesskey="&wat.docinfos.metadata.key;"
+			oncommand="WAT.toggleTracker(this);" />
+		<broadcaster id="wat_toggleInfoLanguageBC" class="wat_featureBC"
+			label="&wat.docinfos.language.lbl;" accesskey="&wat.docinfos.language.key;"
+			oncommand="WAT.toggleTracker(this);" />
+	</broadcasterset>
+	<popupset id="MainPopupSet">
+		<popup id="wat_stopTrackingPopup">
+			<menuitem label="Turn off this feature" />
+		</popup>
+	</popupset>
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbarbutton id="wat_validateMenu" class="wat_validateMenu"
+			label="&wat.validate.lbl;" type="menu">
+			<menupopup>
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="wat_resizeMenu" class="wat_resizeMenu"
+			label="&wat.resize.lbl;" type="menu">
+			<menupopup>
+				<menuitem type="checkbox" observes="wat_resizeShowInTitleToggleBC" />
+				<menuitem type="checkbox" observes="wat_resizeViewportToggleBC" />
+				<menuitem label='&wat.resize.640x480.lbl;' oncommand="wat_initResize(640, 480);" />
+				<menuitem label='&wat.resize.800x600.lbl;' oncommand="wat_initResize(800, 600);" />
+				<menuitem label='&wat.resize.1024x768.lbl;' oncommand="wat_initResize(1024, 768);" />
+				<menuitem label='&wat.resize.1280x1024.lbl;' oncommand="wat_initResize(1280, 1024);" />
+				<menu label="&wat.resize.customsizes.lbl;">
+					<menupopup>
+						<menuitem label='&wat.resize.customsize.lbl;' oncommand="wat_showCustomResizeWindow();" />
+						<menuseparator />
+						<menuitem label='&wat.resize.pocketpc.lbl;' oncommand="wat_initResize(240, 320);" />
+						<menuitem label='&wat.resize.cga.lbl;' oncommand="wat_initResize(320, 200);" />
+						<menuitem label='&wat.resize.qvga.lbl;' oncommand="wat_initResize(320, 240);" />
+						<menuitem label='&wat.resize.webtv.lbl;' oncommand="wat_initResize(544, 372);" />
+						<menuitem label='&wat.resize.ultraxga.lbl;' oncommand="wat_initResize(1600, 1200);" />
+					</menupopup>
+				</menu>
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="wat_CSSMenu" class="wat_CSSMenu"
+			label="&wat.css.lbl;" type="menu">
+			<menupopup>
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="wat_imagesMenu" class="wat_imagesMenu"
+			label="&wat.images.lbl;" type="menu">
+			<menupopup>
+				<menuitem type="checkbox" observes="wat_toggleImagesBC" />
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="wat_colorMenu" class="wat_colorMenu"
+			label="&wat.color.lbl;" type="menu">
+			<menupopup>
+				<menuitem observes="wat_CaaAppBC" />
+				<menu label="&wat.color.ColourContrastAnalyser.label;">
+					<menupopup>
+						<menuitem observes="wat_color_allTestsBC" />
+						<menuseparator />
+						<menuitem observes="wat_color_test1BC" />
+						<menuitem observes="wat_color_test2BC" />
+					</menupopup>
+				</menu>
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="wat_ariaMenu" class="wat_ariaMenu"
+			label="&wat.aria.lbl;" type="menu">
+			<menupopup>
+				<menuitem observes="wat_liveRegionsHighlightBC" />
+				<menuitem observes="wat_toggleRolesBC" />			
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="wat_tablesMenu" class="wat_tablesMenu"
+			label="&wat.tables.lbl;" type="menu">
+			<menupopup>
+				<menuitem id="jsaccessibilityticontextmenu" observes="wat_tableInspectorBC" />
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="wat_structureMenu" label="&wat.structure.lbl;"
+			type="menu" class="wat_structureMenu">
+			<menupopup>
+				<menuitem type="checkbox" observes="wat_toggleLinksBC" />
+				<menuseparator />
+				<!--<menuitem type="checkbox" observes="wat_headingsToggleBC" />
+				<menuitem type="checkbox" observes="wat_toggleListItemsBC" />-->
+				<menuitem type="checkbox" observes="wat_toggleParagraphsBC" />
+				<menuitem type="checkbox" observes="wat_toggleAbbreviationsBC" />
+				<menuitem type="checkbox" observes="wat_toggleBlockquotesBC" />
+				<menuseparator />
+				<menuitem type="checkbox" observes="wat_toggleFormControlsBC" />
+				<menuseparator />
+				<menuitem type="checkbox" observes="wat_toggleTabOrderBC" />
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="wat_toolsMenu" class="wat_toolsMenu"
+			label="&wat.tools.lbl;" type="menu">
+			<menupopup>
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="wat_docInfoMenu" class="wat_docInfoMenu"
+			label="&wat.docinfo.lbl;" type="menu">
+			<menupopup>
+				<menuitem type="checkbox" observes="wat_toggleInfoMetadataBC" />
+				<menuitem type="checkbox" observes="wat_toggleInfoLanguageBC" />
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="wat_sourceMenu" class="wat_sourceMenu"
+			label="&wat.source.lbl;" type="menu">
+			<menupopup>
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="wat_optionsMenu" class="wat_optionsMenu"
+			label="&wat.options.lbl;" type="menu">
+			<menupopup>
+			</menupopup>
+		</toolbarbutton>
+		<toolbarbutton id="wat_refsMenu" class="wat_refsMenu"
+			label="&wat.refs.lbl;" type="menu">
+			<menupopup>
+			</menupopup>
+		</toolbarbutton>
+	</toolbarpalette>
+	<toolbox id="navigator-toolbox">
+		<toolbar id="wat_toolbar_old"
+			defaultset="wat_linksMenu,wat_validateMenu,wat_resizeMenu,wat_CSSMenu,wat_imagesMenu,wat_colorMenu,wat_ariaMenu,wat_tablesMenu,wat_structureMenu,wat_toolsMenu,wat_docInfoMenu,wat_sourceMenu,wat_optionsMenu,wat_refsMenu"
+			context="toolbar-context-menu" customizable="true" class="chromeclass-toolbar"
+			collapsed="false" iconsize="small" hidden="false" inherits="collapsed,hidden"
+			mode="full" persist="collapsed,hidden" toolbarname="&wat.name.lbl;">
+			<toolbarbutton id="wat_linksMenu" class="wat_linksMenu"
+				type="menu-button" oncommand="wat_loadURL(event, 'http://www.wat-c.org');"
+				label="&wat.nameabbr.lbl;" orient="horizontal">
+				<menupopup>
+					<menuitem label="&wat.links.wat.lbl;"
+						oncommand="wat_loadURL(event, 'http://www.wat-c.org');" />
+					<menu label="&wat.links.wat.members.lbl;">
+						<menupopup>
+							<menuitem label="&wat.links.members.ais.lbl;"
+								oncommand="wat_loadURL(event, 'http://www.visionaustralia.org.au/info.aspx?page=573'); event.stopPropagation();" />
+							<menuitem label="&wat.links.members.infoaxia.lbl;"
+								oncommand="wat_loadURL(event, 'http://www.infoaxia.co.jp'); event.stopPropagation();" />
+							<menuitem label="&wat.links.members.juicystudio.lbl;"
+								oncommand="wat_loadURL(event, 'http://Juicystudio.com'); event.stopPropagation();" />
+							<menuitem label="&wat.links.members.wronghtml.lbl;"
+								oncommand="wat_loadURL(event, 'http://html.idena.jp'); event.stopPropagation();" />
+							<menuitem label="&wat.links.members.tpg.lbl;"
+								oncommand="wat_loadURL(event, 'http://www.paciellogroup.com'); event.stopPropagation();" />
+						</menupopup>
+					</menu>
+					<menuseparator />
+					<menuitem label="&wat.links.wat.documentation.lbl;"
+						oncommand="wat_loadURL(event, 'http://www.paciellogroup.com/resources/wat-documentation.html'); event.stopPropagation();" />
+					<menuitem label="&wat.links.wat.wcag1.lbl;"
+						oncommand="wat_loadURL(event, 'http://www.wat-c.org/tools/WAT/opera/versions/en1.0/WCAG_checklist.html'); event.stopPropagation();" />
+					<menuseparator />
+					<menuitem label="&wat.links.wat.about.lbl;"
+						oncommand="wat_loadURL(event, 'http://www.paciellogroup.com/resources/wat-about.html'); event.stopPropagation();" />
+					<menuitem label="&wat.links.feedback.lbl;"
+						oncommand="wat_loadURL(event, 'http://web-accessibility-toolbar.blogspot.com'); event.stopPropagation();" />
+				</menupopup>
+			</toolbarbutton>
+			<!--<toolbarbutton type="checkbox"
+				label="test features" command="cmd_watTest"></toolbarbutton>-->
+		</toolbar>
+		<toolbar id="wat_subbar" class="CHROMECLASS-TOOLBAR"
+			collapsed="true" hidden="false" inherits="collapsed,hidden" mode="full" />
+	</toolbox>
+	<commandset id="mainCommandSet">
+		<command id="cmd_watTest"
+			oncommand="Firebug.toggleBar(true, 'watResultsPanel'); jQuery('[observes=wat_toggleFormControlsBC]').get(0).doCommand(); jQuery('[observes=wat_toggleLinksBC]').get(0).doCommand(); " />
+	</commandset>
+    
+    <!-- Firebug Content -->
+	<toolbar id="fbToolbar" align="center">
+		<hbox id="fbToolbarInner" insertbefore="fbDetachButton" flex="1"
+			align="center">
+			<hbox id="wat_buttons" class="collapsed" insertafter="fbNetButtons">
+			</hbox>
+		</hbox>
+	</toolbar>
+</overlay>

@@ -1,0 +1,100 @@
+FBL.ns(function() {
+    with(FBL) {
+        function buildFocusObjForTabElement(tabElem) {
+            return [{
+                action: 'scroll',
+                elem: tabElem
+            },
+            {
+                action: 'highlight',
+                elem: tabElem,
+                className: 'watLinkHighlight'
+            }];
+        }
+
+        var WAT = Firebug.WatModule;
+        WAT.tabOrderHandler = function(tracker) {
+            var i, j;
+            if (! (tracker instanceof WAT.Tracker)) {
+                return false;
+            }
+
+            var errorsTotal = 0,
+            warningTotal = 0,
+            infosTotal = 0,
+            total = 0;
+
+            var doc = jQuery(tracker.context.browser.contentDocument);
+            /* get doc JQ */
+
+            var framesJQ = doc.find('frame, iframe');
+            var frames = [doc.get(0)];
+            if (frames.length > 0) {
+                for (i = 0; i < framesJQ.length; i++) {
+                    frames.push(framesJQ.get(i).contentDocument);
+                }
+            }
+            var location, tabElements, tempElems;
+
+            for (j = 0; j < frames.length; j++) {
+                doc = jQuery(frames[j]);
+
+                location = doc.get(0).location;
+                var higherTabIndex = 0;
+                
+                // Tab Elements with defined index
+                tabElements = doc.find("*[tabIndex!='-1'][tabIndex!='0']").each(
+                    function( intIndex ) {
+                        var tabIndex = this.tabIndex;
+                        jQuery(this).after("<span class='watTabOrder'>"+ tabIndex+"</span>");
+                        if (tabIndex > higherTabIndex) {higherTabIndex = tabIndex;}
+                        var inputArray = WAT.strFToArray('tabElementWithDefinedIndex', {
+                                    tag: 'shortTag',
+                                    data: this
+                                },
+                                {
+                                    tag: 'string',
+                                    data: tabIndex
+                                });
+                            
+                        tracker.addResult('info', inputArray, buildFocusObjForTabElement(this));
+                        infosTotal++;
+                        total ++;
+                    }
+                );
+
+                // Tab Elements with automatic index
+                tabElements = doc.find("*[tabIndex='0']").each(
+                    function( intIndex ) {
+                        if (this.tagName != 'input' && this.getAttribute('type') != 'hidden') {
+
+                            var tabIndex = this.tabIndex;
+                            higherTabIndex++;
+                            jQuery(this).after("<span class='watTabOrder'>" + higherTabIndex + "</span>");
+                            var inputArray = WAT.strFToArray('tabElementWithDefinedIndex', {
+                                tag: 'shortTag',
+                                data: this
+                            },
+                            {
+                                tag: 'string',
+                                data: higherTabIndex
+                            });
+                            tracker.addResult('info', inputArray, buildFocusObjForTabElement(this));
+                            infosTotal++;
+                            total++;
+                        }
+                    }
+                );               
+            }
+
+            tracker.summaryParts = WAT.buildSummary('tabOrder', total, errorsTotal, warningTotal);
+            if (errorsTotal > 0) {
+                tracker.status = "error";
+            } else if (warningTotal > 0) {
+                tracker.status = "warn";
+            } else {
+                tracker.status = "info";
+            }
+        };
+    }
+});

@@ -1,0 +1,1085 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us">
+<head><!-- 
+*********************************************
+build.number=028
+build.source=FFE_Trnk
+build.timestamp=Thu Nov  1 13:55:02 2012
+*********************************************
+build.svnRevision=24536
+build.id=2012-11-01_11-58-12
+build.jobName=base-trunk-mgmt-rest-tmk
+------------------------------------------
+build.svnRevision=25397
+build.id=2012-11-01_11-58-15
+build.jobName=base-trunk-mgmt-ui-tmk
+------------------------------------------
+build.svnRevision=25459
+build.id=2012-11-01_11-58-20
+build.jobName=base-trunk-tmk
+------------------------------------------
+build.svnRevision=25500
+build.id=2012-11-01_12-09-19
+build.jobName=common-trunk-tmk
+------------------------------------------
+build.svnRevision=25468
+build.id=2012-11-01_12-20-19
+build.jobName=dc-trunk-tmk
+------------------------------------------
+build.svnRevision=25232
+build.id=2012-11-01_12-17-18
+build.jobName=dshg-trunk-tmk
+------------------------------------------
+build.svnRevision=25512
+build.id=2012-11-01_12-27-40
+build.jobName=ee-trunk-tmk
+------------------------------------------
+build.svnRevision=25261
+build.id=2012-11-01_12-27-44
+build.jobName=fm-trunk-tmk
+------------------------------------------
+build.svnRevision=25395
+build.id=2012-11-01_12-27-47
+build.jobName=naic-trunk-tmk
+------------------------------------------
+build.svnRevision=25271
+build.id=2012-11-01_12-34-51
+build.jobName=pm-api-trunk-tmk
+------------------------------------------
+build.svnRevision=25264
+build.id=2012-11-01_12-20-35
+build.jobName=pm-trunk-tmk
+------------------------------------------
+build.svnRevision=25262
+build.id=2012-11-01_12-20-29
+build.jobName=qm-trunk-tmk
+------------------------------------------
+build.svnRevision=25473
+build.id=2012-11-01_12-27-58
+build.jobName=ut-trunk-tmk
+------------------------------------------
+
+-->
+	<title>QHP Essential Community Providers</title>	
+     
+
+
+
+
+
+<script type="text/javascript">
+
+var QhpSectionTypes = {
+	APP_SECTION_TYPE_ADMIN_DATA : '1',
+	APP_SECTION_TYPE_NETWORK_ADEQUACY : '2',
+	APP_SECTION_TYPE_PROGRAM_ATTESTATION : '3',
+	APP_SECTION_TYPE_LICENSURE : '4',
+	APP_SECTION_TYPE_GOOD_STANDING : '5',
+	APP_SECTION_TYPE_ACCREDITATIONS : '6',
+	APP_SECTION_TYPE_HIGH_LEVEL_PLANS : '7',
+	APP_SECTION_TYPE_ECP : '8',
+	APP_SECTION_TYPE_SERVICE_AREAS : '9',
+	APP_SECTION_TYPE_PLAN : '10',
+	APP_SECTION_TYPE_PLAN_CROSSWALK : '11',
+	APP_SECTION_TYPE_BENEFIT : '12',
+	APP_SECTION_TYPE_PRESCRIPTION : '13'
+ };
+ 
+ var QhpApplicationStatus = {
+	APPLICATION_STATUS_PENDING_SUBMISSION :	'1',
+	APPLICATION_STATUS_SUBMISSION_COMPLETED : '2',
+	APPLICATION_STATUS_PENDING_VALIDATION :	'3',
+	APPLICATION_STATUS_VALIDATION_COMPLETED : '4',
+	APPLICATION_STATUS_RETURNED_FOR_CHANGES : '5'
+ };
+ 
+ var QhpApplicationSectionStatus = {
+	APP_SECTION_STATUS_SUBMISSION_NOT_STARTED : '1',
+	APP_SECTION_STATUS_SUBMISSION_IN_PROGRESS : '2',
+	APP_SECTION_STATUS_SUBMISSION_COMPLETED :  '3',
+	APP_SECTION_STATUS_VALIDATION_NOT_STARTED : '4',
+	APP_SECTION_STATUS_VALIDATION_PASSED : '5',
+	APP_SECTION_STATUS_VALIDATION_FAILED : '6'
+ };
+ 
+ 
+</script>
+	<script type="text/javascript"> var jsessionDetails = "51206:VA,95996:VA,96584:VA,50247:VA,55932:VA,63543:VA,32899:MN,10207:VA,13124:MD,12442:GA,89601:OH,46038:NE,54858:NE,23939:GA,63569:GA,60467:NV,17489:NV,38927:OR,65868:OR,56917:VT"; </script>
+	<!-- the following script must come after the setting of the jsessionDetails variable -->
+	<script type="text/javascript" src="js/qhpSessionDetails.js"></script>
+	
+	<script type="text/javascript" src="/base-ui/js/json2.js"></script>
+	<script type="text/javascript" src="/base-ui/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="/base-ui/js/jquery-ui-1.8.17.custom.min.js"></script>
+	<script type="text/javascript" src="/base-ui/js/underscore-1.3.1.full.js"></script>
+	<script type="text/javascript" src="/base-ui/js/backbone-0.9.2.full.js"></script>
+	<script type="text/javascript" src="/base-ui/js/backbone.modelbinding.full.js"></script>
+	<script type="text/javascript" src="/base-ui/js/crypto-min.js"></script>
+	<script type="text/javascript" src="/base-ui/js/backbone.validations-fork.js"></script>
+	<script type="text/javascript" src="/base-ui/js/Backbone.ModelBinder.js"></script>
+	<script type="text/javascript" src="/base-ui/js/backbone-nested-1.1.2-fork.js"></script>
+	<script type="text/javascript" src="/base-ui/js/cms-common.js"></script>
+	<script type="text/javascript" src="/base-ui/js/jquery.alerts.js"></script>
+	<script type="text/javascript" src="/base-ui/js/jquery.blockUI.js"></script>
+	
+	<script type="text/javascript" src="js/blockUI.js"></script>
+	<script type="text/javascript" src="js/jquery.dataTables-cgi.js"></script>
+	<script type="text/javascript" src="js/yui-min.js"></script>
+	<script type="text/javascript" src="js/jquery.simplemodal.js"></script>
+	<script type="text/javascript" src="js/qhpCommon.js"></script>
+	<script type="text/javascript" src="js/trackSubmitterChanges.js"></script>
+	<script type="text/javascript">
+	
+	//<![CDATA[
+   	// If a browser doesn't have "console" then create one that does nothing
+   	if (typeof console === "undefined" || typeof console.log === "undefined") {
+     	console = {};
+     	console.log = function() {};
+   	}
+		    
+    $(document).ready(function() {
+    	
+    	$("input").bind("keydown", function(event) {
+    	      // track enter key
+    	      var keycode = (event.keyCode ? event.keyCode : (event.which ? event.which : event.charCode));
+    	      if (keycode == 13) { // keycode for enter key
+    	         document.getElementById('button-CreateSaml2-both').click();
+    	         return false;
+    	      } else  {
+    	         return true;
+    	      }
+    	   }); // end of function
+		   
+		   //Show skip navigation link on focus
+		   $("a.HiddenText").bind("focus", function(event){
+				$(event.target).removeClass("HiddenText").css("display","inline !important");
+			});
+			
+			$("a.HiddenText").bind("click", function(event){
+				//Scroll to the element with the ID that the link targets
+				var scrollPos = $($(event.target).attr("href")).offset().top;
+				$(window).scrollTop(scrollPos);
+				$($(event.target).attr("href")).next("div").focus();
+			});
+		   
+          // To initially run the function:
+          $(window).resize();
+    });
+	
+	    	var getCurrentUsername = function() {		
+    		return "qhpsubmitter";		
+    	}
+	    //]]>
+    </script>
+	<script type="text/javascript" src="js/fontResizer.js"></script>
+	<link media="all" type="text/css" rel="stylesheet" href="css/grids.css"/>
+	<link media="all" type="text/css" rel="stylesheet" href="css/sub_main.css"/>
+	<link media="all" type="text/css" rel="stylesheet" href="css/rails.css"/>
+	<link media="all" type="text/css" rel="stylesheet" href="css/misc.css"/>
+	<link media="screen" rel="stylesheet" href="css/basic.css" type="text/css"/>
+	<!--Start Data Tables Style -->
+	
+	<link media="all" type="text/css" rel="stylesheet" href="css/tables/demo_page.css"/>
+	<link media="all" type="text/css" rel="stylesheet" href="css/tables/demo_table_jui.css"/>
+	<link media="all" type="text/css" rel="stylesheet" href="css/tables/jquery-ui-1.8.4.custom.css"/>
+	
+	<!--End Data Tables Style -->
+	<!--Start Style Specific to Project -->
+	<!--<link media="all" type="text/css" rel="stylesheet" href="css/ffe_pm_ehb.css"/>-->
+	<link media="all" type="text/css" rel="stylesheet" href="css/ffe_pm_qhp.css"/>
+	<script type = "text/javascript">
+	var environment = '';
+	</script>
+	<style>
+	.font075 ul.forms li label
+	{
+	   font-size:0.75em;
+	}
+	
+	.font08 ul.forms li label
+	{
+	   font-size:0.8em;
+	}
+	</style>
+   
+
+<script type="text/javascript">
+//<![CDATA[
+function getUrlVars(){
+	    var vars = [], hash;
+	    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+	    for(var i = 0; i < hashes.length; i++)
+	    {
+	      hash = hashes[i].split('=');
+	      vars.push(hash[0]);
+	      vars[hash[0]] = hash[1];
+	    }
+	    return vars;
+	}
+	
+	function getUrlVar(name) {
+		return this.getUrlVars()[name];
+	}
+	
+	function getValidatorPageUrl() {
+	     var currentUrl = window.location.href.toString();
+		 if(currentUrl.indexOf('home')>-1) {
+		     return 'qhpValidatorSummary?selectedTab=validator';
+		 }
+		 return currentUrl.replace('Submitter','Validator').replace('submitter','validator');
+	}
+	
+
+	
+	function getSubmitterPageUrl() {
+	     var currentUrl = window.location.href.toString();
+		 return currentUrl.replace('Validator','Submitter').replace('validator','submitter');
+	}
+	
+	
+function createTabs() {
+	var tabNav = $(".tabNavigation");
+	var tabContainers = $('div.tabs > div');
+	var applicationId = getUrlVar('applicationId');
+	var selectedTab = getUrlVar('selectedTab');
+	
+	if(!selectedTab) {
+	
+				selectedTab = "submitter";
+		
+			}
+	
+	var hiddenTextCSSClassName = "HiddenText";
+	var tabNotSelectedText = " tab";
+	
+	//logic to load role tab label content
+	if( tabNav ) {
+					tabNav.append(
+					$('<li>').append(
+						$('<a>').append('Data Submitter')
+							.append($('<span>').append(tabNotSelectedText).attr("class", hiddenTextCSSClassName))
+							.attr('href', getSubmitterPageUrl()).attr('id', 'submitter')));
+		
+		
+		
+	}
+	
+	//logic to show appropriate tab content
+	var tabSelectedText = " tab selected";
+	
+	if(tabContainers) {
+	
+		tabContainers.hide();
+		
+				if(selectedTab === "submitter" && true) {
+			$("#first").show();
+			$("#submitter span").html(tabSelectedText);
+		}
+				
+				
+			}
+	
+	var tabElement = $("#"+selectedTab).parent("li");
+	
+	//handle scenario where url param is not trusted
+	//appropriate tab should be retrieved
+	if(tabElement.length < 1) {
+			
+		tabElement = $(".tabNavigation a:first-child");
+		
+	}
+	
+	tabElement.addClass("selected");
+}
+//]]>
+</script>
+</head>
+<body>
+	<a class="HiddenText" href="#main_content" tabindex="1">Skip to Main Content</a>
+ 	
+
+
+
+
+
+<script type="text/javascript">
+
+var QhpSectionTypes = {
+	APP_SECTION_TYPE_ADMIN_DATA : '1',
+	APP_SECTION_TYPE_NETWORK_ADEQUACY : '2',
+	APP_SECTION_TYPE_PROGRAM_ATTESTATION : '3',
+	APP_SECTION_TYPE_LICENSURE : '4',
+	APP_SECTION_TYPE_GOOD_STANDING : '5',
+	APP_SECTION_TYPE_ACCREDITATIONS : '6',
+	APP_SECTION_TYPE_HIGH_LEVEL_PLANS : '7',
+	APP_SECTION_TYPE_ECP : '8',
+	APP_SECTION_TYPE_SERVICE_AREAS : '9',
+	APP_SECTION_TYPE_PLAN : '10',
+	APP_SECTION_TYPE_PLAN_CROSSWALK : '11',
+	APP_SECTION_TYPE_BENEFIT : '12',
+	APP_SECTION_TYPE_PRESCRIPTION : '13'
+ };
+ 
+ var QhpApplicationStatus = {
+	APPLICATION_STATUS_PENDING_SUBMISSION :	'1',
+	APPLICATION_STATUS_SUBMISSION_COMPLETED : '2',
+	APPLICATION_STATUS_PENDING_VALIDATION :	'3',
+	APPLICATION_STATUS_VALIDATION_COMPLETED : '4',
+	APPLICATION_STATUS_RETURNED_FOR_CHANGES : '5'
+ };
+ 
+ var QhpApplicationSectionStatus = {
+	APP_SECTION_STATUS_SUBMISSION_NOT_STARTED : '1',
+	APP_SECTION_STATUS_SUBMISSION_IN_PROGRESS : '2',
+	APP_SECTION_STATUS_SUBMISSION_COMPLETED :  '3',
+	APP_SECTION_STATUS_VALIDATION_NOT_STARTED : '4',
+	APP_SECTION_STATUS_VALIDATION_PASSED : '5',
+	APP_SECTION_STATUS_VALIDATION_FAILED : '6'
+ };
+ 
+ 
+</script>
+
+<script type="text/javascript" src="qhpSubmitterEcp.js"></script>
+<script type="text/javascript" src="js/trackSubmitterChanges.js"></script>
+
+<script type="text/javascript">
+    var prefetchedData = {"csrf":null,"applicationId":"1412","companyLegalName":"Coventry Health Care of Georgia","companyMarketingName":"Coventry Health Care of Georgia","statusCode":"5","statusName":"Returned for Changes","lastModifiedDate":"Fri, 02 Nov 2012 09:19:45 EDT","issuerId":"63569","state":"ut","qhpApplicationAdminData":null,"qhpApplicationAccreditationData":null,"qhpApplicationAccreditation":null,"organizationId":null,"qhpApplicationLicensure":null,"qhpApplicationProgramAttestation":null,"qhpApplicationNetworkAdequacy":null,"qhpApplicationGoodStanding":null,"qhpApplicationEcp":{"csrf":null,"applicationId":"1412","documents":[{"csrf":null,"fileName":"EssentialCommunityProviders.xlsm","documentType":null,"content":null,"createdDate":"Thu, 01 Nov 2012 12:31:13 EDT","createdBy":null,"fileIdentifier":"workspace://SpacesStore/4258576c-6bb4-4ea9-a1ac-32df85292b79;1.0","documentVersion":null,"carrierName":null,"businessReferenceType1":null,"businessReferenceType2":null,"businessReferenceType3":null,"businessReferenceType4":null,"businessReferenceValue1":null,"businessReferenceValue2":null,"businessReferenceValue3":null,"businessReferenceValue4":null,"notelist":[],"ecmFolderPath":null}],"statusCode":null,"lastModifiedDate":"Thu, 01 Nov 2012 12:32:31 EDT","lastModifiedBy":null,"issuerId":null,"stateCode":null,"qhpApplicationEcpProvider":[],"statements":[{"csrf":null,"statementText":" If the applicant provides a majority of covered professional services through physicians employed by the issuer or through a single contracted medical group, the applicant attests that it has a sufficient number and geographic distribution of employed providers and hospital facilities, or providers of its contracted medical group and hospital facilities to ensure reasonable and timely access for low-income, medically underserved individuals.","statementResponseText":"no","sequence":null,"documentUploadRequiredIndicator":false,"yesResponseDocumentRequired":false,"noResponseDocumentRequired":false,"documents":[],"notes":[],"notesOptionalIndicator":false,"subsection":null},{"csrf":null,"statementText":" The applicant attests that each essential community provider that the applicant indicated is included in a specific provider network reflects a contract with the provider valid for the year in which the issuer is applying to offer QHPs. ","statementResponseText":"no","sequence":null,"documentUploadRequiredIndicator":false,"yesResponseDocumentRequired":false,"noResponseDocumentRequired":false,"documents":[],"notes":[],"notesOptionalIndicator":false,"subsection":null}],"attestationIndicator":null,"saveAsDraftIndicator":false,"status":"5"}}
+	var prefetchedAttestation = {"csrf":null,"applicationId":"1412","companyLegalName":"Coventry Health Care of Georgia","companyMarketingName":"Coventry Health Care of Georgia","statusCode":"5","statusName":"Returned for Changes","lastModifiedDate":"Fri, 02 Nov 2012 09:19:45 EDT","issuerId":"63569","state":"ut","qhpApplicationAdminData":null,"qhpApplicationAccreditationData":null,"qhpApplicationAccreditation":null,"organizationId":null,"qhpApplicationLicensure":null,"qhpApplicationProgramAttestation":null,"qhpApplicationNetworkAdequacy":null,"qhpApplicationGoodStanding":null,"qhpApplicationEcp":{"csrf":null,"applicationId":"1412","documents":[{"csrf":null,"fileName":"EssentialCommunityProviders.xlsm","documentType":null,"content":null,"createdDate":"Thu, 01 Nov 2012 12:31:13 EDT","createdBy":null,"fileIdentifier":"workspace://SpacesStore/4258576c-6bb4-4ea9-a1ac-32df85292b79;1.0","documentVersion":null,"carrierName":null,"businessReferenceType1":null,"businessReferenceType2":null,"businessReferenceType3":null,"businessReferenceType4":null,"businessReferenceValue1":null,"businessReferenceValue2":null,"businessReferenceValue3":null,"businessReferenceValue4":null,"notelist":[],"ecmFolderPath":null}],"statusCode":null,"lastModifiedDate":"Thu, 01 Nov 2012 12:32:31 EDT","lastModifiedBy":null,"issuerId":null,"stateCode":null,"qhpApplicationEcpProvider":[],"statements":[{"csrf":null,"statementText":" If the applicant provides a majority of covered professional services through physicians employed by the issuer or through a single contracted medical group, the applicant attests that it has a sufficient number and geographic distribution of employed providers and hospital facilities, or providers of its contracted medical group and hospital facilities to ensure reasonable and timely access for low-income, medically underserved individuals.","statementResponseText":"no","sequence":null,"documentUploadRequiredIndicator":false,"yesResponseDocumentRequired":false,"noResponseDocumentRequired":false,"documents":[],"notes":[],"notesOptionalIndicator":false,"subsection":null},{"csrf":null,"statementText":" The applicant attests that each essential community provider that the applicant indicated is included in a specific provider network reflects a contract with the provider valid for the year in which the issuer is applying to offer QHPs. ","statementResponseText":"no","sequence":null,"documentUploadRequiredIndicator":false,"yesResponseDocumentRequired":false,"noResponseDocumentRequired":false,"documents":[],"notes":[],"notesOptionalIndicator":false,"subsection":null}],"attestationIndicator":null,"saveAsDraftIndicator":false,"status":"5"}}
+  	var previousPage = "qhpSubmitterNetworkAdequacy?selectedTab=submitter&applicationId=1412";;
+    var nextPage ="qhpSubmitterReview?selectedTab=submitter&applicationId=1412";
+	var pageTitle = "QHP Essential Community Providers";
+	var errorOn = "Error on ";
+</script>
+
+<!--STAR MAIN WRAPPER -->
+<div class="main_wrapper"> 
+     <!--START TOP BANNER -->
+  <!--START TOP BANNER -->
+<header role="banner">
+  <div class="header ">
+    <div class="grid_625 clear spacer_left spacer_bottom">
+		<div id="logo" class="grid_375">
+                    <img src="images/plan_management_logo.png" alt="Plan Management"/>
+		</div>
+		<div class="grid_150 float_right pad_right">
+		<!--
+			<form>
+				<label for="search">
+					<span class="HiddenText">Search Site</span>
+					<input class="mainSearch" type="text" name="search" id="search">
+				</label>
+			</form>
+		-->
+		</div>
+	</div>
+	<div class="grid_175">
+		<div class="userNameArea marginTp30"> 
+					<strong>Welcome,</strong> <span class="userName">qhpsubmitter</span>
+				</div>
+	</div>
+	<div class="grid_125 float_right">
+		    		<!--START LOGIN/LOGOUT BUTTON -->
+    		<span class="marginTp5"> <a class="button" href="logout">Logout</a> </span>
+    		<!--END LOGIN/LOGOUT BUTTON --> 
+				<ul class="textResizer clearfix">
+			<li style="margin-top:8px"><a class="small" href="javascript:smallerFont();">
+				A
+				<span class="HiddenText"> small font size</span>
+			</a></li>
+			<li style="margin-top:8px"><a class="medium" href="javascript:mediumFont();">
+				A
+				<span class="HiddenText"> medium font size</span>
+			</a></li>
+			<li style="margin-top:8px"><a class="large" href="javascript:largerFont();">
+				A
+				<span class="HiddenText"> large font size</span>
+			</a></li>
+		</ul>
+	</div>
+  </div>
+</header>
+<!--END TOP BANNER--> 
+    <!--END TOP BANNER--> 
+  <!--START MAIN CONTENT -->
+   <div class="main_content"> 
+       <!--Start Top Navigation --> 
+	   <!--Start Header Block -->
+	   <!--Start Top Navigation -->
+
+<div class="main_navigation">
+  <ul id="main_menu_bar"> 
+	<a></a>
+  </ul>
+  <!--
+  <div id="activityCenter">
+	<ul>
+		<li><a href="#">Activity Center<span class="icon"></span></a>
+		<ul>
+			<li><a href="#">Item 1</a></li>
+			<li><a href="#">Item 2</a></li>
+			<li><a href="#">Item 3</a></li>
+			<li><a href="#">Item 4</a></li>
+		</ul>
+		</li>
+	</ul>
+  
+  </div>
+  -->
+</div>
+<!--End Top Navigation --> 
+
+<script type="text/javascript">
+$(function() {
+	$("#activityCenter li:first").click(function() {
+        $('ul:first', this).toggle();
+    })
+});
+</script>
+
+<script type="text/javascript">
+	var data = {"csrf":null,"applicationId":"1412","companyLegalName":"Coventry Health Care of Georgia","companyMarketingName":"Coventry Health Care of Georgia","statusCode":"5","statusName":"Returned for Changes","lastModifiedDate":"Fri, 02 Nov 2012 09:19:45 EDT","issuerId":"63569","state":"ut","qhpApplicationAdminData":null,"qhpApplicationAccreditationData":{"csrf":null,"applicationId":"1412","ncqaDocument":null,"statusCode":null,"lastModifiedDate":null,"issuerId":null,"stateCode":null,"companyLegalName":null,"naicCompanyCode":null,"naicGroupCode":null,"issuerLegalName":null,"issuerMarketingName":null,"accreditationEntityName":null,"uracDocument":{"csrf":null,"fileName":"urac.xml","documentType":"URAC","content":null,"createdDate":"Tue, 02 Oct 2012 09:17:54 EDT","createdBy":null,"fileIdentifier":"workspace://SpacesStore/c52beed1-1f3b-44ac-85a6-64fe396f80a1;1.0","documentVersion":null,"carrierName":null,"businessReferenceType1":null,"businessReferenceType2":null,"businessReferenceType3":null,"businessReferenceType4":null,"businessReferenceValue1":null,"businessReferenceValue2":null,"businessReferenceValue3":null,"businessReferenceValue4":null,"notelist":[],"ecmFolderPath":null},"uracAccreditationList":[],"ncqaAccreditationList":[],"saveAsDraftIndicator":false},"qhpApplicationAccreditation":{"csrf":null,"applicationId":"1412","lastModifiedBy":null,"lastModifiedDate":"Fri, 02 Nov 2012 09:19:44 EDT","status":"2","attestationIndicator":true,"statements":[{"csrf":null,"statementText":"are any of the health plans you are currently offering in the commercial and/or medicaid market in this state accredited by ncqa and/or urac?","statementResponseText":"yes","sequence":null,"documentUploadRequiredIndicator":false,"yesResponseDocumentRequired":false,"noResponseDocumentRequired":false,"documents":[],"notes":[],"notesOptionalIndicator":false,"subsection":null}],"questionAnswerSections":[{"csrf":null,"questionText":"which accrediting entity? please select from the list below.","answerText":[],"answerResponseText":"urac","answerDate":null}],"saveAsDraftIndicator":true},"organizationId":null,"qhpApplicationLicensure":null,"qhpApplicationProgramAttestation":null,"qhpApplicationNetworkAdequacy":null,"qhpApplicationGoodStanding":null,"qhpApplicationEcp":null}
+	$("div.main_navigation > ul#main_menu_bar > a").html(data.companyLegalName + " - " + data.state);
+</script>
+	   <div class="header_block"> 
+	  
+      <!--Start Breadcrumb --> 
+      <!--End Breadcrumb -->	  
+      <h2 class="marginTp20">Essential Community Providers</h2>
+    </div>
+    <!--End Header Block -->
+    <!--STAR FULL RAIL -->	
+    <div class="full_rail">      
+	   	
+<script type="text/javascript">
+	function getUrlVars(){
+	    var vars = [], hash;
+	    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+	    for(var i = 0; i < hashes.length; i++)
+	    {
+	      hash = hashes[i].split('=');
+	      vars.push(hash[0]);
+	      vars[hash[0]] = hash[1];
+	    }
+	    return vars;
+	}
+	
+	function getUrlVar(name) {
+		return this.getUrlVars()[name];
+	}
+  
+    $(document).ready(function() {
+	     var applicationId = getUrlVar('applicationId');
+		 var loc = window.location.href;
+		 
+		 //persists the left navigation active link state
+		 $(".leftNavLink").each(function(map, key)
+		 {
+		 	var currentUrl = window.location.href.toString().replace(/\?.*/g, "");
+			var linkUrl = $(key).attr("href").toString().replace(/\?.*/g, "");
+			var foundUrl = currentUrl.indexOf(linkUrl) > -1 ? true : false;
+			
+			if(foundUrl)
+			{
+				$(key).parent().addClass("selected");
+				return;
+			}
+		 });
+		 
+		if(!applicationId) {
+			$(".selected_sub").hide();			
+		}
+	});
+</script> 
+
+
+           
+						<div class="float_left marginTp10 grid_200">
+				<nav role="navigation"> 
+				  <ul class="roundBox">
+					 <li><a class="leftNavLink" href="qhpSubmitterSummary?selectedTab=submitter">Summary</a></li>
+					 <li><a class="leftNavLink" href="qhpSubmitterAdminData?selectedTab=submitter&applicationId=1412">Admin Data</a></li>
+					 <li><a class="leftNavLink" href="qhpSubmitterProgramAttestation?selectedTab=submitter&applicationId=1412">Program Attestation</a></li>
+					 <li><a class="leftNavLink" href="qhpSubmitterLicensure?selectedTab=submitter&applicationId=1412">State Licensure</a></li>
+					 <li><a class="leftNavLink" href="qhpSubmitterGoodStanding?selectedTab=submitter&applicationId=1412">Good Standing</a></li>
+					 <li><a class="leftNavLink" href="qhpSubmitterAccreditation?selectedTab=submitter&applicationId=1412">Accreditation</a></li>
+					 <li><a class="leftNavLink" href="qhpSubmitterNetworkAdequacy?selectedTab=submitter&applicationId=1412">Network Adequacy</a></li>
+					 <li><a class="leftNavLink" href="qhpSubmitterEcp?selectedTab=submitter&applicationId=1412">Essential Community </br>Providers</a></li>
+					 <li class="last"><a class="leftNavLink" href="qhpSubmitterReview?selectedTab=submitter&applicationId=1412">Review</a></li>
+				  </ul>
+				</nav>
+			</div>
+									<!--End Left Tabs -->
+
+<script type="text/javascript">
+	/** If the status of the section is complete, set class='section_complete' on the left menu item
+	 * NOTE: must be called in all save functions to reflect the updated completion status
+	 * NOTE: Submitter pages that have been 'Validation Passed' will show as completed */
+	function updateSectionStatusLeftMenu() {
+		var sectionCompleted = "section_complete";
+		var sectionCompletedSelected = "section_complete_white";
+		var sSubmission = "Submission Completed";
+		var sValidation = "Validation Passed";
+		var fValidation = "Validation Failed";
+		var qhpUrls = {
+			"1" : "AdminData",
+			"2" : "NetworkAdequacy",
+			"3" : "ProgramAttestation", 
+			"4" : "Licensure",
+			"5" : "GoodStanding",
+			"6" : "Accreditation",
+			"8" : "Ecp"
+		};
+		$(".leftNavLink").parent().removeClass(sectionCompleted);
+		$(".leftNavLink").parent().removeClass(sectionCompletedSelected);
+		var sectionStatusLeftMenu = null;
+		var href = environment+"/dc-rest/auth/VA/en_US/QhpApplication/getAllQhpApplicationSectionStatus/1412";
+		jQuery.get(href, function(data) {
+			if (data && data.sections && data.sections.length > 0) {
+				jQuery.each(data.sections, function(key, value) {
+					if (value.sectionId && value.status && (value.status === sSubmission || value.status === sValidation)) {
+						if (value.sectionId in qhpUrls) {
+							if ($(".leftNavLink[href^='qhpSubmitter" + qhpUrls[value.sectionId] + "']").parent().is('.selected')) {
+								$(".leftNavLink[href^='qhpSubmitter" + qhpUrls[value.sectionId] + "']").parent().addClass(sectionCompletedSelected);
+							} else {
+								$(".leftNavLink[href^='qhpSubmitter" + qhpUrls[value.sectionId] + "']").parent().addClass(sectionCompleted);
+							}
+						}
+					}
+					if (value.sectionId && value.status && (value.status === sValidation || value.status === fValidation)) {
+						if (value.sectionId in qhpUrls) {
+							if ($(".leftNavLink[href^='qhpValidator" + qhpUrls[value.sectionId] + "']").parent().is('.selected')) {
+								$(".leftNavLink[href^='qhpValidator" + qhpUrls[value.sectionId] + "']").parent().addClass(sectionCompletedSelected);
+							} else {
+								$(".leftNavLink[href^='qhpValidator" + qhpUrls[value.sectionId] + "']").parent().addClass(sectionCompleted);
+							}
+    					}
+    				}
+    			});
+			}
+		});
+	}
+</script>	    <div class="grid_725 marginBtm20 marginLf15">
+		    <div class="tabs grid_750">
+                <ul class="tabNavigation"></ul>   
+                <!--Start First Tab -->
+                <div id="first"> 
+		            <div id="alertMessagesDiv" class="grid_700 marginBtm10"></div>
+					<a id="main_content" tabindex="-1" name="main_content"></a>
+<div></div>		            <h1 id="h2EcpTitle" class="border-bottom paddingBtm10 marginBtm20">Essential Community Providers</h1>
+		            <p class="pad_bottom">Fields marked with a red asterisk (<span class="error">*</span>) are required</p>		           		
+		            <!-- Template for Questiion part-->
+		            <div id="AttestationTemplate"></div>
+			
+		            <div class="message_box grid_700 marginTp20 marginBtm20 padding10">
+		                <div class="float_left menu-icon-messages2 paddingLf30">Please note that uploading a second version of the template will replace the previously uploaded version.</div>
+		            </div>
+		           <div class="marginBtm20">
+				       <p class="marginBtm10">Please use the following guidance to complete the Essential Community Providers template:</p>
+				       <div class="clear"></div>
+				           <ul class="normalList">
+				               <li class="marginBtm10"> The template provides a list of ECPs that have been identified by CMS as meeting the definition of an ECP. </li>
+				               <li class="marginBtm10"> The template will allow the applicant to identify each provider network it intends to utilize for its QHPs and to select each ECP with which it has an executed contract in each network. </li>
+				               <li class="marginBtm10"> The applicant may also write in additional ECPs if these ECPs do not appear on the list and meet the definition of an ECP as set forth in 155 CFR 156.235(c). </li>
+				               <li class="marginBtm10"> The applicant should identify any network that is different for its individual and small group market as a separate network.  </li>
+				          </ul>
+			          </div>
+		            <div class="clear"></div>		
+		            <!--Start Download Templates -->
+ 		            <div id="newTemplateSection" class="grid_225 templatebox marginBtm20">
+                        <h3 class="templates">Downloaded Templates</h3>
+                        <div class="pad_left font075">
+				            <a id="downloadBlankTemplateLink" name="downloadBlankTemplateLink" class="excel_link" href="#">ECP Template.xlsx</a> 
+			           </div>			              
+		           </div>	
+		           <!--End Download Templates --> 
+		  
+		           <!-- Form action to be set with jquery -->
+		           <form name="fileUploadForm" id="fileUploadForm" target="uploadProxy" enctype="multipart/form-data" action="/dc-rest/auth/VA/en_US/QhpApplication/processQhpApplicationEcpTemplate?applicationId=1412" method="POST">	  
+                       <div class="grid_400 templatebox marginBtm20">
+    		               <h3 class="templates">Uploaded Complete Template(s)</h3>	
+    			           <label for="uploadFile" class="form_label">Upload File:</label>
+    			           <input id="uploadFile" type="file" name="ecpFile" aria-required="true"/>		
+    			           <button id="Upload" class="app_button" value="Upload" name="Upload">Upload</button>
+    		           </div>
+		          </form>		  
+		          <form name="saveSection" id="saveSection" target="uploadProxy" enctype="multipart/form-data" action="/dc-rest/auth/VA/en_US/QhpApplication/manageQhpApplicationEcp/1412" method="POST">	  
+   			          <input type="hidden" id="question1" name=""/>
+			          <input type="hidden" id="question2" name=""/>
+			          <input type="hidden" id="answer1" name=""/>
+			          <input type="hidden" id="answer2" name=""/>
+					  <input type="hidden" id="saveAsDraftIndicator" name=""/>
+	              </form>		  
+		         <iframe name="uploadProxy" id="uploadProxy" style="display:none"></iframe>
+	             <!--End Form-->		
+		         <!--Uploaded Template table-->
+		         <div class="grid_675 templatebox marginBtm20">
+			      <!--for now use key for admin data, shall be replaced with common ones later-->
+                    <h3 class="templates">Uploaded File(s) </h3> 
+                    <table class="dataTables_wrapper marginTp15" summary="This table lists uploaded template files.">
+						<caption><h3 class="HiddenText">Uploaded Template Table</h3></caption>
+                        <thead>
+                            <tr>
+                                <th class="ui-state-default">File Name</th>  
+                		        <th class="ui-state-default">Upload Date</th> 
+                	        </tr>
+                        </thead>
+				        <tbody id="uploadedTemplateTableBody"></tbody>
+                   </table>
+		         </div>
+		        <!--End Uploaded Template table-->		  		  
+		      </div>
+           </div>		  
+		   <div class="grid_750">
+			    <div class="float_left">
+				    <button class="app_button_ltBlue" id="save">Save</button>
+				    <button id="submitSection" class="app_button_ltBlue" value="SubmitSection" name="SubmitSection">
+					   Submit Section
+				    </button>				
+			    </div>
+				
+			    <div class="float_right textRight marginRt30">
+				    <button id="Previous" class="app_button_gray" value="Previous" name="Previous">Previous</button> 
+				    <button id="Next" class="app_button" value="Next" name="Next">Next</button>
+			    </div>
+		   </div>		  
+	</div>	
+     <!-- END FULL RAIL -->		
+</div>
+<!--END MAIN CONTENT --> 
+<!--START FOOTER -->
+<footer role="contentinfo">
+	<div class="footer clear">
+		<div class="grid_300"> <img alt="Plan Management" src="images/plan_management_logo_small.png" class="smallLogo"/></div>
+		<div class="grid_575">
+		  <p> A federal government website managed by the Centers for Medicare &amp; Medicaid Services<br>
+			7500 Security Boulevard, Baltimore, MD 21244</p>
+		</div>
+		<div class="grid_75 float_right"> <img width="60" height="60" src="images/dhhsLogo.png" alt="Department of Health and Human Services USA"/></div>
+	  </div>
+	  <!--START SITEMAP -->
+			<div class="siteMap">
+				<div class="grid_225">
+					<div class="marginTp15 marginLf10">
+						<h2>
+							CMS & HHS Websites</h2>
+						<ul>
+							<li><a href="http://www.Medicare.gov" target="_blank">
+								Medicare.gov
+								<span class="HiddenText"> (opens in a new window)</span>
+							</a></li>
+							<li><a href="http://www.MyMedicare.gov" target="_blank">
+								MyMedicare.gov
+								<span class="HiddenText"> (opens in a new window)</span>
+							</a></li>
+							<li><a href="http://www.StopMedicareFraud.gov" target="_blank">
+								StopMedicareFraud.gov
+								<span class="HiddenText"> (opens in a new window)</span>
+							</a></li>
+							<li><a href="http://www.Medicaid.gov" target="_blank">
+								Medicaid.gov
+								<span class="HiddenText"> (opens in a new window)</span>
+							</a></li>
+							<li><a href="http://www.InsureKidsNow.gov" target="_blank">
+								InsureKidsNow.gov
+								<span class="HiddenText"> (opens in a new window)</span>
+							</a></li>
+							<li><a href="http://www.HealthCare.gov" target="_blank">
+								HealthCare.gov
+								<span class="HiddenText"> (opens in a new window)</span>
+							</a></li>
+							<li><a href="http://www.HHS.gov" target="_blank">
+								HHS.gov/Open
+								<span class="HiddenText"> (opens in a new window)</span>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+			   
+				<div class="grid_225">
+					<div class="divider">
+						&nbsp;</div>
+					<div class="left marginTp15 marginLf10 marginBtm10">
+						<h2>
+							Helpful Links</h2>
+						<ul>
+							<li><a href="http://www.cms.gov/About-CMS/Agency-Information/Aboutwebsite/index.html" target="_blank">
+								Web Policies & Important Links
+								<span class="HiddenText"> (opens in a new window)</span>
+							</a></li>
+							<li><a href="http://www.cms.gov/About-CMS/Agency-Information/Aboutwebsite/Privacy-Policy.html" target="_blank">
+								Privacy Policy
+								<span class="HiddenText"> (opens in a new window)</span>
+							</a></li>
+							<li><a href="http://www.cms.gov/center/freedom-of-information-act-center.html" target="_blank">
+								Freedom of Information Act
+								<span class="HiddenText"> (opens in a new window)</span>
+							</a></li>
+							<li><a href="http://www.cms.gov/About-CMS/Agency-Information/Aboutwebsite/NoFearAct.html" target="_blank">
+								No Fear Act
+								<span class="HiddenText"> (opens in a new window)</span>
+							</a></li>
+							<li><a href="http://www.hhs.gov/" target="_blank">
+								HHS.gov
+								<span class="HiddenText"> (opens in a new window)</span>
+							</a></li>
+							
+						   </ul>
+					</div>
+					<div class="clear">
+					</div>
+				</div>
+			 
+				<div class="clear">
+				</div>
+				<!--END FOOTER -->
+			</div>
+			<!--END FOOTER -->
+</footer><!--END FOOTER -->
+<div class="clear"> </div>
+</div>
+<!--END MAIN WRAPPER -->
+
+<script>
+    createTabs();
+</script>
+
+<!--END MAIN WRAPPER -->
+<script type="text/template" id="uploadedEcpTemplate">
+	<tr class="adminDataDocRow">  
+		<td><a name="ecpFileLink" class="excel_link" href="<%=href%>"><%=fileName%></a></td> 
+		<td><%=uploadDate%></td>
+	</tr>
+</script>
+
+<script type="text/template" id="uploadedEcpNoFileTemplate">
+    <tr class="noDocRow">
+		<td colspan="2">You have not uploaded a template</td>
+    </tr>
+</script>
+
+<script type="text/template" id="infoAlertListTemplate">
+	<h2 aria-live="polite" class="alert information">
+		<span class="alertIcon information"></span>
+		<ul style="border-right:none; width:100% list-style-type:none">
+			<% for(var i = 0; i < contentList.length; i++) {%>
+				<li style="list-style-type:none">
+					<span class="HiddenText">Info:</span>
+					<%= contentList[i] %>
+				</li>
+			<% } %>
+		</ul>
+	</h2>
+	
+</script>
+
+<script type="text/template" id="completedActionAlertListTemplate">
+	<h2 aria-live="polite" class="alert completed">
+		<span class="alertIcon completed"></span>
+		<ul style="border-right:none; width:100% list-style-type:none">
+			<% for(var i = 0; i < contentList.length; i++) {%>
+				<li style="list-style-type:none">
+					<span class="HiddenText">Confirmation:</span>
+					<%= contentList[i] %>
+				</li>
+			<% } %>
+		</ul>
+	</h2>
+</script>
+
+<script type="text/template" id="warningAlertListTemplate">
+	<h2 aria-live="assertive" class="alert warning">
+		<span class="alertIcon warning"></span>
+		<ul style="border-right:none; width:100% list-style-type:none">
+			<% for(var i = 0; i < contentList.length; i++) {%>
+				<li style="list-style-type:none">
+					<span class="HiddenText">Warning:</span> 
+					<%= contentList[i] %>
+				</li>
+			<% } %>
+		</ul>
+	</h2>
+</script>
+
+<script type="text/template" id="errorAlertListTemplate">
+    	<h2 aria-live="assertive" class="alert error">
+    		<span class="alertIcon error"></span>
+    		Please correct the following errors
+		</h2>
+    	<ol style="border-right:none; width:100%" class="error">
+    		<% for(var i = 0; i < contentList.length; i++) {%>
+    			<li class="error">
+    				<span class="HiddenText">Error:</span> 
+    				<%= contentList[i] %>
+    			</li>
+    		<% } %>
+    	</ol>
+</script>
+
+<script type="text/template" id="errorAlertTemplate">
+		<h2 aria-live="assertive" class="alert error">
+    		<span class="alertIcon error"></span>
+			<span class="HiddenText">Error:</span>
+			<%= contentList %>
+    	</h2>
+</script>
+
+<script type="text/template" id="inlineErrorAlertTemplate">
+	<div aria-live="assertive" class="error inlineErrorAlertTemplate">Error: <%= msg %></div>
+</script><script type="text/template" id="questionTemplate">
+<div class="clear"></div>
+    <div id="question<%=index%>">
+	<h3 class="HiddenText">Question <%=index%></h3>
+	<input type="hidden" name="subsection_statement_sequence" value="<%= subsection_statement_sequence %>"/>
+        <div id="q<%=index%>Section">
+        	<div class="clear"></div>
+        	<span class="font075 grid_25">
+			<% if (isRequired) { %>
+				<span class="error">*</span>
+			<% } %>	
+			<%=index%>. </span>
+        	<form>
+        		<fieldset class="smallFormArea">
+        			<legend id="q<%=index%>AnswerText" class="width_100 marginBtm10">
+						<span class="grid_600"><%=questionTextHTML%></span>
+						<span class="clear"></span>
+        			</legend>
+        			<input type="radio" name="q<%=index%>Answer" id="q<%=index%>Yes" value="yes"  class="jqueryRadioYes" aria-required="true"/>
+        			<label class="radio_label" for="q<%=index%>Yes">Yes</label>
+        			<input type="radio" name="q<%=index%>Answer" id="q<%=index%>No" value="no"  class="jqueryRadioNo" aria-required="true"/>
+        			<label class="radio_label" for="q<%=index%>No">No</label>
+        		</fieldset>
+        	</form>
+        </div>
+        
+        <div id="q<%=index%>UploadSection" class="templatebox marginBtm20">
+        	<h4 class="templates">Upload File(s)</h4>
+        	
+        	<div class="grid_200">
+        		<label class="form_label" for="q<%=index%>DocType"><span class="error">*</span>Document Type:</label>
+        		<select id="q<%=index%>DocType" aria-required="true">
+        		</select>
+        	</div>
+        
+        	<div class="grid_375 float_right">
+        		<label class="form_label" for="q<%=index%>UploadFile">
+					<span class="error">*</span>
+					Upload File:
+				</label>
+        		<input type="file" id="q<%=index%>UploadFile" aria-required="true"/>
+        		<button class="app_button spacer_left" id="q<%=index%>UploadFileButton">Upload</button>
+        	</div>
+        </div>
+        
+        <div id="q<%=index%>DocTableSection" class="templatebox marginBtm20">
+        	<h4 class="templates">Uploaded Supplementary Documentation</h4>
+        		
+        	<table id="q<%=index%>DocTable" class="dataTables_wrapper textLeft marginTp15 width_100" summary="This table lists uploaded documents.  Choose the Delete button in the Action column to delete the document in that row.">
+				<caption><h4 class="HiddenText">Uploaded Supplementary Documentation Table</h4></caption>
+        		<thead>
+        			<tr>
+        				<th class="ui-state-default">Document Type</th>
+        				<th class="ui-state-default">File Name</th>
+        				<th class="ui-state-default">Upload Date</th>
+        				<th class="ui-state-default">Actions</th>
+        			</tr>
+        		</thead>
+        		<tbody>
+        		</tbody>
+        	</table>
+        </div>
+        <div id="q<%=index%>Justification" class="grid_700 marginBtm20" aria-required="true">
+            <p>
+                <label for="q<%=index%>JustificationText">
+                    <span class="error">*</span>Justification:
+                </label>
+            </p>
+            <div>
+            	<textarea id="q<%=index%>JustificationText" class="grid_700" aria-required="true"><%=justification%></textarea>
+           </div>
+            <p></p>
+        </div>
+		<div id="q<%=index%>DatePickerSection">
+			<label id="q<%=index%>_DatePickerlabel" for="q<%=index%>DatePicker" class="grid_725 form_label last">
+				<span class="error">*</span>Estimated Licensure Date:
+			</label>
+			<input class="select_date" id="q<%=index%>DatePicker" name="datePicker" value="" maxlength="10" type="text" aria-required="true">
+		</div>
+    </div>
+</script>
+
+<script type="text/template" id="documentTableRowTemplate">
+	<tr id="<%=docIndex%>">
+		<td><%=documentType%></td>
+		<td>
+			<a href="/base-rest/VA/en_US/ContentManagement/download?fileIdentifier=<%=documentURI%>"><%=documentName%></a>
+		</td>
+		<td><%=documentDate%></td>
+		<td id="<%= subsection_statement_sequence %>_<%=docIndex%>" class="textCenter">
+			<button class="app_button" id="q<%=index%>DeleteFile" name="deleteButton">Delete</button>
+			<input type="hidden" id="q<%=index%>Doc<%=docIndex%>Info_Type" name="q<%=index%>DocInfo_Type" value="<%=documentType%>"/>
+			<input type="hidden" id="q<%=index%>Doc<%=docIndex%>Info_Name" name="q<%=index%>DocInfo_Name" value="<%=documentName%>"/>
+			<input type="hidden" id="q<%=index%>Doc<%=docIndex%>Info_Identifier" name="q<%=index%>DocInfo_Identifier" value="<%=documentURI%>"/>
+			<input type="hidden" id="q<%=index%>Doc<%=docIndex%>Info_Date" name="q<%=index%>DocInfo_Date" value="<%=documentDate%>"/>
+		</td>
+	</tr>
+</script>
+
+<script type="text/template" id="documentTableRowTemplateNew">
+	<tr id="<%=docIndex%>">
+		<td><%=documentType%></td>
+		<td>
+			<%=documentName%>
+		</td>
+		<td><%=documentDate%></td>
+		<td id="<%= subsection_statement_sequence %>_<%=docIndex%>" class="textCenter">
+			<button class="app_button" id="q<%=index%>DeleteFile" name="deleteButton">Delete</button>
+			<input type="hidden" id="q<%=index%>Doc<%=docIndex%>Info_Type" name="q<%=index%>DocInfo_Type" value="<%=documentType%>"/>
+			<input type="hidden" id="q<%=index%>Doc<%=docIndex%>Info_Name" name="q<%=index%>DocInfo_Name" value="<%=documentName%>"/>
+			<input type="hidden" id="q<%=index%>Doc<%=docIndex%>Info_Identifier" name="q<%=index%>DocInfo_Identifier" value="NoDocURIforNew"/>
+			<input type="hidden" id="q<%=index%>Doc<%=docIndex%>Info_Date" name="q<%=index%>DocInfo_Date" value="<%=documentDate%>"/>
+		</td>
+	</tr>
+</script>
+
+<script type="text/template" id="documentTableRowViewOnlyTemplate">
+	<tr id="<%=docIndex%>">
+		<td><%=documentType%></td>
+		<td>
+			<a href="/base-rest/VA/en_US/ContentManagement/download?fileIdentifier=<%=documentURI%>"><%=documentName%></a>
+		</td>
+		<td><%=documentDate%></td>
+	</tr>
+</script>
+
+<script type="text/template" id="documentTableRowNoDocsTemplate">
+    <tr class="noDocRow">
+		<td colspan="4">You have not uploaded any documents</td>
+    </tr>
+</script>
+
+<script type="text/template" id="documentTypeOptionTemplate">
+	<option value="<%=value%>"><%=text%></option>
+</script>
+
+<script type="text/template" id="questionSectionTemplate">
+    	<div class="clear"></div>
+    	<span class="font075 grid_25">
+		<% if (isRequired) { %>
+			<span class="error">*</span>
+		<% } %>	
+		<%=questionNum%>. </span>
+    	<form>
+    		<fieldset class="smallFormArea">
+    			<legend id="q<%=index%>AnswerText" class="width_100 marginBtm10">
+					<span class="grid_550"><%=questionTextHTML%></span>
+					<span class="clear"></span>
+    			</legend>
+				<input type="radio" class="jqueryRadioYes" value="yes" name="q<%=index%>Answer" id="q<%=index%>Yes" aria-required="true"/>
+				<label class="radio_label" for="q<%=index%>Yes">Yes</label>
+				<input type="radio" class="jqueryRadioNo" value="no" name="q<%=index%>Answer" id="q<%=index%>No" aria-required="true"/>
+				<label class="radio_label" for="q<%=index%>No">No</label>
+    		</fieldset>
+    	</form>
+</script>
+
+<script type="text/template" id="docTypeSectionTemplate">
+    	<h3 class="templates">Upload File(s)</h3>
+    	
+    	<div class="grid_200">
+    		<label class="form_label" for="q<%=index%>DocType"><span class="error">*</span>Document Type:</label>
+    		<select id="q<%=index%>DocType" aria-required="true">
+    		</select>
+    	</div>
+    
+    	<div class="grid_375 float_right">
+    		<label class="form_label" for="q<%=index%>UploadFile">Upload File:</label>
+    		<input type="file" id="q<%=index%>UploadFile" aria-required="true"/>
+    		<button class="app_button spacer_left">Upload</button>
+    	</div>
+</script>
+
+<script type="text/template" id="docTableSectionTemplate">
+    	<h3 class="templates">Uploaded Supplementary Documentation</h3>
+    		
+    	<table id="q<%=index%>DocTable" class="grid_650 textLeft dataTables_wrapper marginTp15 width_100" summary="This table lists uploaded documents.  Choose the Delete button in the Action column to delete the document in that row.">
+			<caption><h4 class="HiddenText">Uploaded Supplementary Documentation Table</h4></caption>
+    		<thead>
+    			<tr>
+    				<th class="ui-state-default">Document Type</th>
+    				<th class="ui-state-default">File Name</th>
+    				<th class="ui-state-default">Upload Date</th>
+    				<th class="ui-state-default">Actions</th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    		</tbody>
+    	</table>
+</script>
+
+<script type="text/template" id="docTableSectionViewOnlyTemplate">
+    	<h3 class="templates">Uploaded Supplementary Documentation</h3>
+    		
+    	<table id="q<%=index%>DocTable" class="grid_650 textLeft dataTables_wrapper marginTp15 width_100" summary="This table lists uploaded documents.">
+		<caption><h4 class="HiddenText">Uploaded Supplementary Documentation Table</h4></caption>
+    		<thead>
+    			<tr>
+    				<th class="ui-state-default">Document Type</th>
+    				<th class="ui-state-default">File Name</th>
+    				<th class="ui-state-default">Upload Date</th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    		</tbody>
+    	</table>
+</script>
+
+<script type="text/template" id="errorMessageTemplate">
+	<span class="error"><%= message %></span><br/>
+</script>
+
+<script type="text/template" id="justificationTemplate">
+    <p>
+        <label for="q<%=index%>Justification">
+            <span class="error">*</span>Justification:
+        </label>
+    </p>
+    <div>
+    	<textarea id="q<%=index%>Justification" class="grid_700" aria-required="true"><%=justification%></textarea>
+   </div>
+    <p></p>
+</script>
+
+<script type="text/template" id="uploadedAdminDataTemplate">
+	<tr class="adminDataDocRow">
+		<td><a name="adminDataFileLink" class="excel_link" href="<%=href%>"><%=fileName%></a></td>
+		<td><%=uploadDate%></td>
+	</tr>
+</script>
+
+<script type="text/template" id="uploadedAdminDataNoFileTemplate">
+    <tr class="noDocRow">
+		<td colspan="2">You have not uploaded a template</td>
+    </tr>
+</script>
+	
+<script type="text/template" id="blockUIContent">
+    <h1>Loading...</h1>
+	<img class="icon" src="images/wait.gif" alt="Loading..."/>
+</script>	<div class="basic-modal-content hide">
+    <div id="modifyConfirm" title="Save">
+        <div class="grid_400 pad_bottom spacer_left">
+            <div class="grid_350 textCenter">
+				<p>There are unsaved changes.  If you continue your changes will be lost.  Would you like to continue?</p>
+                <div class="pad_top overflowing clear">
+                    <div class="spacer_right pad_bottom ">
+                        <a class="app_button searchModalClose " href="">Yes</a>
+                        <a class="app_button_gray searchModalClose " href="">No</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></body>
+
+</html>

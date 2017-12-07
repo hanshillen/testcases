@@ -1,0 +1,473 @@
+var WAT;
+FBL
+.ns( function() {
+	with (FBL) {
+		var BaseModule = Firebug.ActivableModule ? Firebug.ActivableModule : Firebug.Module;
+		const
+		watResultsPanelName = 'watResults';
+		const
+		watOverviewPanelName = 'watOverview';
+		const
+		watDetailsPanelName = 'watDetails';
+		const
+		Cc = Components.classes;
+		const
+		Ci = Components.interfaces;
+		
+		/* Interfaces */
+		const
+		nsIPrefBranch = Ci.nsIPrefBranch;
+		const
+		watPrefDomain = "extensions.wat_toolbar";
+		
+		/* Preferences */
+		const
+		PrefService = Cc["@mozilla.org/preferences-service;1"];
+		const
+		nsIPrefService = Ci.nsIPrefService;
+		const
+		nsIPrefBranch2 = Ci.nsIPrefBranch2;
+		const
+		service = PrefService.getService(nsIPrefService);
+		const
+		prefs = PrefService.getService(nsIPrefBranch2);
+		
+		/** ** Prefs *** */
+		var getPref = function(name, prefDomain) {
+			if (!prefDomain) {
+				prefDomain = watPrefDomain
+			}
+			var prefName = prefDomain + "." + name;
+			
+			var type = prefs.getPrefType(prefName);
+			if (type == nsIPrefBranch.PREF_STRING)
+				return prefs.getCharPref(prefName);
+			else if (type == nsIPrefBranch.PREF_INT)
+				return prefs.getIntPref(prefName);
+			else if (type == nsIPrefBranch.PREF_BOOL)
+				return prefs.getBoolPref(prefName);
+		};
+		
+		var setPref = function(name, value, prefDomain) {
+			if (!prefDomain) {
+				prefDomain = watPrefDomain
+			}
+			var prefName = prefDomain + "." + name;
+			var type = prefs.getPrefType(prefName);//
+
+			if (type == nsIPrefBranch.PREF_STRING)
+				prefs.setCharPref(prefName, value);
+			else if (type == nsIPrefBranch.PREF_INT)
+				prefs.setIntPref(prefName, value);
+			else if (type == nsIPrefBranch.PREF_BOOL)
+				prefs.setBoolPref(prefName, value);
+		};
+		
+		/** ** Util functions *** */
+		var trace = function(msg, obj) {
+			if (FBTrace.DBG_WAT) {
+				if (obj === undefined)
+					FBTrace.sysout(arguments[0]);
+				else
+					FBTrace.sysout(arguments[0], arguments[1]);
+			}
+		};
+		
+		var str = function(name) {
+			try {
+				return document.getElementById("wat_toolbar_strings").getString(name);
+			}
+			catch (err) {
+				trace('no translation found for ' + name);
+			}
+			return 'undefined (' + name + ')';
+		};
+		
+		var strF = function(name, args) {
+			try {
+				return document.getElementById("wat_toolbar_strings").getFormattedString(name, args);
+			}
+			catch (err) {
+				trace('no translation found for ' + name);
+			}
+			return name;
+		};
+		
+		var launchProgram = function(execpath, args) {
+			var MY_ID = "toolbar@wat-c.org";
+			var em = Components.classes["@mozilla.org/extensions/manager;1"].getService(Components.interfaces.nsIExtensionManager);
+			var file = em.getInstallLocation(MY_ID).getItemFile(MY_ID, execpath);
+			if (file.exists() && file.isExecutable()) {
+				var process = Components.classes["@mozilla.org/process/util;1"].createInstance(Components.interfaces.nsIProcess);
+				process.init(file);
+				process.run(false, [], 0);
+			}
+		};
+		
+		/** ** Toolbar UI Handling *** */
+		
+		var isChecked = function(elem) {
+			return elem.getAttribute('checked') == "true" ? true : false;
+		};
+		
+		var check = function(elem) {
+			elem.setAttribute('checked', 'true');
+		};
+		
+		var uncheck = function(elem) {
+			elem.setAttribute('checked', 'false');
+		};
+		
+		var toggleElem = function(elem) {
+			var checked = isChecked(elem);
+			elem.setAttribute('checked', (!checked).toString());
+			return isChecked(elem);
+		};
+		
+		/*
+		 * Returns the broadcaster element based on elem parameter. This can be either the actual broadcaster (which will then be returned), or an observer, in which case the broadcaster it observes will be returned.
+		 */
+		var getBroadCaster = function(elem) {
+			if (!elem) {
+				return false;
+			}
+			var broadcaster;
+			if (elem.nodeName == ('broadcaster')) {
+				broadcaster = elem;
+			}
+			else if (elem.hasAttribute('observes')) {
+				broadcaster = document.getElementById(elem.observes);
+			}
+			else {
+				return false;
+			}
+			return broadcaster;
+		};
+		
+		var isFormControl =
+		function(elem) {
+			return jQuery(elem)
+			.is(
+			'input, select, checkbox, [role=input], [role=select], [role=listbox], [role=combobox], [role=option], [role=checkbox], [role=radiogroup], [role=radio], [role=textbox], [role=range], [role=slider], [role=spinbutton]');
+		};
+		
+		/* Util methods */ 
+		
+		var isAriaControl = function(elem) {
+			return jQuery(elem)
+			.is(
+			'[role=input], [role=select], [role=listbox], [role=combobox], [role=option], [role=checkbox], [role=radiogroup], [role=radio], [role=textbox], [role=range], [role=slider], [role=spinbutton]');
+		};
+		
+		/** ** Results output*** */
+		var buildSummary = function(strFormatToken, valids, errors, warnings) {
+			strFormatToken = !strFormatToken ? 'generic' : strFormatToken;
+			var strFormats = {
+				validSingle :strFormatToken + 'ValidSingle',
+				validPlural :strFormatToken + 'ValidPlural',
+				errorSingle :strFormatToken + 'ErrorSingle',
+				errorPlural :strFormatToken + 'ErrorPlural',
+				warningSingle :strFormatToken + 'WarningSingle',
+				warningPlural :strFormatToken + 'WarningPlural'
+			}
+
+			var summaryArray = [];
+			summaryArray.push( {
+				tag :'valid',
+				data :strF(strFormats[valids != 1 ? 'validPlural' : 'validSingle'], [ valids]) + (errors > 0 || warnings > 0 ? ', ' : '')
+			});
+			if (errors > 0) {
+				summaryArray.push( {
+					tag :'error',
+					data :strF(strFormats[errors != 1 ? 'errorPlural' : 'errorSingle'], [ errors]) + (warnings > 0 ? ', ' : '')
+				});
+			}
+			if (warnings > 0) {
+				summaryArray.push( {
+					tag :'warning',
+					data :strF(strFormats[warnings != 1 ? 'warningPlural' : 'warningSingle'], [ warnings])
+				});
+			}
+			return summaryArray;
+		};
+		
+		var strFToArray = function(strFId) {
+			var tokens = WAT.str(strFId).split('%S');
+			var finalArray = []
+			for ( var i = 0; i < tokens.length; i++) {
+				finalArray.push( {
+					tag :'text',
+					data :tokens[i]
+				});
+				if (typeof arguments[i + 1] != "undefined")
+					finalArray.push(arguments[i + 1]);
+			}
+			return finalArray;
+		};
+		
+		var isNotDescriptive = function (descText) {
+			var notDescriptive = false;
+			if (descText.search(/^(\W|\s)*$/) != -1) {
+				notDescriptive = true;
+			}
+			/* optionally add more rules here */
+
+			return notDescriptive;
+		};
+
+		var addDescriptivenessWarning = function (tracker, elem, text, strF) {
+			if (typeof text == "string" && WAT.isNotDescriptive(text)) {
+				inputArray = WAT.strFToArray(strF, {
+				    tag :'string',
+				    data :text
+				}, {
+				    tag :'shortTag',
+				    data :elem
+				});
+				tracker.addResult('warn', inputArray, 'subLogRow');/* TODO: visually indicate that this result relates to the result above it */
+			}
+		};
+		
+		/** ** Firebug & Tracing *** */
+		if (typeof FBTrace == "undefined") {
+			FBTrace = {
+				sysout : function() {
+				}
+			};
+		}
+		
+		/* private variables for WatModule */
+		var _trackerIds = [];
+		var _trackerIndices = {};
+		
+		Firebug.WatModule = extend(BaseModule, {
+			/* Module life-cycle */
+			initialize : function() {
+				jQuery.noConflict();
+				BaseModule.initialize.apply(this, arguments);
+				
+			},
+			addStyleSheet : function(doc, id, href) {
+				if ($(id, doc)) {
+					return;
+				}
+				var styleSheet = createStyleSheet(doc, href);
+				styleSheet.setAttribute("id", id);
+				addStyleSheet(doc, styleSheet);
+			},
+			toggleTracker : function(bc) {
+				bc = getBroadCaster(bc);
+				if (!bc) {
+					return false;
+				}
+				
+				var checked = toggleElem(bc);
+				var id = bc.id;
+				if (!checked) {
+					var index = _trackerIndices[id];
+					if (typeof index != "undefined" && typeof _trackerIds[index] != "undefined") {
+						this.removeTracker(id);
+					}
+				}
+				else {
+					this.addTracker(id);
+				}
+			},
+			addTracker : function(id) {
+				if (typeof _trackerIndices[id] == "undefined") {
+					_trackerIds.push(id);
+					var index = _trackerIds.length - 1;
+					_trackerIndices[id] = index;
+					WAT.trace('tracker ID added to module: ' + id, _trackerIds);
+					if (FirebugContext && FirebugContext.loaded && Firebug.WatModule.watIsActive(FirebugContext)) {
+						FirebugContext.watTrackers.createTracker(id);
+						FirebugContext.watTrackers.get(id).refresh();
+					}
+				}
+			},
+			watIsActive : function(context) {
+				return context && context.panelName == watResultsPanelName && !$('fbContentBox').collapsed;
+			},
+			removeTracker : function(indexOrId, updateBC) {
+				if (typeof indexOrId == "number" && _trackerIds[indexOrId]) {
+					indexOrId = _trackerIds[indexOrId];
+				}
+				if (typeof indexOrId == "string" && typeof _trackerIndices[indexOrId] != "undefined") {
+					if (updateBC) {
+						uncheck(document.getElementById(indexOrId));
+					}
+					/* FirebugContext.watTrackers.removeTracker(indexOrId); */
+
+					delete _trackerIndices[indexOrId];
+					var index = jQuery.inArray(indexOrId, _trackerIds);
+					if (index > -1) {
+						_trackerIds.splice(index, 1);
+						if (FirebugContext && FirebugContext.loaded && this.watIsActive(FirebugContext)) {
+							FirebugContext.watTrackers.removeTracker(indexOrId);
+							
+						}
+					}
+					WAT.trace('tracker ID removed from module: ' + indexOrId);
+				}
+			},
+			
+			/** ** Context Lifecycle *** */
+			
+			initContext : function(context) {
+				trace('Intitializing context: ', context);
+				context.watTrackers = new WAT.Trackers(_trackerIds, context);
+				BaseModule.initContext.apply(this, arguments);
+			},
+			showContext : function(context) {
+				
+			},
+			loadedContext : function(context) {
+				var frames = [context.window.document];
+				var framesJQ = jQuery(context.window.document).find('frame, iframe');
+				for ( var i = 0; i < framesJQ.length; i++) {
+	                frames.push(framesJQ.get(i).contentDocument);
+                }
+				for ( i = 0; i < frames.length; i++) {
+					Firebug.WatModule.addStyleSheet(frames[i], 'watHighlightStyles', "chrome://wat_toolbar/skin/highlights.css");
+                }
+				
+				WAT.trace('context has loaded!' + context.loaded)
+			},
+			destroyContext : function(context) {
+				BaseModule.destroyContext.apply(this, arguments);
+				delete context.watTrackers;
+			},
+			
+			reattachContext : function(browser, context) {
+				var panelDoc;
+				var panelIds = [ watResultsPanelName, watOverviewPanelName, watDetailsPanelName];
+				for ( var i = 0; i < panelIds.length; i++) {
+					panelDoc = context.getPanel(panelIds[i]).document;
+					if (panelDoc) {
+						this.addStyleSheet(panelDoc, 'wat_FBstyles', "chrome://wat_toolbar/skin/firebug.css");
+						this.addStyleSheet(panelDoc, 'wat_Panelstyles', "chrome://firebug/skin/panel.css");
+					}
+				}
+			},
+		});
+		
+		/** ** Panels *** */
+		function WatPanel() {
+		}
+		
+		WatPanel.prototype = extend(Firebug.Panel, {
+			name :watResultsPanelName,
+			title :str('mainPanelTitle'),
+			initialize : function() {
+				Firebug.Panel.initialize.apply(this, arguments);
+				Firebug.WatModule.addStyleSheet(this.document, 'wat_FBstyles', "chrome://wat_toolbar/skin/firebug.css");
+				Firebug.WatModule.addStyleSheet(this.document, 'wat_Panelstyles', "chrome://firebug/skin/panel.css");
+			},
+			show : function(state) {
+				WAT.trace('Showing WAT panel - context loaded: ' + this.context.loaded, this.context)
+				/* check if the list of selected trackers has changed while the context was not visible */
+				var contextTrackers = this.context.watTrackers.getTrackerIds();
+				for ( var i = 0; i < contextTrackers.length; i++) {
+					WAT.trace(i + ' : ' + contextTrackers[i]);
+				}
+				
+				var index, toUpdate = [];
+				for ( var i = 0; i < _trackerIds.length; i++) {
+					index = jQuery.inArray(_trackerIds[i], contextTrackers);
+					WAT.trace('Found index ' + index + ' searching for  ' + _trackerIds[i], _trackerIds);
+					if (index == -1) {
+						/*
+						 * this selected tracker was not added to context yet, meaning the feature was selected while a different tab was open or the panel was closed
+						 */
+						this.context.watTrackers.createTracker(_trackerIds[i]);
+						WAT.trace('updating context with new tracker: ' + _trackerIds[i]);
+						toUpdate.push(_trackerIds[i]);
+					}
+					else {
+						contextTrackers.splice(index, 1);
+						WAT.trace('spliced at index ' + index + ' length now:' + contextTrackers.length);
+					}
+				}
+				/* Remaining trackers in context were disabled in the mean time. remove them */
+				for (i = 0; i < contextTrackers.length; i++) {
+					WAT.trace('removing tracker from context: ' + contextTrackers[i])
+					this.context.watTrackers.removeTracker(contextTrackers[i]);
+				}
+				if (this.context.loaded) {
+					if (this.context.watTrackers.stale) {
+						/* Results are stale when the trackers hasn't rendered yet (TODO: should also be stale when DOM has changed) */
+						WAT.trace('refreshing because results are stale');
+						this.context.watTrackers.refresh();
+						
+					}
+					if (toUpdate.length > 0) {
+						/* Only update the new trackers, regardless of whether results were stale */
+						this.context.watTrackers.refresh(toUpdate);
+					}
+				}
+				else {
+					WAT.trace('init render waiting items');
+					this.context.watTrackers.renderWaiting();
+				}
+			}
+		});
+		
+		function WatOverviewPanel() {
+		}
+		
+		WatOverviewPanel.prototype = extend(Firebug.Panel, {
+			name :watOverviewPanelName,
+			title :str('overviewPanelTitle'),
+			parentPanel :watResultsPanelName,
+			
+			initialize : function() {
+				Firebug.Panel.initialize.apply(this, arguments);
+				Firebug.WatModule.addStyleSheet(this.document, 'wat_FBstyles', "chrome://wat_toolbar/skin/firebug.css");
+				Firebug.WatModule.addStyleSheet(this.document, 'wat_Panelstyles', "chrome://firebug/skin/panel.css");
+			}
+		});
+		
+		function WatDetailsPanel() {
+		}
+		
+		WatDetailsPanel.prototype = extend(Firebug.Panel, {
+			name :watDetailsPanelName,
+			title :str("detailsPanelTitle"),
+			parentPanel :watResultsPanelName,
+			initialize : function() {
+				Firebug.Panel.initialize.apply(this, arguments);
+				Firebug.WatModule.addStyleSheet(this.document, 'wat_FBstyles', "chrome://wat_toolbar/skin/firebug.css");
+				Firebug.WatModule.addStyleSheet(this.document, 'wat_Panelstyles', "chrome://firebug/skin/panel.css");
+			}
+		});
+		
+		/* make util functions available in other files */
+		WAT = Firebug.WatModule;
+		WAT.trace 						= trace;
+		WAT.str 						= str;
+		WAT.strF 						= strF;
+		WAT.launchProgram 				= launchProgram;
+		WAT.isChecked 					= isChecked;
+		WAT.check 						= check;
+		WAT.uncheck 					= uncheck;
+		WAT.toggleElem 					= toggleElem;
+		WAT.getBroadCaster 				= getBroadCaster;
+		WAT.isFormControl 				= isFormControl;
+		WAT.isAriaControl				= isAriaControl;
+		WAT.buildSummary 				= buildSummary;
+		WAT.strFToArray 				= strFToArray;
+		WAT.getPref 					= getPref;
+		WAT.setPref 					= setPref;
+		WAT.isNotDescriptive 			= isNotDescriptive;
+		WAT.addDescriptivenessWarning 	= addDescriptivenessWarning;
+		
+		/** ** Firebug Registration *** */
+		Firebug.registerModule(Firebug.WatModule);
+		
+		Firebug.registerPanel(WatPanel);
+		Firebug.registerPanel(WatDetailsPanel);
+		Firebug.registerPanel(WatOverviewPanel);
+		
+		
+	}
+});

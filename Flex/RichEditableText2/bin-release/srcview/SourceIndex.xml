@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Source of RichEditableText2</title>
+	<nodes>
+		<node label="html-template">
+			<node label="history">
+				<node icon="cssIcon" label="history.css" url="source/html-template/history/history.css.html"/>
+				<node label="history.js" url="source/html-template/history/history.js.txt"/>
+				<node icon="htmlIcon" label="historyFrame.html" url="source/html-template/history/historyFrame.html"/>
+			</node>
+			<node icon="htmlIcon" label="index.template.html" url="source/html-template/index.template.html"/>
+			<node icon="swfIcon" label="playerProductInstall.swf" url="source/html-template/playerProductInstall.swf"/>
+			<node label="swfobject.js" url="source/html-template/swfobject.js.txt"/>
+		</node>
+		<node label="libs">
+		</node>
+		<node label="src">
+			<node icon="packageIcon" label="spark.accessibility" expanded="true">
+				<node icon="actionScriptIcon" label="RichEditableText2AccImpl.as" url="source/spark/accessibility/RichEditableText2AccImpl.as.html"/>
+			</node>
+			<node icon="packageIcon" label="spark.components" expanded="true">
+				<node icon="actionScriptIcon" label="RichEditableText.as" url="source/spark/components/RichEditableText.as.html"/>
+				<node icon="imageIcon" label="RichEditableText.png" url="source/spark/components/RichEditableText.png.html"/>
+				<node icon="actionScriptIcon" label="RichEditableText2.as" url="source/spark/components/RichEditableText2.as.html"/>
+			</node>
+			<node icon="packageIcon" label="spark.core" expanded="true">
+				<node icon="actionScriptIcon" label="Version.as" url="source/spark/core/Version.as.html"/>
+			</node>
+			<node icon="packageIcon" label="spark.events" expanded="true">
+				<node icon="actionScriptIcon" label="LinkElementFocusEvent.as" url="source/spark/events/LinkElementFocusEvent.as.html"/>
+			</node>
+			<node icon="packageIcon" label="spark.styles.metadata" expanded="true">
+				<node icon="actionScriptIcon" label="AdvancedInheritingTextStyles.as" url="source/spark/styles/metadata/AdvancedInheritingTextStyles.as.html"/>
+				<node icon="actionScriptIcon" label="AdvancedNonInheritingTextStyles.as" url="source/spark/styles/metadata/AdvancedNonInheritingTextStyles.as.html"/>
+				<node icon="actionScriptIcon" label="BasicInheritingTextStyles.as" url="source/spark/styles/metadata/BasicInheritingTextStyles.as.html"/>
+				<node icon="actionScriptIcon" label="BasicNonInheritingTextStyles.as" url="source/spark/styles/metadata/BasicNonInheritingTextStyles.as.html"/>
+				<node icon="actionScriptIcon" label="SelectionFormatTextStyles.as" url="source/spark/styles/metadata/SelectionFormatTextStyles.as.html"/>
+			</node>
+			<node icon="mxmlAppIcon" selected="true" label="RichEditableText2Test.mxml" url="source/RichEditableText2Test.mxml.html"/>
+		</node>
+	</nodes>
+	<zipfile label="Download source (ZIP, 74K)" url="RichEditableText2.zip">
+	</zipfile>
+	<sdklink label="Download Flex SDK" url="http://www.adobe.com/go/flex451_sdk_download">
+	</sdklink>
+</index>

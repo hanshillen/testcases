@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>JAWS menu issues</title>
+
+</head>
+
+<body role="application">
+<ul class="menubar ui-menubar-nav ui-helper-reset ui-helper-clearfix" role="menubar" aria-activedescendant="ui-active-menuitem">
+		<li class="ui-menubar-item" role="presentation"><a href="#" tabindex="0" role="menuitem" aria-haspopup="true" class="ui-state-default"><span>File</span><span class="ui-icon ui-icon-triangle-1-s"></span></a>
+	    </li>
+		<li class="ui-menubar-item">
+            <a href="#" tabindex="0" role="menuitem" aria-haspopup="true" class="ui-state-default"><span>Edit</span><span class="ui-icon ui-icon-triangle-1-s"></span></a>
+		</li>	
+        <li class="ui-menubar-item" role="presentation">
+            <a href="#" tabindex="0" role="menuitem" aria-haspopup="true" class="ui-state-default ui-state-hover" id="ui-active-menuitem"><span>View</span><span class="ui-icon ui-icon-triangle-1-s"></span></a>
+		    
+        </li>
+        <li class="ui-menubar-item" role="presentation"><a href="#" tabindex="0" role="menuitem" aria-haspopup="true" class="ui-state-default"><span>More Options</span><span class="ui-icon ui-icon-triangle-1-s"></span></a>
+        </li>
+	</ul>
+
+<div onkeydown="return topMenu.doNavigation(event);" role="menubar" class="menubar" id="theMenuBar">
+		<div class="topMenu" id="edittop" aria-haspopup="true" role="menuitem" tabindex="0">Edit</div>
+	<div onmouseout="topMenu.hideMenu(event);" onmouseover="topMenu.showMenu(event,this.id,false);" onkeydown="if (event.keyCode == 13 ) {topMenu.showMenu(event, this.id, true);}" onclick="topMenu.showMenu(event, this.id,false);" id="2" class="menu">
+		<div class="topMenu" id="2top" aria-haspopup="true" role="menuitem" tabindex="0">View</div>
+    </div>
+    <div onmouseout="topMenu.hideMenu(event);" onmouseover="topMenu.showMenu(event,this.id,false);" onkeydown="if (event.keyCode == 13 ) {topMenu.showMenu(event, this.id, true);}" onclick="topMenu.showMenu(event, this.id,false);" id="3" class="menu">
+    	<div class="topMenu" id="3top" aria-haspopup="true" role="menuitem" tabindex="0">Tools</div>
+	</div>        
+</div>
+	
+	
+</body>
+</html>
+

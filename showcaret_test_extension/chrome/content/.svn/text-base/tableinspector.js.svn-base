@@ -1,0 +1,287 @@
+var strTIOutput;
+
+function jstiserialiseNode(objNode)
+{
+	var strClass = '';
+
+	if (objNode.nodeType == 3 && objNode.data)
+	{
+		strTIOutput += objNode.data;
+	}
+	else if (objNode.nodeType == 1 && objNode.getAttribute('alt'))
+	{
+		strTIOutput += objNode.getAttribute('alt');
+	}
+
+	objNode = objNode.firstChild;
+
+	if (objNode && objNode.className)
+	{
+		strClass = objNode.className;
+	}
+
+	while (objNode && strClass != 'juicystudiohighlightmeta')
+	{
+		jstiserialiseNode(objNode);
+		objNode = objNode.nextSibling;
+	}
+}
+
+function jstiremoveDetails()
+{
+	var objExisting = content.document.getElementById('jstinodatatables');
+	var iElementsRemoved, iElementCounter, objRedundant;
+
+	// Remove table information if it exists
+	do
+	{
+		iElementsRemoved = 0;
+		objRedundant = content.document.getElementsByTagName('div');
+
+		for (iElementCounter=0; iElementCounter<objRedundant.length; iElementCounter++)
+		{
+			if (objRedundant[iElementCounter].className == 'juicystudiohighlightmeta')
+			{
+				objRedundant[iElementCounter].parentNode.removeChild(objRedundant[iElementCounter]);
+				iElementsRemoved++;
+			}
+		}
+	} while (iElementsRemoved > 0);
+
+	if (objExisting)
+	{
+		objExisting.parentNode.removeChild(objExisting);
+	}
+
+	objExisting = content.document.getElementById('jstableinspectorstyle');
+
+	if (objExisting)
+	{
+		objExisting.parentNode.removeChild(objExisting);
+	}
+
+	return false;
+}
+
+
+function jstiwarnNoDataTables()
+{
+	var objDiv, objHeading, objContent;
+	var objContainer = content.document.createElement('div');
+	var objButton = content.document.createElement('button');
+
+	objDiv = content.document.createElement('div');
+	objDiv.setAttribute('id', 'jstinodatatables');
+	objDiv.setAttribute('role', 'alertdialog');
+
+	objHeading = content.document.createElement('h2');
+	objContent = content.document.createElement('p');
+
+	objHeading.appendChild(content.document.createTextNode('Table Inspector'));
+	objDiv.appendChild(objHeading);
+	objContent.appendChild(content.document.createTextNode('No data tables detected. The table inspector reveals accessibility information for data tables.'));
+	objDiv.appendChild(objContent);
+
+	objButton.setAttribute('type', 'button');
+	objContainer.setAttribute('id', 'jstinodataclose');
+	objButton.appendChild(content.document.createTextNode('Close'));
+	objButton.addEventListener('click', jstiremoveDetails, false);
+	objContainer.appendChild(objButton);
+	objDiv.appendChild(objContainer);
+
+	objDiv.style.left = '30px';
+	objDiv.style.top = parseInt(content.pageYOffset, 10) + 30 + 'px';
+	content.document.body.appendChild(objDiv);
+}
+
+function jstiinspectTables()
+{
+	var iElementCounter, objHead;
+	var objContainer, arElement, arAxis, objText, objContent, objItem, objCSS;
+	var objTable, strSummary, strHeaders, strScope, strAbbr, strAxis, objHeader;
+	var objExisting = content.document.getElementById('jstableinspectorstyle');
+	var iTableCounter, arHeader;
+	var bDataTable = false;
+
+	if (!objExisting)
+	{
+		objHead = content.document.getElementsByTagName('head')[0];
+		objCSS = content.document.createElement('style');
+		objCSS.setAttribute('type', 'text/css');
+		objCSS.setAttribute('id', 'jstableinspectorstyle');
+		objCSS.appendChild(content.document.createTextNode('.juicystudiohighlightmeta { color: #000 !important; background: #cf9 !important; border: 1px solid #630 !important; padding: 0.2em 1em !important; margin: 0.2em !important; } div#jstinodatatables, div#jstinodatatables h2, div#jstinodatatables p {color: #000 !important; background: #cf9 !important; text-align: left !important; vertical-align: top !important; z-index: 999 !important; font-weight: normal !important; border: none  !important;} div#jstinodataclose {text-align: center !important; padding-bottom: 0.5em !important;} div#jstinodatatables {border: 5px double #360 !important; padding: 0.2em 0.5em !important; margin: 0 !important; width: 25em !important; position: absolute !important;}'));
+		objHead.appendChild(objCSS);
+
+		objTable = content.document.getElementsByTagName('table');
+
+		for(iTableCounter=0; iTableCounter<objTable.length; iTableCounter++)
+		{
+			strSummary = objTable[iTableCounter].getAttribute('summary');
+			if (strSummary)
+			{
+				objContainer = content.document.createElement('div');
+
+				objContainer.className = 'juicystudiohighlightmeta';
+
+				arElement = content.document.createElement('strong');
+				objText = content.document.createTextNode('Summary: ' + strSummary);
+
+				arElement.appendChild(objText);
+
+				objContainer.appendChild(arElement);
+
+				try
+				{
+					objTable[iTableCounter].parentNode.insertBefore(objContainer, objTable[iTableCounter]);
+				}
+				catch (err)
+				{
+					content.document.body.insertBefore(objContainer, objTable[iTableCounter]);
+				}
+
+				bDataTable = true;
+
+			}
+
+			arElement = objTable[iTableCounter].getElementsByTagName('*');
+
+			for (iElementCounter=0; iElementCounter<arElement.length; iElementCounter++)
+			{
+				if (arElement[iElementCounter].tagName.toLowerCase() == 'td' || arElement[iElementCounter].tagName.toLowerCase() == 'th')
+				{
+
+					strHeaders = arElement[iElementCounter].getAttribute('headers');
+					if (strHeaders)
+					{
+						objContainer = content.document.createElement('div');
+						objContainer.className = 'juicystudiohighlightmeta';
+
+						objContent = content.document.createElement('strong');
+						objText = content.document.createTextNode('Headers');
+						objContent.appendChild(objText);
+						objContainer.appendChild(objContent);
+
+						objContent = content.document.createElement('ul');
+
+						arHeader = strHeaders.split(/\s/);
+
+						for (var i=0; i< arHeader.length; i++)
+						{
+							objHeader = content.document.getElementById(arHeader[i]);
+							strTIOutput = '';
+							jstiserialiseNode(objHeader);
+
+							objItem = content.document.createElement('li');
+
+							objText = content.document.createTextNode(strTIOutput);
+							objItem.appendChild(objText);
+							objContent.appendChild(objItem);
+						}
+
+						objContainer.appendChild(objContent);
+						arElement[iElementCounter].appendChild(objContainer);
+						bDataTable = true;
+					}
+				}
+			}
+
+			for (iElementCounter=0; iElementCounter<arElement.length; iElementCounter++)
+			{
+				if (arElement[iElementCounter].tagName.toLowerCase() == 'td' || arElement[iElementCounter].tagName.toLowerCase() == 'th')
+				{
+					strScope = arElement[iElementCounter].getAttribute('scope');
+					if (strScope)
+					{
+						objContainer = content.document.createElement('div');
+						objContainer.className = 'juicystudiohighlightmeta';
+
+						objContent = content.document.createElement('strong');
+						if (strScope.toLowerCase() == 'col')
+						{
+							strScope = 'column';
+						}
+						else if (strScope.toLowerCase() == 'colgroup')
+						{
+							strScope = 'column group';
+						}
+						else if (strScope.toLowerCase() == 'rowgroup')
+						{
+							strScope = 'row group';
+						}
+						objText = content.document.createTextNode('Heading for this ' + strScope);
+						objContent.appendChild(objText);
+						objContainer.appendChild(objContent);
+
+						arElement[iElementCounter].appendChild(objContainer);
+						bDataTable = true;
+					}
+					else if (arElement[iElementCounter].tagName.toLowerCase() == 'th')
+					{
+						objContainer = content.document.createElement('div');
+						objContainer.className = 'juicystudiohighlightmeta';
+						objContent = content.document.createElement('strong');
+						objText = content.document.createTextNode('Header cell');
+
+						objContent.appendChild(objText);
+						objContainer.appendChild(objContent);
+
+						arElement[iElementCounter].appendChild(objContainer);
+						bDataTable = true;
+					}
+
+					strAbbr = arElement[iElementCounter].getAttribute('abbr');
+					if (strAbbr)
+					{
+						objContainer = content.document.createElement('div');
+						objContainer.className = 'juicystudiohighlightmeta';
+
+						objContent = content.document.createElement('strong');
+						objText = content.document.createTextNode('Abbreviation: ' + strAbbr);
+						objContent.appendChild(objText);
+						objContainer.appendChild(objContent);
+
+						arElement[iElementCounter].appendChild(objContainer);
+						bDataTable = true;
+					}
+
+					strAxis = arElement[iElementCounter].getAttribute('axis');
+					if (strAxis)
+					{
+						objContainer = content.document.createElement('div');
+						objContainer.className = 'juicystudiohighlightmeta';
+
+						objContent = content.document.createElement('strong');
+						objText = content.document.createTextNode('Conceptual Axis');
+						objContent.appendChild(objText);
+						objContainer.appendChild(objContent);
+
+						objContent = content.document.createElement('ul');
+						objContainer.appendChild(objContent);
+
+						arAxis = strAxis.split(',');
+
+						for (var iAxis=0; iAxis<arAxis.length; iAxis++)
+						{
+							objText = arAxis[iAxis];
+							objContent = content.document.createElement('li');
+
+							objText = content.document.createTextNode(objText);
+							objContent.appendChild(objText);
+							objContainer.appendChild(objContent);
+						}
+						arElement[iElementCounter].appendChild(objContainer);
+						bDataTable = true;
+					}
+				}
+			}
+		}
+		if (!bDataTable)
+		{
+			jstiwarnNoDataTables();
+		}
+	}
+	else
+	{
+		jstiremoveDetails();
+	}
+}

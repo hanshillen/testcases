@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Text Equivalents Question Images Form 1</title>
+
+	<style>
+		body {
+			padding: 50px;
+		}
+
+		table {
+			
+			border: 1px solid #000;
+			border-collapse: collapse;
+		}
+		th, td {
+			border: 1px solid #000;
+			padding: 3px;
+		}
+	</style>
+	<script src="../JS/jquery-2.1.1.min.js"></script>
+
+	<script>
+		$(function(){
+			function checkFragmentId() {
+				var fragmentId = document.location.hash;
+
+				if (!fragmentId) {
+					return
+				}	
+			var $currentSection = $(fragmentId).closest(".section"); // hash value already includes "#", reuse it as ID selector
+			if (!$currentSection.length) {
+				return;
+			}
+
+			$(".section").not($currentSection).hide();
+		}
+
+		checkFragmentId();
+		
+	});
+</script>
+</head>
+<body>
+	<h1>Text Equivalents for Question Images in <a href="index.html"> Form 1</a></h1>
+	<div class="section" >
+		<h2 id="question1">Question 1</h2>
+		<p>
+			The scale is one square of four dots equals one square unit. The grid consists of nine rows and eleven columns of dots. The following is placed on the grid: 
+		</p>
+		<ul>
+			<li>Parallelogram ABCD is shown on the dot grid with horizontal opposite sides AB and CD.</li>
+			<li>Side AB is located on the second row of dots, and side CD is located on the eighth row of dots; each side has a length of four units. </li>
+			<li>Vertex C is located six units down and four units to the left of vertex B. </li>
+			<li>Vertex D is located six units down and four units to the left of vertex A. </li>
+			<li>Point E is labeled as a point on side BC and is located three units down and two units to the left of vertex B.</li>
+			<li>Point F is labeled as a point on side AD and is located three units down and two units to the left of vertex A.</li>
+			<li>A shaded triangle is shown inside parallelogram ABCD. The shaded triangle has vertices at the points B, E, and F.</li>
+		</ul>
+		<p><i>(Note: add additional content (data tables, nested lists, etc.)</i></p>
+	</div>
+	<div class="section" >
+		<h2 id="question2">Question 2</h2>
+		<p>
+			Two equal length lines are drawn, one above the other. The top line is labeled Number of Dolls and the bottom line is labeled percent.
+		</p>
+		<ul>
+			<li>Both lines are divided into five sections.</li>
+			<li>The top line begins with 0 and the end of the first section is labeled six</li>
+			<li>The bottome line begins with zero percent</li>
+			<li>The end of the first section is labeled twenty percent</li>
+			<li>The end of the third section is labeled sixty percent</li>
+			<li>the end of the fourth section is labeled eighty percent </li>
+			<li>the end of the fifth section is labeled one hundred percent</li>
+			<li>the end of the second is labeled forty percent</li>
+		</ul>
+	</div>
+	<div class="section" >
+		<h2 id="question3">Question 3</h2>
+		<p>
+			The line plot title is Volunteer Time. The axis title is Number of Hours. The number line ranges from zero to eight in increments of one. X's are distributed across the increment tick marks as described in the table below:
+		</p>
+		<table>
+			<caption>Number of X's placed on each tick mark</caption>
+			<tr>
+				<th scope="col">Increment Tick Mark</th>
+				<th scope="col">Number of X's</th>
+			</tr>
+			<tr>
+				<th scope="row">0</th>
+				<td>1</td>
+			</tr>
+			<tr>
+				<th scope="row">1</th>
+				<td>2</td>
+			</tr>
+			<tr>
+				<th scope="row">2</th>
+				<td>3</td>
+			</tr>
+			<tr>
+				<th scope="row">3</th>
+				<td>5</td>
+			</tr>
+			<tr>
+				<th scope="row">4</th>
+				<td>1</td>
+			</tr>
+			<tr>
+				<th scope="row">5</th>
+				<td>1</td>
+			</tr>
+			<tr>
+				<th scope="row">6</th>
+				<td>3</td>
+			</tr>
+			<tr>
+				<th scope="row">7</th>
+				<td>2</td>
+			</tr>
+			<tr>
+				<th scope="row">8</th>
+				<td>2</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

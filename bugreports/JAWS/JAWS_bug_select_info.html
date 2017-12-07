@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JAWS test case: Required State and describedby text not announced for select elements in IE</title>
+	<style>
+	body {
+		padding: 10px;
+
+	}
+	.demoSection {
+		padding: 10px;
+		border: 1px solid black;
+	}
+	</style>
+</head>
+<body>
+	<h1>JAWS Bug: Required State and describedby text not announced for select elements in IE</h1>
+	
+	<p>The select element below has <code>aria-required=&quot;true&quot;</code> and descriptive text associated using aria-describedby. JAWS does not read this information when announcing the form control</p>
+	<div class="demoSection">
+		<label for="state">State</label>
+		<select name="state" id="state" aria-required="true" aria-describedby="stateDesc">
+			<option value="DE">Delaware</option>
+			<option value="VA">Virginia</option>
+			<option value="CA">California</option>
+		</select>
+		<p tabindex="-1" id="stateDesc">Choose the state as mentioned on your driver's license</p>
+	</div>
+	<p>The text field below has exactly the same ARIA markup as the select element. JAWS <em>does</em> read this information.</p>
+	<div class="demoSection">
+		<label for="name">Name</label>
+		<input type="text" id="name" aria-describedby="nameDesc">
+		<p tabindex="-1" id="nameDesc">Choose the name you prefer</p>
+	</div>
+</body>
+</html>

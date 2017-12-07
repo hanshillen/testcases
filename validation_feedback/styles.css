@@ -1,0 +1,152 @@
+
+body{
+	margin:15px;
+	font-family: Arial;
+	font-size: 71%;
+	max-width: 1024px;
+}
+
+.formGroup {
+	border: 1px solid #7D6B70;
+	margin: 10px 0 ;
+	padding: 10px;
+}
+
+h1 {
+	font-size: 1.6em;
+}
+
+h2 {
+	font-size: 1.3em;
+}
+
+.formGroup h2 {
+	font-size: 100%;
+	margin: 0 0 10px 0;
+	color: black;
+	background: #CCC;
+	font-weight: bold;
+	padding: 5px;
+	font-family: Verdana, Geneva, sans-serif;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+
+.formGroup label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.useCSSTables {
+	display: table;
+	border-spacing: 10px;
+}
+
+.useCSSTables .gridLayoutRow {
+	display: table-row;
+}
+
+.fieldContainer {
+	width: 20em;
+	min-height: 10em;
+	padding: 5px;
+	border: 1px solid #EEE;
+
+}
+
+.useCSSTables .fieldContainer {
+	display: table-cell;
+}
+
+.useFloats .fieldContainer {
+	float: left;
+	margin: 5px;
+}
+
+input[type="text"], textarea {
+	width: 13.5em;
+}
+
+textarea {
+	height: 5em;
+}
+
+label.required img{
+	margin-right: 3px;
+}
+
+.constraint {
+	color: #7D6B70;
+	clear: left;
+	display: block;
+}
+
+.invalid {
+	margin-right: 3px;
+}
+
+.invalid, body .errorTooltip, .errorGroup {
+	border: 2px solid #A31539;
+}
+
+
+.errorGroup h2 {
+	background-image: url(images/exclamation-diamond-frame.png);
+	background-position: 5px 50%  ;
+	background-repeat: no-repeat;
+	padding-left: 24px;
+	border : 1px solid #A31539;
+}
+
+.errorSummaryHeading, body .errorTooltip, .errorGroup h2 {
+	color: #A31539;
+}
+
+.errorSummaryList li {
+	list-style-image: url(images/exclamation-red.png);
+}
+
+.errorSummaryList a {
+	color: navy;
+	text-decoration: none;
+}
+
+.errorSummaryList a:hover, .errorSummaryList a:focus, .errorSummaryList a:active  {
+	color: #A31539;
+	text-decoration: underline;
+}
+
+.highlighted {
+	outline: 2px solid #A31539;
+	background: #F7CDD8;
+}
+
+.feedbackMsg {
+	color: #A31539;
+	font-style: italic;
+	display: inline;
+}
+
+a:focus, a:active, input:focus, div[role=group]:focus , button:focus, textarea:focus, select:focus {
+	outline: 2px solid #24889C;
+	outline-offset: 2px;
+}
+
+.configurationOptions {
+	border: 1px solid black;
+	padding: 5px;
+}
+
+.configurationOptions input[type=checkbox] {
+	margin-left: 10px;
+}
+.configurationOptions select{
+	margin-right: 10px;
+}
+
+.configurationOptions button{
+	margin: 0 10px;
+}

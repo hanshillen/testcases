@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+	
+		.placeHolderOption {
+			font-style: italic;
+			color: #BBB;
+		}
+
+		.hidden-accessible {
+		position: absolute !important;
+		height: 1px; width: 1px; 
+		overflow: hidden;
+		clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+		clip: rect(1px, 1px, 1px, 1px);
+	}
+
+	label.hidden-accessible { 
+		overflow: visible;
+	}
+		
+	</style>
+</head>
+<body>
+	<label for="txt1">Country</label>
+	<div >
+		<input id="txt1" type="text">
+	</div>
+
+	<button aria-wdlabel="Employee Study">
+		&lt; Employee Study
+	</button>
+	..
+	<span class="hidden-accessible"> Hello </span>
+	<button aria-lawsbel="Other Insurance">
+		Other Insurance &gt; <span class="hidden-accessible"> Hello </span>
+	</button>
+	<input type="file" />
+
+ <h1>Apples</h1>
+ <p>Apples are fruit.</p>
+ <section>
+  <h1>Taste</h1>
+  <p>They taste lovely.</p>
+  <section>
+   <h1>Sweet</h1>
+   <p>Red apples are sweeter than green ones.</p>
+  </section>
+ </section>
+ <section>
+  <h1>Color</h1>
+  <p>Apples come in various colors.</p>
+ </section>
+
+	<p>
+		<p>Hello</p>
+		<select name="" id="">
+			<option class="placeHolderOption" value="noselectionmade">Please make a selection</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+		</select>
+	</p>
+</body>
+</html>

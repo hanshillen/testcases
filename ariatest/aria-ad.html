@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>aria-activedescendant test</title>
+    <script>
+    console.log("bah")
+
+    function init() {
+        var txt = document.getElementById("aca");
+        //var txt = document.getElementById("u_0_11");
+        var list = document.getElementById("list1");
+        //var dropdownIds = ["js_1w", "js_1x", "js_1y", "js_1z"];
+        var dropdownIds = ["test1", "test2", "test3"];
+        var currentIndex = 0;
+        console.log("boe")
+
+        function handleKeyUp(e) {
+            console.log("hello: " + e.keyCode);
+            var newIndex = 0;
+            var change = false;
+            switch (e.keyCode) {
+                case 38:
+                    newIndex = currentIndex <= 0 ? dropdownIds.length - 1 : currentIndex - 1;
+                    change = true;
+                    break;
+                case 40:
+                    newIndex = currentIndex >= dropdownIds.length - 1 ? 0 : currentIndex + 1;
+                    change = true;
+                    break;
+            }
+            console.log(newIndex);
+            if (change) {
+                currentIndex = newIndex;
+                var items = list.getElementsByTagName("li")
+                txt.setAttribute("aria-activedescendant", dropdownIds[newIndex]);
+                for (var i = 0; i < items.length; i++) {
+                    items[i].setAttribute("aria-selected", "false");
+                }
+                document.getElementById(dropdownIds[newIndex]).setAttribute("aria-selected", "true");
+            }
+        }
+        txt.onkeyup = handleKeyUp;
+    }
+
+    window.onload = init;
+    </script>
+</head>
+
+<body>
+    <button>tab stop 1</button>
+    <br>
+    <br>
+    <br>
+    <input type="text" aria-label="Tag" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="owned_listbox" aria-activedescendant="active_option">
+    <ul role="listbox" id="owned_listbox">
+        <li role="option">Zebra</li>
+        <li role="option" id="active_option">Zoom</li>
+    </ul>
+    <button>tab stop 2</button>
+    <br>
+    <br>
+    <br>
+    <textarea role="combobox" title="What's on your mind?" class="uiTextareaAutogrow input autofocus _34z- mentionsTextarea textInput" name="xhpc_message_text" placeholder="What's on your mind?" aria-autocomplete="list" autocomplete="off" aria-expanded="true" aria-owns="typeahead_list_u_0_10" aria-haspopup="true" id="u_0_11" aria-label="What's on your mind?" tabindex="0">test</textarea>
+    <div class="uiContextualLayerPositioner uiLayer" data-ownerid="u_0_z">
+        <div class="uiContextualLayer uiContextualLayerBelowLeft">
+            <div>
+                <div class="uiTypeaheadView uiContextualTypeaheadView">
+                    <ul class="compact" id="typeahead_list_u_0_10" role="listbox">
+                        <li class="user" aria-label="Saskia Meijer" role="option" aria-selected="false" id="js_1w"><img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xlp1/v/t1.0-1/c0.0.100.100/p100x100/10628331_10204827169061429_7318911303767783221_n.jpg?oh=5ec503d8be0f6ccfa2b58a154475f396&amp;oe=5723BCB9&amp;__gda__=1465290503_0543177c99e6967d21b39478444641a9"><span class="text">Saskia Meijer</span></li>
+                        <li class="user" aria-label="David Meijer" role="option" aria-selected="false" id="js_1x"><img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p100x100/11232997_10153384289220097_2780372191496418308_n.jpg?oh=30c64efed8689add3dc42023492f5abd&amp;oe=575C0B4C&amp;__gda__=1466967961_41dadc9dce49e2aa81923988141367f7"><span class="text">David Meijer</span></li>
+                        <li class="user" aria-label="Zwaan Molin" role="option" aria-selected="false" id="js_1y"><img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/c66.66.828.828/s100x100/1000963_10151812121393758_67087588_n.jpg?oh=3d4124cb3565d15769071b1f912c3a3e&amp;oe=5768DCDF&amp;__gda__=1466405458_72d484220ef113f5d023b6eef6aeedf9"><span class="text">Zwaan Molin</span></li>
+                        <li class="user selected" aria-label="Mathilde Hoorn" role="option" aria-selected="false" id="js_1z"><img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/p100x100/11429809_10152994917183004_5198810152081517343_n.jpg?oh=29505d18a1bdcfa34efc3e76ae57b5be&amp;oe=576359F8&amp;__gda__=1466451305_f8f00462fa36540211d8f2cb62003a58"><span class="text">Mathilde Hoorn</span><span class="subtext">Utrecht</span></li>
+                        <li class="user" aria-label="Henny Magro" role="option"><img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p100x100/12311170_10153072192891566_974636473869077977_n.jpg?oh=6427f60736882f64a8ef57a2c9638b6d&amp;oe=5750294F&amp;__gda__=1464831920_61fdd4b7f758532cd2328e9abd9ec2df"><span class="text">Henny Magro</span><span class="subtext">Brighton, United Kingdom</span></li>
+                        <li class="user" aria-label="Tania Marie Rickit" role="option"><img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xla1/v/t1.0-1/c0.17.100.100/p100x100/10689843_4553390609033_3346929363175842128_n.jpg?oh=d99a0f3e8c1904cece1f7eaf629b7de3&amp;oe=5770CA33&amp;__gda__=1465219687_874c5e7b42f8036d2e1980c31758dc98"><span class="text">Tania Marie Rickit</span></li>
+                        <li class="user" aria-label="Merijn Hillen" role="option"><img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/p100x100/11701044_10153373611514799_747050921374885904_n.jpg?oh=296a0db4805105f86339d7f580960156&amp;oe=5765B229&amp;__gda__=1466481963_0e2d742cb70382a7fb77162f2010fe75"><span class="text">Merijn Hillen</span></li>
+                        <li class="user" aria-label="Makoto Ueki" role="option"><img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xtl1/v/t1.0-1/p100x100/10341429_763244987053313_1417642856247144977_n.jpg?oh=bb69f7acdb800b1f1dc4d48f188152df&amp;oe=576CB6EF&amp;__gda__=1466730254_599fda4ee173e5eaf0ffafe77e49e17a"><span class="text">Makoto Ueki</span></li>
+                        <li class="user" aria-label="Marjolein Eigenfeld" role="option"><img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpf1/v/t1.0-1/p100x100/11705113_10153528301621195_1236783860160933630_n.jpg?oh=e4ee74f6aab7e141b45292332f04cf4f&amp;oe=576E5AE3&amp;__gda__=1461971355_2ceb074623430a2dd885e2299a30ae67"><span class="text">Marjolein Eigenfeld</span><span class="subtext">Amsterdam, Netherlands</span></li>
+                        <li class="user" aria-label="Marijn Korff de Gidts" role="option"><img alt="" src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/v/t1.0-1/c0.5.100.100/p100x100/1013948_10151426675621386_1494613939_n.jpg?oh=6e429bf641fa7809bd94652b3709be39&amp;oe=57253E4F&amp;__gda__=1466259284_1088572b02aae456ab2ab775731c233c"><span class="text">Marijn Korff de Gidts</span><span class="subtext">Amsterdam, Netherlands</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button>tab stop 3</button>
+    <br>
+    <br>
+    <br>
+    <input type="text" id="ac0a" name="ac0a" class="wf2-field-control yui3-aclist-input wf2-no-focus" placeholder=" " aria-autocomplete="list" aria-expanded="true" aria-owns="yui_3_18_1_1_1456475007221_845" autocomplete="off" aria-invalid="false" aria-required="false" aria-label="hello" aria-activedescendant="yui_3_18_1_1_1456475007221_9320">
+    <ul class="yui3-aclist-list" id="yui_3_18_1_1_1456475007221_845" role="listbox">
+        <li class="wf2-aclist-instruction" role="status">Clear to browse all options</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9313" role="option" data-text="alpha">alpha</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9314" role="option" data-text="Alpha">Alpha</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9315" role="option" data-text="AlphA betA gAmmA">AlphA betA gAmmA</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9316" role="option" data-text="beta">beta</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9317" role="option" data-text="Beta">Beta</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9318" role="option" data-text="Beta gamma">Beta gamma</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9319" role="option" data-text="chi">chi</li>
+        <li class="yui3-aclist-item yui3-aclist-item-active" id="yui_3_18_1_1_1456475007221_9320" role="option" data-text="Chi">Chi</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9321" role="option" data-text="Chi psi omega">Chi psi omega</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9322" role="option" data-text="delta">delta</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9323" role="option" data-text="Delta">Delta</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9324" role="option" data-text="Delta epsilon zeta">Delta epsilon zeta</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9325" role="option" data-text="epsilon">epsilon</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9326" role="option" data-text="Epsilon">Epsilon</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9327" role="option" data-text="Epsilon zEta Eta">Epsilon zEta Eta</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9328" role="option" data-text="eta">eta</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9329" role="option" data-text="Eta">Eta</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9330" role="option" data-text="Eta thEta iota">Eta thEta iota</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9331" role="option" data-text="gamma">gamma</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9332" role="option" data-text="Gamma">Gamma</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9333" role="option" data-text="Gamma delta epsilon">Gamma delta epsilon</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9334" role="option" data-text="iota">iota</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9335" role="option" data-text="Iota">Iota</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9336" role="option" data-text="Iota kappa lambda">Iota kappa lambda</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9337" role="option" data-text="kappa">kappa</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9338" role="option" data-text="Kappa">Kappa</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9339" role="option" data-text="Kappa lambda mu">Kappa lambda mu</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9340" role="option" data-text="lambda">lambda</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9341" role="option" data-text="Lambda">Lambda</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9342" role="option" data-text="Lambda mu nu">Lambda mu nu</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9343" role="option" data-text="mu">mu</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9344" role="option" data-text="Mu">Mu</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9345" role="option" data-text="Mu nu xi">Mu nu xi</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9346" role="option" data-text="nu">nu</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9347" role="option" data-text="Nu">Nu</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9348" role="option" data-text="Nu xi omicroN">Nu xi omicroN</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9349" role="option" data-text="omega">omega</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9350" role="option" data-text="Omega">Omega</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9351" role="option" data-text="Omega alpha beta">Omega alpha beta</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9352" role="option" data-text="omicron">omicron</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9353" role="option" data-text="Omicron">Omicron</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9354" role="option" data-text="OmicrOn pi rhO">OmicrOn pi rhO</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9355" role="option" data-text="phi">phi</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9356" role="option" data-text="Phi">Phi</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9357" role="option" data-text="Phi chi Psi">Phi chi Psi</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9358" role="option" data-text="pi">pi</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9359" role="option" data-text="Pi">Pi</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9360" role="option" data-text="Pi rho sigma">Pi rho sigma</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9361" role="option" data-text="psi">psi</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9362" role="option" data-text="Psi">Psi</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9363" role="option" data-text="Psi omega alPha">Psi omega alPha</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9364" role="option" data-text="rho">rho</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9365" role="option" data-text="Rho">Rho</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9366" role="option" data-text="Rho sigma tau">Rho sigma tau</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9367" role="option" data-text="sigma">sigma</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9368" role="option" data-text="Sigma">Sigma</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9369" role="option" data-text="Sigma tau upSilon">Sigma tau upSilon</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9370" role="option" data-text="tau">tau</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9371" role="option" data-text="Tau">Tau</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9372" role="option" data-text="Tau upsilon phi">Tau upsilon phi</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9373" role="option" data-text="theta">theta</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9374" role="option" data-text="Theta">Theta</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9375" role="option" data-text="TheTa ioTa kappa">TheTa ioTa kappa</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9376" role="option" data-text="upsilon">upsilon</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9377" role="option" data-text="Upsilon">Upsilon</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9378" role="option" data-text="Upsilon phi chi">Upsilon phi chi</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9379" role="option" data-text="xi">xi</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9380" role="option" data-text="Xi">Xi</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9381" role="option" data-text="Xi omicron pi">Xi omicron pi</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9382" role="option" data-text="zeta">zeta</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9383" role="option" data-text="Zeta">Zeta</li>
+        <li class="yui3-aclist-item" id="yui_3_18_1_1_1456475007221_9384" role="option" data-text="Zeta eta theta">Zeta eta theta</li>
+    </ul>
+    <button>tab stop 5</button>
+    <input class="search-input focus" type="text" id="search-query" placeholder="Search Twitter" name="q" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-expanded="true" aria-owns="typeahead-dropdown-1" dir="ltr" aria-activedescendant="typeahead-item-1" style="direction: ltr; text-align: left;">
+    <ul role="presentation" class="typeahead-items typeahead-topics block2 has-results" style="display: block;">
+        <li role="presentation" class="typeahead-item typeahead-topic-item">
+            <a role="option" class="js-nav" href="/search?q=%23GOPDebate&amp;src=tyah" data-search-query="#GOPDebate" data-query-source="typeahead_click" data-ds="topics" tabindex="-1" dir="ltr" id="typeahead-item-0">
+                <span>#<strong>GOPDebate</strong></span></a>
+        </li>
+        <li role="presentation" class="typeahead-item typeahead-topic-item selected">
+            <a role="option" class="js-nav" href="/search?q=%23FullerHouse&amp;src=tyah" data-search-query="#FullerHouse" data-query-source="typeahead_click" data-ds="topics" tabindex="-1" dir="ltr" id="typeahead-item-1">
+                <span>#<strong>FullerHouse</strong></span></a>
+        </li>
+        <li role="presentation" class="typeahead-item typeahead-topic-item">
+            <a role="option" class="js-nav" href="/search?q=%23HTGAWM&amp;src=tyah" data-search-query="#HTGAWM" data-query-source="typeahead_click" data-ds="topics" tabindex="-1" dir="ltr" id="typeahead-item-2">
+                <span>#<strong>HTGAWM</strong></span></a>
+        </li>
+        <li role="presentation" class="typeahead-item typeahead-topic-item">
+            <a role="option" class="js-nav" href="/search?q=%23WhichHillary&amp;src=tyah" data-search-query="#WhichHillary" data-query-source="typeahead_click" data-ds="topics" tabindex="-1" dir="ltr" id="typeahead-item-3">
+                <span>#<strong>WhichHillary</strong></span></a>
+        </li>
+    </ul>
+    <button>tab stop 6</button>
+    <br>
+    <br>
+    <br>
+    <input type="text" id="kaaas">
+    <input type="text" id="aca" name="aca" placeholder=" " aria-autocomplete="list" aria-expanded="true" aria-owns="list1" autocomplete="off" aria-invalid="false" aria-required="false" >
+    <ul class="yui3-aclist-list" id="list1" role="listbox">
+        <li class="wf2-aclist-instruction" role="option" id="test1">miauw</li>
+        <li class="yui3-aclist-item" id="test2" role="option" data-text="alpha">cheese</li>
+        <li class="yui3-aclist-item yui3-aclist-item-active" id="test3" role="option" data-text="Alpha">Alpha</li>
+    </ul>
+    <button>Tab stop 7</button>
+</body>
+
+</html>

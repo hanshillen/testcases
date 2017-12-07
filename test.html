@@ -1,0 +1,96 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+<head>
+<script type = "text/javascript">
+<!-- hide me from older browser>
+  function removeOldAlert()
+  {
+    var oldAlert = document.getElementById("alert");
+    if (oldAlert)
+      document.body.removeChild(oldAlert);
+  }
+ 
+  function addAlert(aMsg)
+  {
+    removeOldAlert();
+    var newAlert = document.createElement("div");
+    newAlert.setAttribute("role", "alert");
+    newAlert.setAttribute("aria-live", "rude");
+    newAlert.setAttribute("id", "alert");
+    var msg = document.createTextNode(aMsg);
+    newAlert.appendChild(msg);
+    document.body.appendChild(newAlert);
+  }
+ 
+ 
+  function checkValidity3(aID, num, aMsg)
+  {
+  	
+  	console.log("test");
+    var elem = document.getElementById(aID);
+    var invalid = true;
+    for (var loop = 0; loop < window.document.questionario_conoscitivo.tipo_disabilita.length; loop++)
+    {
+                if (window.document.questionario_conoscitivo.tipo_disabilita[loop].checked == true)
+                {
+                               invalid = false;
+                }
+    }
+ 
+    if (invalid) {
+      elem.setAttribute("aria-invalid", "true");
+                  if (num==window.document.questionario_conoscitivo.tipo_disabilita.length-1)
+        addAlert(aMsg);
+ 
+    } else {
+      elem.setAttribute("aria-invalid", "false");
+      removeOldAlert();
+   }
+                return invalid;
+  } 
+ 
+ 
+  function proseguire(msg1,  msg3,  msg16)
+  {
+                if(msg1 == true)
+                {
+                               
+                }
+
+                else if(msg3 == true)
+                {
+                               window.document.questionario_conoscitivo.tipo_disabilita[0].focus();
+                }
+
+                else if(msg16 == true)
+                {
+                               
+                }             
+               
+  }
+ 
+ function checkRisposta(invalid, invalid3,  invalid16)
+  {
+                result = !(invalid)  && !(invalid3) && !(invalid16);
+                return result;
+  }   
+// show me -->
+</script>
+</head>
+<body onload="invalid = true;  invalid3= true;  invalid16= true;">
+ 
+<form id="questionario_conoscitivo" name="questionario_conoscitivo" action="http://...questionario.php" method="POST" onsubmit="return checkRisposta(invalid, invalid3,  invalid16);">
+<div role="dialog" aria-labelledby="messaggio3">
+<h2 id="messaggio3"><b>3) Kind of visual disability:</b><br/><br/></h2>
+<input type="radio" aria-required="true" id="tipo_disabilita0" name="tipo_disabilita" value="Blind" onfocus="proseguire(invalid,  invalid3,  invalid16);" onblur="console.log('hey'); invalid3 = checkValidity3('tipo_disabilita0', 0, ‘Please, define your visual disability!');" />
+<label for="tipo_disabilita0">Non vedente<br/></label>
+<input type="radio" aria-required="true" id="tipo_disabilita1" name="tipo_disabilita" value="Visually Impaired" onblur="invalid3 = checkValidity3('tipo_disabilita1', 1, 'Please, define your visual disability!');" />
+<label for="tipo_disabilita1">Ipovedente<br/></label>
+<input type="radio" aria-required="true" id="tipo_disabilita2" name="tipo_disabilita" value="None" onblur="invalid3 = checkValidity3('tipo_disabilita2', 2, 'Please, define your visual disability!');" />
+<label for="tipo_disabilita2">Nessuna<br/></label>
+    
+
+</div><br/>
+</form>
+ 
+</body>
+</html>

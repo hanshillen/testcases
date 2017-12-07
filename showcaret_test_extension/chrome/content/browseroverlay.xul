@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<overlay id="testext-overlay" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"> 
+	
+	
+	<vbox id="appcontent">
+        <splitter id="testext_ContentSplitter"/>
+        <vbox id="testExtContentBox" persist="height" height="200">
+            <browser id="testext-browser"
+            src="chrome://showcaret_test/content/testfile.html" flex="1"
+             showcaret="true" />
+        </vbox>
+    </vbox>
+	
+
+</overlay>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+
+	function init() {
+		console.log("loaded");
+		var btn = document.getElementById("test");
+
+		btn.onclick = handleClick;
+		btn.onkeydown = handleKeyDown;
+		btn.onkeypress = handleKeyPress;
+		btn.onkeyup = handleKeyUp;
+	}
+
+	function handleClick(e) {
+		e = e || window.event;
+		console.log("clicked");
+	}
+	function handleKeyDown(e) {
+		e = e || window.event;
+		console.log("key down " + e.keyCode);
+	}
+	function handleKeyUp(e) {
+		e = e || window.event;
+		console.log("key up " + e.keyCode);
+	}
+	function handleKeyPress(e) {
+		e = e || window.event;
+		console.log("key press: " + e.keyCode);
+	}
+
+	window.onload = init;
+	</script>
+</head>
+<body>
+	<h1>Sample</h1>
+	<button>tab stop 1</button>
+	
+	<button id="test">test</button>
+<button>tab stop 2</button>
+</body>
+</html>

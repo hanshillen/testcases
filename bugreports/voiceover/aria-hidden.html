@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  
+  
+    <script>
+    
+        window.onload = function(e) {
+            setTimeout(function(){
+                var hideMe = document.getElementById("hideMe");
+                if (hideMe) {
+                    hideMe.setAttribute("aria-hidden", "true");
+                }
+            }, 5000);
+        }
+        
+    </script>
+</head>
+
+<body>
+
+  <h1>Test heading</h1>
+
+  <p id="hideMe">VoiceOver should not see this 5 seconds after page load.</p>
+
+</body>
+
+</html>

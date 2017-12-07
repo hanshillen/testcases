@@ -1,0 +1,82 @@
+FBL.ns(function() {
+    with(FBL) {
+        function buildFocusObjForParagraph(paragraphElem) {
+            return [{
+                action: 'scroll',
+                elem: paragraphElem
+            },
+            {
+                action: 'highlight',
+                elem: paragraphElem,
+                className: 'watLinkHighlight'
+            }];
+        }
+
+        var WAT = Firebug.WatModule;
+        WAT.paragraphsHandler = function(tracker) {
+            var i, j;
+            if (! (tracker instanceof WAT.Tracker)) {
+                return false;
+            }
+
+            var errorsTotal = 0, warningTotal = 0, infosTotal = 0, total = 0;
+
+            var doc = jQuery(tracker.context.browser.contentDocument);
+            /* get doc JQ */
+
+            var framesJQ = doc.find('frame, iframe');
+            var frames = [doc.get(0)];
+            if (frames.length > 0) {
+                for (i = 0; i < framesJQ.length; i++) {
+                    frames.push(framesJQ.get(i).contentDocument);
+                }
+            }
+            var location, paragraphs, tempElems;
+            for (j = 0; j < frames.length; j++) {
+                doc = jQuery(frames[j]);
+
+                location = doc.get(0).location;
+
+                paragraphs = doc.find('p');
+                total += paragraphs.length;
+                tempElems = paragraphs.get();
+
+                for (i = 0; i < tempElems.length; i++) {
+                    var paragraphElem = tempElems[i];
+                    var paragraphText = paragraphElem.textContent.replace(/^\s+|\s+$/, '');
+                    if (paragraphText.length == 0) {
+                        var inputArray = WAT.strFToArray('paragraphWithoutText', {
+                            tag: 'shortTag',
+                            data: paragraphElem
+                        });
+                        tracker.addResult('warning', inputArray, buildFocusObjForParagraph(paragraphElem));
+                        warningTotal++;                
+                    } else {
+                        if (paragraphText.length > 20) {
+                            paragraphText = paragraphText.substr(0,10) + "..." + paragraphText.substr(paragraphText.length-10,10);
+                        }
+                        var inputArray = WAT.strFToArray('paragraphWithText', {
+                            tag: 'shortTag',
+                            data: paragraphElem
+                        },
+                        {
+                            tag: 'string',
+                            data: paragraphText
+                        });
+                        tracker.addResult('info', inputArray, buildFocusObjForParagraph(paragraphElem));
+                        infosTotal++;
+                    }
+                }
+            }
+
+            tracker.summaryParts = WAT.buildSummary('paragraphs', total, errorsTotal, warningTotal);
+            if (errorsTotal > 0) {
+                tracker.status = "error";
+            } else if (warningTotal > 0) {
+                tracker.status = "warn";
+            } else {
+                tracker.status = "info";
+            }
+        };
+    }
+});

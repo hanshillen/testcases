@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JAWS - Language Issue Test Case</title>
+	<script>
+		
+		window.onload = function(event) {
+			var count = 1;
+			var testMe = document.getElementById("testMe");
+			testMe.onclick = function(event){
+				document.getElementById("lrOutput").innerHTML = "Button pressed " + count + " times";
+				count++;
+			};
+		};
+	</script>
+</head>
+<body>
+	<h1>English content</h1>
+	<p><input type="checkbox" id="item1"><label for="item1">option 1</label></p>
+	<p><input type="checkbox" id="item2"><label for="item2">option 2</label></p>
+	<p><input type="checkbox" id="item3" checked><label for="item3">option 3</label></p>
+	<p><input type="checkbox" id="item4"><label for="item4">option 4</label></p>
+	<p><input type="checkbox" id="item5"><label for="item5">option 5</label></p>
+	<p><button id="testMe">test</button></p>
+	<p aria-live="polite" id="lrOutput"></p>
+
+	<section>
+		<h2 id="test3">Another section</h2>
+		<p>Some more text</p>
+	</section>
+	<a href="#">Example</a>
+</body>
+</html>

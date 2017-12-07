@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			aria-hidden on legends
+		</title>
+		<style type="text/css">
+			.hiddenText {
+				clip: rect(1px, 1px, 1px, 1px);
+				height: 0;
+				overflow: hidden;
+				position: absolute;
+				width: 0;					
+			}
+		</style>
+	</head>
+	<body>
+		<h1>			
+			My Form
+		</h1>
+		<a href="#">Tab stop 1</a>
+		<fieldset>
+			<legend aria-hidden="true">Contact Details</legend>
+			<h2 class="hiddenText">
+				Contact Details
+			</h2>
+			<p>
+				<label for="firstName">First Name</label> <input type="text" id="firstName">
+			</p>
+			<p>
+				<label for="lastName">Last Name</label> <input type="text" id="lastName">
+			</p>
+			<p>
+				<button onclick="alert('clicked');">test</button>
+			</p>
+		</fieldset>
+		<input type="button" value="test" onclick="alert('clicked');">
+		<a href="#">Tab stop 2</a>
+	</body>
+</html>

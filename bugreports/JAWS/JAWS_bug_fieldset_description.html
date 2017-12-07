@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JAWS test case: Aria-describedby text on fieldset not read in IE</title>
+	<style>
+	body {
+		padding: 10px;
+
+	}
+	.demoSection {
+		padding: 10px;
+		border: 1px solid black;
+	}
+	</style>
+</head>
+<body>
+	<h1>JAWS test case: Aria-describedby text on fieldset not read in IE</h1>
+	
+	<p>The fieldset below has a legend element as well as an additional description provided by <code>aria-describedby</code>. When moving focus into the fieldset, the expectation is that both the legend text and descriptive text will be announced. Instead, the text associated with <code>aria-describedby</code> is ignored in Internet Explorer. In Firefox the description is correctly announced by JAWS after the legend text.</p>
+	<button>test 1</button>
+	<fieldset aria-describedby="fieldsetDesc">
+		<legend>Contact Details</legend>
+		<p id="fieldsetDesc">All fields are required</p>
+		<button>test 2</button>
+	</fieldset>
+	<button>test 3</button>
+</body>
+</html>

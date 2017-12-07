@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>testcase form role issue</title>
+</head>
+<body>
+	<div class="section step1ValidationGroup" role="form" action="#" tile="">
+	<div class="modalSteps">
+		<div class="modalStep modalStep-custom activeModalStep">
+			<h2 class=" largeText signup-heading">Create a Marketplace account
+			</h2>
+			<p class="requiredFormText">All fields are required unless they're marked optional. Don't enter any letters with special characters, like accents, tildes, etc. </p>
+			<h3>Your Information</h3>
+			<div id="registrationStep1ValidationContainer" class="validatorFormGroup">
+				<div class="row-fluid sectionSimple">
+					<div class="span3">
+						<label for="registrationThreeStepFirstName">First name</label>
+						<input id="registrationThreeStepFirstName" aria-required="true" aria-describedby="registrationThreeStepFirstName-feedbackMsg" maxLength="20" type="text" autocomplete="off" data-validate="notBlank EIDMFirstName"><span id="registrationThreeStepFirstName-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+					</div>
+					<div class="span3">
+						<label for="registrationThreeStepMiddleName">Middle
+						<span class="instructionalText">optional</span></label>
+						<input id="registrationThreeStepMiddleName" aria-describedby="registrationThreeStepMiddleName-feedbackMsg" name="name" type="text" autocomplete="off" data-validate="EIDMMiddleName"><span id="registrationThreeStepMiddleName-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+					</div>
+					<div class="span3">
+						<label for="registrationThreeStepLastName">Last name<span class="error blockElement"></span></label>
+						<input id="registrationThreeStepLastName" aria-required="true" aria-describedby="registrationThreeStepLastName-feedbackMsg" maxLength="25" type="text" autocomplete="off" data-validate="notBlank EIDMLastName"><span id="registrationThreeStepLastName-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span>
+					</div>
+					<div id="registrationStep1SignUpSuffixContainer" class="span3">
+	<label class="form_label" for="registrationSignUpStep1Suffix">
+   
+        
+    	Suffix <span class="instructionalText">optional</span>
+	    
+<!-- leave label tag open, it will be closed in the templates -->		</label> <!-- closing label tag from common label template -->
+<select id="registrationSignUpStep1Suffix" aria-describedby="registrationSignUpStep1Suffix-feedbackMsg" data-validate="EIDMSuffix">
+	<option value="">Select...</option>
+	<option value="Jr.">Jr.</option>
+	<option value="Sr.">Sr.</option>
+	<option value="III">III</option>
+	<option value="IV">IV</option>
+</select><span id="registrationSignUpStep1Suffix-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span></div>
+				</div>
+				<div class="row-fluid sectionSimple">
+						<div class="span5">
+							<label for="registrationStateStep1SignUp">State you live in</label>
+							<div id="registrationStep1SignUpStateContainer">
+         <select id="registrationStateStep1SignUp" aria-required="true" aria-describedby="registrationStateStep1SignUp-feedbackMsg" data-validate="notBlank EIDMState">
+	<option value="">Select...</option>
+    <option value="AL">Alabama</option>	
+    <option value="AK">Alaska</option> 	
+    <option value="AZ">Arizona</option>
+    <option value="AR">Arkansas</option>
+    <option value="DE">Delaware</option>
+    <option value="FL">Florida</option>
+    <option value="GA">Georgia</option>
+	<option value="ID">Idaho</option>
+    <option value="IL">Illinois</option>
+    <option value="IN">Indiana</option>
+    <option value="IA">Iowa</option>
+    <option value="KS">Kansas</option>
+    <option value="LA">Louisiana</option>
+    <option value="ME">Maine</option>
+    <option value="MI">Michigan</option>
+    <option value="MS">Mississippi</option>
+    <option value="MO">Missouri</option>
+    <option value="MT">Montana</option>
+    <option value="NE">Nebraska</option>
+    <option value="NH">New Hampshire</option>
+    <option value="NJ">New Jersey</option>
+	<option value="NM">New Mexico</option>
+    <option value="NC">North Carolina</option>
+    <option value="ND">North Dakota</option>
+    <option value="OH">Ohio</option>
+    <option value="OK">Oklahoma</option>
+    <option value="PA">Pennsylvania</option>
+    <option value="SC">South Carolina</option>
+    <option value="SD">South Dakota</option>
+    <option value="TN">Tennessee</option>
+    <option value="TX">Texas</option>
+	<option value="UT">Utah</option>
+    <option value="VA">Virginia</option>
+    <option value="WV">West Virginia</option>
+    <option value="WI">Wisconsin</option>
+    <option value="WY">Wyoming</option>
+</select><span id="registrationStateStep1SignUp-feedbackMsg" class="feedbackMsg" tabIndex="-1">&nbsp;</span></div>
+						</div>
+				</div>
+				<div class="row-fluid sectionSimple">
+					<div class="span6">
+						<label for="registrationThreeStepEmailUpdates">Email address<span class="error blockElement"></span></label>
+						<input id="registrationThreeStepEmailUpdates" class="errorField" aria-invalid="true" aria-required="true" aria-describedby="registrationThreeStepEmailUpdates-feedbackMsg" type="text" autocomplete="off" data-validate="notBlank EIDMEmail"><span id="registrationThreeStepEmailUpdates-feedbackMsg" class="feedbackMsg error" tabIndex="-1"><span aria-hidden="true" class="iconCustom-exclamation-sign"></span><span class="HiddenText">Important: </span>Important: This is not a valid Email address</span>
+					</div>
+					<div class="span6">
+						<label for="emailConfirm">Confirm email address<span class="error blockElement"></span></label>
+						<input id="emailConfirm" class="errorField" aria-invalid="true" aria-required="true" aria-describedby="emailConfirm-feedbackMsg" type="text" autocomplete="off" data-validate="notBlank EIDMEmail sameEmail-registrationThreeStepEmailUpdates-emailConfirm"><span id="emailConfirm-feedbackMsg" class="feedbackMsg error" tabIndex="-1"><span aria-hidden="true" class="iconCustom-exclamation-sign"></span><span class="HiddenText">Important: </span>This field is required</span>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="custom-checkbox">
+							<div class="custom-checkbox"><input id="registrationStepOneCheckbox" CHECKED="checked" type="checkbox"><label class="checked" for="registrationStepOneCheckbox">I want to have news and updates sent to this email address
+							<span class="instructionalText">optional</span></label></div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid sectionSimple">
+									<div class="span12">
+										<p class="inlineElement">You need an email address to sign up. You can get one now for free:</p>
+										<ul class="inline smallText inlineElement"> <li> <a href="https://mail.google.com/" target="_blank"><strong>Gmail</strong></a></li><li> <a href="https://login.live.com/" target="_blank"><strong>Outlook</strong></a></li><li> <a href="https://login.yahoo.com/" target="_blank"><strong>Yahoo</strong></a></li><li> <a href="https://mail.aol.com/" target="_blank"><strong>AOL</strong></a></li></ul>
+									</div>
+                                </div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="ui-dialog-buttonpane-custom ui-helper-clearfix">
+		<div class="multiStep">
+			<ul class="inlineList">
+				<li><i class="iconCustom-circle-filled circleCurrent"></i><span class="ui-helper-hidden-accessible">you are in step 1 of 3</span></li>
+				<li><i class="iconCustom-circle-filled"></i><!--span class="ui-helper-hidden-accessible">Step 2</span--></li>
+				<li><i class="iconCustom-circle-filled"></i><!--span class="ui-helper-hidden-accessible">Step 3</span--></li>
+				<!--li><i class="iconCustom-circle-filled"></i><span class="ui-helper-hidden-accessible">Step 4</span></li-->
+			</ul>
+		</div>
+		<div class="ui-dialog-buttonset">
+			<button aria-disabled="false" id="step1Close" class="btn btn-secondary modal-close" role="button" type="button"><span class="ui-button-text">Cancel</span><span class="HiddenText">Log In</span></button>
+			<button aria-disabled="false" id="goToStepTwo" class="btn btn-primary modal-next" role="button" type="button"> <span class="ui-button-text">Next</span><span class="HiddenText">Marketplace Account Registration - Sign Up - Step 2</span></button>
+		</div>
+	</div>
+</div>
+</body>
+</html>

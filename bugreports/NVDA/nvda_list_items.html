@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>NVDA Too Many List Items Issue</title>
+	<style>
+		.footer {
+		    border-top: 1px dashed #CCCCCC;
+		    clear: both;
+		    color: #696969;
+		    font-family: Verdana,Arial,Sans-Serif;
+		    font-size: 0.9em;
+		    position: relative;
+		    text-align: center;
+		    width: 100%;
+		}
+		.footer ul {
+		    list-style: none outside none;
+		}
+		.footer.inline li {
+		    border-right: 1px solid #696969;
+		    display: inline;
+		    margin-left: 0;
+		    padding: 2px 15px;
+		}
+		.footer li.footerLast {
+		    border-right: medium none;
+		}
+		.footer a {
+		    color: #005694;
+		    font-family: Verdana,Arial,Sans-Serif;
+		    font-size: 0.9em;
+		    text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<h1>NVDA List Item Count Issue</h1>
+	<h2>Issue:</h2>
+	<p>The list below has 4 list items. NVDA reports 7 list items, because it's counting the whitespace between the &lt;li&gt; elements in the source code when calculating the number of items. This seems to only happen when the list items are styled with display: inline;</p>
+	<div class="footer inline">
+		
+		<ul>
+	        <li>Accessibility</li>
+	        <li>Rules of Behavior</a></li>
+	    	<li>Web Policies</li>
+	    	<li class="footerLast">File Formats and plug-Ins</li>
+	    </ul>
+	</div>
+    <h2>Workaround 1</h2>
+    <p>Below is the same list, now without any white space between the &lt;li&gt; elements. Eventhough the actual mark up has not changed, NVDA now correctly counts 4 items in the list.</p>
+	<div class="footer inline">
+		<ul><li>Accessibility</li><li>Rules of Behavior</a></li><li>Web Policies</li><li class="footerLast">File Formats and plug-Ins</li></ul>
+	</div>
+	<h2>Workaround 2</h2>
+	<p>Below is the same list again, but this time the list items are not styled using display:inline;</p>
+	<div class="footer">
+		<div class="footer">
+		<ul>
+	        <li>Accessibility</li>
+	        <li>Rules of Behavior</a></li>
+	    	<li>Web Policies</li>
+	    	<li class="footerLast">File Formats and plug-Ins</li>
+	    </ul>
+	</div>
+		
+	</div>
+	
+    <h2>Expected Behavior:</h2>
+    <p>NVDA should correctly count the actual number of list items, regardless of the white space between them.</p>
+</body>
+</html>

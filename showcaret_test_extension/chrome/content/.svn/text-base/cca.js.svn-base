@@ -1,0 +1,638 @@
+var objLocaleLabels;
+
+function getColourParts(objElement, strProperty)
+{
+	var arColour = [];
+	var objRGB, iRed, iGreen, iBlue;
+
+	var objStyle = objElement.ownerDocument.defaultView.getComputedStyle(objElement, null);
+	var objColour = objStyle.getPropertyCSSValue(strProperty);
+	
+	if (objColour && objColour.primitiveType == CSSPrimitiveValue.CSS_RGBCOLOR)
+	{
+		objRGB = objColour.getRGBColorValue();
+
+		iRed = parseInt(objRGB.red.getFloatValue(CSSPrimitiveValue.CSS_NUMBER), 10);
+		iGreen = parseInt(objRGB.green.getFloatValue(CSSPrimitiveValue.CSS_NUMBER), 10);
+		iBlue = parseInt(objRGB.blue.getFloatValue(CSSPrimitiveValue.CSS_NUMBER), 10);
+		arColour = [iRed, iGreen, iBlue];
+	}
+	else
+	{
+		try
+		{
+			arColour = getColourParts(objElement.parentNode, strProperty);
+		}
+		catch (err)
+		{
+			if (strProperty == 'color')
+			{
+				arColour = [0, 0, 0];
+			}
+			else
+			{
+				arColour = [255, 255, 255];
+			}
+		}
+	}
+
+	return arColour;
+}
+
+function getHex(objElement, strProperty)
+{
+	var objStyle = objElement.ownerDocument.defaultView.getComputedStyle(objElement, null);
+	var objColour = objStyle.getPropertyCSSValue(strProperty);
+	var objRGB, strColour, strRed, strGreen, strBlue;
+
+	if (objColour && objColour.primitiveType == CSSPrimitiveValue.CSS_RGBCOLOR)
+	{
+		objRGB = objColour.getRGBColorValue();
+
+		strRed = objRGB.red.getFloatValue(CSSPrimitiveValue.CSS_NUMBER).toString(16);
+		strGreen = objRGB.green.getFloatValue(CSSPrimitiveValue.CSS_NUMBER).toString(16);
+		strBlue = objRGB.blue.getFloatValue(CSSPrimitiveValue.CSS_NUMBER).toString(16);
+
+		if (strRed.length == 1)
+		{
+			strRed = '0' + strRed;
+		}
+
+		if (strGreen.length == 1)
+		{
+			strGreen = '0' + strGreen;
+		}
+
+		if (strBlue.length == 1)
+		{
+			strBlue = '0' + strBlue;
+		}
+
+		strColour = '#' + strRed + strGreen + strBlue;
+	}
+	else
+	{
+		try
+		{
+			strColour = getHex(objElement.parentNode, strProperty);
+		}
+		catch (err)
+		{
+			if (strProperty == 'color')
+			{
+				strColour = '#000000';
+			}
+			else
+			{
+				strColour = '#ffffff';
+			}
+		}
+	}
+
+	return strColour;
+}
+
+function getColour(objElement, strProperty)
+{
+	var objColourDetails = {};
+	var arColour = getColourParts(objElement, strProperty);
+
+	objColourDetails.hexcolour = getHex(objElement, strProperty);
+	objColourDetails.red = arColour[0];
+	objColourDetails.green = arColour[1];
+	objColourDetails.blue = arColour[2];
+
+	return objColourDetails;
+}
+
+function getBrightness(objForeColour, objBackColour)
+{
+	var iForegroundBrightness = ((objForeColour.red * 299) + (objForeColour.green * 587) + (objForeColour.blue * 114)) / 1000;
+	var iBackgroundBrightness = ((objBackColour.red * 299) + (objBackColour.green * 587) + (objBackColour.blue * 114)) / 1000;
+	var iBrightDifference;
+	var strBrightResult;
+
+	if (iBackgroundBrightness > iForegroundBrightness)
+	{
+		iBrightDifference = parseInt(iBackgroundBrightness - iForegroundBrightness, 10);
+	}
+	else
+	{
+		iBrightDifference = parseInt(iForegroundBrightness - iBackgroundBrightness, 10);
+	}
+
+	if (iBrightDifference > 125)
+	{
+		strBrightResult = iBrightDifference + " " + objLocaleLabels.getString("Pass");
+		return [strBrightResult, 1];
+	}
+
+	strBrightResult = iBrightDifference + " " + objLocaleLabels.getString("Fail");
+	return [strBrightResult, 0];
+}
+
+function getColourDifference(objForeColour, objBackColour)
+{
+	var iColourDifference = Math.abs(objBackColour.red - objForeColour.red) + Math.abs(objBackColour.green - objForeColour.green) + Math.abs(objBackColour.blue - objForeColour.blue);
+	var strColourResult;
+
+	if (iColourDifference > 500)
+	{
+		strColourResult = iColourDifference + " " + objLocaleLabels.getString("Pass");
+		return [strColourResult, 1];
+	}
+
+	strColourResult = iColourDifference + " " + objLocaleLabels.getString("Fail");
+	return [strColourResult, 0];
+}
+
+function calculateLuminosity(fRed, fGreen, fBlue, fFullScale)
+{
+	var fRedRGB = fRed / fFullScale;
+	var fGreenRGB = fGreen / fFullScale;
+	var fBlueRGB = fBlue / fFullScale;
+	var fLinearisedRed, fLinearisedGreen, fLinearisedBlue;
+
+	if (fRedRGB <= 0.03928)
+	{
+		fLinearisedRed = fRedRGB / 12.92;
+	}
+	else
+	{
+		fLinearisedRed = Math.pow(((fRedRGB + 0.055)/1.055), 2.4);
+	}
+
+	if (fGreenRGB <= 0.03928)
+	{
+		fLinearisedGreen = fGreenRGB / 12.92;
+	}
+	else
+	{
+		fLinearisedGreen = Math.pow(((fGreenRGB + 0.055)/1.055), 2.4);
+	}
+
+	if (fBlueRGB <= 0.03928)
+	{
+		fLinearisedBlue = fBlueRGB / 12.92;
+	}
+	else
+	{
+		fLinearisedBlue = Math.pow(((fBlueRGB + 0.055)/1.055), 2.4);
+	}
+
+	return (0.2126 * fLinearisedRed + 0.7152 * fLinearisedGreen + 0.0722 * fLinearisedBlue);
+}
+
+function getLuminosity(objForeColour, objBackColour)
+{
+	var fFore, fBack, fL1, fL2, fDifference, strResult;
+	var fPlaces = Math.pow(10, 2);
+
+	fFore = calculateLuminosity(objForeColour.red, objForeColour.green, objForeColour.blue, 255);
+	fBack = calculateLuminosity(objBackColour.red, objBackColour.green, objBackColour.blue, 255);
+
+	if (fFore > fBack)
+	{
+		fL1 = fFore;
+		fL2 = fBack;
+	}
+	else
+	{
+		fL1 = fBack;
+		fL2 = fFore;
+	}
+
+	fDifference = (fL1 + 0.05) / (fL2 + 0.05);
+
+	fDifference = Math.round(fDifference * fPlaces) / fPlaces;
+
+	if (fDifference < 3)
+	{
+		strResult = fDifference + " " + objLocaleLabels.getString("Fail");
+		return [strResult, 0];
+	}
+
+	if (fDifference < 5)
+	{
+		strResult = fDifference + " " + objLocaleLabels.getString("PassCond5");
+		return [strResult, 1];
+	}
+
+	if (fDifference < 7)
+	{
+		strResult = fDifference + " " + objLocaleLabels.getString("PassCond7");
+		return [strResult, 1];
+	}
+
+	strResult = fDifference + " " + objLocaleLabels.getString("Pass3");
+	return [strResult, 1];
+}
+
+function getParentElements(objElement)
+{
+	var arElements = [];
+	var objParent = objElement;
+	var strElementName;
+
+	do
+	{
+		objParent = objParent.parentNode;
+		if (objParent.tagName !== undefined)
+		{
+			strElementName = objParent.tagName;
+			if (objParent.id)
+			{
+				strElementName += '#' + objParent.id;
+			}
+			if (objParent.className)
+			{
+				strElementName += '.' + objParent.className.replace(/\s/g, '.');
+			}
+			if (objParent.getAttribute('bgcolor'))
+			{
+				strElementName += '.bgcolor=' + objParent.getAttribute('bgcolor');
+			}
+			if (objParent.getAttribute('color'))
+			{
+				strElementName += '.color=' + objParent.getAttribute('color');
+			}
+			arElements.push(strElementName);
+		}
+	} while (objParent.parentNode);
+	arElements.reverse();
+
+	return arElements;
+}
+
+function sameParents(arFirst, arSecond)
+{
+	if (arFirst.length != arSecond.length)
+	{
+		return false;
+	}
+
+	for (var iCounter=0; iCounter<arFirst.length; iCounter++)
+	{
+		if (arFirst[iCounter] != arSecond[iCounter])
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+function alreadygot(arElements, objElementDetails)
+{
+	for (var iCounter=0; iCounter<arElements.length; iCounter++)
+	{
+		if (arElements[iCounter].element == objElementDetails.element && arElements[iCounter].className == objElementDetails.className && arElements[iCounter].IDName == objElementDetails.IDName && arElements[iCounter].BGColor == objElementDetails.BGColor && arElements[iCounter].FGColor == objElementDetails.FGColor && sameParents(arElements[iCounter].parents, objElementDetails.parents))
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+function checkText(objNode)
+{
+	do
+	{
+		if (objNode.nodeType == 3 && objNode.data.replace(/\s+/g, '') !== '')
+		{
+			return true;
+		}
+
+		objNode = objNode.nextSibling;
+
+	} while (objNode);
+
+	return false;
+}
+
+function examineContrast(iType)
+{
+	// iType(1) == all
+	// iType(2) == Luminosity
+	// iType(3) == AERT
+
+	objLocaleLabels = document.getElementById("LocaleLabels"); 
+
+	var objOriginalBody = window.content.document.getElementsByTagName('body')[0];
+
+	if (!objOriginalBody)
+	{
+		return;
+	}
+
+	var objElements = objOriginalBody.getElementsByTagName('*');
+
+	if (!objElements)
+	{
+		return;
+	}
+
+	var arElements = [];
+	var objChild, objElementDetails;
+	var iCounter, objP, objCode, objInputType;
+	var objXML, objDocument, objBody, objHead, objCSS, objPageTitle, objHeading;
+	var objTable, objCaption, objTHead, objTBody, objTR, objTH, objTD, objNodeList, objNodeItem;
+	var arParents, iParentCounter;
+
+	// Only add the body to the list if there is text that isn't in a container
+	if (objOriginalBody.firstChild)
+	{
+		objChild = objOriginalBody.firstChild;
+		if (checkText(objChild))
+		{
+			objElementDetails = {};
+
+			objElementDetails.element = objOriginalBody.tagName;
+			objElementDetails.className = objOriginalBody.className;
+			objElementDetails.IDName = objOriginalBody.id;
+			objElementDetails.BGColor = objOriginalBody.getAttribute('bgcolor');
+			objElementDetails.FGColor = objOriginalBody.getAttribute('color');
+			objElementDetails.forecolour = getColour(objOriginalBody, 'color');
+			objElementDetails.backcolour = getColour(objOriginalBody, 'background-color');
+			objElementDetails.parents = '';
+			objElementDetails.luminosity = getLuminosity(objElementDetails.forecolour, objElementDetails.backcolour);
+			objElementDetails.colourbrightness = getBrightness(objElementDetails.forecolour, objElementDetails.backcolour);
+			objElementDetails.colourdifference = getColourDifference(objElementDetails.forecolour, objElementDetails.backcolour);
+			arElements.push(objElementDetails);
+		}
+	}
+
+	// Get details for each element in the DOM
+	for (iCounter=0; iCounter<objElements.length; iCounter++)
+	{
+		// If there is a text node, add this element to the list
+		if (objElements[iCounter].firstChild && objElements[iCounter].tagName && !objElements[iCounter].tagName.match(/script/i))
+		{
+			objChild = objElements[iCounter].firstChild;
+
+			if (checkText(objChild))
+			{
+				objElementDetails = {};
+
+				objElementDetails.element = objElements[iCounter].tagName;
+				objElementDetails.className = objElements[iCounter].className;
+				objElementDetails.IDName = objElements[iCounter].id;
+				objElementDetails.BGColor = objElements[iCounter].getAttribute('bgcolor');
+				objElementDetails.FGColor = objElements[iCounter].getAttribute('color');
+				objElementDetails.forecolour = getColour(objElements[iCounter], 'color');
+				objElementDetails.backcolour = getColour(objElements[iCounter], 'background-color');
+				objElementDetails.parents = getParentElements(objElements[iCounter]);
+
+				if (iType == 1 || iType == 2)
+				{
+					objElementDetails.luminosity = getLuminosity(objElementDetails.forecolour, objElementDetails.backcolour);
+				}
+				if (iType == 1 || iType == 3)
+				{
+					objElementDetails.colourbrightness = getBrightness(objElementDetails.forecolour, objElementDetails.backcolour);
+					objElementDetails.colourdifference = getColourDifference(objElementDetails.forecolour, objElementDetails.backcolour);
+				}
+
+				// Avoid adding duplicate details
+				if (!alreadygot(arElements, objElementDetails))
+				{
+					arElements.push(objElementDetails);
+				}
+			}
+		}
+/* Added 25 May 2007 by maurice.lanselle@get-the.net
+ * Patch to also evaluate INPUT elements which display text which should be legible:
+ *  - buttons (submit, reset, and button), 
+ *  - data entry fields (text, file, password).
+*/
+
+		else if (objElements[iCounter].tagName && objElements[iCounter].tagName.match(/input/i))
+		{
+			objInputType = objElements[iCounter].type;
+
+			if ((objInputType == "submit") || (objInputType == "text")|| (objInputType == "button")|| (objInputType == "reset")|| (objInputType == "password")|| (objInputType == "file"))
+			{
+				objElementDetails = {};
+
+				objElementDetails.element = objElements[iCounter].tagName + "-" + objElements[iCounter].type;
+				objElementDetails.className = objElements[iCounter].className;
+				objElementDetails.IDName = objElements[iCounter].id;
+				objElementDetails.BGColor = objElements[iCounter].getAttribute('bgcolor');
+				objElementDetails.FGColor = objElements[iCounter].getAttribute('color');
+				objElementDetails.forecolour = getColour(objElements[iCounter], 'color');
+				objElementDetails.backcolour = getColour(objElements[iCounter], 'background-color');
+				objElementDetails.parents = getParentElements(objElements[iCounter]);
+				if (iType == 1 || iType == 2)
+				{
+					objElementDetails.luminosity = getLuminosity(objElementDetails.forecolour, objElementDetails.backcolour);
+				}
+				if (iType == 1 || iType == 3)
+				{
+					objElementDetails.colourbrightness = getBrightness(objElementDetails.forecolour, objElementDetails.backcolour);
+					objElementDetails.colourdifference = getColourDifference(objElementDetails.forecolour, objElementDetails.backcolour);
+				}
+				// Avoid adding duplicate details
+				if (!alreadygot(arElements, objElementDetails))
+				{
+					arElements.push(objElementDetails);
+				}
+			}
+		}
+/* * * * * *
+ * End of input-node patch added 25 May 2007 by maurice.lanselle@get-the.net
+*/
+	}
+
+	if (arElements.length > 0)
+	{
+		objXML = new XMLHttpRequest();
+		getBrowser().selectedTab = getBrowser().addTab('');
+
+		objXML.open('get', 'about:blank', false);
+		objXML.send('');
+
+		objDocument = window.content.document;
+		objBody = objDocument.getElementsByTagName('body')[0];
+		objHead = objDocument.getElementsByTagName('head')[0];
+
+		objCSS = objDocument.createElement('style');
+		objCSS.setAttribute('type', 'text/css');
+		objCSS.appendChild(document.createTextNode('body{ font: normal 95.01%/140% arial, Verdana, helvetica, sans-serif; color:#000; background-color: #fff; margin: 1em; padding: 1em;} caption{ text-align: left; font-size: 1.4em; margin-bottom: 0.5em;} table{ border-collapse: collapse; border: 3px double #000;} th, td{ border: 1px solid #000; text-align: left; vertical-align: top; padding: 0.2em;} tr.failure{ color: #000; background-color: #ff6; border: thick solid #000;} ul{ margin: 0 0 0 1em; padding: 0;}'));
+		objHead.appendChild(objCSS);
+
+		objPageTitle = objDocument.createElement('title');
+		objPageTitle.appendChild(objDocument.createTextNode(objLocaleLabels.getString("DocTitle")));
+		objHead.replaceChild(objPageTitle, objHead.getElementsByTagName('title')[0]);
+		objDocument.title = objLocaleLabels.getString("DocTitle");
+
+
+		objTable = objDocument.createElement('table');
+		objCaption = objDocument.createElement('caption');
+		objTHead = objDocument.createElement('thead');
+		objTBody = objDocument.createElement('tbody');
+
+		objHeading = objDocument.createElement('h1');
+		objHeading.appendChild(objDocument.createTextNode(objLocaleLabels.getString("DocTitle")));
+		objBody.appendChild(objHeading);
+
+		objTable.setAttribute('summary', objLocaleLabels.getString("Summary"));
+
+		if (iType == 1)
+		{
+			objCaption.appendChild(objDocument.createTextNode(objLocaleLabels.getString("AllTestsResults")));
+		}
+		else if (iType == 2)
+		{
+			objCaption.appendChild(objDocument.createTextNode(objLocaleLabels.getString("LCRResults")));
+		}
+		else if (iType == 3)
+		{
+			objCaption.appendChild(objDocument.createTextNode(objLocaleLabels.getString("AERTResults")));
+		}
+
+		objTable.appendChild(objCaption);
+		objTR = objDocument.createElement('tr');
+		objTH = objDocument.createElement('th');
+		objTH.setAttribute('scope', 'col');
+		objTH.appendChild(objDocument.createTextNode(objLocaleLabels.getString("Element")));
+		objTR.appendChild(objTH);
+		objTH = objDocument.createElement('th');
+		objTH.setAttribute('scope', 'col');
+		objTH.appendChild(objDocument.createTextNode(objLocaleLabels.getString("ParentNodes")));
+		objTR.appendChild(objTH);
+		objTH = objDocument.createElement('th');
+		objTH.setAttribute('scope', 'col');
+		objTH.appendChild(objDocument.createTextNode(objLocaleLabels.getString("Sample")));
+		objTR.appendChild(objTH);
+		objTH = objDocument.createElement('th');
+		objTH.setAttribute('scope', 'col');
+		objTH.appendChild(objDocument.createTextNode(objLocaleLabels.getString("Colour")));
+		objTR.appendChild(objTH);
+		objTH = objDocument.createElement('th');
+		objTH.setAttribute('scope', 'col');
+		objTH.appendChild(objDocument.createTextNode(objLocaleLabels.getString("Background")));
+		objTR.appendChild(objTH);
+		if (iType == 1 || iType == 2)
+		{
+			objTH = objDocument.createElement('th');
+			objTH.setAttribute('scope', 'col');
+			objTH.appendChild(objDocument.createTextNode(objLocaleLabels.getString("LCR")));
+			objTR.appendChild(objTH);
+		}
+		if (iType == 1 || iType == 3)
+		{
+			objTH = objDocument.createElement('th');
+			objTH.setAttribute('scope', 'col');
+			objTH.appendChild(objDocument.createTextNode(objLocaleLabels.getString("DIB")));
+			objTR.appendChild(objTH);
+			objTH = objDocument.createElement('th');
+			objTH.setAttribute('scope', 'col');
+			objTH.appendChild(objDocument.createTextNode(objLocaleLabels.getString("DIC")));
+			objTR.appendChild(objTH);
+		}
+		objTHead.appendChild(objTR);
+		objTable.appendChild(objTHead);
+
+		for (iCounter=0; iCounter<arElements.length; iCounter++)
+		{
+			objTR = objDocument.createElement('tr');
+			objTD = objDocument.createElement('td');
+			objTD.appendChild(objDocument.createTextNode(arElements[iCounter].element));
+			if (arElements[iCounter].className)
+			{
+				objP = objDocument.createElement('p');
+				objCode = objDocument.createElement('code');
+				objCode.appendChild(objDocument.createTextNode('class'));
+				objP.appendChild(objCode);
+				objP.appendChild(objDocument.createTextNode(': ' + arElements[iCounter].className));
+				objTD.appendChild(objP);
+			}
+			if (arElements[iCounter].IDName)
+			{
+				objP = objDocument.createElement('p');
+				objCode = objDocument.createElement('code');
+				objCode.appendChild(objDocument.createTextNode('id'));
+				objP.appendChild(objCode);
+				objP.appendChild(objDocument.createTextNode(': ' + arElements[iCounter].IDName));
+				objTD.appendChild(objP);
+			}
+			objTR.appendChild(objTD);
+
+			objTD = objDocument.createElement('td');
+
+			if (arElements[iCounter].parents !== '')
+			{
+				arParents = arElements[iCounter].parents;
+				objNodeList = objDocument.createElement('ul');
+				for (iParentCounter=0; iParentCounter<arParents.length; iParentCounter++)
+				{
+					objNodeItem = objDocument.createElement('li');
+					objNodeItem.appendChild(objDocument.createTextNode(arParents[iParentCounter]));
+					objNodeList.appendChild(objNodeItem);
+				}
+
+				objTD.appendChild(objNodeList);
+			}
+			else
+			{
+				objTD.appendChild(objDocument.createTextNode(objLocaleLabels.getString("None")));
+			}
+
+			objTR.appendChild(objTD);
+
+			objTD = objDocument.createElement('td');
+			objTD.style.backgroundColor = arElements[iCounter].backcolour.hexcolour;
+			objTD.style.color = arElements[iCounter].forecolour.hexcolour;
+			objTD.appendChild(objDocument.createTextNode(objLocaleLabels.getString("Sample")));
+			objTR.appendChild(objTD);
+			objTD = objDocument.createElement('td');
+			objTD.appendChild(objDocument.createTextNode(arElements[iCounter].forecolour.hexcolour));
+			objTR.appendChild(objTD);
+			objTD = objDocument.createElement('td');
+			objTD.appendChild(objDocument.createTextNode(arElements[iCounter].backcolour.hexcolour));
+			objTR.appendChild(objTD);
+			if (iType == 1 || iType == 2)
+			{
+				objTD = objDocument.createElement('td');
+		
+				objTD.appendChild(objDocument.createTextNode(arElements[iCounter].luminosity[0]));
+				objTR.appendChild(objTD);
+			}
+			if (iType == 1 || iType == 3)
+			{
+				objTD = objDocument.createElement('td');
+				objTD.appendChild(objDocument.createTextNode(arElements[iCounter].colourbrightness[0]));
+				objTR.appendChild(objTD);
+				objTD = objDocument.createElement('td');
+				objTD.appendChild(objDocument.createTextNode(arElements[iCounter].colourdifference[0]));
+				objTR.appendChild(objTD);
+			}
+			if (iType == 1)
+			{
+				if (arElements[iCounter].luminosity[1] === 0 || arElements[iCounter].colourbrightness[1] === 0 || arElements[iCounter].colourdifference[1] === 0)
+				{
+					objTR.className = 'failure';
+				}
+			}
+			else if (iType == 2)
+			{
+				if (arElements[iCounter].luminosity[1] === 0)
+				{
+					objTR.className = 'failure';
+				}
+			}
+			else if (iType == 3)
+			{
+				if (arElements[iCounter].colourbrightness[1] === 0 || arElements[iCounter].colourdifference[1] === 0)
+				{
+					objTR.className = 'failure';
+				}
+			}
+			objTBody.appendChild(objTR);
+		}
+
+		objTable.appendChild(objTBody);
+		objBody.appendChild(objTable);
+	}
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Grouping Techniques</title>
+<style type="text/css">
+	
+	body {
+		font: 12px Arial
+	}
+	
+	fieldset.hidden {
+		margin: 0;
+		padding: 0;
+		border: none;
+	}
+	
+	fieldset.hidden legend {
+		position: absolute;
+		left: -99999px;
+		width: 1px;
+		overflow: hidden;
+	}
+	
+	[role=group] {
+		border: 1px solid black;
+		padding: 5px;
+		margin: 5px;
+	}
+</style>
+</head>
+
+<body>
+<h1>Grouping Techniques</h1>
+<a href="#">Placeholder link 1</a>
+<h2>Using ARIA Group role</h2>
+<form  action="#">
+	<div role="group" aria-labelledby="groupLabel1" aria-describedby="groupDesc1">
+		<h3 id="groupLabel1">Delimiters:</h3>
+		<p id="groupDesc1">Select which delimeters you want to include in your query</p>
+		<input id="chck1" type="checkbox" aria-describedby="groupDesc1" />
+		<label for="chck1">Tab</label>
+		<input id="chck2" type="checkbox" />
+		<label for="chck2">Space</label>
+	</div>
+</form>
+<a href="#">Placeholder link 2</a>
+<h2>Using Fieldset / Legend</h2>
+
+<form action="#">
+	<fieldset>
+	<legend id="groupLabel2">Delimiters:</legend>
+	<p id="groupDesc2">Select which delimeters you want to include in your query</p>
+	<input id="chck1b" type="checkbox" />
+	<label for="chck1b">Tab</label>
+	<input id="chck2b" type="checkbox" />
+	<label for="chck2b">Space</label>
+	</fieldset>
+</form>
+<a href="#">Placeholder link 3</a>
+<h2>Using Fieldset / Legend enhanced with ARIA</h2>
+
+<form action="#">
+	<fieldset class="hidden" role="group" aria-labelledby="groupLabel3" aria-describedby="groupDesc3">
+	<legend id="groupLabel3">Delimiters:</legend>
+	<p id="groupDesc3">Select which delimeters you want to include in your query</p>
+	<input id="chck1c" type="checkbox" />
+	<label for="chck1c">Tab</label>
+	<input id="chck2c" type="checkbox" />
+	<label for="chck2c">Space</label>
+	</fieldset>
+</form>
+
+<a href="#">Placeholder link 4</a>
+<h2>Alert Dialog</h2>
+
+<div role="alertdialog" aria-labelledby="dTitle" aria-describedby="dDescription">
+	<span id="dTitle">Warning</span>
+	<br />
+	<p id="dDescription">Do you really want to do this?</p>
+	<div role="button" tabindex="0">OK</div>
+	<div role="button" tabindex="0">Cancel</div>
+</div> 
+
+	<a href="#">Place holder link 5</a>
+	<div role="group" aria-labelledby="myTitle" aria-describedby="myText" style='border:1px solid red;'>
+		<div id="myTitle">My settings</div>
+		<div id="myText">Change your personal preferences here</div>
+		<div tabindex="0" role="button">Press me</div>
+		<div tabindex="0" role="checkbox">Toggle mme</div>
+	</div>
+	
+
+</body>
+</html>

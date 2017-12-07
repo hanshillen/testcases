@@ -1,0 +1,2 @@
+content showcaret_test chrome/content/
+overlay chrome://browser/content/browser.xul			chrome://showcaret_test/content/browseroverlay.xul

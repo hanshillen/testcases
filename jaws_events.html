@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JAWS and Events in IE</title>
+	<script>
+	function init() {
+		var btn = document.getElementById("test");
+		var status = document.getElementById("status");
+		var counter = 0;
+		btn.addEventListener("click", function(e){console.log("clicked, " + e.which); status.innerHTML = ++counter;}, false);
+		btn.addEventListener("mousedown", function(e){console.log("mousedown, " + e.which);}, false);
+		btn.addEventListener("mouseup", function(e){console.log("mouseup, " + e.which);}, false);
+		btn.addEventListener("keydown", function(e){console.log("keydown, " + e.keyCode);}, false);
+		btn.addEventListener("keyup", function(e){console.log("keyup, " + e.keyCode);}, false);
+		btn.addEventListener("keypress", function(e){console.log("keypress, " + e.keyCode);}, false);
+
+		 
+	}
+	window.onload = init;
+	</script>
+</head>
+<body>
+	<button id="test">test</button>
+	<p>Click counter: <span id="status"></span></p>
+	
+</body>
+</html>

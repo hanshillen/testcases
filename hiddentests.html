@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Test Cases for Hiding Content in an Accessible Way
+    </title>
+    <style type="text/css">
+    .demo {
+        min-width: 320px;
+        margin-left: 300px;
+    }
+    
+    .sample {
+        border: 1px solid black;
+        margin: 10px;
+        padding: 10px;
+    }
+    
+    .sample1 .hidden-accessible {
+        position: absolute !important;
+        clip: rect(1px 1px 1px 1px);
+        /* IE6, IE7 */
+        clip: rect(1px, 1px, 1px, 1px);
+    }
+    
+    .sample2 .hidden-accessible {
+        position: absolute !important;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        clip: rect(1px 1px 1px 1px);
+        /* IE6, IE7 */
+        clip: rect(1px, 1px, 1px, 1px);
+    }
+    
+    .sample2 label.hidden-accessible {
+        overflow: visible;
+    }
+    
+    .sample3 .hidden-accessible {
+        position: absolute!important;
+        clip: rect(1px);
+        clip: rect(1px, 1px, 1px, 1px);
+    }
+    
+    .sample4 .hidden-accessible {
+        position: absolute;
+        left: -999em;
+        width: 1em;
+        overflow: hidden;
+    }
+
+    .sample5 .hidden-accessible {
+        position: absolute;
+        clip-path: inset(0 0 1px 1px);
+        overflow: hidden;
+    }
+    
+    table {
+        width: 200px;
+    }
+    
+    table,
+    td {
+        border: 1px solid black;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="demo">
+        <h1>
+				Test cases for hiding content in an accessible way
+			</h1>
+        <p>
+            Each sample contains the following:
+        </p>
+        <ol>
+            <li>A link with some hidden text in the middle
+            </li>
+            <li>Hidden static content
+            </li>
+            <li>A Hidden focusable button</li>
+            <li>A text field that has a associated hidden label</li>
+        </ol>
+        <h2>
+				Sample 1
+			</h2>
+        <pre>
+	.sample1 .hidden-accessible {
+		position: absolute !important;
+		clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+		clip: rect(1px, 1px, 1px, 1px);
+	}
+		
+</pre>
+        <div class="sample sample1">
+            <a href="#">This is a <span class=
+				"hidden-accessible">partially hidden </span>
+				link</a>
+            <br />
+            <br />
+            <button>This is a <span class="hidden-accessible">partially hidden </span> button
+            </button>
+            <p class="hidden-accessible">
+                Static hidden content
+            </p>
+            <button class="hidden-accessible">Focusable hidden content</button>
+            <label class="hidden-accessible" for="sampleTxt1">A hidden label
+            </label>
+            <input type="text" id="sampleTxt1">
+            <p>Hidden caption:</p>
+            <table>
+                <caption class="hidden-accessible">This caption should be hidden</caption>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+            </table>
+        </div>
+        <h2>
+				Sample 2
+			</h2>
+        <pre>
+	.sample2 .hidden-accessible {
+		position: absolute !important;
+		height: 1px; width: 1px; 
+		overflow: hidden;
+		clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+		clip: rect(1px, 1px, 1px, 1px);
+	}
+
+	.sample2 label.hidden-accessible { 
+		overflow: visible;
+	}
+		
+</pre>
+        <div class="sample sample2">
+            <a href="#">This is a <span class=
+				"hidden-accessible">partially hidden </span>
+				link</a>
+            <br />
+            <br />
+            <button>This is a <span class="hidden-accessible">partially hidden </span> button
+            </button>
+            <p class="hidden-accessible">
+                Static hidden content
+            </p>
+            <button class="hidden-accessible">Focusable hidden content</button>
+            <label class="hidden-accessible" for="sampleTxt2">A hidden label
+            </label>
+            <input type="text" id="sampleTxt2">
+            <p>Hidden caption:</p>
+            <table>
+                <caption class="hidden-accessible">This caption should be hidden</caption>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+            </table>
+        </div>
+        <h2>
+				Sample 3
+			</h2>
+        <pre>
+	.sample3 .ui-helper-hidden-accessible {
+		position: absolute!important;
+		clip: rect(1px);
+		clip: rect(1px,1px,1px,1px);
+		}
+		
+</pre>
+        <div class="sample sample3">
+            <a href="#">This is a <span class=
+				"hidden-accessible">partially hidden </span>
+				link</a>
+            <br />
+            <br />
+            <button>This is a <span class="hidden-accessible">partially hidden </span> button
+            </button>
+            <p class="hidden-accessible">
+                Static hidden content
+            </p>
+            <button class="hidden-accessible">Focusable hidden content</button>
+            <label class="hidden-accessible" for="sampleTxt3">A hidden label
+            </label>
+            <input type="text" id="sampleTxt3">
+            <p>Hidden caption:</p>
+            <table>
+                <caption class="hidden-accessible">This caption should be hidden</caption>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+            </table>
+        </div>
+        <h2>
+				Sample 4
+			</h2>
+        <pre>
+	.sample4 .hidden-accessible {
+		position: absolute;
+		left: -999em;
+		width: 1em;
+		overflow: hidden;
+	}
+		
+</pre>
+        <div class="sample sample4">
+            <a href="#">This is a <span class=
+				"hidden-accessible">partially hidden </span>
+				link</a>
+            <br />
+            <br />
+            <button>This is a <span class="hidden-accessible">partially hidden </span> button
+            </button>
+            <p class="hidden-accessible">
+                Static hidden content
+            </p>
+            <button class="hidden-accessible">Focusable hidden content</button> <span class="hidden-accessible"><label for="sampleTxt4">A hidden
+				label</label> </span>
+            <input type="text" id="sampleTxt4">
+            <p>Hidden caption:</p>
+            <table>
+                <caption class="hidden-accessible">This caption should be hidden</caption>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+            </table>
+        </div>
+        <h2>
+				Sample 5
+			</h2>
+        <pre>
+
+		
+</pre>
+        <div class="sample sample5">
+            <a href="#">This is a <span class=
+				"hidden-accessible">partially hidden </span>
+				link</a>
+            <br />
+            <br />
+            <button>This is a <span class="hidden-accessible">partially hidden </span> button
+            </button>
+            <p class="hidden-accessible">
+                Static hidden content
+            </p>
+            <button class="hidden-accessible">Focusable hidden content</button> <span class="hidden-accessible"><label for="sampleTxt4">A hidden
+				label</label> </span>
+            <input type="text" id="sampleTxt4">
+            <p>Hidden caption:</p>
+            <table>
+                <caption class="hidden-accessible">This caption should be hidden</caption>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

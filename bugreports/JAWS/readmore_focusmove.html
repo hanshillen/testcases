@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+    <script>
+        function el(elId) {
+            return document.getElementById(elId);
+        }
+
+        function init(e) {
+            var link = el("testLink");
+            link.onclick = function (e) {
+                el("testTarget").focus();
+                return false;
+            };
+        }
+        window.onload = init;
+    </script>
+</head>
+
+<body>
+    <p>
+
+        <span tabindex="-1" id="testTarget">April 2015.</span> This Year Three Evaluation Report is the final evaluation report for the Medicare Health Care Quality (MHCQ) Demonstration participant--the North Carolina Community Care Networks (NC-CCN). The primary intervention was NC-CCN’s Medicaid medical home
+        <a href="#" id="testLink">
+                read more
+            </a>
+        <p>
+</body>
+
+</html>

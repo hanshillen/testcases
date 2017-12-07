@@ -1,0 +1,51 @@
+// Adds the style sheet at the given location with the given id
+function wat_addStyleSheet(document, location, id) {
+	var documentList	= [document]
+	var documentLength  = documentList.length;
+	var headElementList;
+	var linkElement;
+	var pageDocument;
+
+	// Loop through the documents
+	for(var i = 0; i < documentLength; i++) {
+		pageDocument	= documentList[i];
+		headElementList = pageDocument.getElementsByTagName("head");
+		linkElement	 = pageDocument.createElement("link");
+		linkElement.setAttribute("href", location);
+		linkElement.setAttribute("id", id);
+		linkElement.setAttribute("rel", "stylesheet");
+		linkElement.setAttribute("type", "text/css");
+
+		// If there is a head element
+		if(headElementList.length > 0) {
+			headElementList[0].appendChild(linkElement);
+		}
+		else {
+			pageDocument.documentElement.appendChild(linkElement);
+		}
+	}
+}
+
+// Removes the style sheet with the given id
+function wat_removeStyleSheet(id) {
+	var documentList   = wat_getDocuments(wat_getContentWindow());
+	var documentLength = documentList.length;
+	var element		= null;
+	// Loop through the documents
+	for(var i = 0; i < documentLength; i++) {
+		element = documentList[i].getElementById(id);
+		// If the element is set
+		if(element){
+			element.parentNode.removeChild(element);
+		}
+	}
+}
+
+// Toggles the style sheet with the given id
+function wat_toggleStyleSheet(checked, location, id) {
+	wat_removeStyleSheet(id);
+	// If the menu is checked
+	if(checked) {
+		wat_addStyleSheet(location, id);
+	}
+}

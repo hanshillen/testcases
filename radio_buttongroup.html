@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RadioButtonGroup Manual Tests</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+      body {
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body class="wf2-skin-nx wf2-skin-nxt wf2-skin-sketch">
+    <h2>RadioButtonGroup with WF2 Buttons</h2>
+    <div id='buttonGroupContainer'>
+      <button id="button1">Button 1</button>
+      <button id="button2">Button 2</button>
+      <button id="button3">Button 3</button>
+      <button id="button4">Button 4</button>
+    </div>
+
+    <h2>RadioButtonGroup with WF2 Button, and two MenuButton's</h2>
+    <div id='buttonGroupContainerCombo'>
+      <button id="button5">Button 5</button>
+      <button id="button6">Button 6</button>
+      <button id="button7">Button 7</button>
+      <button id="button8">Button 8</button>
+    </div>
+    <hr/>
+    <div id='buttonBarContainer'>
+      <span class="wf2-buttonbar-slot">
+        <button id="toggleEnable">Disable</button>
+      </span>
+      <span class="wf2-buttonbar-slot">
+        <button id="toggleError">Set Error</button>
+      </span>
+      <span class="wf2-buttonbar-slot">
+        <button id="addRemove">Add Button</button>
+      </span>
+    </div>
+
+    <script src='https://wellscontent.wellsfargo.com/wria/2.11.0/build/wf2/wf2.js'></script>
+    <script>
+      YUI({filter:'raw', combine:false}).use([
+        'wf2-button',
+        'wf2-radiobuttongroup',
+        'wf2-buttonbar',
+        'wf2-menu-button'
+        ], function(Y) {
+        var menuItems = [
+            {
+              label: 'Edit Report Criteria'
+            },
+            {
+              data: {
+                'type': 'separator'
+              }
+            },
+            {
+              label: 'Export Unsaved Report (3)'
+            },
+            {
+              data: {
+                'type': 'separator'
+              }
+            },
+            {
+              'label': 'Export to PDF'
+            }
+            ],
+          config = [ // Markup
+            {
+              widgets: [
+                new Y.WF2.Button({
+                    srcNode: '#button1',
+                    label: 'Button 1',
+                    render: true
+                  }),
+                new Y.WF2.Button({
+                    srcNode: '#button2',
+                    label: 'Button 2',
+                    render: true
+                  }),
+                new Y.WF2.Button({
+                    srcNode: '#button3',
+                    label: 'Button 3',
+                    render: true
+                  }),
+                new Y.WF2.Button({
+                    srcNode: '#button4',
+                    label: 'Button 4',
+                    render: true
+                  })
+              ],
+              srcNode: '#buttonGroupContainer',
+              label: 'Markup Button Group'
+            }, //with two MenuButton's
+            {
+              widgets: [
+                new Y.WF2.Button({
+                  srcNode: '#button5',
+                  label: 'Button 5',
+                  render: true
+                }),
+                new Y.WF2.Button({
+                  srcNode: '#button6',
+                  label: 'Button 6',
+                  render: true
+                })
+              ],
+              srcNode: '#buttonGroupContainerCombo',
+              label: 'Combination Button Group'
+          }
+          ],
+          buttonGroupArray = [],
+          actionMapping, index, myButtonBar, saveButton, cancelButton;
+
+          actionMapping = {
+            'Enable': {
+              action: 'enable',
+              label: 'Disable',
+              params: []
+            },
+            'Disable': {
+              action: 'disable',
+              label: 'Enable',
+              params: []
+            },
+            'Set Error': {
+              action: true,
+              label: 'Remove Error',
+              params: [true, 'Error message goes in here.']
+            },
+            'Remove Error': {
+              action: false,
+              label: 'Set Error',
+              params: [false]
+            },
+            'Add Button': {
+              action: 'addButton',
+              label: 'Remove Button',
+              params: []
+            },
+            'Remove Button': {
+              action: 'removeButton',
+              label: 'Add Button',
+              params: [4]
+            }
+          };
+
+          var menuBtnItem1 = new Y.WF2.MenuButton({
+              srcNode: '#button7',
+              label: 'Button 7',
+              style: 'standard',
+              menuNodes: menuItems,
+              menuAnimation: true,
+              render: true
+            }),
+            menuBtnItem2 = new Y.WF2.MenuButton({
+              srcNode: '#button8',
+              label: 'Button 8',
+              style: 'standard',
+              menuNodes: menuItems,
+              menuAnimation: true,
+              render: true
+            });
+
+          menuBtnItem1.menu.on(Y.WF2.SimpleMenu.EVT_MENU_ITEM_CLICK, function(e) {
+            menuBtnItem1.hideMenuButton();
+          });
+          menuBtnItem2.menu.on(Y.WF2.SimpleMenu.EVT_MENU_ITEM_CLICK, function(e) {
+            menuBtnItem2.hideMenuButton();
+          });
+          config[1].widgets.push(menuBtnItem1, menuBtnItem2);
+
+          for (var i = 0; i < config.length; i += 1) {
+            buttonGroupArray[buttonGroupArray.length] = new Y.WF2.RadioButtonGroup(config[i]).render();
+          }
+
+          buttonGroupArray[1].toggleButtonSelection(1, true);
+          myButtonBar = new Y.WF2.ButtonBar({
+            srcNode: '#buttonBarContainer',
+            widgets: [
+              new Y.WF2.Button({
+                srcNode: '#toggleEnable',
+                style: 'standard',
+                render: true
+              }),
+              new Y.WF2.Button({
+                srcNode: '#toggleError',
+                style: 'standard',
+                render: true
+              }),
+              new Y.WF2.Button({
+                srcNode: '#addRemove',
+                style: 'standard',
+                render: true
+              })
+            ],
+            label: 'RadioButtonGroup Operations ButtonBar'
+          });
+          myButtonBar.render();
+
+          Y.delegate('click', function(e) {
+            var button = e.target,
+              label = button.getHTML(),
+              mapping = actionMapping[label],
+              action = mapping.action,
+              newLabel = mapping.label,
+              params = mapping.params,
+              errBtn = Y.one('#toggleError');
+            Y.Array.each(buttonGroupArray, function(radioButtonGroup) {
+              if (label === 'Set Error' || label === 'Remove Error') {
+                Y.Array.each(radioButtonGroup.getSelectedButtons(), function(button) {
+                  radioButtonGroup.toggleButtonSelection(button, false);
+                });
+                setTimeout(function() {
+                  radioButtonGroup.set('errorState', action);
+                }, 0);
+                return;
+              }
+              if (label === 'Add Button') {
+                params = [-1, new Y.WF2.Button({
+                  label: 'New Button',
+                  type: 'standard',
+                  render: true
+                })];
+              }
+              radioButtonGroup[action].apply(radioButtonGroup, params);
+              if(radioButtonGroup.get('disabled')) {
+                errBtn.setHTML('Set Error');
+                errBtn.set('disabled',true);
+              }
+              else if(!radioButtonGroup.get('disabled')) {
+                errBtn.set('disabled',false);
+              }
+            });
+            button.setHTML(newLabel);
+          }, Y.one('#buttonBarContainer'), 'button');
+
+      });
+    </script>
+  </body>
+</html>

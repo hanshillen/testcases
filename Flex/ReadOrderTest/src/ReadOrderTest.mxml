@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+               xmlns:mycontrols="mx.controls.*"
+               >
+
+    <fx:Declarations>
+        <!-- Place non-visual elements (e.g., services, value objects) here -->
+    </fx:Declarations>
+    <fx:Script>
+        <![CDATA[
+            import mx.core.mx_internal;
+            import mx.events.FlexEvent;
+            import mx.managers.ReadOrderManager;
+            
+            use namespace mx_internal;
+            
+            protected function checkbox1_changeHandler(event:Event):void
+            {
+                var readOrderManager:ReadOrderManager = new ReadOrderManager(this);
+                if (CheckBox(event.target).selected) 
+                {
+                    readOrderManager.createReadOrder();
+                }
+                else 
+                {
+                    readOrderManager.destroyReadOrder();
+                }
+            }
+            
+            [Bindable]
+            private var dp:Array = [1, 2, 3];    
+        ]]>
+    </fx:Script>
+    <mx:VBox paddingTop="20" paddingLeft="20" verticalGap="10">
+        <mx:Button label="buttonTest 1" />
+        <mx:Button label="buttonTest 3" />
+        <mx:HBox left="10" right="10" top="10" bottom="10">
+            <mx:Repeater id="rp" dataProvider="{dp}">
+                <mycontrols:MyLabelButton text="clickable label {String(rp.currentItem)}"/>
+                <mx:VBox>
+                    <mx:Repeater id="rp_inner" dataProvider="{dp}">
+                        <mx:Button label="regular button {String(rp.currentItem)}.{String(rp_inner.currentItem)}" />
+                        <mycontrols:MyLabelButton text="clickable label {String(rp.currentItem)}.{String(rp_inner.currentItem)}" />
+                    </mx:Repeater>    
+                </mx:VBox>
+            </mx:Repeater>
+        </mx:HBox>
+        <mx:CheckBox label="Fix Reading Order" change="checkbox1_changeHandler(event)"/>
+    </mx:VBox>        
+</s:Application>
