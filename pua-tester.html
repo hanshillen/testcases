@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PUA Range Tester</title>
+        <style>
+            body {
+                font-size: 1.5em;
+                font-family: sans-serif;
+            }
+
+            ul#filters {
+                display: flex;
+                flex-flow: row wrap;
+                padding-left: 0;
+            }
+
+            ul#filters li {
+                margin: 10px;
+                list-style: none;
+            }
+
+            ul#filters button {
+                padding: 10px;
+            }
+
+            button[aria-pressed=true] {
+                font-weight: bold;
+                background-color: rgb(8, 8, 44);
+                color: #fff;
+            }
+
+            :focus {
+                outline-offset: -.1rem;
+                outline: 0.15rem solid #fff !important;
+                box-shadow: 0 0 2px 0.4rem #99007a !important;
+                z-index: 3000;
+                border-radius: .25rem;
+            }
+
+            #range-area.updating {
+                background-color: rgb(255, 255, 0);
+            }
+
+            #range-area.updating.updated {
+                background-color: #fff;
+                transition: background-color 1s ease-out;
+            }
+        </style>
+        <script>
+            (function () {
+                const puaMin = 57344;
+                const puaMax = 63743;
+                const chunkSize = 500;
+                let chunksNum = ~~((puaMax - puaMin) / chunkSize);
+
+                function init() {
+                    let chunksHTML = "";
+
+                    for (let i = 0; i < chunksNum; i++) {
+                        let rangeMin = (puaMin + i) * chunkSize;
+                        let rangeMax = i === chunksNum ? puaMax : (puaMin + (i + 1) * chunkSize) - 1;
+                        rangeMin = Number(rangeMin).toString(16).toUpperCase();
+                        rangeMax = Number(rangeMax).toString(16).toUpperCase();
+                        chunksHTML += `<li><button data-range-id="${i}">U+${rangeMin} - U+${rangeMax}</button></li>`;
+                    }
+                    let filtersList = document.querySelector("#filters");
+                    filtersList.insertAdjacentHTML("afterbegin", chunksHTML);
+                    filtersList.querySelectorAll("button").forEach((button) => {
+                        button.addEventListener("click", function (e) {
+                            let rangeId = parseInt(e.target.getAttribute("data-range-id"), 10);
+                            let rangeText = e.target.innerText;
+                            selectButton(e.target);
+                            loadRange(rangeId, rangeText);
+                        });
+                    });
+                    let firstButton = filtersList.querySelector("button");
+                    firstButton.click();
+                };
+
+                function selectButton(button) {
+                    let list = button.closest("#filters");
+                    let buttons = list.querySelectorAll("button");
+                    buttons.forEach(button => button.setAttribute("aria-pressed", "false"));
+                    button.setAttribute("aria-pressed", "true");
+                }
+
+                function loadRange(rangeId, rangeText) {
+                    let rangeMin;
+                    let rangeMax;
+
+                    if (rangeId === -1) {
+                        rangeMin = puaMin;
+                        rangeMax = puaMax;
+                    } else {
+                        rangeMin = puaMin + (rangeId * chunkSize);
+                        rangeMax = rangeId === chunksNum ? puaMax : (puaMin + (rangeId + 1) * chunkSize) - 1;
+                    }
+                    let rangeHTML = "";
+                    for (let i = rangeMin; i < rangeMax; i++) {
+                        rangeHTML += `<span>&#x${i}; </span>`;
+                    }
+                    document.querySelector("#pua-range").innerHTML = rangeHTML;
+                    document.querySelector("#range-text").innerHTML = rangeText;
+
+                    let range = document.querySelector("#range-area");
+                    range.classList.remove("updating", "updated");
+                    range.classList.add("updating");
+                    window.setTimeout(function () { range.classList.add("updated"); }, 200);
+                }
+                document.addEventListener('DOMContentLoaded', init);
+            })();
+        </script>
+
+    </head>
+
+    <body>
+        <h1>Private Use Area (PUA) Character Range Tester</h1>
+
+        <h2>PUA Filter</h2>
+        <ul id="filters">
+            <li><button data-range-id="-1">All (Expect screen reader slowdowns)</button></li>
+        </ul>
+        <div id="range-area">
+            <h2>Selected PUA range chunk: <span id="range-text">U+E000 - U+E1F3</span></h2>
+            <p>&#x21E3; Start PUA range chunk</p>
+            <p id="pua-range">
+            </p>
+            <p>&#x21E1; End PUA range chunk</p>
+        </div>
+    </body>
+
+</html>
