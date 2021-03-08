@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Scrollable regions & tab order</title>
+        <style>
+            body {
+                counter-reset: tab-stop;
+            }
+
+            .scroll-region {
+                width: 10em;
+                height: 10em;
+                overflow: auto;
+                border: 1px solid #000;
+            }
+
+            .tab-stop {
+                margin: 20px;
+                clear: both;
+            }
+
+            .tab-stop::after {
+                counter-increment: tab-stop;
+                content: " " counter(tab-stop) " ";
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Scrollable containers & tab order test cases</h1>
+        <h2>Scrollable region</h2>
+        <button class="tab-stop">Tab stop</button>
+        <div class="scroll-region">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione aspernatur porro numquam autem quaerat quidem cumque odio sequi explicabo necessitatibus quibusdam earum voluptates, optio alias quia eaque reprehenderit animi vitae.
+        </div>
+        <h2>Scrollable region without overflow</h2>
+        <button class="tab-stop">Tab stop</button>
+        <div class="scroll-region">
+            Lorem ipsum
+        </div>
+        <h2>Scrollable region with tabindex</h2>
+        <button class="tab-stop">Tab stop</button>
+        <div class="scroll-region" tabindex="0">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione aspernatur porro numquam autem quaerat quidem cumque odio sequi explicabo necessitatibus quibusdam earum voluptates, optio alias quia eaque reprehenderit animi vitae.
+        </div>
+        <h2>iFrame containing focusable elements</h2>
+        <button class="tab-stop">Tab stop</button>
+        <br>
+        <iframe src="https://html.spec.whatwg.org/multipage/interaction.html#focusable-area" frameborder="0"></iframe>
+        <br>
+        <h2>iFrame containing static content</h2>
+        <button class="tab-stop">Tab stop</button>
+        <br>
+        <iframe src="https://raw.githubusercontent.com/hanshillen/testcases/master/scrollable-containers.html" frameborder="0"></iframe>
+        <br>
+        <button class="tab-stop">Tab stop</button>
+    </body>
+
+</html>
