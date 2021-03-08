@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Keyboard inaccessible hover content</title>
+        <style>
+            .tooltip-button {
+                position: relative;
+            }
+
+            .tooltip-button .tooltip {
+                display: none;
+                border: 1px solid #000;
+                position: absolute;
+                padding: 1em 10px 10px 10px;
+                top: 0;
+            }
+
+            button:hover+.tooltip,
+            .tooltip-button .tooltip:hover {
+                display: block
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="tooltip-button">
+            <button class="my-button">Click me</button>
+            <div class="tooltip">
+                <p>Here is some text with a <a href="#">link</a> and a <button>button</button></p>
+            </div>
+        </div>
+
+        <div role="toolbar" id="edit-toolbar" aria-label="edit controls">
+            <button tabindex="-1">Delete</button>
+            <button tabindex="-1">Edit</button>
+            <button tabindex="-1">Add label</button>
+        </div>
+
+        <script>
+            document.addEventListener("keyup", function (event) {
+                // Ctrl + Shift + M moves focus to the toolbar
+                if (event.key === "M" && event.ctrlKey && event.shiftKey) {
+                    let firstToolbarButton = document.querySelector("#edit-toolbar > button");
+                    if (firstToolbarButton) {
+                        firstToolbarButton.focus();
+                    }
+                }
+            });
+        </script>
+    </body>
+
+</html>
