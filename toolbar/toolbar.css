@@ -1,0 +1,104 @@
+body {
+    padding: 10rem 10px 10px 40px;
+}
+
+.tpgi-text-editor {
+    width: 40em;
+    max-width: fit-content;
+    border: 1px solid #000;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.tpgi-text-editor .tpgi-toolbar {
+    border: 2px solid rgb(34, 34, 34);
+    min-height: 2em;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(107, 107, 107);
+    display: flex;
+}
+
+.tpgi-text-editor .tpgi-toolbar .tpgi-toolbar-group {
+    display: flex;
+}
+
+.tpgi-text-editor .tpgi-toolbar .tpgi-toolbar-group +  .tpgi-toolbar-group {
+    margin-left: 20px;
+}
+
+.tpgi-text-editor .tpgi-toolbar .tpgi-toolbar-slider-container {
+    display: flex;
+    color: #FFF;
+    height: 2.5rem;
+}
+
+.tpgi-control-container {
+    color: #000;
+}
+
+.tpgi-toolbar-icon {
+    padding: 0.2rem;
+    margin: 0.1rem;
+    line-height: 1.7;
+}
+
+.tpgi-text-editor .tpgi-toolbar .tpgi-toolbar-control {
+    height: 2.5rem;
+    width: 2.5rem;
+    padding: 0.5rem;
+}
+
+
+.tpgi-text-editor .tpgi-toolbar .tpgi-toolbar-control, .tpgi-text-editor .tpgi-toolbar .tpgi-toolbar-slider-container {
+    margin: 0.1rem;
+    font-size: 1.2rem;
+    line-height: 1rem;
+    position: relative;
+}
+
+.tpgi-text-editor .tpgi-toolbar .tpgi-toolbar-control {
+    border: 1px solid #000;
+    border-radius: 5px;
+    color: #000;
+    background-color: rgb(239, 239, 239);
+}
+
+.tpgi-text-editor .tpgi-toolbar .tpgi-toolbar-slider-container .tpgi-toolbar-control {
+    width: fit-content;
+}
+
+.tpgi-text-editor .tpgi-toolbar .tpgi-toolbar-control:focus {
+    box-shadow: #FFFF00 0px 0px 0px 0.2rem;
+    outline: 1px solid #FFFF00;
+}
+
+.tpgi-text-editor .tpgi-toolbar .tpgi-toolbar-control .tpgi-toolbar-tooltip, .tpgi-text-editor .tpgi-toolbar .tpgi-control-container .tpgi-toolbar-tooltip  {
+    position: absolute;
+    border: 1px solid #000;
+    border-radius: 3px;
+    background-color: rgb(239, 239, 239);
+    clip: rect(0,0,0,0);
+    margin: -1px;
+    overflow: hidden;
+    padding: 5px;
+}
+
+.tpgi-text-editor .tpgi-toolbar .tpgi-toolbar-control:focus .tpgi-toolbar-tooltip, .tpgi-text-editor .tpgi-toolbar .tpgi-toolbar-control:hover .tpgi-toolbar-tooltip, .tpgi-text-editor .tpgi-toolbar .tpgi-control-container .tpgi-toolbar-control:focus+.tpgi-toolbar-tooltip, .tpgi-text-editor .tpgi-toolbar .tpgi-control-container .tpgi-toolbar-control:hover+.tpgi-toolbar-tooltip {
+    bottom: 2.3em;
+    left: 0;
+    clip: unset;
+}
+
+.tpgi-text-editor .tpgi-editing-region {
+    overflow: auto;
+    height: 20em;
+    padding: 10px;
+}
+
+.tpgi-text-editor .tpgi-editing-region:focus {
+    
+    outline: 2px solid #04035a;
+    outline-offset: -3px;
+    border-color: #FFF;
+}
